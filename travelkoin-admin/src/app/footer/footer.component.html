@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
+  -->
+
+<div class="main-footer clearfix bg-black">
+  <div class="footer-pane">
+    <div class="container clearfix">
+        <div class="logo">© {{ year }} All rights reserved - {{ 'BUILD' | translate }}</div>
+      <div class="footer-nav-bottom">
+          <a [routerLink]="['/privacy']" [title]="'FOOTER.PRIVACY' | translate">{{ 'FOOTER.PRIVACY' | translate }}</a>
+          <a [routerLink]="['/terms']" [title]="'FOOTER.TERMS' | translate">{{ 'FOOTER.TERMS' | translate }}</a>
+          <a href="https://www.twitter.com/travelkoin" target="_blank" [title]="'FOOTER.FOLLOW_US' | translate"><i class="fab fa-twitter"></i> {{ 'FOOTER.FOLLOW_US' | translate }}</a>
+          <a href="https://t.me/joinchat/E0yi4QzA-FQURce32Jyw5A" target="_blank" [title]="'FOOTER.HAVE_A_QUESTION' | translate"><i class="fab fa-telegram-plane"></i> {{ 'FOOTER.HAVE_A_QUESTION' | translate }}</a>
+          <a href="mailto:info@travelkoin.io" [title]="'FOOTER.CONTACT_US' | translate"><i class="fas fa-envelope"></i> {{ 'FOOTER.CONTACT_US' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</div>

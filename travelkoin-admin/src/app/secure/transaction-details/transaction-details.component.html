@@ -1,0 +1,31 @@
+<a class="tile-box btn bg-white content-box" *ngIf="confirmedTransaction != null && loading === false">
+    <div class="tile-header">
+        <div class="pull-left" *ngIf="type === 'BTC'" [ngClass]="{'font-green': confirmedTransaction.confirmations >= 4, 'font-orange': confirmedTransaction.confirmations < 4, 'font-red': confirmedTransaction.confirmations === 0}">{{ 'WALLET.CONFIRMATIONS' | translate }}: {{ confirmedTransaction.confirmations }}</div>
+        <div class="float-right" *ngIf="type === 'BTC'">
+            <i class="fas fa-clock"></i>
+            {{ confirmedTransaction.time | amFromUnix | amDateFormat:'YYYY-MM-DD h:mm:ss a' }}
+        </div>
+    </div>
+    <div class="tile-content-wrapper" style="clear: both">
+        <i class="glyph-icon fas fa-dashboard"></i>
+        <div class="tile-content">
+            {{ confirmedTransaction.credit }}
+            <span>{{ type }}</span>
+        </div>
+        <small *ngIf="confirmedTransaction.credit !== 0">
+            {{ type }} deposit.
+        </small>
+        <small *ngIf="confirmedTransaction.credit === 0" class="font-red">
+            {{ 'WALLET.TRANSACTION_MISMATCH' | translate }}
+        </small>
+    </div>
+</a>
+<div class="grid-wrapper" *ngIf="loading === true">
+    <i class="k-i-loading"></i>
+</div>
+<div class="grid-wrapper" *ngIf="error === true">
+    <div class="text-center">
+        <h2>{{ 'WALLET.TRANSACTION_ERROR' | translate }}</h2>
+        <p>{{ errorMessage }}</p>
+    </div>
+</div>

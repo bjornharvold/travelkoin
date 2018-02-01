@@ -1,0 +1,84 @@
+<!--
+  ~ Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
+  -->
+<div class="top-bar bg-topbar">
+    <div class="container">
+        <div class="float-left">
+            <share-buttons [theme]="'default'"
+                           [include]="['facebook','twitter','google','linkedin','telegram','reddit','tumblr']"
+                           [show]="7"
+                           [url]="'https://travelkoin.io'"
+                           [size]="-4"
+                           [title]="'Travelkoin'"
+                           [description]="'Travelkoin is a payment gateway and loyalty platform for the travel industry to perform cross-partner transactions at no cost and gamify the experience for better customer retention.'"
+                           [image]="'https://travelkoin.io/assets/img/open_graph_card.png'"
+                           [tags]="'blockchain, travel, travelkoin'"
+            ></share-buttons>
+            <!--<a href="https://www.facebook.com/travelkoin/" target="_blank" class="btn btn-sm bg-facebook tooltip-button" data-placement="bottom" [title]="'HEADER.FOLLOW_US_FACEBOOK' | translate ">-->
+            <!--<i class="fab fa-facebook-f"></i>-->
+            <!--</a>-->
+            <!--<a href="#" class="btn btn-sm bg-google tooltip-button" data-placement="bottom" [title]="'HEADER.FOLLOW_US_GOOGLE' | translate ">-->
+            <!--<i class="fab fa-google-plus-g"></i>-->
+            <!--</a>-->
+            <!--<a href="https://www.twitter.com/travelkoin" target="_blank" class="btn btn-sm bg-twitter tooltip-button" data-placement="bottom" [title]="'HEADER.FOLLOW_US_TWITTER' | translate ">-->
+            <!--<i class="fab fa-twitter"></i>-->
+            <!--</a>-->
+        </div>
+        <div ngbDropdown class="float-right user-account-btn d-inline-block" *ngIf="credentials != null">
+            <button class="btn btn-outline-primary" id="dropdownAccount" ngbDropdownToggle>
+                <img width="28" [src]="credentials.photoURL" alt="Profile image" *ngIf="credentials.photoURL != null">
+                <span *ngIf="credentials.displayName != null">{{ credentials.displayName }}</span>
+                <span *ngIf="credentials.displayName == null && credentials.email != null">{{ credentials.email }}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownAccount">
+                <button class="dropdown-item" [routerLink]="['/secure/dashboard']">{{ 'HEADER.MY_WALLET' | translate }}</button>
+                <button class="dropdown-item" (click)="logout()" [title]="'HEADER.LOGOUT' | translate">
+                    <span class="font-red">{{ 'HEADER.LOGOUT' | translate }}</span>
+                </button>
+            </div>
+        </div>
+        <div class="float-right user-account-btn d-inline-block" *ngIf="credentials == null && isAuth === false">
+            <a [routerLink]="['/auth/login']" class="btn btn-outline-primary" [title]="'HEADER.LOGIN' | translate">
+                {{ 'HEADER.LOGIN' | translate }}
+            </a>
+        </div>
+    </div><!-- .container -->
+</div>
+<div class="main-header bg-header">
+    <div class="container">
+        <div class="logo-container">
+            <div app-logo></div>
+            <a [routerLink]="['/']" style="text-decoration: none;" class="font-blue">TRAVELKOIN</a>
+        </div>
+        <div class="right-header-btn">
+            <div class="search-btn" [ngClass]="{'border-left': isHome === true, 'border-none': isHome === false }">
+                <div ngbDropdown class="d-inline-block">
+                    <div *ngIf="languageEnabled === true">
+                        <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle [title]="'HEADER.CHOOSE_LANGUAGE' | translate"><i class="fas fa-language"></i></button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item" *ngFor="let lang of languages" (click)="changeLanguage(lang.value)"><span *ngIf="lang.value === language"><i class="fas fa-angle-right"></i> </span>{{ 'LANGUAGE.' + lang.label | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .header-logo -->
+        <ul id="collapsedNavbar" class="header-nav" *ngIf="isHome === true" [ngbCollapse]="isCollapsed">
+            <li class="">
+                <a [routerLink]="['.']" fragment="features" [title]="'HEADER.FEATURES' | translate">{{ 'HEADER.FEATURES' | translate }}</a>
+            </li>
+            <li class="">
+                <a href="https://drive.google.com/open?id=0B_hagGly7ZTjTVBmNl8wbFNiZ2s" target="_blank" [title]="'HEADER.WHITE_PAPER' | translate">{{ 'HEADER.WHITE_PAPER' | translate }}</a>
+            </li>
+            <li class="">
+                <a [routerLink]="['.']" fragment="roadmap" [title]="'HEADER.ROAD_MAP' | translate">{{ 'HEADER.ROAD_MAP' | translate }}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<kendo-dialog title="{{ 'HEADER.LANGUAGE_DIALOG' | translate }}" *ngIf="showLanguageWarning" (close)="completeLanguageDialogClose()">
+    <p style="margin: 30px; text-align: center;">{{ 'HEADER.LANGUAGE_DIALOG_DESCRIPTION' | translate }}</p>
+    <kendo-dialog-actions>
+        <button (click)="completeLanguageDialogClose()" class="k-button k-primary" primary="true">{{ 'BUTTON.CLOSE' | translate }}</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

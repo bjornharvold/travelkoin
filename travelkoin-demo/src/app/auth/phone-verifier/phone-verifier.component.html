@@ -1,0 +1,82 @@
+<!--
+  ~ Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
+  -->
+<div class="center-vertical">
+    <div class="center-content row">
+
+        <div class="col-md-10 col-lg-6 center-margin">
+
+            <h3 class="text-center pad15B font-gray text-transform-upr font-size-23">{{ 'AUTH.PHONE_VERIFIER.TITLE' | translate }}</h3>
+
+            <div class="content-box border-top border-blue-alt clearfix">
+                <div class="content-box-wrapper row">
+                    <div class="col-md-12 font-red" *ngIf="message != null">
+                        <p>{{ message }}</p>
+                    </div>
+                    <form (ngSubmit)="linkPhoneNumber()" [formGroup]="linkPhoneForm" class="col-md-12" *ngIf="!phoneNumberExists">
+
+                        <div class="pad20A">
+
+                            <div class="form-group" [ngClass]="{'has-danger': !phoneNumber.valid && !phoneNumber.pristine, 'has-success': phoneNumber.valid && !phoneNumber.pristine}">
+                                <label for="phoneNumber">{{ 'AUTH.PHONE_VERIFIER.PHONE_NUMBER' | translate }}:</label>
+                                <div class="input-group input-group-lg">
+                                        <span class="input-group-addon addon-inside bg-white font-primary">
+                                            <i class="fas fa-phone-square"></i>
+                                        </span>
+                                    <input type="text" class="form-control" placeholder="{{ 'AUTH.PHONE_VERIFIER.ENTER_NUMBER' | translate }}" formControlName="phoneNumber" id="phoneNumber">
+                                </div>
+
+                                <small class="form-text text-muted">{{ 'AUTH.PHONE_VERIFIER.ENTER_CODE_HELP' | translate }}</small>
+                                <div [hidden]="phoneNumber.valid || phoneNumber.pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="phoneNumber.hasError('required')">{{ 'AUTH.PHONE_VERIFIER.PHONE_NUMBER_REQUIRED' | translate }}</p>
+                                        <p class="font-red" *ngIf="phoneNumber.hasError('pattern')">{{ 'AUTH.PHONE_VERIFIER.INCORRECT_PATTERN' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div nbRecaptcha [key]="recaptchaAPIKey" [lang]="language" formControlName="captcha"></div>
+                            </div>
+                            <div class="row mrg15B"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!linkPhoneForm.valid">{{ 'AUTH.PHONE_VERIFIER.SAVE' | translate }}</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <form (ngSubmit)="enterVerificationCode()" [formGroup]="verifyForm" class="col-md-12" *ngIf="phoneNumberExists">
+
+                        <div class="pad20A">
+
+                            <div class="form-group" [ngClass]="{'has-danger': !verificationCode.valid && !verificationCode.pristine, 'has-success': verificationCode.valid && !verificationCode.pristine}">
+                                <label for="verificationCode">{{ 'AUTH.PHONE_VERIFIER.PHONE' | translate }}:</label>
+                                <div class="input-group input-group-lg">
+                                        <span class="input-group-addon addon-inside bg-white font-primary">
+                                            <i class="fas fa-phone-square"></i>
+                                        </span>
+                                    <input type="text" class="form-control" placeholder="{{ 'AUTH.PHONE_VERIFIER.ENTER_CODE' | translate }}" formControlName="verificationCode" id="verificationCode">
+                                </div>
+
+                                <div [hidden]="verificationCode.valid || verificationCode.pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="verificationCode.hasError('required')">{{ 'AUTH.PHONE_VERIFIER.PHONE_NUMBER_REQUIRED' | translate }}</p>
+                                        <p class="font-red" *ngIf="verificationCode.hasError('pattern')">{{ 'AUTH.PHONE_VERIFIER.INCORRECT_PATTERN' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mrg15B"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!verifyForm.valid">{{ 'AUTH.PHONE_VERIFIER.VERIFY' | translate }}</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

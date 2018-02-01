@@ -1,0 +1,19 @@
+<div class="hero-box hero-box-smaller bg-black font-inverse" data-top-bottom="background-position: 50% 0px;" data-bottom-top="background-position: 50% -600px;" style="background-position: 50% -181.659px;">
+    <div class="container">
+        <h1 class="hero-heading">
+            <app-timer #timer [timeInMilliSeconds]="1519891200000"></app-timer>
+        </h1>
+    </div>
+    <div class="hero-pattern pattern-bg-2"></div>
+</div>
+
+<div id="page-content" class="col-md-10 center-margin frontend-components mrg25T">
+    <div class="row">
+        <div class="col-md-2">
+            <app-secure-navigation></app-secure-navigation>
+        </div>
+        <div class="col-md-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

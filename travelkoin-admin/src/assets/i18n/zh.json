@@ -1,0 +1,331 @@
+{
+  "BUILD": "[[mvn:project.version]]-r[[mvn:buildNumber]]",
+  "TRAVELKOIN_PLATFORM": "Travelkoin加密货币平台",
+  "HEADER": {
+    "LOGIN": "登录",
+    "LOGOUT": "退出",
+    "CHOOSE_LANGUAGE": "选择语言",
+    "LANGUAGE": "语言",
+    "CONTACT_US": "联系我们",
+    "WHITE_PAPER": "白皮书",
+    "FEATURES": "亮点",
+    "ROAD_MAP": "Travelkoin大事记",
+    "MY_WALLET": "钱包",
+    "LANGUAGE_DIALOG": "更改语言",
+    "LANGUAGE_DIALOG_DESCRIPTION": "抱歉我们目前不支持此语种，我们会尽快提供该语种版本.",
+    "FOLLOW_US_FACEBOOK": "关注我们的Facebook",
+    "FOLLOW_US_TWITTER": "关注我们的Twitter",
+    "FOLLOW_US_GOOGLE": "关注我们的Google+"
+  },
+  "FOOTER": {
+    "CONTACT_US": "邮件我们",
+    "FOLLOW_US": "关注我们",
+    "PRIVACY": "隐私政策",
+    "TERMS": "条款&条例"
+  },
+  "HOME": {
+    "MARKETING_HEADER": {
+      "1": "旅游业的创新者",
+      "2": "专为航空业，酒店业，租车，邮轮，火车，在线预订，预订引擎和渠道管理多方向，开放的全新去中心化支付功能。",
+      "3": "我们的区块链接平台不但快速，智能，安全，同时也十分环保，致力为旅游业带来最好的全新科技。",
+      "FOLLOW_US": "关注我们",
+      "WHITE_PAPER": "白皮书",
+      "ROAD_MAP": "Travelkoin大事记"
+    },
+    "COUNTDOWN": {
+      "HEADER": "项目倒计时中"
+    },
+    "NEWSLETTER": {
+      "HEADER": "联系我们",
+      "EMAIL_PLACEHOLDER": "请输入您的邮件地址"
+    },
+    "NUTSHELL": {
+      "HEADER": "项目概览",
+      "PAYMENT_GATEWAY": "全新支付方式",
+      "PAYMENT_GATEWAY_DESC": "一个拥有强大功能，极具发展潜力，安全，快速的区块链接支付方式，将为旅游业带来全零费用支付体验。",
+      "LOYALTY_PLATFORM": "会员回馈",
+      "LOYALTY_PLATFORM_DESC": "Travelkoin是一个全球化，自定义白标签的会员制虚拟代币，旅游合作伙伴可以在会员制内免费使用。",
+      "STABLE_SETTLEMENTS": "快捷结算",
+      "STABLE_SETTLEMENTS_DESC": "我们的标准旅游代币和旅游业内常用的货币种类挂钩，十分方便结算。"
+    },
+    "PAYMENT_GATEWAY": {
+      "HEADER": "全新支付方式",
+      "DESCRIPTION": "旅游供应商可以在消费者生态系统中，通过使用智能合约灵活，安全，高效地零费用操作跨境支付。中介费，汇款费和费时等多种不便将成为过去。"
+    },
+    "LOYALTY_PLATFORM": {
+      "HEADER": "会员回馈",
+      "DESCRIPTION": "Travelkoin拥有强大的会员平台，让所有旅游供应商可以更好的管理资源。游客在旅行供应商网络内的服务中预订，评论等会得到补偿，或可以转换为法定货币。"
+    },
+    "WAITING_FOR": {
+      "HEADER": "赶快行动",
+      "1": "现在就注册，和我们一起见证旅游业的创新时刻。"
+    },
+    "TESTIMONIALS": {
+      "HEADER": "专家陈述"
+    },
+    "ADVISORS": {
+      "HEADER": "我们的资助者"
+    },
+    "FEATURES": {
+      "HEADER": "特色",
+      "PAYMENT_GATEWAY": "支付方式",
+      "PAYMENT_GATEWAY_1": "旅游行业由于地域风散的特性，旅游供应商通常需要支付较高的汇款手续费，而大部分都是跨境付款费。通常情况下，跨境汇款需要很长的时间，旅游供应商需要保证提前45天付款。目前唯一可以降低汇款成本的方式，只有通过多次汇款，获取较低的汇款手续费折扣。.",
+      "PAYMENT_GATEWAY_2": "我们的全新区块链接技术将为旅游业生态系统，提供最新的支付方式，结束手续繁杂，成本较高的传统支付方式。旅游供应商可以直接和支付款方直接操作汇款，不需要再通过中间者来操作。通过区块链接技术，和我们的自定义智能合同，我们为旅游供应商带来全新的支付方式。 请浏览麻省理工大学斯隆商学院关于区块链接技术的分析视频。",
+      "LOYALTY_PLATFORM": "会员回馈",
+      "LOYALTY_PLATFORM_1": "旅游业内几乎每一个公司或旅行社都用会员回馈来拓展客户源，或保留老客户。大部分的会员回馈都不是很灵活，或者没有让消费者获得真的该得到的奖励。很多会员回馈有时限，会员如果不长期使用改产品，还将失去积分或会员制。 真正的会员回馈应该是互利互惠的！",
+      "LOYALTY_PLATFORM_2": "我们的会员回馈是与众不同的。既可以B2B,也可以B2C。Travelkoin的会员回馈项目奖励十分丰富， Travelkoin代币可以随时转换为常用法定货币，且代币不会过期。 Travelkoins代币只会在任何有关旅游的事项发生时才会生成， 比如当一个订单形成时，旅游供应商会从他们的客人方收取代币，在Travelkoin平台上通过代币来进行交易。 通过平等，透明，公平的交易方式，消费者和旅游供应商都可以更好的进行交易。代币还可以转换成自定义白标签虚拟代币，在更多虚拟货币平台上使用。",
+      "STABLE_SETTLEMENTS": "稳定性",
+      "STABLE_SETTLEMENTS_1": "稳定性是决定全球经济体系成功的最重要因素。当失去稳定时，任何个体在全球任何地区旅行时，将不能计划或遇见种种情况，做出正确的选择。Travelkoin的标准旅游代币(STU)具有稳定，可预见和可替代性多方面的优点， 通过全新的区块链接技术， Travelkoin旅游代币(STU)将会全球旅游经济体系带来更多的稳定性，通过全新的代币体系，为旅游业带来更多商机，提供更好的交易环境。",
+      "STABLE_SETTLEMENTS_2": "Travelkoin旅游代币(STU)是居于可转换公司债券的概念上形成的，这些债券常常被用于资助初创企业。在初创企业过程中，可转换债券可在短期内做为价值基准，并在未来资金筹资过程中，根据相应的价值，被转换成股份。Travelkoin代币，在区块链接技术上生成的代币，可以理解为可转换债券中的股票。比如说Travelkoin旅游代币(STU)，可被视为是其他商品或货币的债务。 可转换公司债券让拥有者可以在新兴智能经济体系中，在短时间内市场上转化成具有价值的资产。"
+    },
+    "ROADMAP": {
+      "HEADER": "大事记",
+      "STEP1": {
+        "HEADER": "Travelkoin在线首发",
+        "DESCRIPTION": "Traveliko.com是位于新加坡的一个旅游中介公司，为公司客户提供Travelkoin代币作为会员回馈。"
+      },
+      "STEP2": {
+        "HEADER": "上线",
+        "DESCRIPTION": "Travelkoin代币全新进入智能经济体系。为全球旅游业经济带来更多的透明度、更高的效率和更安全的环境"
+      },
+      "STEP3": {
+        "HEADER": "Token pre-sale",
+        "DESCRIPTION": "Travelkoin预售将在3月份整月进行。"
+      },
+      "STEP4": {
+        "HEADER": "Token Generation Event",
+        "DESCRIPTION": "Travelkoin将会在4月份进行。"
+      },
+      "STEP5": {
+        "HEADER": "Travelkoin会员回馈项目",
+        "DESCRIPTION": "Traveliko.com将会同时推出会员回馈项目。"
+      },
+      "STEP6": {
+        "HEADER": "Travelkoin会员回馈项目",
+        "DESCRIPTION": "Travelkoin会员回馈项目将会为旅游供应商提供整合平台。"
+      },
+      "STEP7": {
+        "HEADER": "Travelkoin支付平台",
+        "DESCRIPTION": "Traveliko.com将会率先在网站上使用代币技术收款和付款。"
+      }
+    }
+  },
+  "AUTH": {
+    "LOGIN": {
+      "BUTTON_SAVE": "登录",
+      "CREDENTIALS_INCORRECT": "验证失败",
+      "ACCOUNT_VERIFIED": "您的账号已验证成功。请登录。",
+      "WAITING_ON_VERIFICATION": "请查看您的邮箱，并点击邮件中的链接验证账号。",
+      "PASSWORD_RESET_SUCCESSFULLY": "密码修改成功，请登录。",
+      "PASSWORD_PLACEHOLDER": "输入密码",
+      "REGISTER": "注册",
+      "LOGIN_TITLE_SHORT": "登录",
+      "SLOGAN": "旅游业的全新付款方式",
+      "NOT_A_MEMBER_YET": "还没有注册会员?",
+      "DID_YOU_VERIFY_YOUR_EMAIL": "是否已验证邮件?",
+      "MEMBERS_AREA": "会员区",
+      "MEMBERS_AREA_INFO": "请使用下列表格登录您的账号。",
+      "CLICK_HERE_TO_SIGN_UP": "注册",
+      "CLICK_HERE_TO_LOGIN": "登录",
+      "CLICK_HERE_RESET_YOUR_PASSWORD": "忘记密码",
+      "CLICK_HERE_VERIFY_EMAIL": "验证邮箱",
+      "CONNECT_WITH_FACEBOOK": "关注我们的Facebook",
+      "CONNECT_WITH_TWITTER": "关注我们的Twitter",
+      "CONNECT_WITH_GOOGLE": "关注我们的Google",
+      "CONNECT_WITH_COINBASE": "关注我们的Coinbase",
+      "CONNECT_WITH_GITHUB": "关注我们的Github"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "忘记密码",
+      "INFO": "请在下面输入设置密码.",
+      "EXPECTATION": "我们将会向您的邮箱发送密码重设链接.",
+      "ERROR": "密码重设验证请求失败.",
+      "KNOW_YOUR_PASSWORD": "还记得密码吗?",
+      "HAVE_A_CODE": "已收到验证码?",
+      "CHANGE_PASSWORD": "重设密码",
+      "REQUEST_PASSWORD_RESET": "需重设密码"
+    },
+    "RESEND_EMAIL": {
+      "CLICK_TO_RESEND_EMAIL": "重现发送验证邮件",
+      "CLICK_TO_VERIFY_EMAIL": "验证账号",
+      "TITLE": "重现发送加入会员欢迎邮件",
+      "INFO": "请在下面重新发送加入会员欢迎邮件.",
+      "REQUEST_WELCOME_EMAIL": "REQUEST WELCOME EMAIL",
+      "EXPECTATION": "如果您没有收到欢迎邮件，或验证代码已过期，请从新输入您的邮箱接受新的欢迎邮件和验证码。"
+    },
+    "REGISTER": {
+      "TITLE": "注册账号",
+      "BUTTON_SAVE": "注册",
+      "ALREADY_HAVE_AN_ACCOUNT": "已经有会员账号?",
+      "FIRST_NAME": "名",
+      "LAST_NAME": "姓",
+      "EMAIL_PLACEHOLDER": "输入邮箱地址",
+      "EMAIL_UNAVAILABLE": "该邮箱用户名已被注册",
+      "CHECKING_AVAILABILITY": "检测中…",
+      "CHOOSE_PASSWORD": "设置密码",
+      "CONFIRM_PASSWORD": "再次输入确认密码",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "验证密码",
+      "ENTER_PASSWORD": "请输入您的密码…",
+      "PASSWORDS_DO_NOT_MATCH": "密码输入错误",
+      "INCORRECT_PASSWORD": "密码错误",
+      "PASSWORD_SYNTAX": "密码必须由8位数字字母组成，其中必须包含一个大写字母，一个小写字母，一个数字和一个符号。"
+    },
+    "VERIFY_EMAIL": {
+      "TITLE": "验证邮件",
+      "INFO": "请在下面输入您在邮件中收到的验证码.",
+      "VERIFICATION_CODE": "验证码",
+      "VERIFICATION_CODE_PLACEHOLDER": "请输入邮件中发送的验证码…",
+      "CODE_REQUIRED": "请输入验证码",
+      "VERIFY": "VERIFY CODE AND COMPLETE REGISTRATION"
+    },
+    "PHONE_VERIFIER": {
+      "TITLE": "电话验证",
+      "PHONE_NUMBER": "请输入您的电话号码",
+      "PHONE_NUMBER_REQUIRED": "需要输入电话号码",
+      "INCORRECT_PATTERN": "请输入电话号码",
+      "ENTER_NUMBER": "请输入电话号码",
+      "ENTER_CODE": "请输入短信验证码",
+      "SAVE": "保存",
+      "ENTER_CODE_HELP": "电话号码输入格式: +12125551212 (国家代码和电话号码，中间没有空格). 短信验证可能会被取您所在地区的标准短信费."
+    }
+  },
+  "COMMON": {
+    "EMAIL": "邮件",
+    "PASSWORD": "密码",
+    "EMAIL_REQUIRED": "请输入邮件地址",
+    "EMAIL_NOT_VALID": "邮件地址错误",
+    "ENTER_REGISTERED_EMAIL": "请输入您的邮件地址",
+    "REGISTER": "注册",
+    "FIRST_NAME_PLACEHOLDER": "请输入您的名称",
+    "LAST_NAME_PLACEHOLDER": "请输入您的姓式",
+    "FIRST_NAME_REQUIRED": "请输入您的名称",
+    "LAST_NAME_REQUIRED": "请输入您的姓式"
+  },
+  "DASHBOARD": {
+    "HEADER": "Dashboard",
+    "DESCRIPTION": "欢迎来到Travelkoin， 开始了解我们的首次代币发行(ICO).",
+    "FORMS": "Forms",
+    "ADD_FUNDS": "Add funds",
+    "GOAL_REACHED": "代币销售过程"
+  },
+  "COIN": {
+    "TKT": "Travelkoin",
+    "ETH": "以代币",
+    "BTC": "比特币"
+  },
+  "WALLET": {
+    "TITLE": "钱包",
+    "TRANSACTIONS": "TXS",
+    "TRANSACTION_ERROR": "错误",
+    "TRANSACTION_ERROR_DETAILS": "详情",
+    "TRANSACTION_MISMATCH": "您的交易地址不正确，请重试.",
+    "CONFIRMATIONS": "确认",
+    "TOTAL_INVESTMENT": "确认金额",
+    "SEND": "发送",
+    "BALANCE": "额度",
+    "RECEIVE": "接收",
+    "EXCHANGE": "交易",
+    "DESCRIPTION": "请告知我们您所使用支付的钱包是类型是 {{type}}."
+  },
+  "VALUE": {
+    "ADD_PAYMENT": "添加交易",
+    "PAYMENTS": "支付",
+    "INSTRUCTIONS": "请点击加号按键购买Travelkoin代币.",
+    "QR": "QR code",
+    "TRANSACTION_ID": "交易ID",
+    "DATE_TIME": "按照时间顺序",
+    "AMOUNT": "总额",
+    "ACTION": "Action"
+  },
+  "SEND": {
+    "DIALOG": "请通知我们交易",
+    "DIALOG_DESCRIPTION": "Transaction: {{交易ID}} of {{总额}} {{类别}}已完成。继续交易?",
+    "DESCRIPTION": "当您从钱包向我们支付成功后，请填写该表格告知我们。您不需要通过邮件通知我们。ICO开始上线后，您将可以按照合同规定把您的投资转换成Travelkoin.",
+    "MAKE_PAYMENT": "记录付款",
+    "COPIED": "地址以复制到剪贴板",
+    "AMOUNT": "金额",
+    "AMOUNT_PLACEHOLDER": "输入金额",
+    "AMOUNT_HELP": "请输入您所发送的金额",
+    "CHOOSE_FEE": "选择交易速度…",
+    "WALLET_TRANSACTION": "交易ID",
+    "WALLET_TRANSACTION_PLACEHOLDER": "输入交易ID",
+    "WALLET_TRANSACTION_HELP": "输入您的交易身份验证码.",
+    "WALLET_SENDER": "发送者",
+    "WALLET_SENDER_PLACEHOLDER": "请输入您的钱包地址",
+    "WALLET_SENDER_HELP": "选项: 请输入您发送代币的钱包的地址。",
+    "WALLET_RECIPIENT": "向此钱包地址发送代币",
+    "WALLET_RECIPIENT_HELP": "请使用该地址向我们发送代币."
+  },
+  "EXCHANGE": {
+    "DIALOG": "确认交易",
+    "DIALOG_DESCRIPTION": "您将交易 {{总额}} {{类型}}到TKT. 继续交易?",
+    "AMOUNT": "Amount",
+    "AMOUNT_PLACEHOLDER": "输入金额",
+    "AMOUNT_HELP": "需要转换多少金额的Travelkoin (TKT)?",
+    "CHOOSE_WALLET": "选择交易钱包",
+    "WALLET": "钱包"
+  },
+  "BUTTON": {
+    "CLOSE": "关闭",
+    "CANCEL": "取消",
+    "COPY": "复制",
+    "YES": "Yes",
+    "NO": "No",
+    "RESET": "重设",
+    "REMOVE": "Remove record",
+    "SUBMIT": "提交",
+    "SEND": "确认支付"
+  },
+  "ERROR": {
+    "FIELD_REQUIRED_ERROR": "必填项"
+  },
+  "SUCCESS_BOX": {
+    "CLICK_TO_GO_BACK": "返回",
+    "SUCCESS": "成功!!",
+    "RECORD_SUCCESS": "您的账号资料已成功提交。 账号审核成功后，我们将会向您发送确认邮件.",
+    "CONTINUE": "继续"
+  },
+  "FAILURE_BOX": {
+    "CLICK_TO_GO_BACK": "返回",
+    "FAILURE": "失败",
+    "RECORD_FAILURE": "系统错误. 请重试.",
+    "TRY_AGAIN": "请重试"
+  },
+  "FORMS": {
+    "HEADER": "表格",
+    "DESCRIPTION": "请填写以下所有必填项，并上传文件。一旦经过审批， 您将可以开始在我们的钱包里交易比特币和以太坊。",
+    "DIALOG": "请提交必交文件",
+    "DIALOG_DESCRIPTION": "请可以开始提交文件. 确认开始上传?",
+    "UPLOAD_DOCUMENTS": "上传文件",
+    "UPLOAD_DOCUMENTS_HELP": "您需要提供2份文件",
+    "UPLOAD_DOCUMENTS_HELP_1": "请提交一份高清护照扫描件，或者一张高清护照照片。 扫描件请使用彩色扫描仪",
+    "UPLOAD_DOCUMENTS_HELP_2": "请提交一份您的最近3个月的水电缴费单，缴费单上需要有详细住址信息。",
+    "DOCUMENTS_REQUIRED": "我们需要在收到所有文件后，才能开始账户审核。",
+    "NO_DOCUMENTS_UPLOADED": "文件尚未提交",
+    "ETH_ADDRESS": "以太坊地址",
+    "ETH_ADDRESS_PLACEHOLDER": "请输入您的以太坊地址",
+    "ETH_ADDRESS_HELP": "请输入您将使用支付的以太坊地址。您只能只用此地址，不能用于其它交易。",
+    "BTC_ADDRESS": "比特币地址",
+    "BTC_ADDRESS_PLACEHOLDER": "请输入您的比特币地址",
+    "BTC_ADDRESS_HELP": "请输入您将使用支付的比特币地址。您只能只用此地址，不能用于其它交易。"
+  },
+  "LANGUAGE": {
+    "EN": "英语",
+    "FR": "法语",
+    "DE": "德语",
+    "NL": "荷兰语",
+    "IT": "意大利语",
+    "NO": "挪威语",
+    "ES": "西班牙语",
+    "JP": "日语",
+    "RU": "俄语",
+    "ZH": "简体中文",
+    "KR": "韩语",
+    "SG": "新加坡英文",
+    "MY": "马来语",
+    "VN": "越南话",
+    "SK": "斯洛伐克语",
+    "TH": "T泰语"
+  },
+  "END": "结束"
+}

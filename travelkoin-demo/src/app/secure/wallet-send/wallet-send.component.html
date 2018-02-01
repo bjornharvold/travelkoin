@@ -1,0 +1,135 @@
+<div class="row" *ngIf="form != null">
+    <div class="col-lg-8 col-md-12">
+        <form [formGroup]="form" novalidate (submit)="showDialog()">
+            <div class="content-box">
+                <h3 class="content-box-header bg-white">
+                    {{ 'SEND.MAKE_PAYMENT' | translate }}
+                </h3>
+                <div class="content-box-wrapper" *ngIf="dto != null">
+                    <div class="row mrg10B">
+                        <div class="col-sm-12">
+                            <p>{{ 'SEND.DESCRIPTION' | translate }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div *ngIf="form.get('recipient')" class="form-group" [ngClass]="{'has-danger': !form.get('recipient').valid && !form.get('recipient').pristine, 'has-success': form.get('recipient').valid && !form.get('recipient').pristine}">
+                                <label for="recipient">{{ 'SEND.WALLET_RECIPIENT' | translate }}</label>
+                                <div class="input-group input-group-lg">
+                                    <input id="recipient" type="text" class="form-control" name="recipient" formControlName="recipient">
+                                    <span class="input-group-addon">
+                                        <a ngxClipboard [cbContent]="dto.recipient" (cbOnSuccess)="copyCode = true" class="pointer" [title]="'BUTTON.COPY' | translate"><i class="fas fa-copy"></i></a>
+                                    </span>
+                                </div>
+                                <small class="form-text text-muted">{{ 'SEND.WALLET_RECIPIENT_HELP' | translate }}</small>
+
+                                <div [hidden]="form.get('recipient').valid || form.get('recipient').pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="form.get('recipient').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div *ngIf="form.get('sender')" class="form-group" [ngClass]="{'has-danger': !form.get('sender').valid && !form.get('sender').pristine, 'has-success': form.get('sender').valid && !form.get('sender').pristine}">
+                                <label for="sender">{{ 'SEND.WALLET_SENDER' | translate }}</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <input id="sender" type="text" class="form-control form-control-lg" name="sender" formControlName="sender" placeholder="{{ 'SEND.WALLET_SENDER_PLACEHOLDER' | translate }}">
+                                </div>
+                                <small class="form-text text-muted">{{ 'SEND.WALLET_SENDER_HELP' | translate }}</small>
+
+                                <div [hidden]="form.get('sender').valid || form.get('sender').pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="form.get('sender').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div *ngIf="form.get('transactionID')" class="form-group" [ngClass]="{'has-danger': !form.get('transactionID').valid && !form.get('transactionID').pristine, 'has-success': form.get('transactionID').valid && !form.get('transactionID').pristine}">
+                                <label for="transactionID">{{ 'SEND.WALLET_TRANSACTION' | translate }}<sup class="font-red">*</sup></label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><i class="fas fa-exchange"></i></span>
+                                    <input id="transactionID" type="text" class="form-control" name="transactionID" formControlName="transactionID" placeholder="{{ 'SEND.WALLET_TRANSACTION_PLACEHOLDER' | translate }}">
+                                </div>
+
+                                <small class="form-text text-muted">{{ 'SEND.WALLET_TRANSACTION_HELP' | translate }}</small>
+
+                                <div [hidden]="form.get('transactionID').valid || form.get('transactionID').pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="form.get('transactionID').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div *ngIf="form.get('amount')" class="form-group" [ngClass]="{'has-danger': !form.get('amount').valid && !form.get('amount').pristine, 'has-success': form.get('amount').valid && !form.get('amount').pristine}">
+                                <label for="amount">{{ 'SEND.AMOUNT' | translate }}<sup class="font-red">*</sup></label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">
+                                        <i class="fab fa-bitcoin" *ngIf="type === 'BTC'"></i>
+                                        <i class="fab fa-ethereum" *ngIf="type === 'ETH'"></i>
+                                    </span>
+                                    <input type="number" id="amount" class="form-control form-control-lg" name="amount" formControlName="amount" placeholder="{{ 'SEND.AMOUNT_PLACEHOLDER' | translate }}">
+                                </div>
+                                <small class="form-text text-muted">{{ 'SEND.AMOUNT_HELP' | translate }}</small>
+
+                                <div [hidden]="form.get('amount').valid || form.get('amount').pristine">
+                                    <div class="form-control-feedback">
+                                        <p class="font-red" *ngIf="form.get('amount').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-warning" (click)="reset()">{{ 'BUTTON.CANCEL' | translate }}</button>
+                                <button type="submit" class="btn btn-info" [disabled]="this.form.valid === false">{{ 'BUTTON.SEND' | translate }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class="content-box">
+            <h3 class="content-box-header bg-white">
+                {{ 'VALUE.QR' | translate }}
+                <div class="header-buttons-separator">
+                    <a ngxClipboard [cbContent]="dto.recipient" (cbOnSuccess)="copyCode = true" class="icon-separator font-blue pointer" [title]="'BUTTON.COPY' | translate">
+                        <i class="glyph-icon fas fa-copy"></i>
+                    </a>
+                </div>
+            </h3>
+            <div class="content-box-wrapper text-center">
+                <qrcode [qrdata]="dto.recipient" [size]="256" [level]="'M'"></qrcode>
+                <p *ngIf="codeCopied" class="font-green">{{ 'SEND.COPIED' | translate }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<kendo-dialog title="{{ 'SEND.DIALOG' | translate }}" *ngIf="updateButtonClicked" (close)="completeDialogClose()">
+    <p *ngIf="loading === false" style="margin: 30px; text-align: center;" translate [translateParams]="{amount: form.get('amount').value, type: type, transactionID: form.get('transactionID').value}">SEND.DIALOG_DESCRIPTION</p>
+    <div class="grid-wrapper" *ngIf="loading === true">
+        <div class="k-i-loading"></div>
+    </div>
+    <kendo-dialog-actions>
+        <button (click)="completeDialogClose()" class="k-button">{{ 'BUTTON.NO' | translate }}</button>
+        <button (click)="onSubmit()" class="k-button k-primary" primary="true">{{ 'BUTTON.YES' | translate }}</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

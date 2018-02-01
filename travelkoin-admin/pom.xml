@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.travelkoin</groupId>
+    <artifactId>travelkoin-admin</artifactId>
+    <version>4.0.38-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Travelkoin SPA</name>
+    <inceptionYear>2013</inceptionYear>
+    <organization>
+        <name>TRAVELIKO SINGAPORE PTE.LTD.</name>
+        <url>http://www.traveliko.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Bjorn Harvold</name>
+            <email>bjorn.harvold@traveliko.com</email>
+            <url>http://www.traveliko.com</url>
+            <organization>TRAVELIKO SINGAPORE PTE.LTD.</organization>
+            <roles>
+                <role>CTO</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:ssh://bitbucket.org/travelkoin/travelkoin-admin.git</connection>
+        <developerConnection>scm:git:ssh://bitbucket.org/travelkoin/travelkoin-admin.git
+        </developerConnection>
+        <url>https://bitbucket.org/travelkoin/travelkoin-admin.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <parent>
+        <groupId>com.traveliko</groupId>
+        <artifactId>traveliko-external-bom</artifactId>
+        <version>3.0.48</version>
+        <relativePath/>
+    </parent>
+
+    <build>
+        <defaultGoal>compile</defaultGoal>
+
+        <resources>
+
+            <resource>
+                <directory>${basedir}</directory>
+                <targetPath>${project.build.directory}/distribution</targetPath>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.json</exclude>
+                </excludes>
+            </resource>
+
+            <resource>
+                <directory>${basedir}</directory>
+                <targetPath>${project.build.directory}/distribution</targetPath>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.json</include>
+                </includes>
+            </resource>
+
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven.clean.plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/dist</directory>
+                            <directory>${basedir}/node_modules</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- The resource plugin here copies over some extra files after the app has already been built -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>[[mvn:*]]</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
+            <!-- Assembly plugin takes our SPA and makes a zip file out of it so we have an archive file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>${basedir}/maven/assembly/distribution.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>zip-it</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.travelkoin</groupId>
+                            <artifactId>travelkoin-spa</artifactId>
+                            <version>${project.version}</version>
+                            <classifier>distribution</classifier>
+                            <type>zip</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/distribution</outputDirectory>
+                            <!--<includes>**/*</includes>-->
+                        </artifactItem>
+                    </artifactItems>
+                    <overWriteReleases>true</overWriteReleases>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>${gitflow.maven.plugin}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <shortRevisionLength>7</shortRevisionLength>
+                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <format>{0,date,yyyyMMdd-HHmmss}-{1}</format>
+                    <items>
+                        <item>timestamp</item>
+                        <item>scmVersion</item>
+                    </items>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <properties>
+        <gitflow.maven.plugin>1.8.0</gitflow.maven.plugin>
+    </properties>
+
+    <repositories>
+        <!-- Traveliko release repository -->
+        <repository>
+            <id>traveliko-releases</id>
+            <name>Traveliko Release Repository</name>
+            <url>http://travelikomavenrepo-sg.s3-website-ap-southeast-1.amazonaws.com/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <!-- Traveliko Snapshot repository -->
+        <repository>
+            <id>traveliko-snapshots</id>
+            <name>Traveliko Snapshot Repository</name>
+            <url>http://travelikomavenrepo-sg.s3-website-ap-southeast-1.amazonaws.com/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+</project>

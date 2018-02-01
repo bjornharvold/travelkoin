@@ -1,0 +1,27 @@
+<div class="tile-box bg-white content-box">
+    <div class="tile-header" *ngIf="showTitle && customTitle == null">
+        {{ 'COIN.' + type | translate }} {{ 'WALLET.TITLE' | translate }}
+    </div>
+    <div class="tile-header" *ngIf="showTitle && customTitle != null">
+        {{ customTitle | translate }}
+        <div class="float-right font-red" *ngIf="error === true">
+            {{ 'WALLET.TRANSACTION_ERROR' | translate }}
+        </div>
+    </div>
+    <div class="tile-content-wrapper">
+        <div class="tile-content">
+            <span><i *ngIf="loading === true" class="k-i-loading"></i> </span>
+            <span *ngIf="loading === false && wallet != null">{{ wallet.balance | number:'1.0-8' }}</span>
+            <span *ngIf="loading === false && wallet == null">0</span>
+            <span>{{ type }}</span>
+        </div>
+    </div>
+    <div class="button-pane" *ngIf="showButton">
+        <button class="btn btn-info float-right tooltip-button" [routerLink]="['/secure/wallet/' + type]">
+            {{ 'DASHBOARD.ADD_FUNDS' | translate | uppercase }} <i class="fas fa-plus fa-fw"></i>
+        </button>
+    </div>
+    <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
+        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}
+    </div>
+</div>

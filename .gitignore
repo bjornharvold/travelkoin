@@ -1,0 +1,12 @@
+# Created by .ignore support plugin (hsz.mobi)
+node_modules
+*/node_modules
+.idea
+dist
+*/dist
+target
+*/target
+/functions/lib
+*/functions/lib
+build
+*/build

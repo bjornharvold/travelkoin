@@ -1,0 +1,330 @@
+{
+  "BUILD": "[[mvn:project.version]]-r [[mvn:buildNumber]]",
+  "TRAVELKOIN_PLATFORM": "Travelkoin plattformen",
+  "HEADER": {
+    "LOGIN": "Logg inn",
+    "LOGOUT": "Logg ut",
+    "CHOOSE_LANGUAGE": "Velg språk",
+    " LANGUAGE ": "Språk",
+    "CONTACT_US": "Kontakt oss",
+    "WHITE_PAPER": "Whitepaper",
+    "FEATURES": "Egenskaper",
+    "ROAD_MAP": "Veikart",
+    "MY_WALLET": "Min lommebok",
+    "LANGUAGE_DIALOG": " Endre språk ",
+    "LANGUAGE_DIALOG_DESCRIPTION": "Vi støtter ennå ikke dette språket, men arbeider aktivt med oversettelser.",
+    "FOLLOW_US_FACEBOOK": "Følg oss på Facebook",
+    "FOLLOW_US_TWITTER": "Følg oss på Twitter",
+    "FOLLOW_US_GOOGLE": "Følg oss på Google"
+  },
+  "FOOTER": {
+    "CONTACT_US": "E-post",
+    "FOLLOW_US": "Følg oss",
+    "PRIVACY": "Personvern",
+    "TERMS": "Vilkår"
+  },
+  "HOME": {
+    "MARKETING_HEADER": {
+      "1": "en revolusjon er på vei i reiselivsbransjen",
+      "2": "en desentralisert betalingsport laget spesielt for flyselskaper, hotell, leiebil, cruiseskip, jernbane, online reisebyrå, booking motorer og kanal ledere.",
+      "3": "vår blockchain plattform er rask, smart, sikker, miljøvennlig og bygget for reiselivsbransjen.",
+      "FOLLOW_US": "Følg oss",
+      "WHITE_PAPER": "Hvitbok/Rapporter",
+      "ROAD_MAP": "Veikart"
+    },
+    "COUNTDOWN": {
+      "HEADER": "Hendelser starter"
+    },
+    "NYHETSBREV": {
+      "HEADER": "Hold kontakt",
+      "EMAIL_PLACEHOLDER": "Skriv inn din e-postadresse"
+    },
+    "NØTTESKALL": {
+      "HEADER": "I et nøtteskall",
+      "PAYMENT_GATEWAY": "Betalingsportal",
+      "PAYMENT_GATEWAY_DESC": "En robust, sikker, grader bar og super rask betalings port som tillater reiseoperatører å handle med hverandre på blockchain uten kostnader.",
+      "LOYALTY_PLATFORM": "Lojalitetsplattform",
+      "LOYALTY_PLATFORM_DESC": "vår Travelkoin-token er et globalt hvitmerket lojalitets-program som reisepartnere kan bruke gratis for deres medlemskaps programmer.",
+      "STABLE_SETTLEMENTS": "Stabilt oppgjør",
+      "STABLE_SETTLEMENTS_DESC": "vår reise standardenhet token er knyttet til en kurv av valutaer som vanligst brukes i reiselivsbransjen."
+    },
+    "PAYMENT_GATEWAY": {
+      "HEADER": "Betalingsportal",
+      "DESCRIPTION": "Reiseoperatører kan raskt, sikkert og uten kostnader gjøre intelligente utenlands betalinger ved hjelp av smarte kontrakter innen finans systemet. Glem mellommenn, transaksjonsgebyrer og ventetid for å få pengene."
+    },
+    "LOYALTY_PLATFORM": {
+      "HEADER": "Lojalitets plattform",
+      "DESCRIPTION": "en Travelkoin drevet medlemskaps plattform som alle reiseoperatører kan få uten å måtte opprettholde sin egen. Reisende blir tilgodesett ved bestillinger, vurderinger osv. i tjenester innen reiseoperatørs eget nettverket eller ved å konvertere til papir valuta. "
+    },
+    "WAITING_FOR": {
+      "HEADER": "Hva venter du på",
+      "1": "Opprette en konto hos oss og vær klar for noe STORT innen reiselivsbransjen"
+    },
+    "TESTIMONIALS": {
+      "HEADER": "Anbefalinger"
+    },
+    "ADVISORS": {
+      "HEADER": "Våre støttespillere"
+    },
+    "FEATURES": {
+      "HEADER": "Egenskaper",
+      "PAYMENT_GATEWAY": "Betalingsportal",
+      "PAYMENT_GATEWAY_1": "Reiseoperatører er spesielt rammet av å betale store transaksjonsgebyrer da deres bransje er spesielt fragmentert, og oftere enn ei, krever flere utenlands transaksjoner. Det betyr også at betalinger ofte tar tid å behandle og at reiseoperatørene må garantere betalinger opp til 45 dager på forskudd. Den eneste måten å redusere transaksjonsgebyrer på i dag, er å samkjøre flere transaksjoner og derved oppnå en mengderabatt",
+      "PAYMENT_GATEWAY_2": "setter en stopper for kompleksiteten og kostnadene ved å gjøre forretninger innen reiselivsbransjen. Betalinger skjer raskt og operatørene kan avtale direkte med motparten uten behov for et kostbart mellomledd. Dette er gjort mulig ved blockchain og våre skreddersydde kontrakter for reiselivsbransjen. Se videoen om blockchain laget av Sloan's School of business ved MIT. ",
+      "LOYALTY_PLATFORM": "Lojalitets plattform",
+      "LOYALTY_PLATFORM_1": "nesten alle i reiselivsbransjen bruker et medlemskap og belønningsprogram for å få og å beholde kunder. Kundene er låst i programmer som tilbyr liten eller ingen incitament for å forbli medlem. Med unntak for eventuell straff hvis de ikke fortsetter å samle poeng. Et lojalitetsprogram bør være gjensidig fordelaktig og morsom!",
+      "LOYALTY_PLATFORM_2": "tilbyr en lojalitet plattform som ingen andre. Det fungerer like bra for B2C som for B2B. Fordelene for brukerne er mange: det kan konverteres til godkjent valuta når som helst. Hvis du har tjent Travelkoin symboler, utløper de aldri. Travelkoins genereres bare når det skjer en reiserelatert handling, for eksempel en bestilling. Reiselivsbransjen vil ønske disse token fra sine kunder slik at de kan bruke dem for å få gratis tjenester på Travelkoin plattformen. Slik vil bransjeoperatørene konkurrere seg imellom for å skaffe fornøyde kunder. Det bør også nevnes at token lett kan bli hvite merket, slik at større leverandører med eksisterende programmer enkelt kan foreta bytte. ",
+      "STABLE_SETTLEMENTS": "Stabile oppgjør",
+      "STABLE_SETTLEMENTS_1": "stabilitet er den viktigste egenskap for at globale økonomier skal lykkes. Uten stabilitet, kan man ikke gjøre fornuftige beslutninger om forventede økonomiske kostnader og besparelser innen handel og verdiskaping. Og med denne stabilitet, forutsigbarhet og funksjonalitet i tankene ble Travelkoin STU utformet. Som et forsøk på å gi stabilitet og bedre forretningsplanlegging til reiselivsbransjen, bruk av kryptovaluta og til de som bruker Travelkoin nettverket.",
+      "STABLE_SETTLEMENTS_2": "STUs er utformet etter lignende prosedyre som for konvertibel gjeld, som ofte brukes ved finansiering av ny virksomhet. I gründerfasen er konvertibel gjeld et kortsiktige låneverktøy som kan omgjøres til eierskap etter en takst som fastsettes i fremtiden, vanligvis ved ny finansiering. En blockchain basert token, som Travelkoin, kan betraktes som offentlig eierskap, mens konvertibel gjeld, som STU, kan anses som gjeld utstedt i annen vare eller valuta. Vilkårene i konvertibel gjeld tillater ihendehaveren å konvertere til grunnverdien med lite hensyn til rett markedspris."
+    },
+    "ROADMAP": {
+      "HEADER": "Veikart",
+      "STEP 1": {
+        "HEADER": "Første Travelkoin implementering",
+        "DESCRIPTION": "Traveliko.com, et Singapore basert online reisebyrå, belønner reisende med Travelkoin token som bonus."
+      },
+      "STEP 2": {
+        "HEADER": "Gå direkte",
+        " DESCRIPTION ": "Travelkoin Foundation lanserer et joint venture av online og faste reisebyråer."
+      },
+      "STEP 3": {
+        "HEADER": "Token forsalg",
+        " DESCRIPTION ": "Forsalg av Travelkoin vil vare ut mars måned."
+      },
+      "STEP 4": {
+        "HEADER": "Token utvikling",
+        " DESCRIPTION ": "Travelkoin lanseres og vil vare ut april måned."
+      },
+      "STEP 5": {
+        "HEADER": "Travelkoin lojalitet plattform",
+        " DESCRIPTION ": "Traveliko.com vil bli fullstendig integrert med Travelkoin lojalitets plattformen."
+      },
+      "STEP 6": {
+        "HEADER": "Travelkoin lojalitets plattform",
+        " DESCRIPTION ": "Travelkoin lojalitets plattformen vil bli tilgjengelig for integrasjon med reisebyråer."
+      },
+      "STEP 7": {
+        "HEADER": "Travelkoin betalings portal",
+        " DESCRIPTION ": "Traveliko.com vil være det første firma til å bruke vår betalingsportal for inn og utgående betalinger."
+      }
+    }
+  },
+  "AUTH": {
+    "LOGIN": {
+      "BUTTON_SAVE": "Logg inn",
+      "CREDENTIALS_INCORRECT": "Legitimasjon er feil",
+      "ACCOUNT_VERIFIED": "Din konto er bekreftet. Vennligst logg inn. ",
+      "WAITING_ON_VERIFICATION": "Kontroller e-posten for å aktivere kontoen. Sjekk innboksen.",
+      "PASSWORD_RESET_SUCCESSFULLY": "Passordet er tilbakestilt. Vennligst logg inn. ",
+      "PASSWORD_PLACEHOLDER": "Skriv inn passord",
+      "REGISTER": "Registrer",
+      "LOGIN_TITLE_SHORT": "Logg inn",
+      "SLOGAN": "Reisebetalingsportal",
+      "NOT_A_MEMBER_YET": "Ikke medlem ennå?",
+      "DID_YOU_VERIFY_YOUR_EMAIL": "Har du kontrollert din e-post?",
+      "MEMBERS_AREA": "Medlems område",
+      "MEMBERS_AREA_INFO": "Bruk skjemaet nedenfor for å logge på kontoen din.",
+      "CLICK_HERE_TO_SIGN_UP": "Registrer",
+      "CLICK_HERE_TO_LOGIN": "Logg inn",
+      "CLICK_HERE_RESET_YOUR_PASSWORD": "Glemt passord",
+      "CLICK_HERE_VERIFY_EMAIL": "Bekreft e-post",
+      "CONNECT_WITH_FACEBOOK": "Koble med Facebook",
+      "CONNECT_WITH_TWITTER": "Koble med Twitter",
+      "CONNECT_WITH_GOOGLE": "Koble med Google",
+      "CONNECT_WITH_COINBASE": "Koble med Coinbase",
+      "CONNECT_WITH_GITHUB": "Koble med Github"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Glemt passord",
+      "INFO": "Bruk skjemaet nedenfor for å tilbakestille passordet.",
+      "FORVENTNING": "Du vil motta en e-post med en lenke for å tilbakestille passordet.",
+      "ERROR": "Det var en feil ved din forespørsel om tilbakestilling.",
+      "KNOW_YOUR_PASSWORD": "Kjenner du ditt passord?",
+      "HAVE_A_CODE": "Allerede mottatt en kode?",
+      "CHANGE_PASSWORD": "Oppdater passordet",
+      "REQUEST_PASSWORD_RESET": "FORESPØRSEL OM TILBAKESTILLING AV PASSORD"
+    },
+    "RESEND_EMAIL": {
+      "CLICK_TO_RESEND_EMAIL": "Send bekreftelses e-post",
+      "CLICK_TO_VERIFY_EMAIL": "Bekreft konto",
+      "TITLE": "Returner velkomst e-post",
+      "INFO": "Bruk skjemaet nedenfor til å returnere din velkomst e-post.",
+      "REQUEST_WELCOME_EMAIL": "FORESPØRSEL OM VELKOMST E-POST",
+      "EXPECTATION": "Hvis du ikke mottok din velkomst e-post, eller i tilfelle din verifiserings kode er utdatert, Skriv inn din e-post adresse og motta en ny e-post som inneholder en kode som du kan bruke for å bekrefte kontoen."
+    },
+    "REGISTRER": {
+      "TITLE": "Opprette din konto",
+      "BUTTON_SAVE": "Registrer",
+      "ALREADY_HAVE_AN_ACCOUNT": "Har du allerede en konto?",
+      "FIRST NAME": "Fornavn",
+      "LAST NAME": "Etternavn",
+      "EMAIL_PLACEHOLDER": "Skriv inn din e-post",
+      "EMAIL_UNAVAILABLE": "E-post navn er allerede tatt",
+      "CHECKING_AVAILABILITY": "Kontrollere tilgjengelighet ...",
+      "CHOOSE_PASSWORD": "Velg et passord",
+      "CONFIRM_PASSWORD": "Bekreft passord",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Bekreft passord",
+      "ENTER_PASSWORD": "Angi ditt passord...",
+      "PASSWORDS_DO_NOT_MATCH": "Passordet stemmer ikke",
+      "INCORRECT_PASSWORD": "Passordet er feil",
+      "PASSWORD_SYNTAX": "Passordet må være på minst 8 tegn, inneholde minst en liten eller stor bokstav, et tall og et symbol."
+    },
+    "VERIFY_EMAIL": {
+      "TITLE": "Bekrefte din e-post",
+      "INFO": "Bruk skjemaet nedenfor til inn verifiseringskoden som ble sendt til deg via e-post.",
+      "VERIFICATION_CODE": "Bekreftelseskode",
+      "VERIFICATION_CODE_PLACEHOLDER": "Skriv inn koden din mottatt via e-post...",
+      "CODE_REQUIRED": "Kode kreves",
+      "BEKREFT": "BEKREFTE KODEN OG FULLFØR REGISTRERING"
+    },
+    "PHONE_VERIFIER": {
+      "TITLE": "Telefon bekreftelse",
+      "PHONE_NUMBER": "Angi mobiltelefonnummeret",
+      "PHONE_NUMBER_REQUIRED": "Et telefonnummer er nødvendig",
+      "INCORRECT_PATTERN": "Et telefonnummer er nødvendig",
+      "ENTER_NUMBER": "Skriv inn telefonnummer",
+      "ENTER_CODE": "Oppgi koden du har mottatt via SMS",
+      "SAVE": "Lagre",
+      "ENTER_CODE_HELP": "Angi som dette: +12125551212 (landsnummer og telefonnummer. Ingen mellomrom.). Vanlig SMS-gebyrer kan påløpe."
+    }
+  },
+  "COMMON": {
+    "EMAIL": "E-post",
+    "PASWORD": "Passord",
+    "EMAIL_REQUIRED": "E-post er påkrevd",
+    "EMAIL_NOT_VALID": "Ikke en gyldig e-postadresse",
+    "ENTER_REGISTERED_EMAIL": "Skriv inn din e-post",
+    "REGISTER": "Registrer",
+    "FIRST_NAME_PLACEHOLDER": "Skriv inn ditt fornavn",
+    "LAST_NAME_PLACEHOLDER": "Skriv inn etternavnet",
+    "FIRST_NAME_REQUIRED": "fornavn er nødvendig",
+    "LAST_NAME_REQUIRED": "etternavn er påkrevd"
+  },
+  "DASHBOARD": {
+    "HEADER": "Instrumentpanel",
+    "DESCRIPTION": "Velkommen til Travelkoin. Vil dette være din kontaktflate til våre ICO arrangement. ",
+    "FORMS": "Skjemaer",
+    "ADD_FUNDS": "Legge til midler",
+    "GOAL_REACHED": "Token salgs fremgang"
+  },
+  "COIN": {
+    "TKT": "Travelkoin",
+    "ETH": "Ether",
+    "BTC": "Bitcoin"
+  },
+  "WALLET": {
+    "TITLE": "Lommebok",
+    "TRANSAKSJONER": "TXS",
+    "TRANSACTION_ERROR": "Feil",
+    "TRANSACTION_ERROR_DETAILS": "Detaljer",
+    "TRANSACTION_MISMATCH": "denne transaksjonen er ikke i samsvar med din adresse og ignoreres.",
+    "CONFIRMATIONS": "Bekreftelser",
+    "TOTAL_INVESTMENT": "Bekreftet balanse",
+    "SEND": "Send",
+    "Balanse": "Balanse",
+    "RECEIVE": "Motta",
+    "EXCHANGE": "Veksling",
+    "DESCRIPTION": "I denne delen kan du fortelle oss om betalinger du sendt fra lommeboken {{type}} for arrangementet."
+  },
+  "VALUE": {
+    "ADD_PAYMENT": "Legg til transaksjon",
+    "PAYMENTS": "Betalinger",
+    "INSTRUCTIONS": "Start ved å klikke pluss knappen for å kjøpe Travelkoin tokens.",
+    "QR": "QR code",
+    "TRANSACTION_ID": "ID",
+    "DATE_TIME": "Tidsstempel",
+    "AMOUNT": "Beløp",
+    "ACTION": "Handling"
+  },
+  "SEND": {
+    "DIALOG": "Varsle oss om transaksjonen",
+    "DIALOG_DESCRIPTION": "Transaksjon: {{transaksjons-ID}} av {{mengde}} {{type}} er fullført. Fortsette? ",
+    "DESCRIPTION": "når du har gjort en betaling fra din lommebok til vår, fyll ut dette skjemaet for å informere oss. Du trenger ikke å varsle oss via e-post. Når ICO starter, vil du kunne utføre oppdraget som konverterer midlene til Travelkoin. ",
+    "MAKE_PAYMENT": "Registrer en betaling",
+    "COPIED": "Adresse kopiert til utklippstavlen.",
+    "AMOUNT": "Beløp",
+    "AMOUNT_PLACEHOLDER": "Skriv inn beløp",
+    "AMOUNT_HELP": "Skriv inn beløpet du sendte til oss for transaksjons-ID",
+    "CHOOSE_FEE": "Velg transaksjons hastighet ...",
+    "WALLET_TRANSACTION": "Transaksjon ID",
+    "WALLET_TRANSACTION_PLACEHOLDER": "Skriv inn transaksjon ID",
+    "WALLET_TRANSACTION_HELP": "Angi transaksjonsidentifikatoren for midlene du overførte.",
+    "WALLET_SENDER": "Avsender",
+    "WALLET_SENDER_PLACEHOLDER": "Skriv inn adressen din",
+    "WALLET_SENDER_HELP": "Valgfritt: angi adressen til lommeboken du sendte midler fra.",
+    "WALLET_RECIPIENT": "Overfør midler til denne adressen",
+    "WALLET_RECIPIENT_HELP": "Dette er adressen du skal bruke for å overføre penger til oss for tilfeller."
+  },
+  "EXCHANGE": {
+    "DIALOG": "Bekreft veksling",
+    "DIALOG_DESCRIPTION": "Du i ferd med å veksle {{beløpet}} {{typen}} til TKT. Fortsett?",
+    "AMOUNT": "Beløp",
+    "AMOUNT_PLACEHOLDER": "Skriv inn mengde",
+    "AMOUNT_HELP": "Hvor mye du vil konvertere til Travelkoin (TKT)?",
+    "CHOOSE_WALLET": "Velg lommebok å bytte fra",
+    "WALLET": "Lommebok"
+  },
+  "BUTTON": {
+    "CLOSE": "Lukk",
+    "CANCEL": "Avbryt",
+    "COPY": "Kopier",
+    "YES": "Ja",
+    "NO": "Nei",
+    "RESET": "TILBAKESTILL",
+    "REMOVE": "Fjern fortegnelse",
+    "SUBMIT": "SEND INN",
+    "SEND": "BEKREFT BETALING"
+  },
+  "FEIL": {
+    "FIELD_REQUIRED_ERROR": "Dette feltet er påkrevd"
+  },
+  "SUCCESS_BOX": {
+    "CLICK_TO_GO_BACK": "Gå tilbake",
+    "SUCCESS": "Suksess!",
+    "RECORD_SUCCESS": "dine kontodetaljer er sendt. Du vil motta en e-post når kontoen har blitt godkjent. ",
+    "CONTINUE": "Fortsett"
+  },
+  "FAILURE_BOX": {
+    "CLICK_TO_GO_BACK": "Gå tilbake",
+    "FAILURE": "Feil",
+    "RECORD_FAILURE": "Noe gikk galt. Prøv på nytt. ",
+    "TRY_AGAIN": "Prøv igjen"
+  },
+  "FORMS": {
+    "HEADER": "Skjemaer",
+    "DESCRIPTION": "Vennligst fyll ut nødvendig skjemafeltene nedenfor og laste opp dokumenter vi krever av deg. Når godkjent, du vil kunne overføre BTC og ETH til vår lommebok.",
+    "DIALOG": "Send inn påkrevde dokumenter",
+    "DIALOG_DESCRIPTION": "Du er klarert til å sende dokumenter. Er du klar? ",
+    "UPLOAD_DOCUMENTS": "Last opp dokumenter",
+    "UPLOAD_DOCUMENTS_HELP": "Vi trenger 2 dokumenter fra deg",
+    "UPLOAD_DOCUMENTS_HELP_1": "En skannet kopi eller et HD bilde av passet. Bruk av fargeskanner foretrekkes. ",
+    "UPLOAD_DOCUMENTS_HELP_2": "En offentlig regning, f. eks. strømregning, ikke mer enn 3 måneder gammel, bekrefter din adresse",
+    "DOCUMENTS_REQUIRED": "Alle dokumentene er nødvendig før vi kan godkjenne kontoen.",
+    "NO_DOCUMENTS_UPLOADED": "ingen dokumenter har blitt lastet opp",
+    "ETH_ADDRESS": "Ethereum adresse",
+    "ETH_ADDRESS_PLACEHOLDER": "Skriv inn din Ethereum adresse",
+    "ETH_ADDRESS_HELP": "Angi Ethereum adressen du vil bruke for å overføre penger til oss. Du vil bare kunne bruke denne. Andre transaksjoner ignoreres.",
+    "BTC_ADDRESS": "Bitcoin adresse",
+    "BTC_ADDRESS_PLACEHOLDER": "Skriv inn din Bitcoin adresse",
+    "BTC_ADDRESS_HELP": "Angi Bitcoin adressen du vil bruke for å overføre penger til oss. Du vil bare kunne bruke denne. Andre transaksjoner ignoreres."
+  },
+  "SPRÅK": {
+    "No": "Engelsk",
+    "FR": "Fransk",
+    "DE": "Tysk",
+    "NL": "Nederlandsk",
+    "IT": "Italiensk",
+    "Nei": "Norsk",
+    "ES": "Spansk",
+    "JP": "Japansk",
+    "RU": "Russisk",
+    "ZH": "Mandarin",
+    "KR": "Koreansk",
+    "Min": "Malaysisk",
+    "VN": "Vietnamesisk",
+    "SK": "Slovak",
+    "TH": "Thai"
+  }
+}
+

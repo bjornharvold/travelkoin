@@ -1,0 +1,34 @@
+<div class="content-box">
+    <h3 class="content-box-header bg-white">
+        {{ 'VALUE.PAYMENTS' | translate }}
+        <div class="header-buttons-separator" *ngIf="hasAddress === true && user.approved === true">
+            <a (click)="addTransaction()" class="icon-separator font-blue pointer" [title]="'VALUE.ADD_PAYMENT' | translate ">
+                <i class="glyph-icon fas fa-plus"></i>
+            </a>
+        </div>
+    </h3>
+    <div class="content-box-wrapper">
+        <p class="mrg10B" *ngIf="view == null">{{ 'VALUE.INSTRUCTIONS' | translate }}</p>
+        <div class="grid-wrapper">
+            <kendo-grid #grid
+                        [data]="view"
+                        [sortable]="false"
+                        [pageable]="false"
+                        [height]="550"
+            >
+                <kendo-grid-column field="transactionID" [title]="'VALUE.TRANSACTION_ID' | translate "></kendo-grid-column>
+                <kendo-grid-column field="amount" [width]="80" [title]="'VALUE.AMOUNT' | translate " class="text-right">
+                </kendo-grid-column>
+                <kendo-grid-column [width]="30" [media]="'sm'" class="text-center">
+                    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                        <a (click)="deleteEntry(dataItem.transactionID)" class="pointer" [title]="'BUTTON.REMOVE' | translate"><i class="fas fa-times font-red"></i></a>
+                    </ng-template>
+                </kendo-grid-column>
+                <div *kendoGridDetailTemplate="let dataItem">
+                    <app-secure-transaction-details [tx]="dataItem" [type]="type"></app-secure-transaction-details>
+                </div>
+            </kendo-grid>
+            <div *ngIf="loading" class="k-i-loading"></div>
+        </div>
+    </div>
+</div>

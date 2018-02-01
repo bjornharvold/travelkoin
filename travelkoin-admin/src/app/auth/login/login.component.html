@@ -1,0 +1,70 @@
+<!--
+  ~ Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
+  -->
+<div class="center-vertical">
+    <div class="center-content row">
+
+        <div class="col-md-10 col-lg-6 center-margin">
+
+            <h3 class="text-center pad15B font-gray text-transform-upr font-size-23">{{ 'AUTH.LOGIN.LOGIN_TITLE_SHORT' | translate }}</h3>
+
+            <div class="content-box border-top border-blue-alt clearfix">
+                <div class="content-box-wrapper row">
+                    <div class="col-md-12 font-red" *ngIf="message != null">
+                        <p>{{ message }}</p>
+                    </div>
+                    <div class="col-md-12 font-green" *ngIf="verified != null">
+                        <p *ngIf="verified === true">{{ 'AUTH.LOGIN.ACCOUNT_VERIFIED' | translate }}</p>
+                        <p *ngIf="verified === false">{{ 'AUTH.LOGIN.WAITING_ON_VERIFICATION' | translate }}</p>
+                    </div>
+                    <form (ngSubmit)="signInWithUsernameAndPassword()" [formGroup]="loginForm" id="login-validation" class="col-md-7">
+                        <div id="login-form">
+
+                            <div class="pad20A">
+
+                                <div class="form-group">
+                                    <label for="username">{{ 'COMMON.EMAIL' | translate }}:</label>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon addon-inside bg-white font-primary">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input id="username" type="text" class="form-control" placeholder="{{ 'AUTH.REGISTER.EMAIL_PLACEHOLDER' | translate }}" formControlName="username" id="username" autocomplete="false" autocapitalize="off" spellcheck="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon addon-inside bg-white font-primary">
+                                            <i class="fas fa-unlock-alt"></i>
+                                        </span>
+                                        <input id="password" type="password" class="form-control" placeholder="{{ 'AUTH.LOGIN.PASSWORD_PLACEHOLDER' | translate }}" formControlName="password" id="password" autocomplete="false" autocapitalize="off" spellcheck="off">
+                                    </div>
+                                </div>
+                                <div class="row mrg15B">
+                                    <div class="checkbox-primary col-md-10" style="height: 20px;">
+                                        <h6>
+                                            <a [routerLink]="['/auth/register']" title="{{ 'AUTH.LOGIN.CLICK_HERE_TO_SIGN_UP' | translate }}">{{ 'AUTH.LOGIN.CLICK_HERE_TO_SIGN_UP' | translate }}</a> |
+                                            <a [routerLink]="['/auth/forgot']" title="{{ 'AUTH.LOGIN.CLICK_HERE_RESET_YOUR_PASSWORD' | translate }}">{{ 'AUTH.LOGIN.CLICK_HERE_RESET_YOUR_PASSWORD' | translate }}</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!loginForm.valid">{{ 'AUTH.LOGIN.BUTTON_SAVE' | translate }}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="col-md-4 float-right" style="height: 287px;">
+
+                        <app-auth-social-authentication (onResponse)="updateMessage($event)"></app-auth-social-authentication>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

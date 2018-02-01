@@ -1,0 +1,104 @@
+<div id="page-title">
+    <h2><i class="fas fa-id-card"></i> {{ 'FORMS.HEADER' | translate }}</h2>
+    <p>{{ 'FORMS.DESCRIPTION' | translate }}</p>
+</div>
+
+<form [formGroup]="form" novalidate *ngIf="success === false && failure === false && form != null" (submit)="showDialog()">
+    <div class="content-box">
+        <div class="content-box-wrapper" *ngIf="dto != null">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="form.get('btcWalletAddress')" class="form-group" [ngClass]="{'has-danger': !form.get('btcWalletAddress').valid && !form.get('btcWalletAddress').pristine, 'has-success': form.get('btcWalletAddress').valid && !form.get('btcWalletAddress').pristine}">
+                        <label for="btcWalletAddress">{{ 'FORMS.BTC_ADDRESS' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">
+                                        <i class="fab fa-bitcoin fa-fw"></i>
+                                    </span>
+                            <input id="btcWalletAddress" type="text" class="form-control form-control-lg" name="btcWalletAddress" formControlName="btcWalletAddress" placeholder="{{ 'FORMS.BTC_ADDRESS_PLACEHOLDER' | translate }}">
+                        </div>
+                        <small class="form-text text-muted">{{ 'FORMS.BTC_ADDRESS_HELP' | translate }}</small>
+
+                        <div [hidden]="form.get('btcWalletAddress').valid || form.get('btcWalletAddress').pristine">
+                            <div class="form-control-feedback">
+                                <p class="font-red" *ngIf="form.get('btcWalletAddress').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="form.get('ethWalletAddress')" class="form-group" [ngClass]="{'has-danger': !form.get('ethWalletAddress').valid && !form.get('ethWalletAddress').pristine, 'has-success': form.get('ethWalletAddress').valid && !form.get('ethWalletAddress').pristine}">
+                        <label for="ethWalletAddress">{{ 'FORMS.ETH_ADDRESS' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">
+                                        <i class="fab fa-ethereum fa-fw"></i>
+                                    </span>
+                            <input id="ethWalletAddress" type="text" class="form-control form-control-lg" name="ethWalletAddress" formControlName="ethWalletAddress" placeholder="{{ 'FORMS.ETH_ADDRESS_PLACEHOLDER' | translate }}">
+                        </div>
+                        <small class="form-text text-muted">{{ 'FORMS.ETH_ADDRESS_HELP' | translate }}</small>
+
+                        <div [hidden]="form.get('ethWalletAddress').valid || form.get('ethWalletAddress').pristine">
+                            <div class="form-control-feedback">
+                                <p class="font-red" *ngIf="form.get('ethWalletAddress').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>{{ 'FORMS.UPLOAD_DOCUMENTS' | translate }}</label>
+                        <app-multimedia-manager [multimedias]="user.multimedia"
+                                                [tags]="tags"
+                                                (multimediasChange)="multimediasChange($event)"></app-multimedia-manager>
+                        <small class="form-text font-red">{{ 'FORMS.UPLOAD_DOCUMENTS_HELP' | translate }}:</small>
+                        <small class="form-text text-muted">
+                            <ol>
+                                <li>{{ 'FORMS.UPLOAD_DOCUMENTS_HELP_1' | translate }}</li>
+                                <li>{{ 'FORMS.UPLOAD_DOCUMENTS_HELP_2' | translate }}</li>
+                            </ol>
+                        </small>
+
+                        <div *ngIf="form.get('multimedia')" [hidden]="form.get('multimedia').valid || form.get('multimedia').pristine">
+                            <div class="form-control-feedback">
+                                <p class="font-red" *ngIf="form.get('multimedia').hasError('required')">{{ 'FORMS.DOCUMENTS_REQUIRED' | translate }}</p>
+                                <p class="font-red" *ngIf="form.get('multimedia').hasError('minLength')">{{ 'FORMS.DOCUMENTS_REQUIRED' | translate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <button type="reset" class="btn btn-warning">{{ 'BUTTON.RESET' | translate }}</button>
+                        <button type="submit" class="btn btn-info" [disabled]="this.form.valid === false">{{ 'BUTTON.SUBMIT' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<kendo-dialog title="{{ 'FORMS.DIALOG' | translate }}" *ngIf="updateButtonClicked" (close)="completeDialogClose()">
+    <p *ngIf="loading === false" style="margin: 30px; text-align: center;">{{ 'FORMS.DIALOG_DESCRIPTION' | translate }}</p>
+    <div class="grid-wrapper" *ngIf="loading === true">
+        <div class="k-i-loading"></div>
+    </div>
+    <kendo-dialog-actions>
+        <button (click)="completeDialogClose()" class="k-button">{{ 'BUTTON.NO' | translate }}</button>
+        <button (click)="onSubmit()" class="k-button k-primary" primary="true">{{ 'BUTTON.YES' | translate }}</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<div class="row" [hidden]="success === false && failure === false">
+    <div class="col-sm-12" *ngIf="success === true">
+        <app-success-box (buttonClicked)="reset()"></app-success-box>
+    </div>
+    <div class="col-sm-12" *ngIf="failure === true">
+        <app-failure-box (buttonClicked)="reset()"></app-failure-box>
+    </div>
+</div>
