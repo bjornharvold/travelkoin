@@ -44,6 +44,8 @@ import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import {ShareButtonsModule} from '@ngx-share/buttons';
 import {IShareButtons} from '@ngx-share/core';
 import {Observable} from 'rxjs/Observable';
+import { TeamComponent } from './home/team/team.component';
+import { BackersComponent } from './home/backers/backers.component';
 
 /**
  * In case the key cannot be found in the translation file
@@ -139,7 +141,9 @@ const prop: IShareButtons = {
         CountdownComponent,
         TermsComponent,
         PrivacyComponent,
-        AuthRedirectComponent
+        AuthRedirectComponent,
+        TeamComponent,
+        BackersComponent
     ],
     bootstrap: [
         AppComponent

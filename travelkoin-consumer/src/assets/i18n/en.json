@@ -64,8 +64,14 @@
     "TESTIMONIALS": {
       "HEADER": "Testimonials"
     },
+    "TEAM": {
+      "HEADER": "Team"
+    },
     "ADVISORS": {
-      "HEADER": "Our backers"
+      "HEADER": "Advisors"
+    },
+    "BACKERS": {
+      "HEADER": "Backers"
     },
     "FEATURES": {
       "HEADER": "Features",
