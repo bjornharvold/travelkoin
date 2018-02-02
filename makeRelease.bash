@@ -20,7 +20,7 @@ npm version minor -m "Bumping minor version of travelkoin-consumer: %s"
 cd ..
 
 echo "Committing minor version changes"
-git commit -m "Getting ready for another release"
+git commit -a -m "Getting ready for another release"
 
 #git flow release start $CURRENT_VERSION
 #git flow release finish -m $CURRENT_VERSION $CURRENT_VERSION
