@@ -2,6 +2,8 @@
 
 echo "Releasing new version of SPA..."
 
+git commit -m "Checking everything in before release starts"
+
 cd travelkoin-contracts
 npm version minor -m "Bumping minor version of travelkoin-contracts: %s"
 
@@ -20,7 +22,7 @@ echo "Committing minor version changes"
 git commit -m "Getting ready for another release"
 
 git flow release start $CURRENT_VERSION
-git flow release finish $CURRENT_VERSION
+git flow release finish -m $CURRENT_VERSION $CURRENT_VERSION
 
 git push
 git push --tags
