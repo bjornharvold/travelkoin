@@ -1,6 +1,6 @@
 {
   "name": "travelkoinsale",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "Travelkoin token sale",
   "scripts": {
     "test": "scripts/test.sh",
@@ -11,6 +11,7 @@
     "lint:all": "npm run lint && npm run lint:sol",
     "lint:all:fix": "npm run lint:fix && npm run lint:sol:fix",
     "console": "truffle console",
+    "version": "echo $npm_package_version",
     "coverage": "scripts/coverage.sh"
   },
   "repository": {
