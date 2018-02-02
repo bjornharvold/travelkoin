@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.travelkoin</groupId>
     <artifactId>travelkoin-spa</artifactId>
-    <version>4.0.38-SNAPSHOT</version>
+    <version>4.1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Travelkoin SPA</name>
     <inceptionYear>2013</inceptionYear>

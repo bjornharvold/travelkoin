@@ -1,6 +1,6 @@
 {
-  "name": "travelkoin-demo",
-  "version": "3.1.6",
+  "name": "travelkoin-consumer",
+  "version": "4.1.6",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
