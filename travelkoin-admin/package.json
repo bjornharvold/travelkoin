@@ -1,6 +1,6 @@
 {
   "name": "travelkoin-admin",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -10,6 +10,7 @@
     "dev": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment dev --aot --build-optimizer",
     "ng": "ng",
     "start": "ng serve --target development --environment local --host=dev.travelkoin.io --port 8000",
+    "version": "echo $npm_package_version",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

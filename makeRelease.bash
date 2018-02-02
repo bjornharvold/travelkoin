@@ -2,57 +2,27 @@
 
 echo "Releasing new version of SPA..."
 
-echo "Updating parent."
-mvn versions:update-parent -DgenerateBackupPoms=false
-STATUS=$?
-if [ $STATUS -ne 0 ]; then
-    echo "Something went wrong on line: ${BASH_LINENO[*]}"
-    exit 1
-fi
+cd travelkoin-contracts
+npm version minor -m "Bumping minor version of travelkoin-contracts: %s"
 
-echo "Updating all properties."
-mvn versions:update-properties -DgenerateBackupPoms=false
-STATUS=$?
-if [ $STATUS -ne 0 ]; then
-    echo "Something went wrong on line: ${BASH_LINENO[*]}"
-    exit 1
-fi
+echo "Grab the new version number"
+CURRENT_VERSION=$(npm run version --silent)
 
-echo "Using only the latest Traveliko release versions"
-mvn versions:use-latest-versions -Dincludes=com.traveliko* -DgenerateBackupPoms=false
-STATUS=$?
-if [ $STATUS -ne 0 ]; then
-    echo "Something went wrong on line: ${BASH_LINENO[*]}"
-    exit 1
-fi
+cd ../../travelkoin-admin
+npm version minor -m "Bumping minor version of travelkoin-admin: %s"
 
-echo "Replacing all SNAPSHOT versions first."
-mvn versions:use-releases -DfailIfNotReplaced=true -DgenerateBackupPoms=false
-STATUS=$?
-if [ $STATUS -ne 0 ]; then
-    echo "Something went wrong on line: ${BASH_LINENO[*]}"
-    exit 1
-fi
+cd ../../travelkoin-consumer/
+npm version minor -m "Bumping minor version of travelkoin-consumer: %s"
 
-git commit -a -m "Checking all files before releasing..."
+cd ..
 
-echo "Starting release process. It's about to get real!!"
-mvn -B gitflow:release-start gitflow:release-finish -DskipTestProject=true
-STATUS=$?
-if [ $STATUS -ne 0 ]; then
-    echo "Something went wrong on line: ${BASH_LINENO[*]}"
-    exit 1
-fi
+echo "Committing minor version changes"
+git commit -m "Getting ready for another release"
 
-git commit -a -m "Finalizing release on develop branch"
-git push origin develop:refs/heads/develop
+git flow release start $CURRENT_VERSION
+git flow release finish $CURRENT_VERSION
 
-echo "Committing changes to master branch"
-git checkout master
-git commit -a -m "Committing changes to master branch"
-git push origin master:refs/heads/master
+git push
+git push --tags
 
-echo "Going back to develop branch"
-git checkout develop
-
-echo "Releasing complete"
+echo "Releasing new version of SPA complete"
