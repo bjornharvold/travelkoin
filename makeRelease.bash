@@ -2,7 +2,8 @@
 
 echo "Releasing new version of SPA..."
 
-git commit -m "Checking everything in before release starts"
+echo "Disabling git messages for a release"
+export GIT_MERGE_AUTOEDIT=no
 
 cd travelkoin-contracts
 npm version minor -m "Bumping minor version of travelkoin-contracts: %s"
@@ -26,5 +27,10 @@ git flow release finish -m $CURRENT_VERSION $CURRENT_VERSION
 
 git push
 git push --tags
+
+git checkout develop
+
+echo "Enabling git messages for a release again"
+export GIT_MERGE_AUTOEDIT=yes
 
 echo "Releasing new version of SPA complete"
