@@ -8,10 +8,10 @@ npm version minor -m "Bumping minor version of travelkoin-contracts: %s"
 echo "Grab the new version number"
 CURRENT_VERSION=$(npm run version --silent)
 
-cd ../../travelkoin-admin
+cd ../travelkoin-admin
 npm version minor -m "Bumping minor version of travelkoin-admin: %s"
 
-cd ../../travelkoin-consumer/
+cd ../travelkoin-consumer/
 npm version minor -m "Bumping minor version of travelkoin-consumer: %s"
 
 cd ..
