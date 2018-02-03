@@ -6,9 +6,9 @@
 
         <div class="col-md-10 col-lg-6 center-margin">
 
-            <h3 class="text-center pad15B font-gray text-transform-upr font-size-23">{{ 'AUTH.LOGIN.LOGIN_TITLE_SHORT' | translate }}</h3>
+            <h3 class="text-center pad15B font-gray text-transform-upr font-size-23">{{ 'AUTH.LOGIN.LOGIN_TITLE_SHORT' | translate }} <span><i *ngIf="loading === true" class="k-i-loading"></i> </span></h3>
 
-            <div class="content-box border-top border-blue-alt clearfix">
+            <div class="content-box border-top border-blue-alt clearfix" *ngIf="authenticated === false">
                 <div class="content-box-wrapper row">
                     <div class="col-md-12 font-red" *ngIf="message != null">
                         <p>{{ message }}</p>
@@ -59,6 +59,15 @@
 
                         <app-auth-social-authentication (onResponse)="updateMessage($event)"></app-auth-social-authentication>
 
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content-box border-top border-blue-alt clearfix" *ngIf="authenticated === true">
+                <div class="content-box-wrapper row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button type="button" (click)="logout()" class="btn btn-block btn-warning">{{ 'HEADER.LOGOUT' | translate }}</button>
                     </div>
 
                 </div>

@@ -86,7 +86,7 @@
       },
       "STEP2": {
         "HEADER": "Ga online",
-        "DESCRIPTION": "De Travelkoin Foundation wordt gelanceerd. Ean gecombineerde inspanning van traditionale en online reisorganisaties."
+        "DESCRIPTION": "De Blockchain Company wordt gelanceerd. Ean gecombineerde inspanning van traditionale en online reisorganisaties."
       },
       "STEP3": {
         "HEADER": "Token voorverkoop",
@@ -293,7 +293,7 @@
   },
   "FORMS": {
     "HEADER": "Formulieren",
-    "DESCRIPTION": "Vul de informatie in en upload de benodigde documenten. Na goedkeuring kunt u BTC en ETH naar onze wallet zenden.",
+    "DESCRIPTION": "Vul de informatie in en upload de benodigde documenten. Na goedkeuring kunt u ETH naar onze wallet zenden.",
     "DIALOG": "Verstuur benodidge documenten",
     "DIALOG_DESCRIPTION": "U bent nu klaar om uw documenten te versturen. Versturen?",
     "UPLOAD_DOCUMENTS": "Upload documenten",

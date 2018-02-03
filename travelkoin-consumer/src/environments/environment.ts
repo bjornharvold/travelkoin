@@ -5,6 +5,7 @@
 export const environment = {
     production: false,
     environment: 'local',
+    build: '5.4.0',
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
@@ -17,9 +18,8 @@ export const environment = {
     etherScanApiKey: 'KN8324XYZGIC1E2UKGCH9GY4Q6Q2FBT9MM',
     featureLogin: true,
     featureLanguage: true,
-    btcWalletAddress: 'n2pBKP6YQyEg1KnRguhFNLMxPqy1Rj9oPQ',
     ethWalletAddress: '0x824f97428e3e23ebf8bb7c732ac7abb56f8c02fc',
-    siteUrl: 'https://dev.travelkoin.io:8000',
+    siteUrl: 'http://dev.travelkoin.io:8000',
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',
         authDomain: 'travelkoin-bc173.firebaseapp.com',

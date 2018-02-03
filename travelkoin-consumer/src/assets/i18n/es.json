@@ -293,7 +293,7 @@
   },
   "FORMS": {
     "HEADER": "Formularios",
-    "DESCRIPTION": "Complete los campos requeridos a continuación y cargue los documentos que requerimos. Una vez aprobado, podrá transferir BTC y ETH a nuestra cartera.",
+    "DESCRIPTION": "Complete los campos requeridos a continuación y cargue los documentos que requerimos. Una vez aprobado, podrá transferir ETH a nuestra cartera.",
     "DIALOG": "Presentar los documentos requeridos",
     "DIALOG_DESCRIPTION": "Está todo listo para enviar sus documentos. ¿Estás listo?",
     "UPLOAD_DOCUMENTS": "Subir documentos",

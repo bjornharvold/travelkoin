@@ -5,6 +5,7 @@
 export const environment = {
     production: true,
     environment: 'prod',
+    build: '5.4.0',
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
@@ -17,7 +18,6 @@ export const environment = {
     etherScanApiKey: 'TE5MWSJD3HMUJ4585BQJT2CV7D3DVDAXUH',
     featureLogin: true,
     featureLanguage: true,
-    btcWalletAddress: '1CjAxBMMwAkF8t7QpzUJxXn5SqA6pTtzqM',
     ethWalletAddress: '0xC85c71F4A7c096Df5E6305Ca940b664e30d8ca55',
     siteUrl: 'https://travelkoin.io',
     firebase: {

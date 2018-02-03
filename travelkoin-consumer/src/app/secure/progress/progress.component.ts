@@ -14,7 +14,6 @@ import {Observable} from 'rxjs/Observable';
 import DocumentReference = firebase.firestore.DocumentReference;
 
 const CURRENCY_CODE: string = 'EUR';
-const BTC_SYMBOL: string = 'BTC';
 const ETH_SYMBOL: string = 'ETH';
 
 @Component({
@@ -24,29 +23,30 @@ const ETH_SYMBOL: string = 'ETH';
 })
 export class ProgressComponent implements OnInit, OnDestroy {
     private alive = true;
-    private btcWallet: Wallet = null;
     private ethWallet: Wallet = null;
-    private btcTimeSeries: Array<number> = [];
     private ethTimeSeries: Array<number> = [];
     private totalTimeSeries: Array<number> = [];
-    private goalTimeSeries: Array<number> = [];
 
     series: any[] = [{
         name: 'ETH',
         data: this.ethTimeSeries
-    }, {
-        name: 'BTC',
-        data: this.btcTimeSeries
     }];
-    goal: any = {
-        name: 'Goal',
-        data: this.goalTimeSeries
-    };
     token: any = {
         name: 'Raised',
         data: this.totalTimeSeries
     };
     categories: string[] = [];
+
+
+    private static calculateSumForTimeSeriesValue(ary: Array<Array<TimeSerie>>, index: number): number {
+        let result: number = 0;
+
+        for (let series of ary) {
+            result += series[index].value;
+        }
+
+        return result;
+    }
 
     /**
      * Creates a new record in Firestore
@@ -59,37 +59,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
                     // console.log(ref);
                 },
                 error => console.error(`something went wrong when trying to save time series data: ${error}`)
-            );
-    }
-
-    /**
-     * Loads up Bitcoin wallet's latest balance and adds the current value in Euro
-     * @param {ConversionRate} cr
-     * @param timestamp
-     */
-    private loadBitcoinWalletAndCreateTimeSeries(cr: ConversionRate, timestamp: number): void {
-        this.bitcoinService.loadAddress(environment.btcWalletAddress)
-            .takeWhile(() => this.alive)
-            .subscribe((wallet: Wallet) => {
-                    if (wallet != null) {
-                        this.btcWallet = wallet;
-                        const date: number = timestamp;
-                        const amount: number = this.btcWallet.walletBalance;
-                        const value: number = amount * cr.EUR;
-
-                        const ts: TimeSerie = {
-                            date: date,
-                            production: environment.production,
-                            amount: amount,
-                            value: value,
-                            symbol: BTC_SYMBOL,
-                            currency: CURRENCY_CODE
-                        };
-
-                        this.addTimeSeriesDate(ts);
-                    }
-                },
-                error => console.error(`something went wrong when trying to load btc wallet: ${error}`)
             );
     }
 
@@ -137,30 +106,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * we need to load the balance of our btc wallet - we then need to convert that to EUR and display
-     */
-    private loadConversionRateAndBitcoinWallet(timestamp: number): void {
-
-        this.conversionService.get(BTC_SYMBOL)
-            .takeWhile(() => this.alive)
-            .subscribe((cr: ConversionRate) => {
-                    if (cr == null || cr.needsRefresh) {
-                        // the conversion rate we have on file ALSO needs a refresh
-                        this.conversionService.loadExchangeRate(BTC_SYMBOL, CURRENCY_CODE)
-                            .takeWhile(() => this.alive)
-                            .subscribe((cr2: ConversionRate) => {
-                                    this.updateConversionRate(BTC_SYMBOL, cr2);
-                                    this.loadBitcoinWalletAndCreateTimeSeries(cr2, timestamp);
-                                },
-                                error => console.log(`something went wrong when trying to load conversion rates for btc: ${error}`)
-                            )
-                    }
-                },
-                error => console.log(`something went wrong when trying to load conversion rates for btc: ${error}`)
-            );
-    }
-
-    /**
      * we need to load the balance of our eth wallet - we then need to convert that to EUR and display
      */
     private loadConversionRateAndEthereumWallet(timestamp: number): void {
@@ -202,21 +147,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Loads the static goal time serie
-     * @param {Array<TimeSerie>} ary
-     */
-    private loadGoal(ary: Array<TimeSerie>): void {
-        this.goalTimeSeries.length = 0;
-
-        if (ary != null && ary.length > 0) {
-
-            for (const ts of ary) {
-                this.goalTimeSeries.push(10000000);
-            }
-        }
-    }
-
-    /**
      * Loads the current deposits for this symbol
      * @param {string} symbol
      * @param {Array<TimeSerie>} ary
@@ -235,16 +165,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
         }
     }
 
-    private calculateSumForTimeSeriesValue(ary: Array<Array<TimeSerie>>, index: number): number {
-        let result: number = 0;
-
-        for (let series of ary) {
-            result += series[index].value;
-        }
-
-        return result;
-    }
-
     /**
      * Render goal: btc + eth value together
      * @param {Array<Array<TimeSerie>>} ary
@@ -255,17 +175,16 @@ export class ProgressComponent implements OnInit, OnDestroy {
         if (ary != null && ary.length > 0) {
             const series: Array<TimeSerie> = ary[0];
             for (let i = 0; i < series.length; i++) {
-                this.totalTimeSeries.push(this.calculateSumForTimeSeriesValue(ary, i));
+                this.totalTimeSeries.push(ProgressComponent.calculateSumForTimeSeriesValue(ary, i));
             }
         }
     }
 
     private loadTimeSeries(): void {
-        const btcTimeSeries: Observable<Array<TimeSerie>> = this.timeseriesService.query(BTC_SYMBOL);
         const ethTimeSeries: Observable<Array<TimeSerie>> = this.timeseriesService.query(ETH_SYMBOL);
 
         // load up and combine two time series
-        Observable.zip(...[btcTimeSeries, ethTimeSeries])
+        Observable.zip(...[ethTimeSeries])
             .takeWhile(() => this.alive)
             .subscribe((ary: Array<Array<TimeSerie>>) => {
                 if (ary != null && ary.length > 0) {
@@ -273,8 +192,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
                         const series: Array<TimeSerie> = ary[i];
                         if (series.length > 0) {
                             if (i === 0) {
-                                // load goal and categories
-                                this.loadGoal(series);
+                                // load categories
                                 this.loadCategories(series);
                             }
 
@@ -294,7 +212,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         const timestamp: number = new Date().getTime();
-        this.loadConversionRateAndBitcoinWallet(timestamp);
         this.loadConversionRateAndEthereumWallet(timestamp);
 
         this.loadTimeSeries();

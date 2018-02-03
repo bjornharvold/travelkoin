@@ -8,26 +8,6 @@
         <div class="content-box-wrapper" *ngIf="dto != null">
             <div class="row">
                 <div class="col-sm-12">
-                    <div *ngIf="form.get('btcWalletAddress')" class="form-group" [ngClass]="{'has-danger': !form.get('btcWalletAddress').valid && !form.get('btcWalletAddress').pristine, 'has-success': form.get('btcWalletAddress').valid && !form.get('btcWalletAddress').pristine}">
-                        <label for="btcWalletAddress">{{ 'FORMS.BTC_ADDRESS' | translate }}</label>
-                        <div class="input-group input-group-lg">
-                                    <span class="input-group-addon">
-                                        <i class="fab fa-bitcoin fa-fw"></i>
-                                    </span>
-                            <input id="btcWalletAddress" type="text" class="form-control form-control-lg" name="btcWalletAddress" formControlName="btcWalletAddress" placeholder="{{ 'FORMS.BTC_ADDRESS_PLACEHOLDER' | translate }}">
-                        </div>
-                        <small class="form-text text-muted">{{ 'FORMS.BTC_ADDRESS_HELP' | translate }}</small>
-
-                        <div [hidden]="form.get('btcWalletAddress').valid || form.get('btcWalletAddress').pristine">
-                            <div class="form-control-feedback">
-                                <p class="font-red" *ngIf="form.get('btcWalletAddress').hasError('required')">{{ 'ERROR.FIELD_REQUIRED_ERROR' | translate }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
                     <div *ngIf="form.get('ethWalletAddress')" class="form-group" [ngClass]="{'has-danger': !form.get('ethWalletAddress').valid && !form.get('ethWalletAddress').pristine, 'has-success': form.get('ethWalletAddress').valid && !form.get('ethWalletAddress').pristine}">
                         <label for="ethWalletAddress">{{ 'FORMS.ETH_ADDRESS' | translate }}</label>
                         <div class="input-group input-group-lg">

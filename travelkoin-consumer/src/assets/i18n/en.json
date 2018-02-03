@@ -93,15 +93,15 @@
       },
       "STEP2": {
         "HEADER": "Go live",
-        "DESCRIPTION": "Travelkoin Foundation launches. A joint venture by online and brick and mortar travel companies."
+        "DESCRIPTION": "The Blockchain Company launches. A joint venture by online and brick and mortar travel companies."
       },
       "STEP3": {
         "HEADER": "Token pre-sale",
         "DESCRIPTION": "The Travelkoin pre-sale will last the month of March."
       },
       "STEP4": {
-        "HEADER": "Token Generation Event",
-        "DESCRIPTION": "Travelkoin launches and will last the month of April."
+        "HEADER": "ICO event",
+        "DESCRIPTION": "Travelkoin launches."
       },
       "STEP5": {
         "HEADER": "Travelkoin Loyalty Platform",
@@ -300,7 +300,7 @@
   },
   "FORMS": {
     "HEADER": "Forms",
-    "DESCRIPTION": "Please fill in the required form fields below and upload the documents we require of you. Once approved, you will be allowed to transfer BTC and ETH to our wallet.",
+    "DESCRIPTION": "Please fill in the required form fields below and upload the documents we require of you. Once approved, you will be allowed to transfer ETH to our wallet.",
     "DIALOG": "Submit required documents",
     "DIALOG_DESCRIPTION": "You're all set to submit your documents. Are you ready?",
     "UPLOAD_DOCUMENTS": "Upload documents",

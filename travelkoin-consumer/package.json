@@ -1,6 +1,6 @@
 {
   "name": "travelkoin-consumer",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
@@ -48,10 +48,10 @@
     "@progress/kendo-angular-l10n": "1.0.5",
     "@progress/kendo-angular-upload": "3.0.0",
     "@progress/kendo-data-query": "1.1.2",
-    "@progress/kendo-drawing": "1.4.1",
+    "@progress/kendo-drawing": "^1.4.2",
     "@progress/kendo-theme-bootstrap": "2.11.0",
     "angular2-moment": "1.8.0",
-    "angularfire2": "next",
+    "angularfire2": "5.0.0-rc.6",
     "angularx-qrcode": "1.0.1",
     "bitcoinjs-lib": "3.3.2",
     "bootstrap": "4.0.0",
@@ -87,7 +87,6 @@
     "truffle-contract": "^3.0.3",
     "ts-node": "4.1.0",
     "tslint": "5.9.1",
-    "typescript": "2.6.2",
-    "uglify-es": "3.3.9"
+    "typescript": "2.6.2"
   }
 }

@@ -14,44 +14,36 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class UserSessionService {
     private authUser: firebase.User = null;
-    private redirectUrl: string = null; // used if user needs to log in and return to previous url
     @Output() userAuthenticatedEvent: EventEmitter<firebase.User>;
     @Output() rememberMeEvent: EventEmitter<firebase.User>;
     @Output() userLoggedOutEvent: EventEmitter<any>;
     @Output() userAuthenticationFailedEvent: EventEmitter<any>;
 
-    private createUser(user: firebase.User): void {
+    /**
+     * Returns the newly created user
+     * @param {firebase.User} user
+     * @returns {Observable<User | null>}
+     */
+    private createUser(user: firebase.User): Observable<User | null> {
+        console.log('creating user');
         const newUser: User = new User();
         newUser.uid = user.uid;
         newUser.email = user.email;
 
-        this.userService.set(newUser.uid, newUser)
-            .subscribe(() => {
-                    // console.log('user created successfully');
-                },
-                error => {
-                    console.log(error);
-                })
+        return this.userService.set(newUser.uid, newUser)
+            .map(() => newUser);
     }
 
-    private loginPostProcess(user: firebase.User): void {
-        if (user != null) {
-            // set the user in memory
-            this.authUser = user;
+    private figureItOut(authUser: firebase.User, dbUser: User): Observable<User | null> {
+        let result: Observable<User | null>;
 
-            // tell everyone who's listening that the user logged in
-            this.userAuthenticatedEvent.emit(this.authUser);
-
-            // we also need to see if we have to create the user in Firestore
-            this.userService.get(user.uid)
-                .subscribe((dbUser: User) => {
-                    if (dbUser == null) {
-                        this.createUser(user);
-                    }
-                });
+        if (dbUser != null && dbUser.uid != null) {
+            result = Observable.of(dbUser);
         } else {
-            console.error('User is not properly logged in');
+            result = this.createUser(authUser);
         }
+
+        return result;
     }
 
     /**
@@ -73,7 +65,7 @@ export class UserSessionService {
             .switchMap((user: firebase.User) => user != null ? this.userService.get(user.uid) : Observable.of(null));
     }
 
-    updateUser(uid: string, user: Partial<User>): Observable<void> {
+    updateUser(uid: string, user: User): Observable<void> {
         return this.userService.update(uid, user);
     }
 
@@ -82,23 +74,31 @@ export class UserSessionService {
      * @returns {boolean}
      * @param user
      */
-    login(user: firebase.User) {
-        this.loginPostProcess(user);
+    login(user: firebase.User): Observable<User | null> {
+        let result: Observable<User | null>;
 
-        // finally we go back to where the user came from
-        let redirectUrl = '/secure/dashboard'; // default
-        if (this.redirectUrl != null) {
-            redirectUrl = this.redirectUrl;
+        if (user != null) {
+            // set the user in memory
+            this.authUser = user;
+
+            // tell everyone who's listening that the user logged in
+            this.userAuthenticatedEvent.emit(this.authUser);
+
+            // we also need to see if we have to create the user in Firestore
+            result = this.getUser().mergeMap((dbUser: User) => this.figureItOut(user, dbUser));
+        }
+        else {
+            console.error('User is not properly logged in');
+            result = Observable.of(null);
         }
 
-        this.router.navigate([redirectUrl]);
+        return result;
     }
 
     /**
      * Logs user out on both the server and the SPA
      */
     logout(): void {
-        this.redirectUrl = null;
         this.authUser = null;
 
         // remove auth token globally

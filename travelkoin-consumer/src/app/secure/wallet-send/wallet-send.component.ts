@@ -41,7 +41,7 @@ export class WalletSendComponent implements OnInit, OnDestroy {
         this.loading = true;
         this.dto.updateFromFormValues(this.form);
         this.user.addTransaction(this.dto);
-        this.userSessionService.updateUser(this.user.uid, User.serializeObject(this.user))
+        this.userSessionService.updateUser(this.user.uid, this.user)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                     this.onTransactionComplete.emit(true);
@@ -81,10 +81,6 @@ export class WalletSendComponent implements OnInit, OnDestroy {
                         let recipient: string = null;
                         let sender: string = null;
                         switch (WalletType[this.type]) {
-                            case WalletType.BTC:
-                                recipient = environment.btcWalletAddress;
-                                sender = user.btcWalletAddress;
-                                break;
                             case WalletType.ETH:
                                 recipient = environment.ethWalletAddress;
                                 console.log(recipient);

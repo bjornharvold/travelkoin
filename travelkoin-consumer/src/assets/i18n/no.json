@@ -86,7 +86,7 @@
       },
       "STEP 2": {
         "HEADER": "Gå direkte",
-        " DESCRIPTION ": "Travelkoin Foundation lanserer et joint venture av online og faste reisebyråer."
+        " DESCRIPTION ": "The Blockchain Company lanserer et joint venture av online og faste reisebyråer."
       },
       "STEP 3": {
         "HEADER": "Token forsalg",
@@ -293,7 +293,7 @@
   },
   "FORMS": {
     "HEADER": "Skjemaer",
-    "DESCRIPTION": "Vennligst fyll ut nødvendig skjemafeltene nedenfor og laste opp dokumenter vi krever av deg. Når godkjent, du vil kunne overføre BTC og ETH til vår lommebok.",
+    "DESCRIPTION": "Vennligst fyll ut nødvendig skjemafeltene nedenfor og laste opp dokumenter vi krever av deg. Når godkjent, du vil kunne overføre ETH til vår lommebok.",
     "DIALOG": "Send inn påkrevde dokumenter",
     "DIALOG_DESCRIPTION": "Du er klarert til å sende dokumenter. Er du klar? ",
     "UPLOAD_DOCUMENTS": "Last opp dokumenter",
