@@ -38,7 +38,6 @@ import {PrivacyComponent} from './privacy/privacy.component';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-import {AuthRedirectComponent} from './auth-redirect/auth-redirect.component';
 import {Cloudinary} from 'cloudinary-core';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import {ShareButtonsModule} from '@ngx-share/buttons';
@@ -138,8 +137,7 @@ const prop: IShareButtons = {
         HomeComponent,
         CountdownComponent,
         TermsComponent,
-        PrivacyComponent,
-        AuthRedirectComponent
+        PrivacyComponent
     ],
     bootstrap: [
         AppComponent

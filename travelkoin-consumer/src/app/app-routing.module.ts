@@ -3,7 +3,6 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {TermsComponent} from './terms/terms.component';
-import {AuthRedirectComponent} from './auth-redirect/auth-redirect.component';
 
 const routes: Routes = [
     {
@@ -25,10 +24,6 @@ const routes: Routes = [
     {
         path: 'secure',
         loadChildren: './secure/secure.module#SecureModule'
-    },
-    {
-        path: 'redirect',
-        component: AuthRedirectComponent
     }
 ];
 

@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-login',
+    selector: 'app-home-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
