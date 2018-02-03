@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     password: FormControl = new FormControl('', [
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(50),
+        Validators.maxLength(64),
         PasswordValidators.alphabeticalCharacterRule(1),
         PasswordValidators.digitCharacterRule(1),
         PasswordValidators.lowercaseCharacterRule(1),

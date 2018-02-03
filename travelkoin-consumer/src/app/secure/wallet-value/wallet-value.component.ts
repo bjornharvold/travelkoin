@@ -60,7 +60,7 @@ export class WalletValueComponent implements OnInit, OnChanges, OnDestroy {
                 const tx = this.user.transactions[i];
                 if (tx.transactionID === transactionIdentifier) {
                     this.user.transactions.splice(i, 1);
-                    this.userSessionService.updateUser(this.user.uid, User.serializeObject(this.user))
+                    this.userSessionService.updateUser(this.user.uid, User.serializeObjectToPartialUser(this.user))
                         .takeWhile(() => this.alive)
                         .subscribe(() => {
                                 // nothing to do

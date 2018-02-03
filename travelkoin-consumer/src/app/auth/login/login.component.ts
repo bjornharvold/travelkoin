@@ -10,6 +10,9 @@ import {environment} from '../../../environments/environment';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import {Observable} from 'rxjs/Observable';
+import {User} from '../../model/user';
+
+const REDIRECT_URL: string = '/secure/dashboard';
 
 @Component({
     selector: 'app-login',
@@ -19,6 +22,7 @@ import {Observable} from 'rxjs/Observable';
 export class LoginComponent implements OnInit, OnDestroy {
     private alive = true;
     loading = false;
+    authenticated = false;
     environment: string = environment.environment;
     loginForm: FormGroup;
     message: string = null;
@@ -34,7 +38,10 @@ export class LoginComponent implements OnInit, OnDestroy {
                         const user: firebase.User = this.afAuth.auth.currentUser;
                         if (user.emailVerified === true) {
                             // at this point we can save / update the user in Firestore
-                            this.userSessionService.login(user);
+                            this.userSessionService.login(user)
+                                .subscribe((user: User) => {
+                                    this.router.navigate([REDIRECT_URL]);
+                                });
                         } else {
                             this.verified = false;
                         }
@@ -69,11 +76,23 @@ export class LoginComponent implements OnInit, OnDestroy {
             });
     }
 
+    logout(): void {
+        this.userSessionService.logout();
+    }
+
     ngOnDestroy() {
         this.alive = false;
     }
 
     ngOnInit() {
+        this.userSessionService.getAuthUser()
+            .takeWhile(() => this.alive)
+            .subscribe((user: firebase.User) => {
+                if (user != null) {
+                    this.authenticated = true;
+                }
+            });
+
         this.loginForm = this.fb.group({
             username: this.username,
             password: this.password
@@ -81,12 +100,25 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         this.activatedRoute.params
             .map(params => params['verified'])
+            .takeWhile(() => this.alive)
             .subscribe(verified => {
                 if (verified != null) {
                     this.verified = eval(verified);
                     }
                 }
             );
+
+        this.userSessionService.userLoggedOutEvent
+            .takeWhile(() => this.alive)
+            .subscribe(() => {
+                this.authenticated = false;
+            });
+
+        this.userSessionService.userAuthenticatedEvent
+            .takeWhile(() => this.alive)
+            .subscribe(() => {
+                this.authenticated = true;
+            })
     }
 
     constructor(private userSessionService: UserSessionService,

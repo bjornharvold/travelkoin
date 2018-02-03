@@ -300,7 +300,7 @@
   },
   "FORMS": {
     "HEADER": "Forms",
-    "DESCRIPTION": "Please fill in the required form fields below and upload the documents we require of you. Once approved, you will be allowed to transfer BTC and ETH to our wallet.",
+    "DESCRIPTION": "Please fill in the required form fields below and upload the documents we require of you. Once approved, you will be allowed to transfer ETH to our wallet.",
     "DIALOG": "Submit required documents",
     "DIALOG_DESCRIPTION": "You're all set to submit your documents. Are you ready?",
     "UPLOAD_DOCUMENTS": "Upload documents",

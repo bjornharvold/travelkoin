@@ -1,10 +1,14 @@
 import {Component, EventEmitter, NgZone, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase';
 import {UserSessionService} from '../../core/user-session.service';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {environment} from '../../../environments/environment';
+import {User} from '../../model/user';
 import AuthProvider = firebase.auth.AuthProvider;
+
+const REDIRECT_URL: string = '/secure/dashboard';
 
 @Component({
     selector: 'app-auth-social-authentication',
@@ -21,7 +25,10 @@ export class SocialAuthenticationComponent implements OnInit {
             .subscribe((result: any) => {
                     this.ngZone.run(() => {
                         const user: firebase.User = this.afAuth.auth.currentUser;
-                        this.userSessionService.login(user);
+                        this.userSessionService.login(user)
+                            .subscribe((user: User) => {
+                            this.router.navigate([REDIRECT_URL]);
+                        });
                     });
                 },
                 error => {
@@ -64,14 +71,11 @@ export class SocialAuthenticationComponent implements OnInit {
         this.auth(new firebase.auth.GithubAuthProvider());
     }
 
-    signInWithCoinbase(): void {
-        const popup = window.open('https://us-central1-travelkoin-bc173.cloudfunctions.net/redirect', '_blank', 'height=700,width=800')
-    }
-
     ngOnInit() {
     }
 
-    constructor(private userSessionService: UserSessionService,
+    constructor(private router: Router,
+                private userSessionService: UserSessionService,
                 private afAuth: AngularFireAuth,
                 private ngZone: NgZone) {
         this.onResponse = new EventEmitter(true);

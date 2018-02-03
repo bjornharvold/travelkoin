@@ -19,6 +19,7 @@ import * as firebase from 'firebase';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     private alive = true;
+    site = environment.siteUrl;
     isAuth = false;
     isCollapsed = true;
     isHome = false;

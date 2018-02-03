@@ -13,12 +13,12 @@ export class RegisteredGuard implements CanActivate, CanLoad {
 
                 if (user == null) {
                     result = false;
-                } else if (user.multimedia == null || user.multimedia.length < 2) {
+                } else if (user.ethWalletAddress == null || user.multimedia == null || user.multimedia.length < 2) {
                     result = false;
                 }
 
                 // this is where we handle page state in case the documents have not yet been uploaded
-                if (result) {
+                if (!result) {
                     this.router.navigate(['/secure/forms']);
                 }
 

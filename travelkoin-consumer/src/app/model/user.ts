@@ -5,13 +5,14 @@ import {UserRegistrationForm} from './user-registration-form';
 export class User {
     uid: string;
     email: string;
-    btcWalletAddress: string;
     ethWalletAddress: string;
     multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
     transactions: Array<Transaction>;
 
-    static serializeObject(dto: User): Partial<User> {
+    static serializeObjectToPartialUser(dto: User): Partial<User> {
+        const result: any = {};
+
         const images: Array<any> = [];
         const transactions: Array<any> = [];
         if (dto.multimedia != null && dto.multimedia.length > 0) {
@@ -24,12 +25,26 @@ export class User {
                 transactions.push(Transaction.serializeObject(tx));
             }
         }
-        return {
-            btcWalletAddress: dto.btcWalletAddress,
-            ethWalletAddress: dto.ethWalletAddress,
-            transactions: transactions,
-            multimedia: images
-        };
+
+        if (dto.ethWalletAddress != null) {
+            result.ethWalletAddress = dto.ethWalletAddress;
+        }
+        if (transactions != null && transactions.length > 0) {
+            result.transactions = transactions;
+        }
+        if (images != null && images.length > 0) {
+            result.multimedia = images;
+        }
+
+        return result;
+    }
+
+    static serializeNewUser(dto: User): any {
+        const result: any = {};
+        result.uid = dto.uid;
+        result.email = dto.email;
+
+        return result;
     }
 
     static deserializeObject(obj: any): User {
@@ -41,9 +56,6 @@ export class User {
             }
             if (obj.email != null) {
                 result.email = obj.email;
-            }
-            if (obj.btcWalletAddress != null) {
-                result.btcWalletAddress = obj.btcWalletAddress;
             }
             if (obj.ethWalletAddress != null) {
                 result.ethWalletAddress = obj.ethWalletAddress;
@@ -74,19 +86,6 @@ export class User {
         return this.multimedia == null || this.multimedia.length < 2;
     }
 
-    get bitcoinTransactions(): Array<Transaction> {
-        let result: Array<Transaction> = [];
-
-        if (this.transactions != null && this.transactions.length > 0) {
-            for (let tx of this.transactions) {
-                if (tx.type === 'BTC') {
-                    result.push(tx);
-                }
-            }
-        }
-        return result;
-    }
-
     get etherTransactions(): Array<Transaction> {
         let result: Array<Transaction> = [];
 
@@ -102,7 +101,6 @@ export class User {
 
     updateRegistrationDetails(form: UserRegistrationForm): void {
         this.multimedia = form.multimedia;
-        this.btcWalletAddress = form.btcWalletAddress;
         this.ethWalletAddress = form.ethWalletAddress;
     }
 

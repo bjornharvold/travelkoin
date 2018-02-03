@@ -45,7 +45,7 @@ export class FormsComponent implements OnInit, OnDestroy {
         this.loading = true;
         this.dto.updateFromFormValues(this.form);
         this.user.updateRegistrationDetails(this.dto);
-        this.userSessionService.updateUser(this.user.uid, User.serializeObject(this.user))
+        this.userSessionService.updateUser(this.user.uid, this.user)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                     this.success = true;
