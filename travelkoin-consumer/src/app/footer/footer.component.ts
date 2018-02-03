@@ -12,7 +12,7 @@ import * as moment from 'moment';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  environment: string = environment.environment;
+  version: string = environment.build;
   year: number = moment().year();
 
   constructor() {
