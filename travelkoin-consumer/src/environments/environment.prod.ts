@@ -9,6 +9,7 @@ export const environment = {
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
+    restBaseUrl: 'https://api.travelkoin.io',
     version: 'application/json;charset=UTF-8',
     mailchimpBaseUrl: 'https://travelkoin.us8.list-manage.com/subscribe/post?u=f95896dbd1b08608c1539c0c6&amp;id=e8b2ef2a46',
     recaptchaAPIKey: '6LdixT0UAAAAABKK2MPtwxtFYr4MOFedXuClPJ_3',

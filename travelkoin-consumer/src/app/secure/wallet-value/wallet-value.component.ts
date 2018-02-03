@@ -35,11 +35,6 @@ export class WalletValueComponent implements OnInit, OnChanges, OnDestroy {
 
     private loadTransactionsByType(user: User): void {
         switch (WalletType[this.type]) {
-            case WalletType.BTC:
-                this.hasAddress = user.btcWalletAddress != null;
-                this.recipient = environment.btcWalletAddress;
-                this.loadTransactions(user.bitcoinTransactions);
-                break;
             case WalletType.ETH:
                 this.hasAddress = user.ethWalletAddress != null;
                 this.recipient = environment.ethWalletAddress;
@@ -60,7 +55,7 @@ export class WalletValueComponent implements OnInit, OnChanges, OnDestroy {
                 const tx = this.user.transactions[i];
                 if (tx.transactionID === transactionIdentifier) {
                     this.user.transactions.splice(i, 1);
-                    this.userSessionService.updateUser(this.user.uid, User.serializeObjectToPartialUser(this.user))
+                    this.userSessionService.updateUser(this.user.uid, this.user)
                         .takeWhile(() => this.alive)
                         .subscribe(() => {
                                 // nothing to do

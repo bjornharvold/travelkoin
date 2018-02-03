@@ -29,25 +29,6 @@ export class WalletOverviewComponent implements OnInit, OnChanges, OnDestroy {
     error = false;
     errorMessage: string = null;
 
-    private loadBitcoinTransactions(user: User): void {
-        const txs: Array<Transaction> = user.bitcoinTransactions;
-        if (txs != null && txs.length > 0) {
-            this.loading = true;
-            this.bitcoinService.loadTransactions(txs)
-                .takeWhile(() => this.alive)
-                .subscribe((txs: Array<BitcoinTransaction>) => {
-                        this.wallet = new BitcoinTransactions(WalletType.BTC, txs);
-                    },
-                    error => {
-                        this.loading = false;
-                        this.error = true;
-                        this.errorMessage = error.error;
-                    },
-                    () => this.loading = false
-                );
-        }
-    }
-
     private loadEthereumTransactions(user: User): void {
         const txs: Array<Transaction> = user.etherTransactions;
         if (txs != null && txs.length > 0) {
@@ -72,9 +53,6 @@ export class WalletOverviewComponent implements OnInit, OnChanges, OnDestroy {
         this.errorMessage = null;
 
         switch (WalletType[this.type]) {
-            case WalletType.BTC:
-                this.loadBitcoinTransactions(user);
-                break;
             case WalletType.ETH:
                 this.loadEthereumTransactions(user);
                 break;
