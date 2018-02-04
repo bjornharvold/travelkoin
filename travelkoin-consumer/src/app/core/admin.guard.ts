@@ -10,7 +10,7 @@ export class AdminGuard implements CanActivate, CanLoad {
     private isAdmin(url: string): Observable<boolean> {
         return this.userSessionService.getUser()
             .map((user: User) => {
-                return user != null && user.uid != null && user.roles != null && user.roles.length > 0 && user.roles.indexOf('HANS');
+                return user.isHans;
             });
     }
 

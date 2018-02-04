@@ -103,6 +103,10 @@ export class User {
         return result;
     }
 
+    get isHans(): boolean {
+        return this.roles != null && this.roles.length > 0 && this.roles.indexOf('HANS') > -1;
+    }
+
     updateRegistrationDetails(form: UserRegistrationForm): void {
         this.multimedia = form.multimedia;
         this.ethWalletAddress = form.ethWalletAddress;
