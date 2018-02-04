@@ -9,6 +9,7 @@ export class User {
     multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
     transactions: Array<Transaction>;
+    roles: Array<string>;
 
     static serializeObjectToPartialUser(dto: User): Partial<User> {
         const result: any = {};
@@ -39,7 +40,7 @@ export class User {
         return result;
     }
 
-    static serializeNewUser(dto: User): any {
+    static serializeNewUser(dto: User): Partial<User> {
         const result: any = {};
         result.uid = dto.uid;
         result.email = dto.email;
@@ -56,6 +57,9 @@ export class User {
             }
             if (obj.email != null) {
                 result.email = obj.email;
+            }
+            if (obj.roles != null && obj.roles.length > 0) {
+                result.roles = obj.roles;
             }
             if (obj.ethWalletAddress != null) {
                 result.ethWalletAddress = obj.ethWalletAddress;
