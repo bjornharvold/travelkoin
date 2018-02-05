@@ -213,7 +213,9 @@
     "DESCRIPTION": "Welcome to Travelkoin. This will be your interface to our ICO event.",
     "FORMS": "Forms",
     "ADD_FUNDS": "Add funds",
-    "GOAL_REACHED": "Token sale progress"
+    "GOAL_REACHED": "Token sale progress",
+    "WAITING_FOR_APPROVAL": "Your account is under review. We will notify you once your application has been approved.",
+    "APPROVED": "Approved"
   },
   "COIN": {
     "TKT": "Travelkoin",
@@ -333,6 +335,22 @@
     "VN": "Vietnamese",
     "SK": "Slovak",
     "TH": "Thai"
+  },
+  "HANS": {
+    "USERS": {
+      "TITLE": "Users",
+      "DESCRIPTION": "Approve and whitelist users here.",
+      "BLOCK": "Block",
+      "UNBLOCK": "Re-enable",
+      "APPROVE": "Approve",
+      "UPLOADED_DOCUMENT": "Uploaded document",
+      "NO_RECORDS": "No users in this category",
+      "NO_IMAGES_UPLOADED": "No images have been submitted by this user",
+      "REGISTERED": "Registered",
+      "NEEDS_APPROVAL": "Needs approval",
+      "BLOCKED": "Blocked",
+      "APPROVED": "Approved"
+    }
   },
   "END": "End"
 }

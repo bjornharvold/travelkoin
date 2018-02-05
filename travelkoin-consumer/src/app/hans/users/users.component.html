@@ -1,0 +1,31 @@
+<div id="page-title">
+    <h2><i class="fas fa-users"></i> {{ 'HANS.USERS.TITLE' | translate }}</h2>
+    <p>{{ 'HANS.USERS.DESCRIPTION' | translate }}</p>
+</div>
+
+<ngb-tabset type="pills">
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'HANS.USERS.REGISTERED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+            <app-hans-users-by-status [submittedDocuments]="false" [approved]="false" [blocked]="false"></app-hans-users-by-status>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'HANS.USERS.NEEDS_APPROVAL' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+            <app-hans-users-by-status [submittedDocuments]="true" [approved]="false" [blocked]="false"></app-hans-users-by-status>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'HANS.USERS.APPROVED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+            <app-hans-users-by-status [submittedDocuments]="true" [approved]="true" [blocked]="false"></app-hans-users-by-status>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'HANS.USERS.BLOCKED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+            <app-hans-users-by-status [submittedDocuments]="true" [approved]="true" [blocked]="true"></app-hans-users-by-status>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

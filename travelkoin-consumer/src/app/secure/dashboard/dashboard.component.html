@@ -1,16 +1,14 @@
-<div id="page-title">
+<div id="page-title" *ngIf="user != null">
     <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
     <p>{{ 'DASHBOARD.DESCRIPTION' | translate }}</p>
+    <p *ngIf="user.approved === false"><span class="label label-info">{{ 'DASHBOARD.WAITING_FOR_APPROVAL' | translate }}</span></p>
 </div>
 
 <div class="row" *ngIf="user != null">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <app-secure-wallet-overview [type]="'TKT'" [showButton]="false"></app-secure-wallet-overview>
     </div>
-    <div class="col-md-4">
-        <app-secure-wallet-overview [type]="'BTC'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <app-secure-wallet-overview [type]="'ETH'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>
     </div>
 </div>

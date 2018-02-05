@@ -24,6 +24,10 @@ const routes: Routes = [
     {
         path: 'secure',
         loadChildren: './secure/secure.module#SecureModule'
+    },
+    {
+        path: 'hans',
+        loadChildren: './hans/hans.module#HansModule'
     }
 ];
 

@@ -8,7 +8,10 @@ export class User {
     ethWalletAddress: string;
     multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
+    submitted: boolean;
+    blocked: boolean;
     transactions: Array<Transaction>;
+    roles: Array<string>;
 
     static serializeObjectToPartialUser(dto: User): Partial<User> {
         const result: any = {};
@@ -29,20 +32,35 @@ export class User {
         if (dto.ethWalletAddress != null) {
             result.ethWalletAddress = dto.ethWalletAddress;
         }
+
+        if (dto.blocked != null) {
+            result.blocked = dto.blocked;
+        }
+
+        if (dto.approved != null) {
+            result.approved = dto.approved;
+        }
+
         if (transactions != null && transactions.length > 0) {
             result.transactions = transactions;
         }
+
         if (images != null && images.length > 0) {
             result.multimedia = images;
         }
 
+        result.submitted = true; // becomes true the first time the user successfully submits the form
+
         return result;
     }
 
-    static serializeNewUser(dto: User): any {
+    static serializeNewUser(dto: User): Partial<User> {
         const result: any = {};
         result.uid = dto.uid;
         result.email = dto.email;
+        result.approved = dto.approved;
+        result.blocked = dto.blocked;
+        result.submitted = dto.submitted;
 
         return result;
     }
@@ -56,6 +74,9 @@ export class User {
             }
             if (obj.email != null) {
                 result.email = obj.email;
+            }
+            if (obj.roles != null && obj.roles.length > 0) {
+                result.roles = obj.roles;
             }
             if (obj.ethWalletAddress != null) {
                 result.ethWalletAddress = obj.ethWalletAddress;
@@ -77,6 +98,11 @@ export class User {
             } else {
                 result.approved = false;
             }
+            if (obj.blocked != null) {
+                result.blocked = obj.blocked;
+            } else {
+                result.blocked = false;
+            }
         }
 
         return result;
@@ -97,6 +123,10 @@ export class User {
             }
         }
         return result;
+    }
+
+    get isHans(): boolean {
+        return this.roles != null && this.roles.length > 0 && this.roles.indexOf('HANS') > -1;
     }
 
     updateRegistrationDetails(form: UserRegistrationForm): void {

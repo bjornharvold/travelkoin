@@ -20,6 +20,7 @@ import {EthereumService} from './ethereum.service';
 import {ConversionService} from './conversion.service';
 import {TimeSeriesService} from './time-series.service';
 import {Web3Service} from './web3.service';
+import {HansGuard} from './hans.guard';
 
 // import {Web3Service} from './web3.service';
 
@@ -46,6 +47,7 @@ import {Web3Service} from './web3.service';
         CloudinaryService,
         AuthenticatedGuard,
         RegisteredGuard,
+        HansGuard,
         ConversionService,
         TimeSeriesService,
         Web3Service
