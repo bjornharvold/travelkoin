@@ -25,7 +25,6 @@ export class UserSessionService {
      * @returns {Observable<User | null>}
      */
     private createUser(user: firebase.User): Observable<User | null> {
-        console.log('creating user');
         const newUser: User = new User();
         newUser.uid = user.uid;
         newUser.email = user.email;

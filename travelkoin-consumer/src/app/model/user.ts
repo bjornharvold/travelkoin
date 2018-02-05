@@ -32,13 +32,24 @@ export class User {
         if (dto.ethWalletAddress != null) {
             result.ethWalletAddress = dto.ethWalletAddress;
         }
+
+        if (dto.blocked != null) {
+            result.blocked = dto.blocked;
+        }
+
+        if (dto.approved != null) {
+            result.approved = dto.approved;
+        }
+
         if (transactions != null && transactions.length > 0) {
             result.transactions = transactions;
         }
+
         if (images != null && images.length > 0) {
             result.multimedia = images;
         }
-        result.submitted = true;
+
+        result.submitted = true; // becomes true the first time the user successfully submits the form
 
         return result;
     }

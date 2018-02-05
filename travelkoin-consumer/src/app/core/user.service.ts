@@ -8,7 +8,6 @@ export class UserService {
     private userCollection: AngularFirestoreCollection<User>;
 
     private static deserializeUsers(users: Array<User>): Array<User> {
-        console.log(users);
         const result: Array<User> = [];
         if (users != null && users.length > 0) {
             for (const user of users) {

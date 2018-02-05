@@ -31,10 +31,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
         name: 'ETH',
         data: this.ethTimeSeries
     }];
-    token: any = {
-        name: 'Raised',
-        data: this.totalTimeSeries
-    };
     categories: string[] = [];
 
 
