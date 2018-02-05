@@ -4,13 +4,10 @@
 </div>
 
 <div class="row" *ngIf="user != null">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <app-secure-wallet-overview [type]="'TKT'" [showButton]="false"></app-secure-wallet-overview>
     </div>
-    <div class="col-md-4">
-        <app-secure-wallet-overview [type]="'BTC'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <app-secure-wallet-overview [type]="'ETH'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>
     </div>
 </div>

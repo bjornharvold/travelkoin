@@ -334,5 +334,19 @@
     "SK": "Slovak",
     "TH": "Thai"
   },
+  "HANS": {
+    "USERS": {
+      "TITLE": "Users",
+      "DESCRIPTION": "Approve and whitelist users here.",
+      "BLOCK": "Block",
+      "APPROVE": "Approve",
+      "NO_RECORDS": "No users in this category",
+      "NO_IMAGES_UPLOADED": "No images have been submitted by this user",
+      "REGISTERED": "Registered",
+      "NEEDS_APPROVAL": "Needs approval",
+      "BLOCKED": "Blocked",
+      "APPROVED": "Approved"
+    }
+  },
   "END": "End"
 }

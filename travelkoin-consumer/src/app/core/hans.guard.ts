@@ -6,8 +6,8 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {User} from '../model/user';
 
 @Injectable()
-export class AdminGuard implements CanActivate, CanLoad {
-    private isAdmin(url: string): Observable<boolean> {
+export class HansGuard implements CanActivate, CanLoad {
+    private isHans(url: string): Observable<boolean> {
         return this.userSessionService.getUser()
             .map((user: User) => {
                 return user.isHans;
@@ -18,13 +18,13 @@ export class AdminGuard implements CanActivate, CanLoad {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         const url: string = state.url;
 
-        return this.isAdmin(url);
+        return this.isHans(url);
     }
 
     canLoad(route: Route): Observable<boolean> {
         const url = `/${route.path}`;
 
-        return this.isAdmin(url);
+        return this.isHans(url);
     }
 
     constructor(private readonly afAuth: AngularFireAuth,

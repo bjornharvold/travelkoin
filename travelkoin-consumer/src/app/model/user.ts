@@ -8,6 +8,8 @@ export class User {
     ethWalletAddress: string;
     multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
+    submitted: boolean;
+    blocked: boolean;
     transactions: Array<Transaction>;
     roles: Array<string>;
 
@@ -36,6 +38,7 @@ export class User {
         if (images != null && images.length > 0) {
             result.multimedia = images;
         }
+        result.submitted = true;
 
         return result;
     }
@@ -44,6 +47,9 @@ export class User {
         const result: any = {};
         result.uid = dto.uid;
         result.email = dto.email;
+        result.approved = dto.approved;
+        result.blocked = dto.blocked;
+        result.submitted = dto.submitted;
 
         return result;
     }
@@ -80,6 +86,11 @@ export class User {
                 result.approved = obj.approved;
             } else {
                 result.approved = false;
+            }
+            if (obj.blocked != null) {
+                result.blocked = obj.blocked;
+            } else {
+                result.blocked = false;
             }
         }
 

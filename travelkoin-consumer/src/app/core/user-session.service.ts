@@ -29,6 +29,9 @@ export class UserSessionService {
         const newUser: User = new User();
         newUser.uid = user.uid;
         newUser.email = user.email;
+        newUser.approved = false;
+        newUser.blocked = false;
+        newUser.submitted = false;
 
         return this.userService.set(newUser.uid, newUser)
             .map(() => newUser);

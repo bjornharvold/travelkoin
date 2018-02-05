@@ -7,7 +7,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
 import {HansComponent} from './hans/hans.component';
-import {AdminGuard} from '../core/admin.guard';
+import {HansGuard} from '../core/hans.guard';
+import {UsersComponent} from './users/users.component';
 
 const routes: Routes = [
     {
@@ -22,8 +23,14 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
-                canLoad: [AuthenticatedGuard, AdminGuard],
-                canActivate: [AuthenticatedGuard, AdminGuard]
+                canLoad: [AuthenticatedGuard, HansGuard],
+                canActivate: [AuthenticatedGuard, HansGuard]
+            },
+            {
+                path: 'users',
+                component: UsersComponent,
+                canLoad: [AuthenticatedGuard, HansGuard],
+                canActivate: [AuthenticatedGuard, HansGuard]
             }
         ]
     }

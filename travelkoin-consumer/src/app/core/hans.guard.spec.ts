@@ -1,15 +1,15 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { AdminGuard } from './admin.guard';
+import { HansGuard } from './hans.guard';
 
-describe('AdminGuard', () => {
+describe('HansGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AdminGuard]
+      providers: [HansGuard]
     });
   });
 
-  it('should ...', inject([AdminGuard], (guard: AdminGuard) => {
+  it('should ...', inject([HansGuard], (guard: HansGuard) => {
     expect(guard).toBeTruthy();
   }));
 });
