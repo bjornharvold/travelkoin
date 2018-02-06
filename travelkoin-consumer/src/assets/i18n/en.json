@@ -41,13 +41,32 @@
       "EMAIL_PLACEHOLDER": "Enter your email address"
     },
     "NUTSHELL": {
-      "HEADER": "In a nutshell",
-      "PAYMENT_GATEWAY": "Payment Gateway",
+      "HEADER": "Why Travelkoin",
+      "PAYMENT_GATEWAY": "Payment gateway",
       "PAYMENT_GATEWAY_DESC": "A robust, secure, scalable and super fast payment gateway on the blockchain for travel suppliers to transact with one another at no cost.",
       "LOYALTY_PLATFORM": "Loyalty platform",
       "LOYALTY_PLATFORM_DESC": "Our Travelkoin token is a global white labeled loyalty program that travel partners can use for their membership programs at no cost.",
       "STABLE_SETTLEMENTS": "Stable settlements",
-      "STABLE_SETTLEMENTS_DESC": "Our Standard Travel Unit token is pegged to a basket of currencies which are most commonly used in the travel industry."
+      "STABLE_SETTLEMENTS_DESC": "Our Standard Travel Unit token is pegged to a basket of currencies which are most commonly used in the travel industry.",
+      "MATURE_TEAM": "Veteran team",
+      "MATURE_TEAM_DESC": "Our team all work for online travel companies within tech, sales, operations and marketing. We know the technology and its pain points.",
+      "TOKEN_VALUE": "Token economics 101",
+      "TOKEN_VALUE_DESC": "Ethereum for travel. Our loyalty token functions as gas. Travelers generate them and suppliers need it to power the platform.",
+      "VETERAN_ADVISORS": "Veteran advisors",
+      "VETERAN_ADVISORS_DESC": "Our team of advisors have decades of experience in both travel and the blockchain. With their guidance and our know-how it's a perfect match."
+    },
+    "ICO": {
+       "HEADER": "ICO event details",
+       "DURATION": "Duration",
+       "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
+       "BONUSES": "Bonuses",
+       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
+       "LIMIT": "Limit",
+       "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
+       "CAPS": "Caps",
+       "CAPS_DESC": "Both soft and hard cap are realistic for what we want to accomplish.",
+       "HODLR": "HODLers",
+       "HODLR_DESC": "We welcome you and hope you like our reward structure."
     },
     "PAYMENT_GATEWAY": {
       "HEADER": "Payment gateway",
