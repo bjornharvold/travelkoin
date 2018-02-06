@@ -30,18 +30,16 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
     uint256 public constant TKT_UNIT = 10 ** 18;
     uint256 public constant THOUSAND = 10 ** 3;
     uint256 public constant MILLION = 10 ** 6;
-    uint256 public constant TOKEN_SALE1_PRE = 9 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_SALE1_NORMAL = 20 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_SALE2 = 9 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_SALE3 = 5 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_3M = 1 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_6M = 2 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_9M = 7 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_REFERRAL = 2 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_BOUNTY = 1500 * THOUSAND * TKT_UNIT;
-    uint256 public constant TOKEN_COMMUNITY = 20 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_TEAM = 14 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_FOUNDERS = 6500 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_SALE1_NORMAL = 31 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_SALE2 = 12 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_3M = 300 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_6M = 600 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_9M = 2.1 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_REFERRAL = 500 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_BOUNTY = 500 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_COMMUNITY = 17 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_TEAM = 12 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_FOUNDERS = 6 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_INVESTORS = 3 * MILLION * TKT_UNIT;
 
     // addresses only SALE will remain, the others will be real eth addresses
@@ -229,7 +227,7 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
         // MINT tokens if not minted yet
         if (token.totalSupply() == 0) {
             // sale
-            token.generateTokens(SALE, TOKEN_SALE1_PRE.add(TOKEN_SALE1_NORMAL).add(TOKEN_SALE2).add(TOKEN_SALE3));
+            token.generateTokens(SALE, TOKEN_SALE1_NORMAL.add(TOKEN_SALE2));
             // hodler reward
             token.generateTokens(address(hodler), TOKEN_HODL_3M.add(TOKEN_HODL_6M).add(TOKEN_HODL_9M));
             // bounty + referral

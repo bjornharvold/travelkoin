@@ -368,7 +368,11 @@
       "REGISTERED": "Registered",
       "NEEDS_APPROVAL": "Needs approval",
       "BLOCKED": "Blocked",
-      "APPROVED": "Approved"
+      "APPROVED": "Approved",
+      "EMAIL": "Email",
+      "WALLET_ADDRESS": "Ethereum address",
+      "DOCUMENTS": "Documents",
+      "ACTION": "Action"
     }
   },
   "END": "End"

@@ -6,7 +6,6 @@ import "zeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "./TravelkoinCappedCrowdsale.sol";
 import "./TravelkoinFinalizableCrowdsale.sol";
 
-
 /**
  * @title TravelkoinNormalSale
  * @author Bjorn Harvold
@@ -20,10 +19,10 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     // after reaching {weiRaised} >= {softCap}, there is {softCapTime} seconds until the sale closes
     // {softCapClose} contains the closing time
     uint256 public rate = 1000;
-    uint256 public softCap = 20000 ether;
+    uint256 public softCap = 5555 ether;
     uint256 public softCapTime = 120 hours;
     uint256 public softCapClose;
-    uint256 public cap = 66667 ether;
+    uint256 public cap = 55555 ether;
 
     // total token sold and undistributed token count
     uint256 public tokenSold;
@@ -109,7 +108,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         softCap = _softCap;
         softCapTime = _softCapTime;
 
-        // this is needed since super constructor wont overwite overriden variables
+        // this is needed since super constructor wont overwrite overriden variables
         cap = _cap;
         rate = _rate;
 

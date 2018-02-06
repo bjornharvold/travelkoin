@@ -7,25 +7,25 @@
     <ngb-tab>
         <ng-template ngbTabTitle>{{ 'HANS.USERS.REGISTERED' | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <app-hans-users-by-status [submittedDocuments]="false" [approved]="false" [blocked]="false"></app-hans-users-by-status>
+            <app-hans-registered-users></app-hans-registered-users>
         </ng-template>
     </ngb-tab>
     <ngb-tab>
         <ng-template ngbTabTitle>{{ 'HANS.USERS.NEEDS_APPROVAL' | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <app-hans-users-by-status [submittedDocuments]="true" [approved]="false" [blocked]="false"></app-hans-users-by-status>
+            <app-hans-waiting-for-approval-users></app-hans-waiting-for-approval-users>
         </ng-template>
     </ngb-tab>
     <ngb-tab>
         <ng-template ngbTabTitle>{{ 'HANS.USERS.APPROVED' | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <app-hans-users-by-status [submittedDocuments]="true" [approved]="true" [blocked]="false"></app-hans-users-by-status>
+            <app-hans-approved-users></app-hans-approved-users>
         </ng-template>
     </ngb-tab>
     <ngb-tab>
         <ng-template ngbTabTitle>{{ 'HANS.USERS.BLOCKED' | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <app-hans-users-by-status [submittedDocuments]="true" [approved]="true" [blocked]="true"></app-hans-users-by-status>
+            <app-hans-blocked-users></app-hans-blocked-users>
         </ng-template>
     </ngb-tab>
 </ngb-tabset>

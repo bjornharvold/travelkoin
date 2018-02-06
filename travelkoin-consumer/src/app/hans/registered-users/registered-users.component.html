@@ -1,0 +1,21 @@
+<div class="row" *ngIf="list == null || list.length === 0">
+  <div class="col-sm-12">
+    {{ 'HANS.USERS.NO_RECORDS' | translate }}
+  </div>
+</div>
+<div class="row" *ngIf="list != null && list.length > 0">
+  <div class="col-sm-12">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <td width="100%">{{ 'HANS.USERS.EMAIL' | translate }}</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of list; index as i">
+        <td>{{ user.email }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
