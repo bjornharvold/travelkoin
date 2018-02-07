@@ -2,12 +2,12 @@
     <div class="tile-header">
         {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }}
     </div>
-    <div class="tile-header" *ngIf="showTitle && customTitle != null">
-        {{ customTitle | translate }}
-        <div class="float-right font-red" *ngIf="error === true">
-            {{ 'WALLET.TRANSACTION_ERROR' | translate }}
-        </div>
-    </div>
+    <!--<div class="tile-header" *ngIf="showTitle && customTitle != null">-->
+        <!--{{ customTitle | translate }}-->
+        <!--<div class="float-right font-red" *ngIf="error === true">-->
+            <!--{{ 'WALLET.TRANSACTION_ERROR' | translate }}-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="tile-content-wrapper">
         <div class="tile-content">
             <!--<span><i *ngIf="loading === true" class="k-i-loading"></i> </span>-->
@@ -21,7 +21,7 @@
             {{ provider }}
         </button>
     </div>
-    <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
-        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}
-    </div>
+    <!--<div class="tile-footer tooltip-button font-red" *ngIf="error === true">-->
+        <!--{{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}-->
+    <!--</div>-->
 </div>
