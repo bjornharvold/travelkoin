@@ -56,17 +56,17 @@
       "VETERAN_ADVISORS_DESC": "Our team of advisors have decades of experience in both travel and the blockchain. Get to know them below."
     },
     "ICO": {
-       "HEADER": "ICO event details",
-       "DURATION": "Duration",
-       "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
-       "BONUSES": "Bonuses",
-       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
-       "LIMIT": "Limit",
-       "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
-       "CAPS": "Caps",
-       "CAPS_DESC": "Both soft and hard cap are realistic for what we want to accomplish.",
-       "HODLR": "HODLers",
-       "HODLR_DESC": "We welcome you and hope you like our reward structure."
+      "HEADER": "ICO event details",
+      "DURATION": "Duration",
+      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
+      "BONUSES": "Bonuses",
+      "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
+      "LIMIT": "Limit",
+      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
+      "CAPS": "Caps",
+      "CAPS_DESC": "Both soft and hard cap are realistic for what we want to accomplish.",
+      "HODLR": "HODLers",
+      "HODLR_DESC": "We welcome you and hope you like our reward structure."
     },
     "PAYMENT_GATEWAY": {
       "HEADER": "Payment gateway",
@@ -368,8 +368,15 @@
       "REGISTERED": "Registered",
       "NEEDS_APPROVAL": "Needs approval",
       "BLOCKED": "Blocked",
-      "APPROVED": "Approved"
+      "APPROVED": "Approved",
+      "EMAIL": "Email",
+      "WALLET_ADDRESS": "Ethereum address",
+      "DOCUMENTS": "Documents",
+      "ACTION": "Action"
     }
+  },
+  "TOKEN_CONTRACT": {
+    "TOKEN_SALE": "Token sale"
   },
   "END": "End"
 }

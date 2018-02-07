@@ -4,6 +4,7 @@ import {Transaction} from '../../model/transaction';
 import {WalletType} from '../../model/wallet-type.enum';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 import {UserSessionService} from '../../core/user-session.service';
 import {User} from '../../model/user';
 

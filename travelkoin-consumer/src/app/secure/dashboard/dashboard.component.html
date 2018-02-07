@@ -6,7 +6,7 @@
 
 <div class="row" *ngIf="user != null">
     <div class="col-md-6">
-        <app-secure-wallet-overview [type]="'TKT'" [showButton]="false"></app-secure-wallet-overview>
+        <app-secure-token-contract></app-secure-token-contract>
     </div>
     <div class="col-md-6">
         <app-secure-wallet-overview [type]="'ETH'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>

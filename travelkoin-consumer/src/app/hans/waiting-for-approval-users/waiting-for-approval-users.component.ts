@@ -1,25 +1,22 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
-import {ImprovedMultimedia} from '../../model/improved-multimedia';
 
 @Component({
-    selector: 'app-hans-users-by-status',
-    templateUrl: './users-by-status.component.html',
-    styleUrls: ['./users-by-status.component.scss']
+  selector: 'app-hans-waiting-for-approval-users',
+  templateUrl: './waiting-for-approval-users.component.html',
+  styleUrls: ['./waiting-for-approval-users.component.scss']
 })
-export class UsersByStatusComponent implements OnInit, OnDestroy {
+export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
     private alive = true;
-    @Input() approved = false;
-    @Input() submittedDocuments = false;
-    @Input() blocked = false;
     limit: number = 25;
     list: Array<User> = [];
     openModalButtonClicked = false;
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.list(this.limit, this.approved, this.submittedDocuments, this.blocked)
+        this.userService.list(this.limit, false, true, false)
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;
@@ -36,16 +33,9 @@ export class UsersByStatusComponent implements OnInit, OnDestroy {
         this.modalImage = null;
     }
 
-    toggleBlockUser(index: number): void {
-        const user: User = this.list[index];
-        user.blocked = !user.blocked;
-        this.userService.update(user.uid, user);
-    }
-
     approveUser(index: number): void {
         const user: User = this.list[index];
-        user.approved = true;
-        this.userService.update(user.uid, user);
+        this.userService.approveUser(user);
     }
 
     ngOnDestroy() {
@@ -58,5 +48,4 @@ export class UsersByStatusComponent implements OnInit, OnDestroy {
 
     constructor(private userService: UserService) {
     }
-
 }

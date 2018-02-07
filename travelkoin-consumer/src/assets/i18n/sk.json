@@ -1,0 +1,331 @@
+{
+  "BUILD": "[[mvn:project.version]]-r[[mvn:buildNumber]]",
+  "TRAVELKOIN_PLATFORM": "Travelkoin Platforma",
+  "HEADER": {
+    "LOGIN": "Prihlásiť",
+    "LOGOUT": "Odhlásiť",
+    "CHOOSE_LANGUAGE": "Vyber jazyk",
+    "LANGUAGE": "Jazyk",
+    "CONTACT_US": "Kontakt",
+    "WHITE_PAPER": "White paper",
+    "FEATURES": "Vlastnosti ",
+    "ROAD_MAP": "Časová os",
+    "MY_WALLET": "Peňaženka",
+    "LANGUAGE_DIALOG": "Zmeň jazyk",
+    "LANGUAGE_DIALOG_DESCRIPTION": "Nerobíme podporu v tomto jazyku zatiaľ, ale intenzívne pracujeme na prekladoch",
+    "FOLLOW_US_FACEBOOK": "Sleduj nás na Facebooku",
+    "FOLLOW_US_TWITTER": "Sleduj nás na Twittri",
+    "FOLLOW_US_GOOGLE": "Sleduj nás na Google+"
+  },
+  "FOOTER": {
+    "CONTACT_US": "Email",
+    "FOLLOW_US": "Follow",
+    "PRIVACY": "Ochrana súkromia",
+    "TERMS": "Podmienky"
+  },
+  "HOME": {
+    "MARKETING_HEADER": {
+      "1": "Revolúcia prichádza do cestovania",
+      "2": "Decentralizovaný platobný systém špeciálne pre aerolínky, hotely, požičovne aút, cestovné lode, železnice a online cestovné kancelárie, online portály a channel manager B2B.",
+      "3": "Naša blockchain platforma je rýchla, ístá, bezpečná a postavená špeciálne pre cestovný priemysel",
+      "FOLLOW_US": "Follow us",
+      "WHITE_PAPER": "White paper",
+      "ROAD_MAP": "Akčný plán"
+    },
+    "COUNTDOWN": {
+      "HEADER": "Začína o"
+    },
+    "NEWSLETTER": {
+      "HEADER": "Prihlás sa na odber info",
+      "EMAIL_PLACEHOLDER": "prihlás na email odber"
+    },
+    "NUTSHELL": {
+      "HEADER": "V skratke",
+      "PAYMENT_GATEWAY": "Platobná brána",
+      "PAYMENT_GATEWAY_DESC": "Výkonná, bezpečná, škálovateľná a super rýchla platobná brána na základe blockchainu pre všetkých v cestovnom priemysle, aby mohli medzi sebou obchodovať bez poplatkov!",
+      "LOYALTY_PLATFORM": "Vernostná platforma",
+      "LOYALTY_PLATFORM_DESC": "Travelkoin token je globálna značka, ktorá umožní spoločnostiam mať hotelový alebo letenkový vernostný program zadarmo pre svojich členov",
+      "STABLE_SETTLEMENTS": "Stabilné vyúčtovanie",
+      "STABLE_SETTLEMENTS_DESC": "Standard Travel token je napojený (pegovaný) na kôš rozličných mien najčastejšie používaných v cestovnom priemysle ktorý limituje volatilitu"
+    },
+    "PAYMENT_GATEWAY": {
+      "HEADER": "Platobná brána",
+      "DESCRIPTION": "Dodávatelia v cestovnom priemysle môžu vykonať cezhraničné platby bey poplatkov pomocou Smart kontraktov. V našom ekosystéme to majú rychlo a zadarmo a bez sprostredkovateľa. Najväčším problémom B2B v cestovom priemysle sú platby (verifikácia kreditu, veľa zahraničných platieb etc)."
+    },
+    "LOYALTY_PLATFORM": {
+      "HEADER": "Vernostná platforma (míle)",
+      "DESCRIPTION": "Členstvo v Travelkoin znamená aj to, že dodávatelia môžu mať vernostný program ustálený cez Travelkoin, bez potreby adminsitrácie vlastného vernostného programu. Cestovatelia dostávajú Travelkoiny za rezervácie, recenzie a za služby v tomtom ekosystéme a môžu si ich zameniť za USD."
+    },
+    "WAITING_FOR": {
+      "HEADER": "Na čo čakáš?",
+      "1": "Vytvor si účet a zmeň cestovný priemysel k lepšiemu"
+    },
+    "TESTIMONIALS": {
+      "HEADER": "Ohlasy"
+    },
+    "ADVISORS": {
+      "HEADER": "Ľudia, ktorí stoja za nami"
+    },
+    "FEATURES": {
+      "HEADER": "Vlastnosti",
+      "PAYMENT_GATEWAY": "Platobná brána",
+      "PAYMENT_GATEWAY_1": "Dodávatelia v cestovnom ruchi sú obzvlášť náchylní na to, aby museli platiť nadmerné transakčné poplatky, pretože ich odvetvie je obzvlášť rozdrobené a fragmentované, pričom si často vyžaduje viacnásobné cezhraničné transakcie. Znamená to tiež, že platby často vyžadujú čas na spracovanie a cestujúci (dodávatelia) musia zaručiť platby až 45 dní vopred. Jediným spôsobom, ako v súčasnosti zaplatiť transakčné poplatky, je spracovanie viacerých transakcií a od poskytovateľa platieb získať hromadnú zľavu.",
+      "PAYMENT_GATEWAY_2": "ukončuje zložitosť, komplexnosť a náklady na podnikanie v cestovnom ekosystéme. Platby sú okamžité a dodávatelia sa môžu priamo zaoberať svojím core biznisom bez potreby nákladného sprostredkovateľa. Je to možné cez technológiu blockchain a smart kontrakty zmluvy pre cestovateľov. Pozrite si video o blockchaine od Sloan's School of Business v MIT (Massachussets Institute of Technology).",
+      "LOYALTY_PLATFORM": "Vernostná platforma",
+      "LOYALTY_PLATFORM_1": "Takmer všetci v cestovnom ruchu používajú program odmeny za získanie a udržanie zákazníkov (vernostné programy). Zákazníci sú nútení ísť do programov, ktoré ponúkajú malý alebo žiadny stimul ostať členom,. Príkladom su MILES programy od aeroliniek. Zákazníci sú penalizovaní keď cestujú menej a body veľakrát nemajú reálne veľkú hodnotu. Vernostný program by mal byť vzájomne prospešný a zábavný!",
+      "LOYALTY_PLATFORM_2": "ponúka unikátnu vernostnú platformu. Funguje to aj pre B2C, aj pre B2B. Výhody pre svojich používateľov sú mnohé: Travelkoin môže byť kedykoľvek prevedený na fiatovú menu (peniaze). Ak ste získali tokeny Travelkoin, nikdy nevypršia. Tokeny sa vytvárajú len vtedy, keď nastane akcia súvisiaca s cestovaním, napríklad rezervácia (booking, review, platba). Dodávateľ v cestovnom ruchu chce tieto žetóny od svojich zákazníkov, aby ich mohhol využiť na bezplatné poskytovanie služieb na platforme Travelkoin. Týmto spôsobom budú dodávatelia cestovania medzi sebou konkurovať.a vztvárať dopyt pre TRavelkoin, čo zvyšuje jeho cenu. Spokojnosť zákazníkov zaručená, lebo zákazník časom nestráca míle, ale hodnota Travelkoinu rastie. Ktorákoľvek firma môže si privlastniť Travelkoin platformu za svoju a použiť ju pre zákazníkov.",
+      "STABLE_SETTLEMENTS": "Stabilné prevody",
+      "STABLE_SETTLEMENTS_1": "Stabilita je najdôležitejším prvkom globálnych ekonomík, ktoré majú byť úspešné. Bez stability jednotlivci na celom svete nemohli mať predvídateľné náklady, zatiaľ čo sa podieľali na obchode a úsporách, čo im umožnilo robiť rozumné rozhodnutia. S touto stabilitou a predvídateľnosťou a zameniteľnosťou bolo STU Travelkoin navrhnuté: ako pokus o dosiahnutie stability a lepšieho podnikateľského plánovania do sveta krypto-mien a do sveta cestovania pre všetkých zúčastnených (cestujúci, dodaávatelia, poskytovatelia), ktorí používajú sieť a platformu Travelkoin.",
+      "STABLE_SETTLEMENTS_2": "STU sú vytvorené mechanizmom podobné konvertibilným zmenkám (convertible notes), ktoré sa často používajú na financovanie začínajúcich podnikov (start-upov). V startupovej scéne sú konvertibilné zmenky krátkodobými dlhovými nástrojmi, ktoré možno previesť na nového majiteľa s presne určenou hodnotou v budúcnosti. Token založeny na blockchaine (Travelkoin), možno považovať za vlastníctvo hodnoty v cestovnej komunite, zatiaľ čo konvertibilná zmenka, (podobne ako STU), bude považovaná za dlh denominovaný v akejkoľvek inej komodite alebo mene. Podmienky konvertibilnej nóty umožňujú držiteľovi konvertovať na počiatočnú hodnotu za spravodlivú trhovú cenu. Stabilné prevody!"
+    },
+    "ROADMAP": {
+      "HEADER": "Plán",
+      "STEP1": {
+        "HEADER": "Prvá implementácia Travelkoinu",
+        "DESCRIPTION": "Traveliko.com, cestovná online agentúra v Singapúre, odmení cestovateľov Travelkoinami svojim vernostným programom."
+      },
+      "STEP2": {
+        "HEADER": "Ideme na živo",
+        "DESCRIPTION": "Travelkoin Foundation spustí činnosť. Spoločná firma online a tradičných cestovných agentúr a firiem"
+      },
+      "STEP3": {
+        "HEADER": "Predpredaj",
+        "DESCRIPTION": "Predpredaj počas celého marca"
+      },
+      "STEP4": {
+        "HEADER": "ICO - generácia tokenov a predaj tokenov",
+        "DESCRIPTION": "Travelkoin sa spustí a bude aktívnz počas mesiaca apríl"
+      },
+      "STEP5": {
+        "HEADER": "Travelkoin Loyalty Platform",
+        "DESCRIPTION": "Traveliko.com bude kompletne integrované do Travelkoin vernstného programu"
+      },
+      "STEP6": {
+        "HEADER": "Travelkoin Loyalty Platform",
+        "DESCRIPTION": "Vernostný program Travelkoin bude prístupný ktorźmkoľvek cestovným agentúram a dodávateľom na integráciu."
+      },
+      "STEP7": {
+        "HEADER": "Travelkoin Platobná brána",
+        "DESCRIPTION": "Traveliko.com bude prvý užívateľom platobnej brány na trnasfer peňazí."
+      }
+    }
+  },
+  "AUTH": {
+    "LOGIN": {
+      "BUTTON_SAVE": "Login",
+      "CREDENTIALS_INCORRECT": "Niečo si chybne vložil",
+      "ACCOUNT_VERIFIED": "Konto verifikované",
+      "WAITING_ON_VERIFICATION": "Verifikuj email na aktiváciu konta",
+      "PASSWORD_RESET_SUCCESSFULLY": "Helso bolo resetované, prihlás sa",
+      "PASSWORD_PLACEHOLDER": "Vlož heslo",
+      "REGISTER": "Registrácia",
+      "LOGIN_TITLE_SHORT": "Login",
+      "SLOGAN": "Platobná Brána pre Cestovný priemysel",
+      "NOT_A_MEMBER_YET": "Nie si naším členom?",
+      "DID_YOU_VERIFY_YOUR_EMAIL": "Verifikoval si email??",
+      "MEMBERS_AREA": "Pre Členov",
+      "MEMBERS_AREA_INFO": "formulár nižšie na prihlásenie do konta.",
+      "CLICK_HERE_TO_SIGN_UP": "Registruj",
+      "CLICK_HERE_TO_LOGIN": "Prihlás",
+      "CLICK_HERE_RESET_YOUR_PASSWORD": "Zabudnuté heslo",
+      "CLICK_HERE_VERIFY_EMAIL": "Verifikuj email",
+      "CONNECT_WITH_FACEBOOK": "Pripoj Facebook",
+      "CONNECT_WITH_TWITTER": "Pripoj Twitter",
+      "CONNECT_WITH_GOOGLE": "Pripoj Google",
+      "CONNECT_WITH_COINBASE": "Pripoj Coinbase",
+      "CONNECT_WITH_GITHUB": "Pripoj Github"
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Zabudnuté heslo",
+      "INFO": "Resetuj heslo",
+      "EXPECTATION": "Obdržíš email s postupom ako resetovať heslo",
+      "ERROR": "Chyba 404",
+      "KNOW_YOUR_PASSWORD": "Vieš svoje heslo?",
+      "HAVE_A_CODE": "Obdržal si kód? ",
+      "CHANGE_PASSWORD": "updejtovať (update) heslo",
+      "REQUEST_PASSWORD_RESET": "ZMEŇ HESLO"
+    },
+    "RESEND_EMAIL": {
+      "CLICK_TO_RESEND_EMAIL": "Odošli verifikačný mail",
+      "CLICK_TO_VERIFY_EMAIL": "Verifikuj účet",
+      "TITLE": "Rozpošli email",
+      "INFO": "Use the form below to re-send your welcome email.",
+      "REQUEST_WELCOME_EMAIL": "Obdržať uvítací email",
+      "EXPECTATION": "Ak ste neobdržali email, pozrite si spam a keď ste ho naozaj nedostiali, vyplňte tento formulár, aby sme ho mohli znova preposlať"
+    },
+    "REGISTER": {
+      "TITLE": "Vytvor účet",
+      "BUTTON_SAVE": "Registruj",
+      "ALREADY_HAVE_AN_ACCOUNT": "Už máš účet?",
+      "FIRST_NAME": "Meno",
+      "LAST_NAME": "Priezvisko",
+      "EMAIL_PLACEHOLDER": "Email",
+      "EMAIL_UNAVAILABLE": "Tento mail je už regsitrovaný",
+      "CHECKING_AVAILABILITY": "Kontrolujem dostupnosť",
+      "CHOOSE_PASSWORD": "Heslo",
+      "CONFIRM_PASSWORD": "Potvrď heslo ",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Potvrď heslo",
+      "ENTER_PASSWORD": "Vlož heslo",
+      "PASSWORDS_DO_NOT_MATCH": "Heslá sa nemečujú (nie sú rovnaké)",
+      "INCORRECT_PASSWORD": "Heslo nie je správne",
+      "PASSWORD_SYNTAX": "Heslo musí obsahovať minimálne 8 znakov, veľké a malé písmeno, číslicu a symbol (vieme, nie je to ľahké) ."
+    },
+    "VERIFY_EMAIL": {
+      "TITLE": "Verifikuj email",
+      "INFO": "Vlož verifikačný kód obdržaný cez email",
+      "VERIFICATION_CODE": "Verifikačný kód",
+      "VERIFICATION_CODE_PLACEHOLDER": "Zadaj kód, ktorý si dostal na email",
+      "CODE_REQUIRED": "Kód je povinný",
+      "VERIFY": "Verifikuj"
+    },
+    "PHONE_VERIFIER": {
+      "TITLE": "Verifikácia Telefónneho čísla",
+      "PHONE_NUMBER": "Mobilné číslo",
+      "PHONE_NUMBER_REQUIRED": "Mobilné číslo je povinné",
+      "INCORRECT_PATTERN": "Mobilné číslo je povinné",
+      "ENTER_NUMBER": "Vlož telefónne číslor",
+      "ENTER_CODE": "Vlož obdržaný SMS kód",
+      "SAVE": "Ulož",
+      "ENTER_CODE_HELP": "Zadaj číslo v takomto formáte: +421903111222. Cena štandardnej SMS"
+    }
+  },
+  "COMMON": {
+    "EMAIL": "E-mail",
+    "PASSWORD": "Heslo",
+    "EMAIL_REQUIRED": "Email je povinný",
+    "EMAIL_NOT_VALID": "Nesprávna email adresa",
+    "ENTER_REGISTERED_EMAIL": "Vlož email",
+    "REGISTER": "Registruj",
+    "FIRST_NAME_PLACEHOLDER": "Krstné meno",
+    "LAST_NAME_PLACEHOLDER": "Priezvisko",
+    "FIRST_NAME_REQUIRED": "Krstné meno je povinné",
+    "LAST_NAME_REQUIRED": "Priezvisko je povinné"
+  },
+  "DASHBOARD": {
+    "HEADER": "Dashboard",
+    "DESCRIPTION": "Vitajte v Travelkoin. Toto bude časť, kde môžeš previesť peniazky",
+    "FORMS": "Formulár",
+    "ADD_FUNDS": "Pridaj peniazky",
+    "GOAL_REACHED": "Token sale progres"
+  },
+  "COIN": {
+    "TKT": "Travelkoin",
+    "ETH": "Ether",
+    "BTC": "Bitcoin"
+  },
+  "WALLET": {
+    "TITLE": "Peňaženka",
+    "TRANSACTIONS": "TXS",
+    "TRANSACTION_ERROR": "Chyba",
+    "TRANSACTION_ERROR_DETAILS": "Detaily",
+    "TRANSACTION_MISMATCH": "Transakcia nemá rovnakú adresu akú si uviedol a bude ignorovaná",
+    "CONFIRMATIONS": "Potvrdenia",
+    "TOTAL_INVESTMENT": "Potvrdený zostatok",
+    "SEND": "Pošli",
+    "BALANCE": "Zostatok",
+    "RECEIVE": "Obdrž",
+    "EXCHANGE": "Výmena",
+    "DESCRIPTION": "Táto sekcia umožňuje nahrať informácie o transkacii ktorú si poslal z {{type}} peňaženky"
+  },
+  "VALUE": {
+    "ADD_PAYMENT": "Pridaj transakciu",
+    "PAYMENTS": "Platby",
+    "INSTRUCTIONS": "Klikni na. !plusko! aby si kúpil Travelkoin tokeny.",
+    "QR": "QR code",
+    "TRANSACTION_ID": "ID",
+    "DATE_TIME": "Čas",
+    "AMOUNT": "Množstvo",
+    "ACTION": "Akcia"
+  },
+  "SEND": {
+    "DIALOG": "Oznám transakciu",
+    "DIALOG_DESCRIPTION": "Transkacia: {{transactionID}} sumy {{amount}} {{type}} je priradená. Pokračovať?",
+    "DESCRIPTION": "Potom, čo si spravil úhradu z tvojej peňaženky do našej, vyplň tento formulár o transakcii. Nemusíš posielať email. Keď ICO začne, môžeš vykonať smart kontrakt, ktorý zmení tvoje peniazky na Travelkoin TKT.",
+    "MAKE_PAYMENT": "Sprav úhradu",
+    "COPIED": "Adresa nakopírovaná",
+    "AMOUNT": "Množstvo",
+    "AMOUNT_PLACEHOLDER": "Vlož hodnotu peniazkov",
+    "AMOUNT_HELP": "Enter the amount you sent to us for the transaction ID ",
+    "CHOOSE_FEE": "Vyber rýchlosť transakcie",
+    "WALLET_TRANSACTION": "ID Transakcie",
+    "WALLET_TRANSACTION_PLACEHOLDER": "Vlož ID transakcie",
+    "WALLET_TRANSACTION_HELP": "Vlož identifikátor transakcie peniazkov, ktoré si vložil.",
+    "WALLET_SENDER": "Odosielateľ",
+    "WALLET_SENDER_PLACEHOLDER": "Vlož adresu",
+    "WALLET_SENDER_HELP": "Optional: Enter the address of the wallet you sent the funds from.",
+    "WALLET_RECIPIENT": "Pošli peniazky na tento účet",
+    "WALLET_RECIPIENT_HELP": "Toto je adresa ktorou vložíš tokeny na účet."
+  },
+  "EXCHANGE": {
+    "DIALOG": "Potvrď menenie",
+    "DIALOG_DESCRIPTION": "Ideš vymeniť {{amount}} {{type}} na TKT. Pokračovať?",
+    "AMOUNT": "Hodnota",
+    "AMOUNT_PLACEHOLDER": "Vlož hodnotu",
+    "AMOUNT_HELP": "Koľko chceš zameniť Travelkoin (TKT)?",
+    "CHOOSE_WALLET": "Vyber peňaženku",
+    "WALLET": "Peňaženka"
+  },
+  "BUTTON": {
+    "CLOSE": "Zavri",
+    "CANCEL": "Zruš",
+    "COPY": "Kopíruj",
+    "YES": "Áno",
+    "NO": "Nie",
+    "RESET": "Resetuj",
+    "REMOVE": "Zmeň záznam",
+    "SUBMIT": "Nahraj (Submit)",
+    "SEND": "Potvrď platbu"
+  },
+  "ERROR": {
+    "FIELD_REQUIRED_ERROR": "Táto položka je nutná"
+  },
+  "SUCCESS_BOX": {
+    "CLICK_TO_GO_BACK": "Klikni naspäť",
+    "SUCCESS": "Si totálny borec, postupuješ (Paľo Habera)!!",
+    "RECORD_SUCCESS": "Detaily tvojho účtu boli zaznamenané. Dostaneš email o schválení",
+    "CONTINUE": "Pokračuj"
+  },
+  "FAILURE_BOX": {
+    "CLICK_TO_GO_BACK": "Klikni naspäť",
+    "FAILURE": "Chyba",
+    "RECORD_FAILURE": "Niečo zlyhalo, skús znova",
+    "TRY_AGAIN": "Skús znova"
+  },
+  "FORMS": {
+    "HEADER": "Forms",
+    "DESCRIPTION": "Prosím vyplň všetky informácie o tebe vo formulári a nahraj dokumenty aby si mohol vložiť ETH alebo BTC. Bez vyplnenia formulára a nahratia dokumentov nebudeš môcť participovať.",
+    "DIALOG": "Nahrať požadované dokumenty",
+    "DIALOG_DESCRIPTION": "Si pripravený nahrať informćie a dokumenty. Ready?",
+    "UPLOAD_DOCUMENTS": "Nahrať dokumenty",
+    "UPLOAD_DOCUMENTS_HELP": "Potrebujeme 2 dokumenty od teba",
+    "UPLOAD_DOCUMENTS_HELP_1": "Naskenovanú fotografiu pasu vo vysokom rozlíšení (nie občianskeho)",
+    "UPLOAD_DOCUMENTS_HELP_2": "Zloženku, účet z banky alebo akýkoľvek papier potvrdzujúci adresu",
+    "DOCUMENTS_REQUIRED": "Tieto dokumenty sú nutné nato aby sme mohli verifikovať účet",
+    "NO_DOCUMENTS_UPLOADED": "žiadne dokumenty neboli nahrané",
+    "ETH_ADDRESS": "Ethereum addresa",
+    "ETH_ADDRESS_PLACEHOLDER": "Vaša Ethereum Adresa",
+    "ETH_ADDRESS_HELP": "Vložte Ethereum adresu ktorou prevediete Ether. Môžete použiť len túto adresu. Ostatné transakcie budú ignorované",
+    "BTC_ADDRESS": "Bitcoin addresa",
+    "BTC_ADDRESS_PLACEHOLDER": "Vaša Bitcoin Adresa",
+    "BTC_ADDRESS_HELP": "Vložte Bitcoin adresu ktorou prevediete Ether. Môžete použiť len túto adresu. Ostatné transakcie budú ignorované"
+  },
+  "LANGUAGE": {
+    "EN": "English",
+    "FR": "French",
+    "DE": "German",
+    "NL": "Dutch",
+    "IT": "Italian",
+    "NO": "Norwegian",
+    "ES": "Spanish",
+    "JP": "Japanese",
+    "RU": "Russian",
+    "ZH": "Mandarin",
+    "KR": "Korean",
+    "SG": "Singaporean",
+    "MY": "Malaysian",
+    "VN": "Vietnamese",
+    "SK": "Slovak",
+    "TH": "Thai"
+  },
+  "END": "End"
+}

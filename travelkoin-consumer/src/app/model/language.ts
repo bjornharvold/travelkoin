@@ -86,6 +86,10 @@ const CURRENTLY_TRANSLATED_LANGUAGES = [
     {
         label: 'ZH',
         value: 'zh'
+    },
+    {
+        label: 'SK',
+        value: 'sk'
     }
 ];
 

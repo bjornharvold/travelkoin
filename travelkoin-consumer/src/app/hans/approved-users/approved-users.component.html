@@ -1,0 +1,52 @@
+<div class="row" *ngIf="list == null || list.length === 0">
+  <div class="col-sm-12">
+    {{ 'HANS.USERS.NO_RECORDS' | translate }}
+  </div>
+</div>
+<div class="row" *ngIf="list != null && list.length > 0">
+  <div class="col-sm-12">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <td width="20%">{{ 'HANS.USERS.EMAIL' | translate }}</td>
+        <td width="30%">{{ 'HANS.USERS.WALLET_ADDRESS' | translate }}</td>
+        <td width="40%">{{ 'HANS.USERS.DOCUMENTS' | translate }}</td>
+        <td width="10%" align="center" class="text-center">{{ 'HANS.USERS.ACTION' | translate }}</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of list; index as i">
+        <td>{{ user.email }}</td>
+        <td>{{ user.ethWalletAddress }}</td>
+        <td>
+          <ul class="list list-inline" *ngIf="user.multimedia != null && user.multimedia.length > 0">
+            <li class="list-inline-item" *ngFor="let mm of user.multimedia">
+              <a (click)="openModal(mm)">
+                <cl-image public-id="{{mm.identifier}}" default_image="noimage.png">
+                  <cl-transformation height="75" width="100" crop="fill"></cl-transformation>
+                  <cl-transformation gravity="center" quality="auto" fetch_format="auto"></cl-transformation>
+                </cl-image>
+              </a>
+            </li>
+          </ul>
+        </td>
+        <td align="center" class="text-center">
+          <button type="button" (click)="toggleBlockUser(i)" class="btn btn-warning btn-sm">{{ 'HANS.USERS.BLOCK' | translate }}</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<kendo-dialog title="{{ 'HANS.USERS.UPLOADED_DOCUMENT' | translate }}" *ngIf="openModalButtonClicked" (close)="closeModal()">
+  <p>
+    <cl-image public-id="{{modalImage.identifier}}" default_image="noimage.png">
+      <cl-transformation height="300" width="400" crop="fill"></cl-transformation>
+      <cl-transformation gravity="center" quality="auto" fetch_format="auto"></cl-transformation>
+    </cl-image>
+  </p>
+  <kendo-dialog-actions>
+    <button (click)="closeModal()" class="k-button">{{ 'BUTTON.CLOSE' | translate }}</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

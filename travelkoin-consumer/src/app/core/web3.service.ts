@@ -1,78 +1,113 @@
 import {Injectable} from '@angular/core';
-import Web3 from 'web3';
-import {Subject} from 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
+import {Provider} from 'web3/types';
+import {WindowRefService} from './window-ref.service';
 
-declare let window: any;
+const Web3 = require('web3');
 
 @Injectable()
 export class Web3Service {
-    private web3: Web3;
-    private accounts: string[];
+    private _web3: any;
     private _token: any;
-    ready = false;
-    accountsObservable = new Subject<string[]>();
+    private provider: string;
 
-    private refreshAccounts(): void {
-        console.log('Refreshing accounts...');
-        
-        Observable.fromPromise(this.web3.eth.getAccounts())
-            .subscribe((list: Array<any>) => {
-                    if (list != null || list.length === 0) {
-
-                        if (this.accounts == null || this.accounts.length !== list.length || this.accounts[0] !== list[0]) {
-                            console.log('Observed new accounts');
-
-                            this.accountsObservable.next(list);
-                            this.accounts = list;
-                        }
-
-                        this.ready = true;
-                    } else {
-                        console.warn('Could not get any accounts! Make sure your Ethereum client is configured correctly.');
-                    }
-                },
-                error => console.warn('There was an error fetching your accounts.'),
-                () => {
-                }
-            );
+    /**
+     * Loads the json contract from a source file
+     * @returns {Observable<any>}
+     */
+    private static loadContract(): Observable<any> {
+        // load the contract
+        return Observable.fromPromise(System.import('../../assets/contracts/TravelkoinNormalSale.json'));
     }
 
-    bootstrapWeb3(): void {
-        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-        if (typeof window.web3 != null) {
-            console.log('Found web3 provider');
-            console.log(window.web3);
+    /**
+     * Injects the web3 provider we want to use
+     * @param contract
+     * @param {Provider} provider
+     * @returns {any}
+     */
+    private injectProvider(contract: any, provider: Provider): any {
+        // use truffle contract to load the JSON contract into an object
+        const contractAbstraction = contract(contract);
+        contractAbstraction.setProvider(provider);
+        this._token = contractAbstraction;
 
-            // Use Mist / MetaMask's provider
-            this.web3 = new Web3(window.web3.currentProvider);
-
-            // Refresh account every 2 seconds
-            Observable.timer(2000)
-                .subscribe(() => {
-                    this.refreshAccounts();
-                });
-
-            // load the contract
-            Observable.fromPromise(System.import('../../assets/contracts/TravelkoinNormalSale.json'))
-                .subscribe((contract: any) => {
-                    if (this.web3 != null) {
-                        const contractAbstraction = contract(contract);
-                        contractAbstraction.setProvider(this.web3.currentProvider);
-                        this._token = contractAbstraction;
-                    }
-                });
-        } else {
-            console.warn('You need to have Mist or MetaMask installed and use the right network.');
-        }
-    }
-
-    get token(): any {
         return this._token;
     }
 
-    constructor() {
+    private set web3(web3: any) {
+        this._web3 = web3;
+    }
 
+    /**
+     * Loads Ethereum's Web3 into the app
+     * @returns {Web3}
+     */
+    private get web3(): any {
+        let result: any = null;
 
+        if (this._web3 != null) {
+            result = this._web3;
+        } else if (typeof this.windowRefService.nativeWindow.web3 != null) {
+            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+            this.provider = this.windowRefService.nativeWindow.web3.currentProvider.constructor.name;
+
+            // Use Mist / MetaMask's provider
+            this.web3 = new Web3(this.windowRefService.nativeWindow.web3.currentProvider);
+
+            // recursive call here
+            result = this.web3;
+        }
+
+        return result;
+    }
+
+    /**
+     * Loads the contracts into memory and returns the create contract
+     * @param {Provider} provider
+     * @returns {Observable<any>}
+     */
+    private initializeContract(provider: Provider): Observable<any> {
+        return Web3Service.loadContract()
+            .map((contract: any) => this.injectProvider(contract, provider));
+    }
+
+    getProviderName(): string {
+        let providerName = 'UNKNOWN';
+
+        if (this.provider === 'MetamaskInpageProvider') {
+            providerName = 'METAMASK';
+        } else if (this.provider === 'EthereumProvider') {
+            providerName = 'MIST';
+        } else if (this.provider === 'o') {
+            providerName = 'PARITY';
+        }
+
+        return providerName
+    }
+
+    getAccounts(): Observable<Array<any>> {
+        return Observable.fromPromise(this.web3.eth.getAccounts());
+    }
+
+    getToken(): Observable<any> {
+        let result: Observable<any>;
+
+        if (this._token != null) {
+            result = Observable.of(this._token);
+        } else {
+            if (this.web3 != null) {
+                result = this.initializeContract(this.web3.currentProvider);
+            } else {
+                const error = 'You need to have the Mist browser or MetaMask installed and use the right network.';
+                console.warn(error);
+                result = Observable.throw(error);
+            }
+        }
+
+        return result;
+    }
+
+    constructor(private windowRefService: WindowRefService) {
     }
 }

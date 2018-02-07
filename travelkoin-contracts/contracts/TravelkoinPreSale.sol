@@ -201,7 +201,7 @@ contract TravelkoinPreSale is Pausable, TravelkoinCappedCrowdsale, TravelkoinRef
     /// @dev The length of _whitelistLimits says that the first X days of token sale is 
     ///  closed, meaning only for whitelisted addresses.
     /// @param _add Array of addresses to add to whitelisted ethereum accounts
-    /// @param _remove Array of addresses to remove to whitelisted ethereum accounts
+    /// @param _remove Array of addresses to remove from whitelisted ethereum accounts
     /// @param _whitelistLimits Array of limits in wei, where _whitelistLimits[0] = 10 ETH means
     ///  whitelisted addresses can contribute maximum 10 ETH stakes on the first day
     ///  After _whitelistLimits.length days, there will be no limits per address (besides hard cap)

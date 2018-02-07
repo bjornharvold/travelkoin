@@ -17,6 +17,16 @@ export class UserService {
         return result;
     }
 
+    toggleBlockUser(user: User): void {
+        user.blocked = !user.blocked;
+        this.update(user.uid, user);
+    }
+
+    approveUser(user: User): void {
+        user.approved = true;
+        this.update(user.uid, user);
+    }
+
     list(limit: number, approved: boolean, submittedDocuments: boolean, blocked: boolean): Observable<Array<User> | null> {
         return this.afs.collection<User>('users', ref => ref
                 .where('approved', '==', approved)
