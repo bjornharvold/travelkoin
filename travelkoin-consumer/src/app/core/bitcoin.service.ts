@@ -3,6 +3,7 @@ import {ECPair, Network, networks} from 'bitcoinjs-lib'
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/zip';
 import {Wallet} from '../model/wallet';
 import {BitcoinAddress} from '../model/bitcoin-address';
 import {WalletUnspentOutput} from '../model/wallet-unspent-output';

@@ -10,6 +10,7 @@ import {UserService} from './user.service';
 import * as firebase from 'firebase';
 import {User} from '../model/user';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class UserSessionService {

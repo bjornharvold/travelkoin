@@ -1,14 +1,13 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-token-contract',
+    selector: 'app-secure-token-contract',
     templateUrl: './token-contract.component.html',
     styleUrls: ['./token-contract.component.scss']
 })
 export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit {
-
     private alive = true;
     accounts: string[];
 
@@ -27,76 +26,62 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
             .subscribe((balance: any) => {
                     this.model.balance = balance;
                 },
-                error => this.setStatus('Error getting balance; see log.'),
-                () => {}
+                error => this.status = error,
+                () => {
+                }
             );
     }
 
-    watchAccount() {
-        this.web3Service.accountsObservable.subscribe((accounts) => {
-            this.accounts = accounts;
-            this.model.account = accounts[0];
-            this.refreshBalance();
-        });
-    }
-
-    setStatus(status) {
-        this.status = status;
-    }
-
-    async sendCoin() {
-        if (!this.web3Service.token) {
-            this.setStatus('Travelkoin token is not loaded, unable to send transaction');
-            return;
-        }
-
-        const amount = this.model.amount;
-        const receiver = this.model.receiver;
-
-        console.log('Sending coins' + amount + ' to ' + receiver);
-
-        this.setStatus('Initiating transaction... (please wait)');
-        try {
-            const deployedMetaCoin = await this.web3Service.token.deployed();
-            const transaction = await deployedMetaCoin.sendCoin.sendTransaction(receiver, amount, {from: this.model.account});
-
-            if (!transaction) {
-                this.setStatus('Transaction failed!');
-            } else {
-                this.setStatus('Transaction complete!');
-            }
-        } catch (e) {
-            console.log(e);
-            this.setStatus('Error sending coin; see log.');
-        }
-    }
-
-    refreshBalance() {
+    private refreshBalance() {
         console.log('Refreshing balance');
 
-        Observable.fromPromise(this.web3Service.token.deployed())
+        this.web3Service.getToken()
             .takeWhile(() => this.alive)
-            .subscribe((coin: any) => {
-                this.updateBalance(coin);
+            .subscribe((token: any) => {
+                    Observable.fromPromise(token.deployed())
+                        .takeWhile(() => this.alive)
+                        .subscribe((token: any) => {
+                                this.updateBalance(token);
+                            },
+                            error => this.status = `Token deployed error: ${error}`,
+                            () => {
+                            }
+                        );
                 },
-                error => this.setStatus('Error getting balance; see log.'),
+                error => this.status = error,
                 () => {}
             );
     }
 
-    clickAddress(e) {
-        this.model.account = e.target.value;
-        this.refreshBalance();
+    private retrieveAccount() {
+        this.web3Service.getAccounts()
+            .takeWhile(() => this.alive)
+            .subscribe((accounts) => {
+                this.accounts = accounts;
+                this.model.account = accounts[0];
+                this.refreshBalance();
+            });
     }
 
-    setAmount(e) {
-        console.log('Setting amount: ' + e.target.value);
-        this.model.amount = e.target.value;
-    }
+    buyTokens(): void {
+        this.status = 'Initiating transaction... (please wait)';
 
-    setReceiver(e) {
-        console.log('Setting receiver: ' + e.target.value);
-        this.model.receiver = e.target.value;
+        this.web3Service.getToken()
+            .takeWhile(() => this.alive)
+            .subscribe((token: any) => {
+                    Observable.fromPromise(token.deployed())
+                        .takeWhile(() => this.alive)
+                        .subscribe((token: any) => {
+                                console.log(`Buying ${this.model.amount} tokens...`);
+                            },
+                            error => this.status = `Transaction failed: ${error}`,
+                            () => {
+                            }
+                        );
+                },
+                error => this.status = error,
+                () => {}
+            );
     }
 
     ngOnDestroy() {
@@ -105,14 +90,14 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
 
     // web3 MetaMask should be injected by now
     ngAfterViewInit(): void {
-        this.web3Service.bootstrapWeb3();
+        this.retrieveAccount();
 
-        this.watchAccount();
     }
 
     ngOnInit() {
     }
 
-    constructor(private web3Service: Web3Service) {
+    constructor(private web3Service: Web3Service,
+                private ngZone: NgZone) {
     }
 }
