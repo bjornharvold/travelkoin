@@ -34,7 +34,7 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
     uint256 public constant TOKEN_SALE2 = 12 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_HODL_3M = 300 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_HODL_6M = 600 * THOUSAND * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_9M = 2.1 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_9M = 2100 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_REFERRAL = 500 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_BOUNTY = 500 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_COMMUNITY = 17 * MILLION * TKT_UNIT;
