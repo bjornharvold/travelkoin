@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit {
     private alive = true;
     accounts: string[];
+    provider: string;
 
     model = {
         amount: 5,
@@ -53,13 +54,18 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
             );
     }
 
-    private retrieveAccount() {
+    private retrieveProviderName(): void {
+        this.provider = this.web3Service.getProviderName();
+    }
+
+    private retrieveAccount(): void {
         this.web3Service.getAccounts()
             .takeWhile(() => this.alive)
             .subscribe((accounts) => {
                 this.accounts = accounts;
                 this.model.account = accounts[0];
                 this.refreshBalance();
+                this.retrieveProviderName();
             });
     }
 

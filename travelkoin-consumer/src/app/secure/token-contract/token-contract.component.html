@@ -17,8 +17,8 @@
         </div>
     </div>
     <div class="button-pane">
-        <button class="btn btn-info float-right tooltip-button" [routerLink]="['/secure/wallet/' + type]">
-            {{ 'DASHBOARD.ADD_FUNDS' | translate | uppercase }} <i class="fas fa-plus fa-fw"></i>
+        <button class="btn btn-info float-right tooltip-button">
+            {{ provider }}
         </button>
     </div>
     <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
