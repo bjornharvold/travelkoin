@@ -3,12 +3,14 @@ import {Observable} from 'rxjs/Observable';
 import {Provider} from 'web3/types';
 import {WindowRefService} from './window-ref.service';
 
+const contract = require('truffle-contract');
 const Web3 = require('web3');
 
 @Injectable()
 export class Web3Service {
     private _web3: any;
     private _token: any;
+    private _tokenInstance: any;
     private provider: string;
 
     /**
@@ -22,13 +24,13 @@ export class Web3Service {
 
     /**
      * Injects the web3 provider we want to use
-     * @param contract
+     * @param tokenContract
      * @param {Provider} provider
      * @returns {any}
      */
-    private injectProvider(contract: any, provider: Provider): any {
+    private injectProvider(tokenContract: any, provider: Provider): any {
         // use truffle contract to load the JSON contract into an object
-        const contractAbstraction = contract(contract);
+        const contractAbstraction = contract(tokenContract);
         contractAbstraction.setProvider(provider);
         this._token = contractAbstraction;
 
@@ -72,6 +74,24 @@ export class Web3Service {
             .map((contract: any) => this.injectProvider(contract, provider));
     }
 
+    private getToken(): Observable<any> {
+        let result: Observable<any>;
+
+        if (this._token != null) {
+            result = Observable.of(this._token);
+        } else {
+            if (this.web3 != null) {
+                result = this.initializeContract(this.web3.currentProvider);
+            } else {
+                const error = 'You need to have the Mist browser or MetaMask installed and be on mainnet.';
+                console.warn(error);
+                result = Observable.throw(error);
+            }
+        }
+
+        return result;
+    }
+
     getProviderName(): string {
         let providerName = 'UNKNOWN';
 
@@ -86,26 +106,59 @@ export class Web3Service {
         return providerName
     }
 
-    getAccounts(): Observable<Array<any>> {
-        return Observable.fromPromise(this.web3.eth.getAccounts());
-    }
+    getAccountBalance(account: string): Observable<number> {
+        let result: Observable<number>;
 
-    getToken(): Observable<any> {
-        let result: Observable<any>;
-
-        if (this._token != null) {
-            result = Observable.of(this._token);
+        const web3: any = this.web3;
+        if (web3 == null) {
+            result = Observable.throw('You need to have the Mist browser or MetaMask installed and be on mainnet.');
         } else {
-            if (this.web3 != null) {
-                result = this.initializeContract(this.web3.currentProvider);
-            } else {
-                const error = 'You need to have the Mist browser or MetaMask installed and use the right network.';
-                console.warn(error);
-                result = Observable.throw(error);
-            }
+            result = Observable.fromPromise(this.web3.eth.getBalance(account));
         }
 
         return result;
+    }
+
+    getAccounts(): Observable<Array<any>> {
+        let result: Observable<Array<any>>;
+
+        const web3: any = this.web3;
+        if (web3 == null) {
+            result = Observable.throw('You need to have the Mist browser or MetaMask installed and be on mainnet.');
+        } else {
+            result = Observable.fromPromise(this.web3.eth.getAccounts());
+        }
+
+        return result;
+    }
+
+    getTokenInstance(): Observable<any> {
+        let result: Observable<any>;
+
+        if (this._tokenInstance != null) {
+            result = Observable.of(this._tokenInstance);
+        } else {
+            result = this.getToken()
+                .switchMap((token: any) => Observable.fromPromise(token.deployed())
+                    .map((tokenInstance: any) => {
+                            this._tokenInstance = tokenInstance;
+                            return this._tokenInstance;
+                        }
+                    )
+                );
+        }
+
+        return result;
+    }
+
+    getStartDate(): void {
+        this.getTokenInstance()
+            .subscribe((ti: any) => {
+                Observable.fromPromise(ti.hasStarted())
+                    .subscribe((val: any) => {
+                        console.log(val);
+                    });
+            });
     }
 
     constructor(private windowRefService: WindowRefService) {

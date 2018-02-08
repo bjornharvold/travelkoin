@@ -5,10 +5,10 @@
 </div>
 
 <div class="row" *ngIf="user != null">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <app-secure-token-contract></app-secure-token-contract>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <app-secure-wallet-overview [type]="'ETH'" [showButton]="user.approved != null && user.approved === true"></app-secure-wallet-overview>
     </div>
 </div>

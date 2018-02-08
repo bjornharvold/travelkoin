@@ -1,27 +1,49 @@
-<div class="tile-box bg-white content-box">
-    <div class="tile-header">
-        {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }}
+<div class="content-box" *ngIf="status == null">
+    <h3 class="content-box-header bg-white">
+        <span class="icon-separator">
+            <i class="fas fa-shield-check font-blue"></i>
+        </span>
+        {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }} {{ 'TOKEN_CONTRACT.YOU_ARE_USING' | translate }} {{ provider }}
+    </h3>
+    <div class="content-box-wrapper" *ngIf="started === true">
+        <form (ngSubmit)="buyTokens()" [formGroup]="form">
+
+            <div class="form-group" *ngIf="form.get('account')">
+                <label for="account">{{ 'TOKEN_CONTRACT.ACCOUNT' | translate }}:</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon addon-inside bg-white font-primary">
+                        <i class="fas fa-id-card"></i>
+                    </span>
+                    <input id="account" type="account" class="form-control" formControlName="account">
+                </div>
+            </div>
+            <div class="form-group" *ngIf="form.get('amount')">
+                <label for="amount">{{ 'TOKEN_CONTRACT.AMOUNT' | translate }} ({{ 'TOKEN_CONTRACT.CURRENT_BALANCE' | translate }}: {{currentAccountBalanceEther}} ETH):</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon addon-inside bg-white font-primary">
+                        <i class="fab fa-ethereum"></i>
+                    </span>
+                    <input id="amount" type="amount" class="form-control" placeholder="{{ 'TOKEN_CONTRACT.AMOUNT' | translate }}" formControlName="amount">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate }}</button>
+            </div>
+
+        </form>
     </div>
-    <!--<div class="tile-header" *ngIf="showTitle && customTitle != null">-->
-        <!--{{ customTitle | translate }}-->
-        <!--<div class="float-right font-red" *ngIf="error === true">-->
-            <!--{{ 'WALLET.TRANSACTION_ERROR' | translate }}-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="tile-content-wrapper">
-        <div class="tile-content">
-            <!--<span><i *ngIf="loading === true" class="k-i-loading"></i> </span>-->
-            <!--<span *ngIf="loading === false && wallet != null">{{ wallet.balance | number:'1.0-8' }}</span>-->
-            <!--<span *ngIf="loading === false && wallet == null">0</span>-->
-            <!--<span>{{ type }}</span>-->
-        </div>
+    <div class="content-box-wrapper text-center mrg20A" *ngIf="started === false">
+        {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
     </div>
-    <div class="button-pane">
-        <button class="btn btn-info float-right tooltip-button">
-            {{ provider }}
-        </button>
+</div>
+<div class="content-box" *ngIf="status != null">
+    <h3 class="content-box-header bg-white">
+        <span class="icon-separator">
+            <i class="fas fa-exclamation-circle font-red"></i>
+        </span>
+        {{ 'TOKEN_CONTRACT.ERROR' | translate }}
+    </h3>
+    <div class="content-box-wrapper text-center mrg20A">
+        {{ status }}
     </div>
-    <!--<div class="tile-footer tooltip-button font-red" *ngIf="error === true">-->
-        <!--{{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}-->
-    <!--</div>-->
 </div>

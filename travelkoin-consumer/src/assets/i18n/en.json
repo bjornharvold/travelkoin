@@ -134,6 +134,9 @@
         "HEADER": "Travelkoin Payment Gateway",
         "DESCRIPTION": "Traveliko.com will be the first to use our payment gateway to make and receive payments."
       }
+    },
+    "NEWS": {
+      "HEADER": "In the news"
     }
   },
   "AUTH": {
@@ -376,7 +379,14 @@
     }
   },
   "TOKEN_CONTRACT": {
-    "TOKEN_SALE": "Token sale"
+    "ACCOUNT": "Account",
+    "AMOUNT": "Amount",
+    "MAKE_PAYMENT": "Buy",
+    "TOKEN_SALE": "Token sale",
+    "CURRENT_BALANCE": "Balance",
+    "NOT_STARTED": "Our event has not yet started. Please come back later.",
+    "ERROR": "Error",
+    "YOU_ARE_USING": "secured by"
   },
   "END": "End"
 }
