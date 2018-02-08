@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     environment: 'local',
-    build: '5.11.0',
+    build: '5.17.0',
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
