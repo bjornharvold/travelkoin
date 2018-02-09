@@ -2,9 +2,16 @@
   "hosting": {
     "public": "dist",
     "ignore": [
+      "**/node_modules/**",
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/e2e/**",
+      "**/dev.travelkoin.io.*",
+      "**/karma.conf.js",
+      "**/protractor.conf.js",
+      "**/tslint.json",
+      "**/tsconfig.json",
+      "**/*.md"
     ],
     "rewrites": [
       {

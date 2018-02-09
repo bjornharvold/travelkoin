@@ -46,6 +46,7 @@ import {Observable} from 'rxjs/Observable';
 import { TeamComponent } from './home/team/team.component';
 import { BackersComponent } from './home/backers/backers.component';
 import { IcoDetailsComponent } from './home/ico-details/ico-details.component';
+import { NewsComponent } from './home/news/news.component';
 
 /**
  * In case the key cannot be found in the translation file
@@ -143,7 +144,8 @@ const prop: IShareButtons = {
         PrivacyComponent,
         TeamComponent,
         BackersComponent,
-        IcoDetailsComponent
+        IcoDetailsComponent,
+        NewsComponent
     ],
     bootstrap: [
         AppComponent

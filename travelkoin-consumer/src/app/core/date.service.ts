@@ -8,6 +8,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 const SERVER_FRIENDLY_DATE_FORMAT = 'YYYY-MM-DD';
 const DATE_FORMAT = 'x';
+const UTC_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
 @Injectable()
 export class DateService {
@@ -40,6 +41,15 @@ export class DateService {
      */
     static stringFromServerToMoment(date: string): moment.Moment {
         return moment(date, SERVER_FRIENDLY_DATE_FORMAT);
+    }
+
+    /**
+     * Converts a string to a moment.Moment object.
+     * @param date
+     * @returns {moment.Moment}
+     */
+    static utcToMoment(date: string): moment.Moment {
+        return moment(date, UTC_DATE_FORMAT);
     }
 
     /**

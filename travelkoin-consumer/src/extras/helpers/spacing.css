@@ -244,6 +244,26 @@
     margin-left: 25px !important;
 }
 
+.mrg30A {
+    margin: 30px !important;
+}
+
+.mrg30T {
+    margin-top: 30px !important;
+}
+
+.mrg30R {
+    margin-right: 30px !important;
+}
+
+.mrg30B {
+    margin-bottom: 30px !important;
+}
+
+.mrg30L {
+    margin-left: 30px !important;
+}
+
 .mrg45A {
     margin: 45px !important;
 }

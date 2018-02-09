@@ -15,6 +15,8 @@ export const environment = {
     recaptchaAPIKey: '6LdixT0UAAAAABKK2MPtwxtFYr4MOFedXuClPJ_3',
     authTokenName: 'x-auth-token',
     authTokenExpiration: 3600,
+    eventStartDate: '2017-04-09T12:00:00.000',
+    eventEndDate: '2017-04-14T12:00:00.000',
     etherScanApiKey: 'KN8324XYZGIC1E2UKGCH9GY4Q6Q2FBT9MM',
     featureLogin: true,
     featureLanguage: true,
