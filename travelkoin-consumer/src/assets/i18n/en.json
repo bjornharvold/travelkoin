@@ -63,10 +63,10 @@
       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
       "LIMIT": "Limit",
       "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
-      "CAPS": "Caps",
-      "CAPS_DESC": "Both soft and hard cap are realistic for what we want to accomplish.",
+      "CAPS": "Cap",
+      "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
       "HODLR": "HODLers",
-      "HODLR_DESC": "We welcome you and hope you like our reward structure."
+      "HODLR_DESC": "We welcome you! 3 / 6 / 9 month HODL rewards."
     },
     "PAYMENT_GATEWAY": {
       "HEADER": "Payment gateway",

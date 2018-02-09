@@ -22,6 +22,7 @@ import {TimeSeriesService} from './time-series.service';
 import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
 import {WindowRefService} from './window-ref.service';
+import {TokenContractService} from './token-contract.service';
 
 // import {Web3Service} from './web3.service';
 
@@ -52,7 +53,8 @@ import {WindowRefService} from './window-ref.service';
         ConversionService,
         TimeSeriesService,
         Web3Service,
-        WindowRefService
+        WindowRefService,
+        TokenContractService
     ]
 })
 export class CoreModule {

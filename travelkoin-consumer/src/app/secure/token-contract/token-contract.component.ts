@@ -6,6 +6,7 @@ import {FormGroup} from '@angular/forms';
 import {DateService} from '../../core/date.service';
 import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
+import {TokenContractService} from '../../core/token-contract.service';
 
 @Component({
     selector: 'app-secure-token-contract',
@@ -23,14 +24,10 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
     form: FormGroup;
     startDate: moment.Moment;
     endDate: moment.Moment;
-    status = '';
+    status = null;
     started = false;
 
     private retrieveTokenBalance(tokenInstance: any, account: string): void {
-        // console.log(typeof tokenInstance);
-        console.log(tokenInstance);
-        // console.log(`startdate: ${tokenInstance.getSaleDay.call()}`);
-        this.web3Service.getStartDate();
         Observable.fromPromise(tokenInstance.getBalance.call(account))
             .takeWhile(() => this.alive)
             .subscribe((balance: number) => {
@@ -56,7 +53,7 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
     }
 
     private refreshTokenBalance(account: string): void {
-        this.web3Service.getTokenInstance()
+        this.tokenContractService.getTokenInstance()
             .takeWhile(() => this.alive)
             .subscribe((tokenInstance: any) => {
                     this.retrieveTokenBalance(tokenInstance, account);
@@ -72,10 +69,6 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
         return new TokenPurchase(this.startDate, this.endDate, account, receiver);
     }
 
-    private retrieveProviderName(): void {
-        this.provider = this.web3Service.getProviderName();
-    }
-
     private retrieveAccounts(): void {
         this.web3Service.getAccounts()
             .takeWhile(() => this.alive)
@@ -84,7 +77,6 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
                     this.dto = this.createTokenPurchase(accounts[0]);
                     this.refreshTokenBalance(accounts[0]);
                     this.retrieveAccountBalance(accounts[0]);
-                    this.retrieveProviderName();
                     this.dto.populateFormValues(this.form);
                 },
                 error => this.status = error,
@@ -96,7 +88,7 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
     buyTokens(): void {
         this.status = 'Initiating transaction... (please wait)';
 
-        this.web3Service.getTokenInstance()
+        this.tokenContractService.getTokenInstance()
             .takeWhile(() => this.alive)
             .subscribe((tokenInstance: any) => {
                     Observable.fromPromise(tokenInstance.deployed())
@@ -104,7 +96,7 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
                         .subscribe((token: any) => {
                                 console.log(`Buying ${this.dto.amount} tokens...`);
                             },
-                            error => this.status = `Transaction failed: ${error}`,
+                            error => this.status = error,
                             () => {
                             }
                         );
@@ -121,10 +113,17 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
 
     // web3 MetaMask should be injected by now
     ngAfterViewInit(): void {
-        this.retrieveAccounts();
+
+        // this.retrieveAccounts();
     }
 
     ngOnInit() {
+
+        this.provider = this.web3Service.getProviderName();
+        if (this.provider == null) {
+            this.status = 'You need to have the Mist browser or MetaMask plugin installed and be on mainnet.';
+        }
+
         this.form = new FormGroup({});
 
         this.startDate = DateService.utcToMoment(environment.eventStartDate);
@@ -134,12 +133,14 @@ export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit 
         Observable.interval(5000)
             .takeWhile(() => this.alive && this.started === false)
             .subscribe(() => {
+
                 const now = DateService.getInstanceOfNow();
                 this.started = DateService.isSameOrAfter(now, this.startDate) && DateService.isSameOrBefore(now, this.endDate);
             });
     }
 
     constructor(private web3Service: Web3Service,
+                private tokenContractService: TokenContractService,
                 private ngZone: NgZone) {
     }
 }
