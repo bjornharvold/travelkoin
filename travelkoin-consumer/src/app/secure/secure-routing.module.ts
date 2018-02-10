@@ -5,7 +5,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {WalletComponent} from './wallet/wallet.component';
+import {EtherWalletComponent} from './ether-wallet/ether-wallet.component';
 import {SecureComponent} from './secure/secure.component';
 import {RegisteredGuard} from '../core/registered.guard';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
@@ -29,7 +29,7 @@ const routes: Routes = [
             },
             {
                 path: 'wallet/:type',
-                component: WalletComponent,
+                component: EtherWalletComponent,
                 canLoad: [AuthenticatedGuard, RegisteredGuard],
                 canActivate: [AuthenticatedGuard, RegisteredGuard]
             },

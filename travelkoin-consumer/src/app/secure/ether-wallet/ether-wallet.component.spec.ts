@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {WalletSendComponent} from './wallet-send.component';
+import {EtherWalletComponent} from './ether-wallet.component';
 
-describe('WalletSendComponent', () => {
-    let component: WalletSendComponent;
-    let fixture: ComponentFixture<WalletSendComponent>;
+describe('EtherWalletComponent', () => {
+    let component: EtherWalletComponent;
+    let fixture: ComponentFixture<EtherWalletComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [WalletSendComponent]
+            declarations: [EtherWalletComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(WalletSendComponent);
+        fixture = TestBed.createComponent(EtherWalletComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

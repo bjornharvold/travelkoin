@@ -11,7 +11,6 @@ import {ServerErrorHttpInterceptorService} from './server-error-http-interceptor
 import {ServerHeartBeatService} from './server-heart-beat.service';
 import {TimezoneOffsetHttpInterceptorService} from './timezone-offset-http-interceptor.service';
 import {UserSessionService} from './user-session.service';
-import {BitcoinService} from './bitcoin.service';
 import {UserService} from './user.service';
 import {CloudinaryService} from './cloudinary.service';
 import {AuthenticatedGuard} from './authenticated.guard';
@@ -23,8 +22,6 @@ import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
 import {WindowRefService} from './window-ref.service';
 import {TokenContractService} from './token-contract.service';
-
-// import {Web3Service} from './web3.service';
 
 @NgModule({
     imports: [
@@ -43,7 +40,6 @@ import {TokenContractService} from './token-contract.service';
         ServerHeartBeatService,
         TimezoneOffsetHttpInterceptorService,
         UserSessionService,
-        BitcoinService,
         EthereumService,
         UserService,
         CloudinaryService,

@@ -28,7 +28,7 @@
     "MARKETING_HEADER": {
       "1": "A revolution is coming to travel",
       "2": "A de-centralized payment gateway made specifically for airlines, hotels, car rental, cruise ships, rail, online travel agencies, booking engines and channel managers.",
-      "3": "A white-labeled loyalty platform that will unify the industry, generating more revenue and creating true customer satisfaction.",
+      "3": "A white-labeled loyalty platform that will unify the industry, generate more revenue for everyone and create real customer satisfaction.",
       "4": "Our blockchain platform is fast, smart, secure, eco-friendly and built for the travel industry.",
       "FOLLOW_US": "Follow us",
       "WHITE_PAPER": "White paper",
@@ -246,7 +246,7 @@
     "BTC": "Bitcoin"
   },
   "WALLET": {
-    "TITLE": "Wallet",
+    "TITLE": "My investment",
     "TRANSACTIONS": "TXS",
     "TRANSACTION_ERROR": "Error",
     "TRANSACTION_ERROR_DETAILS": "Details",
@@ -257,7 +257,8 @@
     "BALANCE": "Balance",
     "RECEIVE": "Receive",
     "EXCHANGE": "Exchange",
-    "DESCRIPTION": "This section allows you to tell us about the payments you sent from your {{type}} wallet for the event."
+    "SEE_TRANSACTIONS": "See transactions",
+    "DESCRIPTION": "This section allows you to see the investments you've made in Travelkoin."
   },
   "VALUE": {
     "ADD_PAYMENT": "Add transaction",
