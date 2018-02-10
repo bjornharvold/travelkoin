@@ -1,5 +1,4 @@
 import {ImprovedMultimedia} from './improved-multimedia';
-import {Transaction} from './transaction';
 import {UserRegistrationForm} from './user-registration-form';
 
 export class User {
