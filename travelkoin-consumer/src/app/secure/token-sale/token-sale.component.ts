@@ -9,11 +9,11 @@ import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 
 @Component({
-    selector: 'app-secure-token-contract',
-    templateUrl: './token-contract.component.html',
-    styleUrls: ['./token-contract.component.scss']
+    selector: 'app-secure-token-sale',
+    templateUrl: './token-sale.component.html',
+    styleUrls: ['./token-sale.component.scss']
 })
-export class TokenContractComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TokenSaleComponent implements OnInit, OnDestroy, AfterViewInit {
     private alive = true;
     accounts: string[];
     provider: string;
