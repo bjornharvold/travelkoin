@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TokenContractComponent} from './token-contract.component';
+import {EtherWalletComponent} from './ether-wallet.component';
 
-describe('TokenContractComponent', () => {
-    let component: TokenContractComponent;
-    let fixture: ComponentFixture<TokenContractComponent>;
+describe('EtherWalletComponent', () => {
+    let component: EtherWalletComponent;
+    let fixture: ComponentFixture<EtherWalletComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TokenContractComponent]
+            declarations: [EtherWalletComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TokenContractComponent);
+        fixture = TestBed.createComponent(EtherWalletComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ConversionService} from '../../core/conversion.service';
-import {BitcoinService} from '../../core/bitcoin.service';
 import {EthereumService} from '../../core/ethereum.service';
 import {environment} from '../../../environments/environment';
 import {ConversionRate} from '../../model/conversion-rate';
@@ -10,7 +9,6 @@ import {TimeSerie} from '../../model/time-serie';
 import * as firebase from 'firebase';
 import {DateService} from '../../core/date.service';
 import * as moment from 'moment';
-import {Observable} from 'rxjs/Observable';
 import DocumentReference = firebase.firestore.DocumentReference;
 
 const CURRENCY_CODE: string = 'EUR';
@@ -25,24 +23,12 @@ export class ProgressComponent implements OnInit, OnDestroy {
     private alive = true;
     private ethWallet: Wallet = null;
     private ethTimeSeries: Array<number> = [];
-    private totalTimeSeries: Array<number> = [];
 
     series: any[] = [{
         name: 'ETH',
         data: this.ethTimeSeries
     }];
     categories: string[] = [];
-
-
-    private static calculateSumForTimeSeriesValue(ary: Array<Array<TimeSerie>>, index: number): number {
-        let result: number = 0;
-
-        for (let series of ary) {
-            result += series[index].value;
-        }
-
-        return result;
-    }
 
     /**
      * Creates a new record in Firestore
@@ -161,43 +147,14 @@ export class ProgressComponent implements OnInit, OnDestroy {
         }
     }
 
-    /**
-     * Render goal: btc + eth value together
-     * @param {Array<Array<TimeSerie>>} ary
-     */
-    private renderTimeSeriesForTotal(ary: Array<Array<TimeSerie>>): void {
-        this.totalTimeSeries.length = 0;
-
-        if (ary != null && ary.length > 0) {
-            const series: Array<TimeSerie> = ary[0];
-            for (let i = 0; i < series.length; i++) {
-                this.totalTimeSeries.push(ProgressComponent.calculateSumForTimeSeriesValue(ary, i));
-            }
-        }
-    }
-
     private loadTimeSeries(): void {
-        const ethTimeSeries: Observable<Array<TimeSerie>> = this.timeseriesService.query(ETH_SYMBOL);
-
         // load up and combine two time series
-        Observable.zip(...[ethTimeSeries])
+        this.timeseriesService.query(ETH_SYMBOL)
             .takeWhile(() => this.alive)
-            .subscribe((ary: Array<Array<TimeSerie>>) => {
+            .subscribe((ary: Array<TimeSerie>) => {
                 if (ary != null && ary.length > 0) {
-                    for (let i = 0; i < ary.length; i++) {
-                        const series: Array<TimeSerie> = ary[i];
-                        if (series.length > 0) {
-                            if (i === 0) {
-                                // load categories
-                                this.loadCategories(series);
-                            }
-
-                            this.renderTimeSeriesForSymbol(series[0].symbol, series);
-                        }
-                    }
-
-                    // finally load the total
-                    this.renderTimeSeriesForTotal(ary);
+                    this.loadCategories(ary);
+                    this.renderTimeSeriesForSymbol(ary[0].symbol, ary);
                 }
             });
     }
@@ -215,7 +172,6 @@ export class ProgressComponent implements OnInit, OnDestroy {
 
     constructor(private timeseriesService: TimeSeriesService,
                 private conversionService: ConversionService,
-                private bitcoinService: BitcoinService,
                 private ethereumService: EthereumService) {
     }
 }

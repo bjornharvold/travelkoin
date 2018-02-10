@@ -1,6 +1,6 @@
 <div class="tile-box bg-white content-box">
     <div class="tile-header" *ngIf="showTitle && customTitle == null">
-        {{ 'COIN.' + type | translate }} {{ 'WALLET.TITLE' | translate }}
+       {{ 'WALLET.TITLE' | translate }}
     </div>
     <div class="tile-header" *ngIf="showTitle && customTitle != null">
         {{ customTitle | translate }}
@@ -16,9 +16,9 @@
             <span>{{ type }}</span>
         </div>
     </div>
-    <div class="button-pane" *ngIf="showButton">
-        <button class="btn btn-info float-right tooltip-button" [routerLink]="['/secure/wallet/' + type]">
-            {{ 'DASHBOARD.ADD_FUNDS' | translate | uppercase }} <i class="fas fa-plus fa-fw"></i>
+    <div class="button-pane">
+        <button class="btn btn-info float-right tooltip-button" [routerLink]="['/secure/wallet/ETH']">
+            {{ 'WALLET.SEE_TRANSACTIONS' | translate | uppercase }}
         </button>
     </div>
     <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
