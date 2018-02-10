@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {Observable} from 'rxjs/Observable';
 import {TokenPurchase} from '../../model/TokenPurchase';
@@ -8,55 +8,32 @@ import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 
+const GWEI: number = 1000000000000000000;
+
 @Component({
     selector: 'app-secure-token-sale',
     templateUrl: './token-sale.component.html',
     styleUrls: ['./token-sale.component.scss']
 })
-export class TokenSaleComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TokenSaleComponent implements OnInit, OnDestroy {
     private alive = true;
     accounts: string[];
     provider: string;
     dto: TokenPurchase;
-    currentAccountBalanceWei: number = 0;
+    currentAccountBalanceGwei: number = 0;
     currentAccountBalanceEther: string = '';
-    currentTokenBalance: number = 0;
     form: FormGroup;
     startDate: moment.Moment;
     endDate: moment.Moment;
     status = null;
     started = false;
 
-    private retrieveTokenBalance(tokenInstance: any, account: string): void {
-        Observable.fromPromise(tokenInstance.getBalance.call(account))
-            .takeWhile(() => this.alive)
-            .subscribe((balance: number) => {
-                    this.currentTokenBalance = balance;
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
-    }
-
     private retrieveAccountBalance(account: string): void {
         this.web3Service.getAccountBalance(account)
             .takeWhile(() => this.alive)
             .subscribe((balance: number) => {
-                    this.currentAccountBalanceWei = balance;
-                    this.currentAccountBalanceEther = '' + (balance / 1000000000000000000);
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
-    }
-
-    private refreshTokenBalance(account: string): void {
-        this.tokenContractService.getTokenInstance()
-            .takeWhile(() => this.alive)
-            .subscribe((tokenInstance: any) => {
-                    this.retrieveTokenBalance(tokenInstance, account);
+                    this.currentAccountBalanceGwei = balance;
+                    this.currentAccountBalanceEther = '' + (balance / GWEI);
                 },
                 error => this.status = error,
                 () => {
@@ -69,15 +46,28 @@ export class TokenSaleComponent implements OnInit, OnDestroy, AfterViewInit {
         return new TokenPurchase(this.startDate, this.endDate, account, receiver);
     }
 
+    private retrieveCrowdsaleStartDate(): void {
+
+    }
+
     private retrieveAccounts(): void {
         this.web3Service.getAccounts()
             .takeWhile(() => this.alive)
             .subscribe((accounts) => {
                     this.accounts = accounts;
+
+                    // populate the form
                     this.dto = this.createTokenPurchase(accounts[0]);
-                    this.refreshTokenBalance(accounts[0]);
-                    this.retrieveAccountBalance(accounts[0]);
                     this.dto.populateFormValues(this.form);
+
+                    // check that the provider exists
+                    this.provider = this.web3Service.getProviderName();
+                    if (this.provider == null) {
+                        this.status = 'You need to have the Mist browser or MetaMask plugin installed and be on mainnet.';
+                    }
+
+                    // retrieve current account balance in Ether
+                    this.retrieveAccountBalance(accounts[0]);
                 },
                 error => this.status = error,
                 () => {
@@ -91,38 +81,21 @@ export class TokenSaleComponent implements OnInit, OnDestroy, AfterViewInit {
         this.tokenContractService.getTokenInstance()
             .takeWhile(() => this.alive)
             .subscribe((tokenInstance: any) => {
-                    Observable.fromPromise(tokenInstance.deployed())
-                        .takeWhile(() => this.alive)
-                        .subscribe((token: any) => {
-                                console.log(`Buying ${this.dto.amount} tokens...`);
-                            },
-                            error => this.status = error,
-                            () => {
-                            }
-                        );
+                    console.log(`Buying ${this.dto.amount} tokens...`);
                 },
                 error => this.status = error,
                 () => {
                 }
             );
+
     }
 
     ngOnDestroy() {
         this.alive = false;
     }
 
-    // web3 MetaMask should be injected by now
-    ngAfterViewInit(): void {
-
-        // this.retrieveAccounts();
-    }
-
     ngOnInit() {
-
-        this.provider = this.web3Service.getProviderName();
-        if (this.provider == null) {
-            this.status = 'You need to have the Mist browser or MetaMask plugin installed and be on mainnet.';
-        }
+        this.retrieveAccounts();
 
         this.form = new FormGroup({});
 

@@ -13,7 +13,7 @@ import {TokenContractService} from '../../core/token-contract.service';
     templateUrl: './token-wallet.component.html',
     styleUrls: ['./token-wallet.component.scss']
 })
-export class TokenWalletComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TokenWalletComponent implements OnInit, OnDestroy {
     private alive = true;
     accounts: string[];
     provider: string;
@@ -27,7 +27,13 @@ export class TokenWalletComponent implements OnInit, OnDestroy, AfterViewInit {
     started = false;
     error: string = null;
 
-    private retrieveTokenBalance(tokenInstance: any, account: string): void {
+    /**
+     * Execute method on contract to retrieve token balance
+     * @param tokenInstance
+     * @param {string} account
+     */
+    private getTokenBalance(tokenInstance: any, account: string): void {
+        console.log(tokenInstance);
         Observable.fromPromise(tokenInstance.getBalance.call(account))
             .takeWhile(() => this.alive)
             .subscribe((balance: number) => {
@@ -39,11 +45,31 @@ export class TokenWalletComponent implements OnInit, OnDestroy, AfterViewInit {
             );
     }
 
-    private refreshTokenBalance(account: string): void {
+    /**
+     * Retrieve the instantiated version of the oken contract
+     * @param {string} account
+     */
+    private getTokenInstance(account: string): void {
         this.tokenContractService.getTokenInstance()
             .takeWhile(() => this.alive)
             .subscribe((tokenInstance: any) => {
-                    this.retrieveTokenBalance(tokenInstance, account);
+                    this.getTokenBalance(tokenInstance, account);
+                },
+                error => this.status = error,
+                () => {
+                }
+            );
+    }
+
+    /**
+     * Grab the active account from Ethereum provider
+     */
+    private retrieveAccounts(): void {
+        this.web3Service.getAccounts()
+            .takeWhile(() => this.alive)
+            .subscribe((accounts) => {
+                    this.accounts = accounts;
+                    this.getTokenInstance(accounts[0]);
                 },
                 error => this.status = error,
                 () => {
@@ -55,13 +81,8 @@ export class TokenWalletComponent implements OnInit, OnDestroy, AfterViewInit {
         this.alive = false;
     }
 
-    // web3 MetaMask should be injected by now
-    ngAfterViewInit(): void {
-
-        // this.retrieveAccounts();
-    }
-
     ngOnInit() {
+        this.retrieveAccounts();
     }
 
     constructor(private web3Service: Web3Service,
