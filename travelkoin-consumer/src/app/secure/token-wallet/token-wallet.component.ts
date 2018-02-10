@@ -25,6 +25,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy, AfterViewInit {
     endDate: moment.Moment;
     status = null;
     started = false;
+    error: string = null;
 
     private retrieveTokenBalance(tokenInstance: any, account: string): void {
         Observable.fromPromise(tokenInstance.getBalance.call(account))
