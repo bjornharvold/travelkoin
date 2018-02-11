@@ -3,7 +3,7 @@
   "version": "5.22.0",
   "description": "Travelkoin token sale",
   "scripts": {
-    "soltsice": "soltsice ./build/contracts ./build/types",
+    "generate": "truffle compile && soltsice ./build/contracts ./build/types && cp -fv ./build/contracts/*.* ../travelkoin-consumer/src/app/contracts/ && cp -fv ./build/types/*.* ../travelkoin-consumer/src/app/types/",
     "test": "scripts/test.sh",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

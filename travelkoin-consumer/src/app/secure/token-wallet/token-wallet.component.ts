@@ -32,57 +32,57 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
      * @param tokenInstance
      * @param {string} account
      */
-    private getTokenBalance(tokenInstance: any, account: string): void {
-        console.log(tokenInstance);
-        Observable.fromPromise(tokenInstance.getBalance.call(account))
-            .takeWhile(() => this.alive)
-            .subscribe((balance: number) => {
-                    this.currentTokenBalance = balance;
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
-    }
+    // private getTokenBalance(tokenInstance: any, account: string): void {
+    //     console.log(tokenInstance);
+    //     Observable.fromPromise(tokenInstance.getBalance.call(account))
+    //         .takeWhile(() => this.alive)
+    //         .subscribe((balance: number) => {
+    //                 this.currentTokenBalance = balance;
+    //             },
+    //             error => this.status = error,
+    //             () => {
+    //             }
+    //         );
+    // }
 
     /**
      * Retrieve the instantiated version of the oken contract
      * @param {string} account
      */
-    private getTokenInstance(account: string): void {
-        this.tokenContractService.getTokenInstance()
-            .takeWhile(() => this.alive)
-            .subscribe((tokenInstance: any) => {
-                    this.getTokenBalance(tokenInstance, account);
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
-    }
+    // private getTokenInstance(account: string): void {
+    //     this.tokenContractService.getTokenInstance()
+    //         .takeWhile(() => this.alive)
+    //         .subscribe((tokenInstance: any) => {
+    //                 this.getTokenBalance(tokenInstance, account);
+    //             },
+    //             error => this.status = error,
+    //             () => {
+    //             }
+    //         );
+    // }
 
     /**
      * Grab the active account from Ethereum provider
      */
-    private retrieveAccounts(): void {
-        this.web3Service.getAccounts()
-            .takeWhile(() => this.alive)
-            .subscribe((accounts) => {
-                    this.accounts = accounts;
-                    this.getTokenInstance(accounts[0]);
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
-    }
+    // private retrieveAccounts(): void {
+    //     this.web3Service.getAccounts()
+    //         .takeWhile(() => this.alive)
+    //         .subscribe((accounts) => {
+    //                 this.accounts = accounts;
+    //                 this.getTokenInstance(accounts[0]);
+    //             },
+    //             error => this.status = error,
+    //             () => {
+    //             }
+    //         );
+    // }
 
     ngOnDestroy() {
         this.alive = false;
     }
 
     ngOnInit() {
-        this.retrieveAccounts();
+        // this.retrieveAccounts();
     }
 
     constructor(private web3Service: Web3Service,

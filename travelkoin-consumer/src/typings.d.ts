@@ -7,7 +7,6 @@
 declare module 'cloudinary-core';
 // This one is for webpack and loading i18n json files
 declare var System: System;
-// declare var require: NodeRequire;
 interface System {
     import(request: string): Promise<any>;
 }

@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {WindowRefService} from './window-ref.service';
-import { W3 } from "soltsice";
+import {W3} from 'soltsice';
+import 'rxjs/add/observable/bindCallback';
+import 'rxjs/add/observable/bindNodeCallback';
+import { BigNumber } from "bignumber.js";
+
 // const Web3 = require('web3');
 
 @Injectable()
@@ -50,28 +53,48 @@ export class Web3Service {
         let result: Observable<number>;
 
         const web3: W3 = this.getWeb3();
-        if (web3 == null) {
-            result = Observable.throw('You need to have the Mist browser or MetaMask installed and be on mainnet.');
+        if (web3 != null) {
+            const callbackObservable = Observable.bindNodeCallback(this.getWeb3().eth.getBalance);
+            result = callbackObservable(account, 'latest');
+            // result = Observable.of(10000000000000000);
+            // result = Observable.fromPromise(this.getWeb3().eth.getBalance(account));
+
         } else {
-            result = Observable.fromPromise(this.getWeb3().eth.getBalance(account));
+            result = Observable.throw('CODE.NOT_CONNECTED');
         }
 
         return result;
     }
 
-    getAccounts(): Observable<Array<any>> {
-        let result: Observable<Array<any>>;
+    /**
+     * Returns a list of ethereum addresses. Notice the methods we are using requires that we bind to a callback function to make it work
+     * @returns {Observable<Array<string>>}
+     */
+    getAccounts(): Observable<Array<string>> {
+        let result: Observable<Array<string>>;
 
         const web3: W3 = this.getWeb3();
-        if (web3 == null) {
-            result = Observable.throw('You need to have the Mist browser or MetaMask installed and be on mainnet.');
+        if (web3 != null) {
+            const callbackObservable = Observable.bindNodeCallback(this.getWeb3().eth.getAccounts);
+            result = callbackObservable();
         } else {
-            result = Observable.fromPromise(this.getWeb3().eth.getAccounts());
+            result = Observable.throw('CODE.NOT_CONNECTED');
         }
 
         return result;
     }
 
-    constructor(private windowRefService: WindowRefService) {
+    weiToEther(value: BigNumber): string {
+        // console.log(this.getWeb3().utils);
+        // return this.getWeb3().utils.fromWei(value, 'ether');
+        // console.log(value.dividedBy(1e18).toFormat(0));
+        // console.log(typeof value.dividedBy(1e18).toFormat(0));
+        return value.dividedBy(1e18).toFormat(8);
+    }
+    isConnected(): boolean {
+        return true;
+    }
+
+    constructor() {
     }
 }

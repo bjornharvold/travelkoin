@@ -56,19 +56,6 @@
       "VETERAN_ADVISORS": "Veteran advisors",
       "VETERAN_ADVISORS_DESC": "Our team of advisors have decades of experience in both travel and the blockchain. Get to know them below."
     },
-    "ICO": {
-      "HEADER": "ICO event details",
-      "DURATION": "Duration",
-      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
-      "BONUSES": "Bonuses",
-      "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
-      "LIMIT": "Limit",
-      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
-      "CAPS": "Cap",
-      "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
-      "HODLR": "HODLers",
-      "HODLR_DESC": "We welcome you! 3 / 6 / 9 month HODL rewards."
-    },
     "PAYMENT_GATEWAY": {
       "HEADER": "Payment gateway",
       "DESCRIPTION": "Travel suppliers can do intelligent cross-border payments using smart contracts within the eco-system fast, secure and at no cost. Forget about middle men, transaction fees and waiting days to receive your money."
@@ -92,6 +79,21 @@
     },
     "BACKERS": {
       "HEADER": "Backers"
+    },
+    "ICO": {
+      "HEADER": "ICO event details",
+      "DURATION": "Duration",
+      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
+      "BONUSES": "Bonuses",
+      "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
+      "LIMIT": "Limit",
+      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
+      "CAPS": "Cap",
+      "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
+      "HODLR": "HODLers",
+      "HODLR_DESC": "We welcome you! 3 / 6 / 9 month HODL rewards.",
+      "VESTING": "Vesting",
+      "VESTING_DESC": "Team @ 4 years (1 year cliff). Advisors @ 1 year (3 month cliff)."
     },
     "FEATURES": {
       "HEADER": "Features",
@@ -392,6 +394,11 @@
   },
   "TOKEN_WALLET": {
     "TITLE": "Travelkoin Wallet"
+  },
+  "CODE": {
+    "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
+    "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
+    "ERROR": "Unknown error: Check the log."
   },
   "END": "End"
 }

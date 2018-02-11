@@ -3,12 +3,11 @@ import {Web3Service} from '../../core/web3.service';
 import {Observable} from 'rxjs/Observable';
 import {TokenPurchase} from '../../model/TokenPurchase';
 import {FormGroup} from '@angular/forms';
-import {DateService} from '../../core/date.service';
 import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
-
-const GWEI: number = 1000000000000000000;
+import { BigNumber } from "bignumber.js";
+import {DateService} from '../../core/date.service';
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -20,34 +19,92 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     accounts: string[];
     provider: string;
     dto: TokenPurchase;
-    currentAccountBalanceGwei: number = 0;
-    currentAccountBalanceEther: string = '';
+    currentAccountBalanceWei: BigNumber = 0;
+    currentAccountBalanceEther: string = '0';
     form: FormGroup;
     startDate: moment.Moment;
     endDate: moment.Moment;
     status = null;
     started = false;
+    ended = false;
 
-    private retrieveAccountBalance(account: string): void {
+    private getAccountBalance(account: string): void {
         this.web3Service.getAccountBalance(account)
             .takeWhile(() => this.alive)
-            .subscribe((balance: number) => {
-                    this.currentAccountBalanceGwei = balance;
-                    this.currentAccountBalanceEther = '' + (balance / GWEI);
+            .subscribe((balance: BigNumber) => {
+                    this.currentAccountBalanceWei = balance;
+                    this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
                 },
-                error => this.status = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
     }
 
-    private createTokenPurchase(account: string): TokenPurchase {
+    private createFormObject(account: string): TokenPurchase {
         const receiver: string = environment.ethWalletAddress;
         return new TokenPurchase(this.startDate, this.endDate, account, receiver);
     }
 
-    private retrieveCrowdsaleStartDate(): void {
+    /**
+     * Save start time
+     */
+    private startTime(): void {
+        this.tokenContractService.startTime()
+            .takeWhile(() => this.alive)
+            .subscribe((startTime: BigNumber) => {
+                    this.startDate = DateService.bigNumberToMoment(startTime);
+                    console.log(this.startDate.format());
+                }, error => this.status = 'CODE.ERROR',
+                () => {
+                }
+            )
+    }
 
+    /**
+     * Save end time
+     */
+    private endTime(): void {
+        this.tokenContractService.endTime()
+            .takeWhile(() => this.alive)
+            .subscribe((endTime: BigNumber) => {
+                    this.endDate = DateService.bigNumberToMoment(endTime);
+                    console.log(this.endDate.format());
+                }, error => this.status = 'CODE.ERROR',
+                () => {
+                }
+            )
+    }
+
+    /**
+     * Check to see if the token sale has started
+     */
+    private hasStarted(): void {
+        this.tokenContractService.hasStarted()
+            .takeWhile(() => this.alive)
+            .subscribe((hasStarted: boolean) => {
+                    this.started = hasStarted;
+                }, error => this.status = 'CODE.ERROR',
+                () => {
+                }
+            )
+    }
+
+    /**
+     * Check to see if the token sale has ended
+     */
+    private hasEnded(): void {
+        this.tokenContractService.hasEnded()
+            .takeWhile(() => this.alive)
+            .subscribe((hasEnded: boolean) => {
+                    this.ended = hasEnded;
+                }, error => this.status = 'CODE.ERROR',
+                () => {
+                }
+            )
     }
 
     private retrieveAccounts(): void {
@@ -57,36 +114,36 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     this.accounts = accounts;
 
                     // populate the form
-                    this.dto = this.createTokenPurchase(accounts[0]);
+                    this.dto = this.createFormObject(accounts[0]);
                     this.dto.populateFormValues(this.form);
 
                     // check that the provider exists
                     this.provider = this.web3Service.getProviderName();
                     if (this.provider == null) {
-                        this.status = 'You need to have the Mist browser or MetaMask plugin installed and be on mainnet.';
+                        this.status = 'CODE.NOT_CONNECTED';
                     }
 
                     // retrieve current account balance in Ether
-                    this.retrieveAccountBalance(accounts[0]);
+                    this.getAccountBalance(accounts[0]);
                 },
-                error => this.status = error,
+                error => this.status = 'CODE.ERROR',
                 () => {
                 }
             );
     }
 
     buyTokens(): void {
-        this.status = 'Initiating transaction... (please wait)';
+        // this.status = 'Initiating transaction... (please wait)';
 
-        this.tokenContractService.getTokenInstance()
-            .takeWhile(() => this.alive)
-            .subscribe((tokenInstance: any) => {
-                    console.log(`Buying ${this.dto.amount} tokens...`);
-                },
-                error => this.status = error,
-                () => {
-                }
-            );
+        // this.tokenContractService.getTravelkoinNormalSale()
+        //     .takeWhile(() => this.alive)
+        //     .subscribe((tokenInstance: any) => {
+        //             console.log(`Buying ${this.dto.amount} tokens...`);
+        //         },
+        //         error => this.status = error,
+        //         () => {
+        //         }
+        //     );
 
     }
 
@@ -95,20 +152,24 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.retrieveAccounts();
+        this.provider = this.web3Service.getProviderName();
+        this.startTime();
+        this.endTime();
+
+        if (this.web3Service.isConnected()) {
+            this.retrieveAccounts();
+        } else {
+            this.status = 'CODE.NOT_LOGGED_IN';
+        }
 
         this.form = new FormGroup({});
-
-        this.startDate = DateService.utcToMoment(environment.eventStartDate);
-        this.endDate = DateService.utcToMoment(environment.eventEndDate);
 
         // check if event has started every 5 seconds
         Observable.interval(5000)
             .takeWhile(() => this.alive && this.started === false)
             .subscribe(() => {
-
-                const now = DateService.getInstanceOfNow();
-                this.started = DateService.isSameOrAfter(now, this.startDate) && DateService.isSameOrBefore(now, this.endDate);
+                this.hasStarted();
+                this.hasEnded();
             });
     }
 
