@@ -72,6 +72,14 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.hasStarted()));
     }
 
+    minContribution(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.minContribution()));
+    }
+
+    balance(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
+    }
+
     hasEnded(): Observable<boolean> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.hasEnded()));
     }
@@ -84,12 +92,20 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.endTime()));
     }
 
+    crowdsaleAddress(): Observable<string> {
+        return this.getTravelkoinNormalSale().map((ti: TravelkoinNormalSale) => ti.address);
+    }
+
     totalSupply(): Observable<BigNumber> {
         return this.getTravelkoinMiniMeToken().switchMap((ti: TravelkoinMiniMeToken) => Observable.fromPromise(ti.totalSupply()));
     }
 
     isCrowdsaleOpen(): Observable<boolean> {
         return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.isCrowdsaleOpen()));
+    }
+
+    tokenAddress(): Observable<string> {
+        return this.getTravelkoinMiniMeToken().map((ti: TravelkoinMiniMeToken) => ti.address);
     }
 
     constructor(private web3Service: Web3Service) {

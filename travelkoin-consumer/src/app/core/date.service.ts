@@ -271,7 +271,7 @@ export class DateService {
     }
 
     static bigNumberToMoment(startTime: BigNumber) {
-        return moment.unix(startTime);
+        return moment.unix(startTime.toNumber());
     }
 
     constructor() {

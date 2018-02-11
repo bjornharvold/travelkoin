@@ -12,6 +12,18 @@ export class Web3Service {
     private _web3: W3;
     private _provider: string;
 
+    static weiToEther(value: BigNumber): string {
+        let result: string = null;
+        // console.log(this.getWeb3().utils);
+        // return this.getWeb3().utils.fromWei(value, 'ether');
+        // console.log(value.dividedBy(1e18).toFormat(0));
+        // console.log(typeof value.dividedBy(1e18).toFormat(0));
+        if (value != null) {
+            result = value.dividedBy(1e18).toFormat(8);
+        }
+        return result;
+    }
+
     /**
      * Loads Ethereum's Web3 into the app
      * @returns {Web3}
@@ -82,14 +94,6 @@ export class Web3Service {
         }
 
         return result;
-    }
-
-    weiToEther(value: BigNumber): string {
-        // console.log(this.getWeb3().utils);
-        // return this.getWeb3().utils.fromWei(value, 'ether');
-        // console.log(value.dividedBy(1e18).toFormat(0));
-        // console.log(typeof value.dividedBy(1e18).toFormat(0));
-        return value.dividedBy(1e18).toFormat(8);
     }
     isConnected(): boolean {
         return true;

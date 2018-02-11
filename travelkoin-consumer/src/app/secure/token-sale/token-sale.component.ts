@@ -19,7 +19,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     accounts: string[];
     provider: string;
     dto: TokenPurchase;
-    currentAccountBalanceWei: BigNumber = 0;
+    currentAccountBalanceWei: BigNumber;
     currentAccountBalanceEther: string = '0';
     form: FormGroup;
     startDate: moment.Moment;
@@ -31,9 +31,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     private getAccountBalance(account: string): void {
         this.web3Service.getAccountBalance(account)
             .takeWhile(() => this.alive)
-            .subscribe((balance: BigNumber) => {
-                    this.currentAccountBalanceWei = balance;
-                    this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
+            .subscribe((balance: any) => {
+                    this.currentAccountBalanceWei = balance instanceof BigNumber ? balance as BigNumber : null;
+                    this.currentAccountBalanceEther = Web3Service.weiToEther(this.currentAccountBalanceWei);
                 },
                 error => {
                     console.error(error);

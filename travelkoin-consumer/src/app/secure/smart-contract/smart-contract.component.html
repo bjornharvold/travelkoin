@@ -1,0 +1,81 @@
+<div id="page-title">
+    <h2>
+        <i class="fab fa-ethereum"></i>
+        {{ 'CONTRACT.TITLE' | translate }}</h2>
+    <p>{{ 'CONTRACT.DESCRIPTION' | translate }}</p>
+</div>
+
+<form [formGroup]="form" *ngIf="form != null">
+    <div class="content-box">
+        <div class="content-box-wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="form.get('crowdsaleAddress')" class="form-group">
+                        <label for="crowdsaleAddress">{{ 'CONTRACT.CROWDSALE_ADDRESS' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="crowdsaleAddress" type="text" class="form-control form-control-lg border-green" name="crowdsaleAddress" formControlName="crowdsaleAddress">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.CROWDSALE_ADDRESS_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="form.get('tokenAddress')" class="form-group">
+                        <label for="tokenAddress">{{ 'CONTRACT.TOKEN_ADDRESS' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="tokenAddress" type="text" class="form-control form-control-lg border-green" name="tokenAddress" formControlName="tokenAddress">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.TOKEN_ADDRESS_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('startDate')" class="form-group">
+                        <label for="startDate">{{ 'CONTRACT.START_DATE' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="startDate" type="text" class="form-control form-control-lg border-green" name="startDate" formControlName="startDate">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.START_DATE_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('endDate')" class="form-group">
+                        <label for="endDate">{{ 'CONTRACT.END_DATE' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="endDate" type="text" class="form-control form-control-lg border-green" name="endDate" formControlName="endDate">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.END_DATE_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('totalSupply')" class="form-group">
+                        <label for="totalSupply">{{ 'CONTRACT.TOTAL_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="totalSupply" type="text" class="form-control form-control-lg border-green" name="totalSupply" formControlName="totalSupply">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.TOTAL_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('minContribution')" class="form-group">
+                        <label for="minContribution">{{ 'CONTRACT.MINIMUM_CONTRIBUTION' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="minContribution" type="text" class="form-control form-control-lg border-green" name="minContribution" formControlName="minContribution">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.MINIMUM_CONTRIBUTION_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

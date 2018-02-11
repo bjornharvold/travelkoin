@@ -392,6 +392,22 @@
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
+  "CONTRACT": {
+    "TITLE": "Smart Contract",
+    "START_DATE": "Start date",
+    "START_DATE_HELP": "The ICO will begin on this date.",
+    "END_DATE": "End date",
+    "END_DATE_HELP": "The ICO will end on this date unless the hard cap has already been reached.",
+    "CROWDSALE_ADDRESS": "ICO contract address",
+    "CROWDSALE_ADDRESS_HELP": "This is the address for our crowd sale smart contract.",
+    "TOKEN_ADDRESS": "Token contract address",
+    "TOKEN_ADDRESS_HELP": "This is the address for the Travelkoin token.",
+    "TOTAL_SUPPLY": "Total supply",
+    "TOTAL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens created.",
+    "MINIMUM_CONTRIBUTION": "Minimum contribution",
+    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount you are allowed to invest in this ICO.",
+    "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values are all directly from the contract."
+  },
   "TOKEN_WALLET": {
     "TITLE": "Travelkoin Wallet"
   },
