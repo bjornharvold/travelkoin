@@ -9,17 +9,18 @@ import { BigNumber } from "bignumber.js";
 
 @Injectable()
 export class Web3Service {
-    private _web3: W3;
+    private _w3: W3;
     private _provider: string;
 
-    static weiToEther(value: BigNumber): string {
+    weiToEther(value: BigNumber): string {
         let result: string = null;
         // console.log(this.getWeb3().utils);
         // return this.getWeb3().utils.fromWei(value, 'ether');
         // console.log(value.dividedBy(1e18).toFormat(0));
         // console.log(typeof value.dividedBy(1e18).toFormat(0));
         if (value != null) {
-            result = value.dividedBy(1e18).toFormat(8);
+            result= this.getW3().web3.fromWei(value, 'ether');
+            // result = value.dividedBy(1e18).toFormat(8);
         }
         return result;
     }
@@ -28,14 +29,14 @@ export class Web3Service {
      * Loads Ethereum's Web3 into the app
      * @returns {Web3}
      */
-    getWeb3(): W3 {
+    getW3(): W3 {
         let result: W3 = null;
 
-        if (this._web3 != null) {
-            result = this._web3;
+        if (this._w3 != null) {
+            result = this._w3;
         } else {
             // Use Mist / MetaMask's provider
-            result = this._web3 = new W3();
+            result = this._w3 = new W3();
         }
 
         return result;
@@ -44,10 +45,10 @@ export class Web3Service {
     getProviderName(): string {
         let providerName = null;
 
-        const web3: W3 = this.getWeb3();
-        if (web3 != null) {
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
             // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-            this._provider = web3.currentProvider.constructor.name;
+            this._provider = w3.currentProvider.constructor.name;
 
             if (this._provider === 'MetamaskInpageProvider') {
                 providerName = 'METAMASK';
@@ -64,9 +65,9 @@ export class Web3Service {
     getAccountBalance(account: string): Observable<number> {
         let result: Observable<number>;
 
-        const web3: W3 = this.getWeb3();
-        if (web3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(this.getWeb3().eth.getBalance);
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
+            const callbackObservable = Observable.bindNodeCallback(this.getW3().eth.getBalance);
             result = callbackObservable(account, 'latest');
             // result = Observable.of(10000000000000000);
             // result = Observable.fromPromise(this.getWeb3().eth.getBalance(account));
@@ -85,9 +86,9 @@ export class Web3Service {
     getAccounts(): Observable<Array<string>> {
         let result: Observable<Array<string>>;
 
-        const web3: W3 = this.getWeb3();
-        if (web3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(this.getWeb3().eth.getAccounts);
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
+            const callbackObservable = Observable.bindNodeCallback(this.getW3().eth.getAccounts);
             result = callbackObservable();
         } else {
             result = Observable.throw('CODE.NOT_CONNECTED');
@@ -95,8 +96,9 @@ export class Web3Service {
 
         return result;
     }
+
     isConnected(): boolean {
-        return true;
+        return this.getW3().web3.isConnected();
     }
 
     constructor() {

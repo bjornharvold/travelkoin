@@ -5,7 +5,11 @@
     <p>{{ 'CONTRACT.DESCRIPTION' | translate }}</p>
 </div>
 
-<form [formGroup]="form" *ngIf="form != null">
+<div class="row mrg10B" *ngIf="error != null">
+    <div class="col-sm-12 font-red">{{ error }}</div>
+</div>
+
+<form [formGroup]="form" *ngIf="form != null && error == null">
     <div class="content-box">
         <div class="content-box-wrapper">
             <div class="row">
@@ -63,6 +67,28 @@
                             <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.TOTAL_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('cap')" class="form-group">
+                        <label for="cap">{{ 'CONTRACT.TRAVELKOIN_BALANCE' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="cap" type="text" class="form-control form-control-lg border-green" name="cap" formControlName="cap">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.TRAVELKOIN_BALANCE_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('rate')" class="form-group">
+                        <label for="rate">{{ 'CONTRACT.RATE' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="rate" type="text" class="form-control form-control-lg border-green" name="rate" formControlName="rate">
+                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.RATE_HELP' | translate }}</small>
                     </div>
                 </div>
                 <div class="col-sm-6">

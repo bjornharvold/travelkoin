@@ -385,7 +385,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         return weiToCap;
     }
 
-    /// @notice For a give date how many 24 hour blocks have ellapsed since token sale start
+    /// @notice For a give date how many 24 hour blocks have elapsed since token sale start
     /// @dev _time has to be bigger than the startTime of token sale, otherwise SafeMath's div will throw.
     ///  Within 24 hours of token sale it will return 1, 
     ///  between 24 and 48 hours it will return 2, etc.

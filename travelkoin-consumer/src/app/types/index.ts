@@ -6,6 +6,8 @@ export * from './ERC20MiniMe';
 export * from './Migrations';
 export * from './MiniMeToken';
 export * from './MiniMeTokenFactory';
+export * from './MultiSigWallet';
+export * from './MultiSigWalletWithDailyLimit';
 export * from './Ownable';
 export * from './Pausable';
 export * from './SafeMath';

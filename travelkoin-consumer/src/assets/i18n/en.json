@@ -404,8 +404,12 @@
     "TOKEN_ADDRESS_HELP": "This is the address for the Travelkoin token.",
     "TOTAL_SUPPLY": "Total supply",
     "TOTAL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens created.",
+    "RATE": "TKT / ETH conversion rate",
+    "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
+    "TRAVELKOIN_BALANCE": "Tokens available for sale during ICO",
+    "TRAVELKOIN_BALANCE_HELP": "These are the number of tokens set aside for our ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
-    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount you are allowed to invest in this ICO.",
+    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values are all directly from the contract."
   },
   "TOKEN_WALLET": {

@@ -3,14 +3,14 @@ import { BigNumber } from 'bignumber.js';
 import { W3, SoltsiceContract } from 'soltsice';
 
 /**
- * TravelkoinMultiSigWallet API
+ * MultiSigWallet API
  */
-export class TravelkoinMultiSigWallet extends SoltsiceContract {
+export class MultiSigWallet extends SoltsiceContract {
     static get Artifacts() { return require('../contracts/TravelkoinMultiSigWallet.json'); }
 
     static get BytecodeHash() {
         // we need this before ctor, but artifacts are static and we cannot pass it to the base class, so need to generate
-        let artifacts = TravelkoinMultiSigWallet.Artifacts;
+        let artifacts = MultiSigWallet.Artifacts;
         if (!artifacts || !artifacts.bytecode) {
             return undefined;
         }
@@ -19,20 +19,20 @@ export class TravelkoinMultiSigWallet extends SoltsiceContract {
     }
 
     // tslint:disable-next-line:max-line-length
-    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_owners: string[], _required: BigNumber | number}, w3?: W3, link?: SoltsiceContract[]): Promise<TravelkoinMultiSigWallet> {
-        let contract = new TravelkoinMultiSigWallet(deploymentParams, ctorParams, w3, link);
+    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_owners: string[], _required: BigNumber | number}, w3?: W3, link?: SoltsiceContract[]): Promise<MultiSigWallet> {
+        let contract = new MultiSigWallet(deploymentParams, ctorParams, w3, link);
         await contract._instancePromise;
         return contract;
     }
 
-    static async At(address: string | object, w3?: W3): Promise<TravelkoinMultiSigWallet> {
-        let contract = new TravelkoinMultiSigWallet(address, undefined, w3, undefined);
+    static async At(address: string | object, w3?: W3): Promise<MultiSigWallet> {
+        let contract = new MultiSigWallet(address, undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
     }
 
-    static async Deployed(w3?: W3): Promise<TravelkoinMultiSigWallet> {
-        let contract = new TravelkoinMultiSigWallet('', undefined, w3, undefined);
+    static async Deployed(w3?: W3): Promise<MultiSigWallet> {
+        let contract = new MultiSigWallet('', undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
     }
@@ -46,7 +46,7 @@ export class TravelkoinMultiSigWallet extends SoltsiceContract {
         // tslint:disable-next-line:max-line-length
         super(
             w3,
-            TravelkoinMultiSigWallet.Artifacts,
+            MultiSigWallet.Artifacts,
             ctorParams ? [ctorParams!._owners, ctorParams!._required] : [],
             deploymentParams,
             link
