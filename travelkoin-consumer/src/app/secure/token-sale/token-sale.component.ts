@@ -25,15 +25,14 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     startDate: moment.Moment;
     endDate: moment.Moment;
     status = null;
-    started = false;
-    ended = false;
+    isCrowdsaleOpen = false;
 
     private getAccountBalance(account: string): void {
         this.web3Service.getAccountBalance(account)
             .takeWhile(() => this.alive)
             .subscribe((balance: any) => {
                     this.currentAccountBalanceWei = balance instanceof BigNumber ? balance as BigNumber : null;
-                    this.currentAccountBalanceEther = Web3Service.weiToEther(this.currentAccountBalanceWei);
+                    this.currentAccountBalanceEther = this.web3Service.weiToEther(this.currentAccountBalanceWei);
                 },
                 error => {
                     console.error(error);
@@ -80,27 +79,13 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Check to see if the token sale has started
-     */
-    private hasStarted(): void {
-        this.tokenContractService.hasStarted()
-            .takeWhile(() => this.alive)
-            .subscribe((hasStarted: boolean) => {
-                    this.started = hasStarted;
-                }, error => this.status = 'CODE.ERROR',
-                () => {
-                }
-            )
-    }
-
-    /**
      * Check to see if the token sale has ended
      */
-    private hasEnded(): void {
-        this.tokenContractService.hasEnded()
+    private getIsCrowdsaleOpen(): void {
+        this.tokenContractService.isCrowdsaleOpen()
             .takeWhile(() => this.alive)
-            .subscribe((hasEnded: boolean) => {
-                    this.ended = hasEnded;
+            .subscribe((isOpen: boolean) => {
+                    this.isCrowdsaleOpen = isOpen;
                 }, error => this.status = 'CODE.ERROR',
                 () => {
                 }
@@ -166,10 +151,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
         // check if event has started every 5 seconds
         Observable.interval(5000)
-            .takeWhile(() => this.alive && this.started === false)
+            .takeWhile(() => this.alive && this.isCrowdsaleOpen === false)
             .subscribe(() => {
-                this.hasStarted();
-                this.hasEnded();
+                this.getIsCrowdsaleOpen();
             });
     }
 

@@ -18,7 +18,7 @@
                         <label for="crowdsaleAddress">{{ 'CONTRACT.CROWDSALE_ADDRESS' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="crowdsaleAddress" type="text" class="form-control form-control-lg border-green" name="crowdsaleAddress" formControlName="crowdsaleAddress">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.CROWDSALE_ADDRESS_HELP' | translate }}</small>
                     </div>
@@ -30,7 +30,7 @@
                         <label for="tokenAddress">{{ 'CONTRACT.TOKEN_ADDRESS' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="tokenAddress" type="text" class="form-control form-control-lg border-green" name="tokenAddress" formControlName="tokenAddress">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.TOKEN_ADDRESS_HELP' | translate }}</small>
                     </div>
@@ -42,7 +42,7 @@
                         <label for="startDate">{{ 'CONTRACT.START_DATE' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="startDate" type="text" class="form-control form-control-lg border-green" name="startDate" formControlName="startDate">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.START_DATE_HELP' | translate }}</small>
                     </div>
@@ -52,7 +52,7 @@
                         <label for="endDate">{{ 'CONTRACT.END_DATE' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="endDate" type="text" class="form-control form-control-lg border-green" name="endDate" formControlName="endDate">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.END_DATE_HELP' | translate }}</small>
                     </div>
@@ -64,19 +64,19 @@
                         <label for="totalSupply">{{ 'CONTRACT.TOTAL_SUPPLY' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="totalSupply" type="text" class="form-control form-control-lg border-green" name="totalSupply" formControlName="totalSupply">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.TOTAL_SUPPLY_HELP' | translate }}</small>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div *ngIf="form.get('cap')" class="form-group">
-                        <label for="cap">{{ 'CONTRACT.TRAVELKOIN_BALANCE' | translate }}</label>
+                        <label for="cap">{{ 'CONTRACT.CAP' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="cap" type="text" class="form-control form-control-lg border-green" name="cap" formControlName="cap">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
-                        <small class="form-text text-muted">{{ 'CONTRACT.TRAVELKOIN_BALANCE_HELP' | translate }}</small>
+                        <small class="form-text text-muted">{{ 'CONTRACT.CAP_HELP' | translate }}</small>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                         <label for="rate">{{ 'CONTRACT.RATE' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="rate" type="text" class="form-control form-control-lg border-green" name="rate" formControlName="rate">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.RATE_HELP' | translate }}</small>
                     </div>
@@ -96,9 +96,109 @@
                         <label for="minContribution">{{ 'CONTRACT.MINIMUM_CONTRIBUTION' | translate }}</label>
                         <div class="input-group input-group-lg">
                             <input id="minContribution" type="text" class="form-control form-control-lg border-green" name="minContribution" formControlName="minContribution">
-                            <span class="input-group-addon"><i class="fas fa-check font-green"></i></span>
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.MINIMUM_CONTRIBUTION_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('saleSupply')" class="form-group">
+                        <label for="saleSupply">{{ 'CONTRACT.SALE_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="saleSupply" type="text" class="form-control form-control-lg border-green" name="saleSupply" formControlName="saleSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.SALE_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('bountySupply')" class="form-group">
+                        <label for="bountySupply">{{ 'CONTRACT.BOUNTY_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="bountySupply" type="text" class="form-control form-control-lg border-green" name="bountySupply" formControlName="bountySupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.BOUNTY_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('communitySupply')" class="form-group">
+                        <label for="communitySupply">{{ 'CONTRACT.COMMUNITY_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="communitySupply" type="text" class="form-control form-control-lg border-green" name="communitySupply" formControlName="communitySupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.COMMUNITY_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('investorSupply')" class="form-group">
+                        <label for="investorSupply">{{ 'CONTRACT.INVESTOR_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="investorSupply" type="text" class="form-control form-control-lg border-green" name="investorSupply" formControlName="investorSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.INVESTOR_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('teamSupply')" class="form-group">
+                        <label for="teamSupply">{{ 'CONTRACT.TEAM_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="teamSupply" type="text" class="form-control form-control-lg border-green" name="teamSupply" formControlName="teamSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.TEAM_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('founderSupply')" class="form-group">
+                        <label for="founderSupply">{{ 'CONTRACT.FOUNDER_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="founderSupply" type="text" class="form-control form-control-lg border-green" name="founderSupply" formControlName="founderSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.FOUNDER_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('threeMonthHODLSupply')" class="form-group">
+                        <label for="threeMonthHODLSupply">{{ 'CONTRACT.THREE_MONTH_HODL_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="threeMonthHODLSupply" type="text" class="form-control form-control-lg border-green" name="threeMonthHODLSupply" formControlName="threeMonthHODLSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.THREE_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('sixMonthHODLSupply')" class="form-group">
+                        <label for="sixMonthHODLSupply">{{ 'CONTRACT.SIX_MONTH_HODL_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="sixMonthHODLSupply" type="text" class="form-control form-control-lg border-green" name="sixMonthHODLSupply" formControlName="sixMonthHODLSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.SIX_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('nineMonthHODLSupply')" class="form-group">
+                        <label for="nineMonthHODLSupply">{{ 'CONTRACT.NINE_MONTH_HODL_SUPPLY' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="nineMonthHODLSupply" type="text" class="form-control form-control-lg border-green" name="nineMonthHODLSupply" formControlName="nineMonthHODLSupply">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.NINE_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
                     </div>
                 </div>
             </div>

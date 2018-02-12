@@ -112,7 +112,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private saleSupply(form: FormGroup): void {
+    private loadSaleSupply(form: FormGroup): void {
         this.tokenContractService.saleSupply()
             .takeWhile(() => this.alive)
             .subscribe((saleSupply: BigNumber) => {
@@ -124,7 +124,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private bountySupply(form: FormGroup): void {
+    private loadBountySupply(form: FormGroup): void {
         this.tokenContractService.bountySupply()
             .takeWhile(() => this.alive)
             .subscribe((bountySupply: BigNumber) => {
@@ -136,7 +136,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private communitySupply(form: FormGroup): void {
+    private loadCommunitySupply(form: FormGroup): void {
         this.tokenContractService.communitySupply()
             .takeWhile(() => this.alive)
             .subscribe((communitySupply: BigNumber) => {
@@ -148,43 +148,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private threeMonthHODLSupply(form: FormGroup): void {
-        this.tokenContractService.threeMonthHODLSupply()
-            .takeWhile(() => this.alive)
-            .subscribe((threeMonthHODLSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'threeMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(threeMonthHODLSupply), disabled: true}))
-                },
-                error => this.error = error,
-                () => {
-                }
-            )
-    }
-
-    private sixMonthHODLSupply(form: FormGroup): void {
-        this.tokenContractService.sixMonthHODLSupply()
-            .takeWhile(() => this.alive)
-            .subscribe((sixMonthHODLSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'sixMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(sixMonthHODLSupply), disabled: true}))
-                },
-                error => this.error = error,
-                () => {
-                }
-            )
-    }
-
-    private nineMonthHODLSupply(form: FormGroup): void {
-        this.tokenContractService.nineMonthHODLSupply()
-            .takeWhile(() => this.alive)
-            .subscribe((nineMonthHODLSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'nineMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(nineMonthHODLSupply), disabled: true}))
-                },
-                error => this.error = error,
-                () => {
-                }
-            )
-    }
-
-    private founderSupply(form: FormGroup): void {
+    private loadFounderSupply(form: FormGroup): void {
         this.tokenContractService.founderSupply()
             .takeWhile(() => this.alive)
             .subscribe((founderSupply: BigNumber) => {
@@ -196,7 +160,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private investorSupply(form: FormGroup): void {
+    private loadInvestorSupply(form: FormGroup): void {
         this.tokenContractService.investorSupply()
             .takeWhile(() => this.alive)
             .subscribe((investorSupply: BigNumber) => {
@@ -208,11 +172,47 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
-    private teamSupply(form: FormGroup): void {
+    private loadTeamSupply(form: FormGroup): void {
         this.tokenContractService.teamSupply()
             .takeWhile(() => this.alive)
             .subscribe((teamSupply: BigNumber) => {
                     FormHelper.addOrReplaceFormControl(form, 'teamSupply', new FormControl({value: this.web3Service.weiToEther(teamSupply), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadThreeMonthHODLSupply(form: FormGroup): void {
+        this.tokenContractService.threeMonthHODLSupply()
+            .takeWhile(() => this.alive)
+            .subscribe((threeMonthHODLSupply: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'threeMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(threeMonthHODLSupply), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadSixMonthHODLSupply(form: FormGroup): void {
+        this.tokenContractService.sixMonthHODLSupply()
+            .takeWhile(() => this.alive)
+            .subscribe((sixMonthHODLSupply: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'sixMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(sixMonthHODLSupply), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadNineMonthHODLSupply(form: FormGroup): void {
+        this.tokenContractService.nineMonthHODLSupply()
+            .takeWhile(() => this.alive)
+            .subscribe((nineMonthHODLSupply: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'nineMonthHODLSupply', new FormControl({value: this.web3Service.weiToEther(nineMonthHODLSupply), disabled: true}))
                 },
                 error => this.error = error,
                 () => {
@@ -235,6 +235,15 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.loadMinContribution(this.form);
         this.loadRate(this.form);
         this.loadCrowdsaleCap(this.form);
+        this.loadSaleSupply(this.form);
+        this.loadBountySupply(this.form);
+        this.loadTeamSupply(this.form);
+        this.loadInvestorSupply(this.form);
+        this.loadFounderSupply(this.form);
+        this.loadCommunitySupply(this.form);
+        this.loadThreeMonthHODLSupply(this.form);
+        this.loadSixMonthHODLSupply(this.form);
+        this.loadNineMonthHODLSupply(this.form);
     }
 
     constructor(private web3Service: Web3Service,
