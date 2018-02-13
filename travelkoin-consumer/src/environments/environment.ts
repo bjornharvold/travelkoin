@@ -25,7 +25,7 @@ export const environment = {
         MiniMeTokenFactory: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f',
         TravelkoinController: '0x9fbda871d559710256a2502a2517b794b482db40',
         TravelkoinMiniMeToken: '0x2c2b9c9a4a25e24b174f26114e8926a9f2128fe4',
-        TravelkoinNormalSale: '0xaa588d3737b611bafd7bd713445b314bd453a5c8'
+        TravelkoinNormalSale: '0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6'
     },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',

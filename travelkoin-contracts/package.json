@@ -3,7 +3,7 @@
   "version": "5.22.0",
   "description": "Travelkoin token sale",
   "scripts": {
-    "generate": "truffle compile && soltsice ./build/contracts ./build/types && cp -fv ./build/contracts/*.* ../travelkoin-consumer/src/app/contracts/ && cp -fv ./build/types/*.* ../travelkoin-consumer/src/app/types/",
+    "generate": "rm -rf ../travelkoin-consumer/src/app/contracts ../travelkoin-consumer/src/app/types build && truffle compile && soltsice ./build/contracts ./build/types && mkdir ../travelkoin-consumer/src/app/contracts && mkdir ../travelkoin-consumer/src/app/types && cp -fv ./build/contracts/*.* ../travelkoin-consumer/src/app/contracts/ && cp -fv ./build/types/*.* ../travelkoin-consumer/src/app/types/",
     "test": "scripts/test.sh",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -30,7 +30,7 @@
   "license": "BJORNWARE",
   "homepage": "https://travelkoin.io",
   "devDependencies": {
-    "@types/node": "^9.4.4",
+    "@types/node": "^9.4.5",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -54,13 +54,13 @@
     "truffle": "^4.0.6",
     "truffle-hdwallet-provider": "0.0.3",
     "tslint": "^5.9.1",
-    "tslint-react": "^3.4.0",
+    "tslint-react": "^3.5.0",
     "typescript": "^2.6.2"
   },
   "dependencies": {
     "dotenv": "^5.0.0",
     "ethjs-abi": "^0.2.1",
-    "soltsice": "^0.10.2",
+    "soltsice": "^0.10.3",
     "zeppelin-solidity": "1.6.0"
   }
 }

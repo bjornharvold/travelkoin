@@ -428,7 +428,15 @@
     "CAP_HELP": "This maximum number of tokens set aside for our ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
     "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
-    "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values are all come directly from the contract."
+    "VESTING_TEAM_DURATION": "Team token vesting",
+    "VESTING_TEAM_DURATION_HELP": "This is how long it takes for team tokens to vest (in days).",
+    "VESTING_ADVISORS_DURATION": "Advisors token vesting",
+    "VESTING_ADVISORS_DURATION_HELP": "This is how long it takes for advisors tokens to vest (in days).",
+    "VESTING_TEAM_CLIFF": "Team token cliff",
+    "VESTING_TEAM_CLIFF_HELP": "This is the minimum amount of time a team member has to stay with the team before that person gets any tokens at all (in days).",
+    "VESTING_ADVISORS_CLIFF": "Advisors token cliff",
+    "VESTING_ADVISORS_CLIFF_HELP": "This is the minimum amount of time an advisor has to stay with the team before that person gets any tokens at all (in days).",
+    "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
     "TITLE": "Travelkoin Wallet"

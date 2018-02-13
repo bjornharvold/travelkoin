@@ -155,6 +155,22 @@ export class TokenContractService {
         return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.TOKEN_SALE1_NORMAL()));
     }
 
+    vestingTeamDuration(): Observable<BigNumber> {
+        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.VESTING_TEAM_DURATION()));
+    }
+
+    vestingTeamCliff(): Observable<BigNumber> {
+        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.VESTING_TEAM_CLIFF()));
+    }
+
+    vestingAdvisorsDuration(): Observable<BigNumber> {
+        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.VESTING_ADVISOR_DURATION()));
+    }
+
+    vestingAdvisorsCliff(): Observable<BigNumber> {
+        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.VESTING_ADVISOR_CLIFF()));
+    }
+
     constructor(private web3Service: Web3Service) {
     }
 

@@ -4,6 +4,7 @@ import {TokenContractService} from '../../core/token-contract.service';
 import {FormHelper} from '../../model/form-helper';
 import {DateService} from '../../core/date.service';
 import {Web3Service} from '../../core/web3.service';
+import { BigNumber } from 'bignumber.js';
 
 @Component({
     selector: 'app-smart-contract',
@@ -220,6 +221,54 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
+    private loadTeamVestingDuration(form: FormGroup): void {
+        this.tokenContractService.vestingTeamDuration()
+            .takeWhile(() => this.alive)
+            .subscribe((vestingTeamDuration: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'vestingTeamDuration', new FormControl({value: vestingTeamDuration.dividedBy(86400), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadTeamVestingCliff(form: FormGroup): void {
+        this.tokenContractService.vestingTeamCliff()
+            .takeWhile(() => this.alive)
+            .subscribe((vestingTeamCliff: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'vestingTeamCliff', new FormControl({value: vestingTeamCliff.dividedBy(86400), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadAdvisorsVestingDuration(form: FormGroup): void {
+        this.tokenContractService.vestingAdvisorsDuration()
+            .takeWhile(() => this.alive)
+            .subscribe((vestingAdvisorsDuration: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'vestingAdvisorsDuration', new FormControl({value: vestingAdvisorsDuration.dividedBy(86400), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
+    private loadAdvisorsVestingCliff(form: FormGroup): void {
+        this.tokenContractService.vestingAdvisorsCliff()
+            .takeWhile(() => this.alive)
+            .subscribe((vestingAdvisorsCliff: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'vestingAdvisorsCliff', new FormControl({value: vestingAdvisorsCliff.dividedBy(86400), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
     ngOnDestroy() {
         this.alive = false;
     }
@@ -244,6 +293,10 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.loadThreeMonthHODLSupply(this.form);
         this.loadSixMonthHODLSupply(this.form);
         this.loadNineMonthHODLSupply(this.form);
+        this.loadAdvisorsVestingDuration(this.form);
+        this.loadAdvisorsVestingCliff(this.form);
+        this.loadTeamVestingDuration(this.form);
+        this.loadTeamVestingCliff(this.form);
     }
 
     constructor(private web3Service: Web3Service,

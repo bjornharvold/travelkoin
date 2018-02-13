@@ -169,7 +169,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div *ngIf="form.get('threeMonthHODLSupply')" class="form-group">
                         <label for="threeMonthHODLSupply">{{ 'CONTRACT.THREE_MONTH_HODL_SUPPLY' | translate }}</label>
                         <div class="input-group input-group-lg">
@@ -179,7 +179,7 @@
                         <small class="form-text text-muted">{{ 'CONTRACT.THREE_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div *ngIf="form.get('sixMonthHODLSupply')" class="form-group">
                         <label for="sixMonthHODLSupply">{{ 'CONTRACT.SIX_MONTH_HODL_SUPPLY' | translate }}</label>
                         <div class="input-group input-group-lg">
@@ -189,9 +189,7 @@
                         <small class="form-text text-muted">{{ 'CONTRACT.SIX_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div *ngIf="form.get('nineMonthHODLSupply')" class="form-group">
                         <label for="nineMonthHODLSupply">{{ 'CONTRACT.NINE_MONTH_HODL_SUPPLY' | translate }}</label>
                         <div class="input-group input-group-lg">
@@ -199,6 +197,50 @@
                             <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.NINE_MONTH_HODL_SUPPLY_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('vestingTeamDuration')" class="form-group">
+                        <label for="vestingTeamDuration">{{ 'CONTRACT.VESTING_TEAM_DURATION' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="vestingTeamDuration" type="text" class="form-control form-control-lg border-green" name="vestingTeamDuration" formControlName="vestingTeamDuration">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.VESTING_TEAM_DURATION_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('vestingTeamCliff')" class="form-group">
+                        <label for="vestingTeamCliff">{{ 'CONTRACT.VESTING_TEAM_CLIFF' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="vestingTeamCliff" type="text" class="form-control form-control-lg border-green" name="vestingTeamCliff" formControlName="vestingTeamCliff">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.VESTING_TEAM_CLIFF_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('vestingAdvisorsDuration')" class="form-group">
+                        <label for="vestingAdvisorsDuration">{{ 'CONTRACT.VESTING_ADVISORS_DURATION' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="vestingAdvisorsDuration" type="text" class="form-control form-control-lg border-green" name="vestingAdvisorsDuration" formControlName="vestingAdvisorsDuration">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.VESTING_ADVISORS_DURATION_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="form.get('vestingAdvisorsCliff')" class="form-group">
+                        <label for="vestingAdvisorsCliff">{{ 'CONTRACT.VESTING_ADVISORS_CLIFF' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="vestingAdvisorsCliff" type="text" class="form-control form-control-lg border-green" name="vestingAdvisorsCliff" formControlName="vestingAdvisorsCliff">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT.VESTING_ADVISORS_CLIFF_HELP' | translate }}</small>
                     </div>
                 </div>
             </div>

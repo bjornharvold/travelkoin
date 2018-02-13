@@ -35,7 +35,6 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
     uint256 public constant TOKEN_HODL_3M = 300 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_HODL_6M = 600 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_HODL_9M = 2100 * THOUSAND * TKT_UNIT;
-    uint256 public constant TOKEN_REFERRAL = 500 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_BOUNTY = 500 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_COMMUNITY = 17 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_TEAM = 12 * MILLION * TKT_UNIT;
@@ -231,7 +230,7 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
             // hodler reward
             token.generateTokens(address(hodler), TOKEN_HODL_3M.add(TOKEN_HODL_6M).add(TOKEN_HODL_9M));
             // bounty + referral
-            token.generateTokens(owner, TOKEN_BOUNTY.add(TOKEN_REFERRAL));
+            token.generateTokens(owner, TOKEN_BOUNTY);
             // community fund
             token.generateTokens(address(multiSigWallet), TOKEN_COMMUNITY);
             // team -> grantable

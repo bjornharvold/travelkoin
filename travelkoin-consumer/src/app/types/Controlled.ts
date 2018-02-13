@@ -55,6 +55,17 @@ export class Controlled extends SoltsiceContract {
         Contract methods
     */
     
+    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:variable-name
+    public controller( txParams?: W3.TX.TxParams): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this._instance.controller
+                .call( txParams || this._sendParams)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
+        });
+    }
+    
     // tslint:disable-next-line:member-ordering
     public changeController = Object.assign(
         // tslint:disable-next-line:max-line-length
@@ -104,16 +115,5 @@ export class Controlled extends SoltsiceContract {
                 });
             }
         });
-    
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:variable-name
-    public controller( txParams?: W3.TX.TxParams): Promise<string> {
-        return new Promise((resolve, reject) => {
-            this._instance.controller
-                .call( txParams || this._sendParams)
-                .then((res) => resolve(res))
-                .catch((err) => reject(err));
-        });
-    }
     
 }
