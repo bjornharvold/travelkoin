@@ -5,7 +5,7 @@
         </span>
         {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }} {{ 'TOKEN_CONTRACT.YOU_ARE_USING' | translate }} {{ provider }}
     </h3>
-    <div class="content-box-wrapper" *ngIf="started === true && status == null">
+    <div class="content-box-wrapper" *ngIf="isCrowdsaleOpen === true && status == null">
         <form (ngSubmit)="buyTokens()" [formGroup]="form">
 
             <div class="form-group" *ngIf="form.get('account')">
@@ -32,7 +32,7 @@
 
         </form>
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="started === false && status == null">
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="isCrowdsaleOpen === false && status == null">
         {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
     </div>
     <div class="content-box-wrapper text-center mrg30A" *ngIf="status != null">
