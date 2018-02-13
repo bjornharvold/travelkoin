@@ -22,6 +22,13 @@ export const environment = {
     featureLanguage: true,
     ethWalletAddress: '0xC85c71F4A7c096Df5E6305Ca940b664e30d8ca55',
     siteUrl: 'https://travelkoin.io',
+    contracts: {
+        MultiSigWallet: 'fillmein',
+        MiniMeTokenFactory: 'fillmein',
+        TravelkoinController: 'fillmein',
+        TravelkoinMiniMeToken: 'fillmein',
+        TravelkoinNormalSale: 'fillmein'
+    },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',
         authDomain: 'travelkoin-bc173.firebaseapp.com',
