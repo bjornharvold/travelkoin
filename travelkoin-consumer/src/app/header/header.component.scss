@@ -6,31 +6,32 @@
 
 .logo-container {
   @include flexbox();
-  //line-height: 60px;
+  line-height: 60px;
+  font-size: 25px;
   width: 200px;
   float: left;
   margin-top: 10px;
 
-  a {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    font-size: 25px;
-    text-decoration: none;
-  }
-
-  p {
-    margin-top: -7px;
-    padding-top: 0;
-
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 9px;
-  }
-
-  .logo-motto {
-    @include flexbox();
-    @include justify-content(center);
-    @include flex-direction(column);
-  }
+  //a {
+  //  margin-bottom: 0;
+  //  padding-bottom: 0;
+  //  font-size: 25px;
+  //  text-decoration: none;
+  //}
+  //
+  //p {
+  //  margin-top: -7px;
+  //  padding-top: 0;
+  //
+  //  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  //  font-size: 9px;
+  //}
+  //
+  //.logo-motto {
+  //  @include flexbox();
+  //  @include justify-content(center);
+  //  @include flex-direction(column);
+  //}
 }
 
 
