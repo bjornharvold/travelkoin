@@ -10,7 +10,7 @@
             <span>TKT</span>
         </div>
     </div>
-    <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
-        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}
+    <div class="tile-footer tooltip-button font-red" *ngIf="error != null">
+        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ error }}
     </div>
 </div>

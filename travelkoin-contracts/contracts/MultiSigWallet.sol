@@ -3,7 +3,7 @@ pragma solidity ^0.4.10;
 
 /// @title Multisignature wallet - Allows multiple parties to agree on transactions before execution.
 /// @author Stefan George - <stefan.george@consensys.net>
-contract TravelkoinMultiSigWallet {
+contract MultiSigWallet {
     uint constant public MAX_OWNER_COUNT = 50;
 
     event Confirmation(address indexed sender, uint indexed transactionId);
@@ -81,7 +81,7 @@ contract TravelkoinMultiSigWallet {
     /// @dev Contract constructor sets initial owners and required number of confirmations.
     /// @param _owners List of initial owners.
     /// @param _required Number of required confirmations.
-    function TravelkoinMultiSigWallet(address[] _owners, uint _required)
+    function MultiSigWallet(address[] _owners, uint _required)
     public
     validRequirement(_owners.length, _required)
     {
@@ -363,7 +363,7 @@ contract TravelkoinMultiSigWallet {
 
 /// @title Multisignature wallet with daily limit - Allows an owner to withdraw a daily limit without multisig.
 /// @author Stefan George - <stefan.george@consensys.net>
-contract TravelkoinMultiSigWalletWithDailyLimit is TravelkoinMultiSigWallet {
+contract MultiSigWalletWithDailyLimit is MultiSigWallet {
 
     event DailyLimitChange(uint dailyLimit);
 
@@ -378,9 +378,9 @@ contract TravelkoinMultiSigWalletWithDailyLimit is TravelkoinMultiSigWallet {
     /// @param _owners List of initial owners.
     /// @param _required Number of required confirmations.
     /// @param _dailyLimit Amount in wei, which can be withdrawn without confirmations on a daily basis.
-    function TravelkoinMultiSigWalletWithDailyLimit(address[] _owners, uint _required, uint _dailyLimit)
+    function MultiSigWalletWithDailyLimit(address[] _owners, uint _required, uint _dailyLimit)
     public
-    TravelkoinMultiSigWallet(_owners, _required)
+    MultiSigWallet(_owners, _required)
     {
         dailyLimit = _dailyLimit;
     }

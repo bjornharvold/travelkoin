@@ -13,22 +13,23 @@
             </h4>
         </div>
     </div>
-    <!--
+
     <div class="panel">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a [routerLink]="['/secure/wallet/TKT']" class="display-block" *ngIf="disabled === false">
-                    <i class="fas icon-travelkoin fa-fw"></i> TKT
+                <a [routerLink]="['/secure/contract']" class="display-block" *ngIf="disabled === false">
+                    <i class="fab fa-ethereum fa-fw"></i> {{ 'CONTRACT.TITLE' | translate }}
                     <i class="fas fa-angle-right float-right"></i>
                 </a>
                 <span class="display-block" *ngIf="disabled === true">
-                    <i class="fas icon-travelkoin fa-fw"></i> TKT
+                    <i class="fab fa-ethereum fa-fw"></i> {{ 'CONTRACT.TITLE' | translate }}
                     <i class="fas fa-angle-right float-right"></i>
                 </span>
             </h4>
         </div>
     </div>
 
+    <!--
     <div class="panel">
         <div class="panel-heading">
             <h4 class="panel-title">

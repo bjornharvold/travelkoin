@@ -1,11 +1,11 @@
-<div class="content-box" *ngIf="status == null">
+<div class="content-box">
     <h3 class="content-box-header bg-white">
         <span class="icon-separator">
             <i class="fas fa-shield-check font-blue"></i>
         </span>
         {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }} {{ 'TOKEN_CONTRACT.YOU_ARE_USING' | translate }} {{ provider }}
     </h3>
-    <div class="content-box-wrapper" *ngIf="started === true">
+    <div class="content-box-wrapper" *ngIf="started === true && status == null">
         <form (ngSubmit)="buyTokens()" [formGroup]="form">
 
             <div class="form-group" *ngIf="form.get('account')">
@@ -32,18 +32,10 @@
 
         </form>
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="started === false">
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="started === false && status == null">
         {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
     </div>
-</div>
-<div class="content-box" *ngIf="status != null">
-    <h3 class="content-box-header bg-white">
-        <span class="icon-separator">
-            <i class="fas fa-exclamation-circle font-red"></i>
-        </span>
-        {{ 'TOKEN_CONTRACT.ERROR' | translate }}
-    </h3>
-    <div class="content-box-wrapper text-center mrg30A">
-        {{ status }}
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="status != null">
+        <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}
     </div>
 </div>

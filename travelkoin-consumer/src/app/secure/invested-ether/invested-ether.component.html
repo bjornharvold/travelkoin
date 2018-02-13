@@ -1,10 +1,7 @@
 <div class="tile-box bg-white content-box">
-    <div class="tile-header" *ngIf="showTitle && customTitle == null">
+    <div class="tile-header">
        {{ 'WALLET.TITLE' | translate }}
-    </div>
-    <div class="tile-header" *ngIf="showTitle && customTitle != null">
-        {{ customTitle | translate }}
-        <div class="float-right font-red" *ngIf="error === true">
+        <div class="float-right font-red" *ngIf="error != null">
             {{ 'WALLET.TRANSACTION_ERROR' | translate }}
         </div>
     </div>
@@ -13,7 +10,7 @@
             <span><i *ngIf="loading === true" class="k-i-loading"></i> </span>
             <span *ngIf="loading === false && wallet != null">{{ wallet.balance | number:'1.0-8' }}</span>
             <span *ngIf="loading === false && wallet == null">0</span>
-            <span>{{ type }}</span>
+            <span>ETH</span>
         </div>
     </div>
     <div class="button-pane">
@@ -21,7 +18,7 @@
             {{ 'WALLET.SEE_TRANSACTIONS' | translate | uppercase }}
         </button>
     </div>
-    <div class="tile-footer tooltip-button font-red" *ngIf="error === true">
-        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ errorMessage }}
+    <div class="tile-footer tooltip-button font-red" *ngIf="error != null">
+        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ error }}
     </div>
 </div>

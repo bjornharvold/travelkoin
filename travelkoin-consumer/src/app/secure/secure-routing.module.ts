@@ -10,6 +10,7 @@ import {SecureComponent} from './secure/secure.component';
 import {RegisteredGuard} from '../core/registered.guard';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
 import {FormsComponent} from './forms/forms.component';
+import {SmartContractComponent} from './smart-contract/smart-contract.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,12 @@ const routes: Routes = [
             {
                 path: 'wallet/:type',
                 component: EtherWalletComponent,
+                canLoad: [AuthenticatedGuard, RegisteredGuard],
+                canActivate: [AuthenticatedGuard, RegisteredGuard]
+            },
+            {
+                path: 'contract',
+                component: SmartContractComponent,
                 canLoad: [AuthenticatedGuard, RegisteredGuard],
                 canActivate: [AuthenticatedGuard, RegisteredGuard]
             },

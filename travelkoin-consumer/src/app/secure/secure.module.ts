@@ -11,6 +11,7 @@ import {TransactionDetailsComponent} from './transaction-details/transaction-det
 import {FormsComponent} from './forms/forms.component';
 import {TokenSaleComponent} from './token-sale/token-sale.component';
 import {TokenWalletComponent} from './token-wallet/token-wallet.component';
+import { SmartContractComponent } from './smart-contract/smart-contract.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {TokenWalletComponent} from './token-wallet/token-wallet.component';
         TransactionDetailsComponent,
         FormsComponent,
         TokenSaleComponent,
-        TokenWalletComponent
+        TokenWalletComponent,
+        SmartContractComponent
     ]
 })
 export class SecureModule {

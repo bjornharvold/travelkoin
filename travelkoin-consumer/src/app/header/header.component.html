@@ -48,7 +48,10 @@
     <div class="container">
         <div class="logo-container">
             <div app-logo></div>
-            <a [routerLink]="['/']" style="text-decoration: none;" class="font-blue">TRAVELKOIN</a>
+            <div class="logo-motto">
+                <a [routerLink]="['/']" class="font-blue">TRAVELKOIN</a>
+                <!--<p class="font-blue">{{ 'HEADER.SLOGAN' | translate }}</p>-->
+            </div>
         </div>
         <div class="right-header-btn">
             <div class="search-btn" [ngClass]="{'border-left': isHome === true, 'border-none': isHome === false }">

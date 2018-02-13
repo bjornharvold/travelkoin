@@ -4,6 +4,7 @@
   "HEADER": {
     "LOGIN": "Log in",
     "LOGOUT": "Log out",
+    "SLOGAN": "THE TRAVEL ECO-SYSTEM",
     "CHOOSE_LANGUAGE": "Choose language",
     "LANGUAGE": "Language",
     "CONTACT_US": "Contact Us",
@@ -56,19 +57,6 @@
       "VETERAN_ADVISORS": "Veteran advisors",
       "VETERAN_ADVISORS_DESC": "Our team of advisors have decades of experience in both travel and the blockchain. Get to know them below."
     },
-    "ICO": {
-      "HEADER": "ICO event details",
-      "DURATION": "Duration",
-      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
-      "BONUSES": "Bonuses",
-      "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
-      "LIMIT": "Limit",
-      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
-      "CAPS": "Cap",
-      "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
-      "HODLR": "HODLers",
-      "HODLR_DESC": "We welcome you! 3 / 6 / 9 month HODL rewards."
-    },
     "PAYMENT_GATEWAY": {
       "HEADER": "Payment gateway",
       "DESCRIPTION": "Travel suppliers can do intelligent cross-border payments using smart contracts within the eco-system fast, secure and at no cost. Forget about middle men, transaction fees and waiting days to receive your money."
@@ -92,6 +80,21 @@
     },
     "BACKERS": {
       "HEADER": "Backers"
+    },
+    "ICO": {
+      "HEADER": "ICO event details",
+      "DURATION": "Duration",
+      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
+      "BONUSES": "Bonuses",
+      "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
+      "LIMIT": "Limit",
+      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
+      "CAPS": "Cap",
+      "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
+      "HODLR": "HODLers",
+      "HODLR_DESC": "We welcome you! 3 / 6 / 9 month HODL rewards.",
+      "VESTING": "Vesting",
+      "VESTING_DESC": "Team @ 4 years (1 year cliff). Advisors @ 1 year (3 month cliff)."
     },
     "FEATURES": {
       "HEADER": "Features",
@@ -390,8 +393,59 @@
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
+  "CONTRACT": {
+    "TITLE": "Smart Contract",
+    "START_DATE": "Start date",
+    "START_DATE_HELP": "The ICO will begin on this date.",
+    "END_DATE": "End date",
+    "END_DATE_HELP": "The ICO will end on this date unless the hard cap has already been reached.",
+    "CROWDSALE_ADDRESS": "ICO contract address",
+    "CROWDSALE_ADDRESS_HELP": "This is the address for our crowd sale smart contract.",
+    "TOKEN_ADDRESS": "Token contract address",
+    "TOKEN_ADDRESS_HELP": "This is the address for the Travelkoin token.",
+    "TOTAL_SUPPLY": "Total supply",
+    "TOTAL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens created.",
+    "SALE_SUPPLY": "Tokens available for sale during the ICO",
+    "SALE_SUPPLY_HELP": "This is the total amount of Travelkoin tokens made available for the ICO.",
+    "BOUNTY_SUPPLY": "Tokens available for bug bounties",
+    "BOUNTY_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available for our bug bounty.",
+    "COMMUNITY_SUPPLY": "Tokens available to our community",
+    "COMMUNITY_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our community.",
+    "TEAM_SUPPLY": "Tokens available to our team members",
+    "TEAM_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our team members.",
+    "INVESTOR_SUPPLY": "Tokens available to investors",
+    "INVESTOR_SUPPLY_HELP": "This is the total amount of Travelkoin available to our investors.",
+    "FOUNDER_SUPPLY": "Tokens available to our founders",
+    "FOUNDER_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our founders.",
+    "THREE_MONTH_HODL_SUPPLY": "3 month HODL rewards",
+    "THREE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 3-month HODLers.",
+    "SIX_MONTH_HODL_SUPPLY": "6 month HODL rewards",
+    "SIX_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 6-month HODLers.",
+    "NINE_MONTH_HODL_SUPPLY": "9 month HODL rewards",
+    "NINE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 9-month HODLers.",
+    "RATE": "TKT / ETH conversion rate",
+    "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
+    "CAP": "Token cap for sale during ICO",
+    "CAP_HELP": "This maximum number of tokens set aside for our ICO.",
+    "MINIMUM_CONTRIBUTION": "Minimum contribution",
+    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
+    "VESTING_TEAM_DURATION": "Team token vesting",
+    "VESTING_TEAM_DURATION_HELP": "This is how long it takes for team tokens to vest (in days).",
+    "VESTING_ADVISORS_DURATION": "Advisors token vesting",
+    "VESTING_ADVISORS_DURATION_HELP": "This is how long it takes for advisors tokens to vest (in days).",
+    "VESTING_TEAM_CLIFF": "Team token cliff",
+    "VESTING_TEAM_CLIFF_HELP": "This is the minimum amount of time a team member has to stay with the team before that person gets any tokens at all (in days).",
+    "VESTING_ADVISORS_CLIFF": "Advisors token cliff",
+    "VESTING_ADVISORS_CLIFF_HELP": "This is the minimum amount of time an advisor has to stay with the team before that person gets any tokens at all (in days).",
+    "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
+  },
   "TOKEN_WALLET": {
     "TITLE": "Travelkoin Wallet"
+  },
+  "CODE": {
+    "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
+    "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
+    "ERROR": "Unknown error: Check the log."
   },
   "END": "End"
 }
