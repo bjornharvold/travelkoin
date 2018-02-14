@@ -10,6 +10,8 @@
     "CONTACT_US": "Contact Us",
     "WHITE_PAPER": "White paper",
     "FEATURES": "Features",
+    "FAQ": "FAQ",
+    "FAQ_DETAILS": "Frequently asked questions",
     "ROAD_MAP": "Road map",
     "MY_WALLET": "My wallet",
     "LANGUAGE_DIALOG": "Language change",
@@ -446,6 +448,14 @@
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
     "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
     "ERROR": "Unknown error: Check the log."
+  },
+  "FAQ": {
+    "DESCRIPTION": "This page is frequently updated as we answer your questions.",
+    "LAST_UPDATED": "Last updated",
+    "1": {
+      "QUESTION": "Why should I invest? / Why will the value of the TKT token increase?",
+      "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. When a platform users run out of tokens, they need to buy more. As we add more services, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to depart with their tokens in return for a good deal. But, there won't be enough travelers for everyone so there will be a need to purchase tokens to run our service."
+    }
   },
   "END": "End"
 }
