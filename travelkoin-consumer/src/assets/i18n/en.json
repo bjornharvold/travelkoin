@@ -86,11 +86,11 @@
     "ICO": {
       "HEADER": "ICO event details",
       "DURATION": "Duration",
-      "DURATION_DESC": "This event starts at 12:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
+      "DURATION_DESC": "This event starts at 13:00:00 UTC on April 9th, 2018 and runs for 5 days only.",
       "BONUSES": "Bonuses",
       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
       "LIMIT": "Limit",
-      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. No limits after the 24 hours.",
+      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. Minimum investment 0.1 ETH. No max limits after the first 24 hours.",
       "CAPS": "Cap",
       "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
       "HODLR": "HODLers",
