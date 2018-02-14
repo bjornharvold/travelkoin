@@ -47,6 +47,9 @@ import { TeamComponent } from './home/team/team.component';
 import { BackersComponent } from './home/backers/backers.component';
 import { IcoDetailsComponent } from './home/ico-details/ico-details.component';
 import { NewsComponent } from './home/news/news.component';
+import { FaqComponent } from './faq/faq.component';
+import { FaqHeaderComponent } from './faq/faq-header/faq-header.component';
+import { FaqDetailsComponent } from './faq/faq-details/faq-details.component';
 
 /**
  * In case the key cannot be found in the translation file
@@ -145,7 +148,10 @@ const prop: IShareButtons = {
         TeamComponent,
         BackersComponent,
         IcoDetailsComponent,
-        NewsComponent
+        NewsComponent,
+        FaqComponent,
+        FaqHeaderComponent,
+        FaqDetailsComponent
     ],
     bootstrap: [
         AppComponent
