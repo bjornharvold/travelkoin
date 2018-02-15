@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 export class FormsComponent implements OnInit, OnDestroy {
     private alive = true;
     private dto: UserRegistrationForm;
-    private user: User;
+    user: User;
     form: FormGroup;
     showForm = false;
     loading = false;
@@ -24,7 +24,7 @@ export class FormsComponent implements OnInit, OnDestroy {
     types: Array<string> = ['BTC', 'ETH']; // Crypto options
     tags: Array<string> = ['documents']; // used to add meta data on the uploaded images
 
-    private doRegistration(user: User): void {
+    private populateForm(user: User): void {
         this.form = new FormGroup({});
         this.dto = UserRegistrationForm.deserializeObject(user);
         this.dto.populateFormValues(this.form);
@@ -82,7 +82,7 @@ export class FormsComponent implements OnInit, OnDestroy {
                     if (user != null) {
                         this.loading = false;
                         this.user = User.deserializeObject(user);
-                        this.doRegistration(this.user);
+                        this.populateForm(this.user);
                     }
                 },
                 error => this.loading = false
