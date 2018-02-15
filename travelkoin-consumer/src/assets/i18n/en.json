@@ -343,10 +343,7 @@
     "NO_DOCUMENTS_UPLOADED": "No documents have been uploaded",
     "ETH_ADDRESS": "Ethereum address",
     "ETH_ADDRESS_PLACEHOLDER": "Enter your Ethereum address",
-    "ETH_ADDRESS_HELP": "Enter the Ethereum address you will use to transfer funds to us. You will only be able to use this one. Other transactions will be ignored.",
-    "BTC_ADDRESS": "Bitcoin address",
-    "BTC_ADDRESS_PLACEHOLDER": "Enter your Bitcoin address",
-    "BTC_ADDRESS_HELP": "Enter the Bitcoin address you will use to transfer funds to us. You will only be able to use this one. Other transactions will be ignored."
+    "ETH_ADDRESS_HELP": "Enter the Ethereum address you will use to transfer funds to us. You will only be able to use this one. Other transactions will be ignored."
   },
   "LANGUAGE": {
     "EN": "English",
