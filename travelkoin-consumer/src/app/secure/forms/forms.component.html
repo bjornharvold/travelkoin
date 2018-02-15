@@ -32,7 +32,9 @@
                         <label>{{ 'FORMS.UPLOAD_DOCUMENTS' | translate }}</label>
                         <app-multimedia-manager [multimedias]="user.multimedia"
                                                 [tags]="tags"
-                                                (multimediasChange)="multimediasChange($event)"></app-multimedia-manager>
+                                                (multimediasChange)="multimediasChange($event)"
+                                                [readOnly]="user != null && user.approved === true"
+                        ></app-multimedia-manager>
                         <small class="form-text font-red">{{ 'FORMS.UPLOAD_DOCUMENTS_HELP' | translate }}:</small>
                         <small class="form-text text-muted">
                             <ol>
@@ -54,7 +56,10 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info" [disabled]="this.form.valid === false">{{ 'BUTTON.SUBMIT' | translate }}</button>
+                        <button type="submit" class="btn btn-info" [disabled]="form.valid === false || (user.approved == null || user.approved === true)">
+                            <span *ngIf="user == null || (user != null && (user.approved == null || user.approved === false))">{{ 'BUTTON.SUBMIT' | translate }}</span>
+                            <span *ngIf="user != null && user.approved === true">{{ 'FORMS.ALREADY_APPROVED' | translate }}</span>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
   -->
 
 
-<kendo-upload
+<kendo-upload *ngIf="readOnly === false"
         [saveUrl]="saveUrl"
         [saveField]="saveField"
         [saveHeaders]="saveHeaders"
