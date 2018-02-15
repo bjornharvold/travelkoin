@@ -155,7 +155,7 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         //   await this.crowdsale.send(1).should.be.rejectedWith(EVMRevert);
         // });
         //
-        // it('should refund payments that exceed cap during the first 24 hours', async function () {
+        // it('should refund payments that exceed maxContributionFirstTwentyFourHours during the first 24 hours', async function () {
         //   await increaseTimeTo(this.startTime);
         //   const pre = web3.eth.getBalance(purchaser4);
         //
@@ -167,14 +167,14 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         //   pre.minus(post).should.be.bignumber.equal(maxContributionFirstTwentyFourHours);
         // });
 
-        it('should only be able to contribute 1 ETH during the first 24 hours', async function () {
-            await increaseTimeTo(this.startTime);
-
-            console.log(`maxContributionFirstTwentyFourHours: ${maxContributionFirstTwentyFourHours}`);
-            const amount = await this.crowdsale.howMuchCanXContributeNow(purchaser);
-            amount.should.be.bignumber.equal(maxContributionFirstTwentyFourHours);
-
-            await this.crowdsale.sendTransaction({ value: transferAmount, from: purchaser4 }).should.be.rejectedWith(EVMRevert);
+        // it('should only be able to contribute 1 ETH during the first 24 hours', async function () {
+        //     await increaseTimeTo(this.startTime);
+        //
+        //     console.log(`maxContributionFirstTwentyFourHours: ${maxContributionFirstTwentyFourHours}`);
+        //     const amount = await this.crowdsale.howMuchCanXContributeNow(purchaser);
+        //     amount.should.be.bignumber.equal(maxContributionFirstTwentyFourHours);
+        //
+        //     await this.crowdsale.sendTransaction({ value: transferAmount, from: purchaser4 }).should.be.rejectedWith(EVMRevert);
             //
             // const post = web3.eth.getBalance(purchaser4);
             // console.log(`Pre: ${pre}`);
@@ -183,7 +183,7 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
             // console.log(`Cap: ${cap}`);
             // console.log(`${pre.minus(post)}`);
             // pre.minus(post).should.be.bignumber.equal(maxContributionFirstTwentyFourHours);
-        });
+        // });
     });
 
     // describe('high-level purchase', function () {
@@ -293,7 +293,123 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
     //     await this.token.transfer(purchaser, 1, { from: investor, gasPrice: 0 }).should.be.fulfilled;
     //   });
     // });
-    //
+
+    describe('whitelist', function () {
+
+        it('should allow to set whitelist until start', async function () {
+            await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1),ether(2)]).should.be.fulfilled
+        });
+
+        it('should not allow to set whitelist after start', async function () {
+            await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1),ether(2)]).should.be.fulfilled;
+            await increaseTimeTo(this.startTime);
+            await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1),ether(2)]).should.be.rejectedWith(EVMRevert)
+        });
+
+        it('should allow to delete from the whitelist', async function () {
+            // add
+            await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1),ether(2)]).should.be.fulfilled;
+
+            let ok = await this.crowdsale.whitelist(investor);
+            ok.should.equal(true);
+
+            ok = await this.crowdsale.whitelist(purchaser);
+            ok.should.equal(true);
+
+            let wlDays = await this.crowdsale.whitelistDayCount();
+            wlDays.should.be.bignumber.equal(new BigNumber(2));
+
+            // remove
+            await this.crowdsale.setWhitelist([],[purchaser],[]).should.be.fulfilled;
+
+            ok = await this.crowdsale.whitelist(investor);
+            ok.should.equal(true);
+
+            ok = await this.crowdsale.whitelist(purchaser);
+            ok.should.equal(false);
+
+            wlDays = await this.crowdsale.whitelistDayCount();
+            wlDays.should.be.bignumber.equal(new BigNumber(2))
+        });
+
+        it('should allow to modify whitelist days', async function () {
+            // set to 2 days with 1 and 2 ether stake limits
+            await this.crowdsale.setWhitelist([investor],[],[ether(1),ether(2)]).should.be.fulfilled;
+
+            let ok = await this.crowdsale.whitelist(investor);
+            ok.should.equal(true);
+
+            let wlDays = await this.crowdsale.whitelistDayCount();
+            wlDays.should.be.bignumber.equal(new BigNumber(2));
+
+            let limit = await this.crowdsale.whitelistDayMaxStake(0);
+            limit.should.be.bignumber.equal(ether(0));
+
+            limit = await this.crowdsale.whitelistDayMaxStake(1);
+            limit.should.be.bignumber.equal(ether(1));
+
+            limit = await this.crowdsale.whitelistDayMaxStake(2);
+            limit.should.be.bignumber.equal(ether(2));
+
+            // set to 1 day with 2 ether stake limit
+            await this.crowdsale.setWhitelist([],[],[ether(2)]).should.be.fulfilled;
+
+            ok = await this.crowdsale.whitelist(investor);
+            ok.should.equal(true)
+
+            wlDays = await this.crowdsale.whitelistDayCount();
+            wlDays.should.be.bignumber.equal(new BigNumber(1));
+
+            limit = await this.crowdsale.whitelistDayMaxStake(0);
+            limit.should.be.bignumber.equal(ether(0));
+
+            limit = await this.crowdsale.whitelistDayMaxStake(1);
+            limit.should.be.bignumber.equal(ether(2));
+
+            // should be 2 ether, since it is overwriting till the new length
+            limit = await this.crowdsale.whitelistDayMaxStake(2);
+            limit.should.be.bignumber.equal(ether(2))
+        });
+
+        it('should not allow unwhitelisted contribution during whitelist period', async function () {
+            await this.crowdsale.setWhitelist([investor],[],[minContribution.mul(2),minContribution.mul(3)]).should.be.fulfilled;
+            await increaseTimeTo(this.startTime);
+
+            await this.crowdsale.sendTransaction({value: minContribution, from: purchaser3}).should.be.rejectedWith(EVMRevert)
+        });
+
+        it('should allow contribution during whitelist period for whitelist addresses', async function () {
+            await this.crowdsale.setWhitelist([investor],[],[minContribution.mul(2),minContribution.mul(3)]).should.be.fulfilled;
+            await increaseTimeTo(this.startTime);
+
+            await this.crowdsale.sendTransaction({value: minContribution, from: investor}).should.be.fulfilled;
+            await this.crowdsale.sendTransaction({value: minContribution, from: purchaser}).should.be.rejectedWith(EVMRevert);
+
+            await increaseTimeTo(this.startTime+duration.days(2));
+            await this.crowdsale.sendTransaction({value: minContribution, from: purchaser}).should.be.fulfilled;
+        });
+
+        it('should refund excess contribution during whitelist period', async function () {
+            await this.crowdsale.setWhitelist([investor],[],[minContribution.mul(2),minContribution.mul(3)]).should.be.fulfilled;
+            await increaseTimeTo(this.startTime);
+
+            const pre = web3.eth.getBalance(investor);
+            await this.crowdsale.sendTransaction({value: minContribution.mul(5), from: investor, gasPrice:0}).should.be.fulfilled;
+            const post = web3.eth.getBalance(investor);
+
+            pre.minus(post).should.be.bignumber.equal(minContribution.mul(2).div(bonuses[0]).floor());
+        });
+
+        it('should deny contribution above whitelist limit during whitelist period', async function () {
+            await this.crowdsale.setWhitelist([investor],[],[minContribution.mul(2),minContribution.mul(3)]).should.be.fulfilled;
+            await increaseTimeTo(this.startTime);
+
+            await this.crowdsale.sendTransaction({value: minContribution.mul(2).div(bonuses[0]).floor(), from: investor}).should.be.fulfilled;
+            await this.crowdsale.sendTransaction({value: 1, from: investor}).should.be.rejectedWith(EVMRevert);
+        })
+
+    })
+    
     // describe('hodl', function () {
     //   it('controller should own hodler', async function () {
     //     const owner = await this.hodler.owner();

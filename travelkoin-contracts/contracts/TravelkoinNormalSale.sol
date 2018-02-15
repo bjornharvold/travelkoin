@@ -6,6 +6,7 @@ import "zeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "./TravelkoinCappedCrowdsale.sol";
 import "./TravelkoinFinalizableCrowdsale.sol";
 
+
 /**
  * @title TravelkoinNormalSale
  * @author Bjorn Harvold
@@ -28,8 +29,15 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     uint256 public maxContributionFirstTwentyFourHours = 1 ether;
 
     // stakes contains contribution stake in wei
-    mapping(address => uint256) public stakes;
+    mapping(address => uint256) public stakesPerUser;
     uint256 totalStakes;
+
+    // first {whitelistDayCount} days of token sale is exclusive for whitelisted addresses
+    // {whitelistDayMaxStake} contains the max stake limits per address for each whitelist sales day
+    // {whitelist} contains who can contribute during whitelist period
+    uint8 public whitelistDayCount;
+    mapping (address => bool) public whitelist;
+    mapping (uint8 => uint256) public whitelistDayMaxStake;
 
     // addresses of contributors to handle finalization after token sale end (refunds or token claims)
     address[] public contributorsKeys;
@@ -37,6 +45,11 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     // events for token purchase during sale and claiming tokens after sale
     event TokenClaimed(address indexed _claimer, address indexed _beneficiary, uint256 _stake, uint256 _amount);
     event TokenPurchase(address indexed _purchaser, address indexed _beneficiary, uint256 _value, uint256 _stake, uint256 _participants, uint256 _weiRaised);
+
+    event WhitelistAddressAdded(address indexed _whitelister, address indexed _beneficiary);
+    event WhitelistAddressRemoved(address indexed _whitelister, address indexed _beneficiary);
+    event WhitelistSetDay(address indexed _whitelister, uint8 _day, uint256 _maxStake);
+
 
     ////////////////
     // Constructor and inherited function overrides
@@ -86,14 +99,57 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         }
     }
 
-    ////////////////
-    // BEFORE token sale
-    ////////////////
-
     /// @notice Modifier for before sale cases
     modifier beforeSale() {
         require(!hasStarted());
         _;
+    }
+
+    /// @notice Sets whitelist
+    /// @dev The length of _whitelistLimits says that the first X days of token sale is
+    ///  closed, meaning only for whitelisted addresses.
+    /// @param _add Array of addresses to add to whitelisted ethereum accounts
+    /// @param _remove Array of addresses to remove to whitelisted ethereum accounts
+    /// @param _whitelistLimits Array of limits in wei, where _whitelistLimits[0] = 10 ETH means
+    ///  whitelisted addresses can contribute maximum 10 ETH stakes on the first day
+    ///  After _whitelistLimits.length days, there will be no limits per address (besides hard cap)
+    function setWhitelist(address[] _add, address[] _remove, uint256[] _whitelistLimits) public onlyOwner beforeSale {
+        uint256 i = 0;
+        uint8 j = 0; // access max daily stakes
+
+        // we override whiteListLimits only if it was supplied as an argument
+        if (_whitelistLimits.length > 0) {
+            // saving whitelist max stake limits for each day -> uint256 maxStakeLimit
+            whitelistDayCount = uint8(_whitelistLimits.length);
+
+            for (i = 0; i < _whitelistLimits.length; i++) {
+                j = uint8(i.add(1));
+                if (whitelistDayMaxStake[j] != _whitelistLimits[i]) {
+                    whitelistDayMaxStake[j] = _whitelistLimits[i];
+                    WhitelistSetDay(msg.sender, j, _whitelistLimits[i]);
+                }
+            }
+        }
+
+        // adding whitelist addresses
+        for (i = 0; i < _add.length; i++) {
+            require(_add[i] != address(0));
+
+            if (!whitelist[_add[i]]) {
+                whitelist[_add[i]] = true;
+                WhitelistAddressAdded(msg.sender, _add[i]);
+            }
+        }
+
+        // removing whitelist addresses
+        for (i = 0; i < _remove.length; i++) {
+            require(_remove[i] != address(0));
+
+            if (whitelist[_remove[i]]) {
+                whitelist[_remove[i]] = false;
+                WhitelistAddressRemoved(msg.sender, _remove[i]);
+            }
+        }
     }
 
     /// @notice Sets min contribution before sale
@@ -146,14 +202,14 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     /// @dev Anyone can call this function and distribute tokens after successful token sale
     /// @param _beneficiary Address of the beneficiary who gets the token
     function claimTokenFor(address _beneficiary) public afterSaleSuccess whenNotPaused {
-        uint256 stake = stakes[_beneficiary];
+        uint256 stake = stakesPerUser[_beneficiary];
         require(stake > 0);
 
         // calculate token count
-        uint256 tokens = tokenSold.mul(stakes[_beneficiary]).div(totalStakes);
+        uint256 tokens = tokenSold.mul(stakesPerUser[_beneficiary]).div(totalStakes);
 
         // set the stake 0 for beneficiary
-        stakes[_beneficiary] = 0;
+        stakesPerUser[_beneficiary] = 0;
 
         // decrease tokenBalance
         tokenBalance = tokenBalance.sub(tokens);
@@ -198,9 +254,16 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         uint256 weiToCap = cap.sub(weiRaised);
 
         uint8 _saleDay = getSaleDayNow();
-        if (_saleDay <= 1 && weiToCap > maxContributionFirstTwentyFourHours) {
-            // set wei cap to 1 ether limit per person for the first 24 hours of our sale
-            weiToCap = maxContributionFirstTwentyFourHours;
+        if (_saleDay <= whitelistDayCount) {
+            // address can't contribute if it is not whitelisted
+            if (!whitelist[_beneficiary]) {
+                return 0;
+            }
+
+            // personal cap is the daily whitelist limit minus the stakes the address already has
+            uint256 weiToPersonalCap = whitelistDayMaxStake[_saleDay].sub(stakesPerUser[_beneficiary]);
+
+            weiToCap = uint256Min(weiToCap, weiToPersonalCap);
         }
 
         return weiToCap;
@@ -245,7 +308,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
 
 
         for (i = 0; i < contributorsKeys.length; i++) {
-            if (_pending && stakes[contributorsKeys[i]] > 0 || _claimed && stakes[contributorsKeys[i]] == 0) {
+            if (_pending && stakesPerUser[contributorsKeys[i]] > 0 || _claimed && stakesPerUser[contributorsKeys[i]] == 0) {
                 _contributors[results] = contributorsKeys[i];
                 results++;
             }
@@ -306,11 +369,11 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         // saving total stakes to be able to distribute tokens at the end
         totalStakes = totalStakes.add(_stake);
 
-        if (stakes[_beneficiary] == 0) {
+        if (stakesPerUser[_beneficiary] == 0) {
             contributorsKeys.push(_beneficiary);
         }
 
-        stakes[_beneficiary] = stakes[_beneficiary].add(_stake);
+        stakesPerUser[_beneficiary] = stakesPerUser[_beneficiary].add(_stake);
 
         TokenPurchase(
             msg.sender,

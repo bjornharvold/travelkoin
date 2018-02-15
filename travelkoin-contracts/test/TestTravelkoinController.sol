@@ -4,6 +4,7 @@ import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/TravelkoinController.sol";
 
+
 contract TestTravelkoinController {
     TravelkoinController controller = TravelkoinController(DeployedAddresses.TravelkoinController());
 
