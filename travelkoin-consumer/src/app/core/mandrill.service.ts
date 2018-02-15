@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class MandrillService {
     private templateName = 'travelkoin-ico-approval';
-    private mandrill: mandrill.Mandrill;
+    private mandrill: Mandrill;
 
     sendEmail(email: string): void {
         const message: any = {
