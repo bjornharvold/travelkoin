@@ -5,6 +5,8 @@
 // Typings reference file, you can add your own global typings here
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 declare module 'cloudinary-core';
+declare module 'mandrill-api';
+
 // This one is for webpack and loading i18n json files
 declare var System: System;
 interface System {

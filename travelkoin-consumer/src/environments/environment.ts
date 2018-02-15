@@ -12,6 +12,7 @@ export const environment = {
     restBaseUrl: 'https://api.travelkoin.io',
     version: 'application/json;charset=UTF-8',
     mailchimpBaseUrl: 'https://travelkoin.us8.list-manage.com/subscribe/post?u=f95896dbd1b08608c1539c0c6&amp;id=e8b2ef2a46',
+    mandrillAPIKey: 'M6ymYuYiFDmbROmwVbmo8Q',
     recaptchaAPIKey: '6LdixT0UAAAAABKK2MPtwxtFYr4MOFedXuClPJ_3',
     authTokenName: 'x-auth-token',
     authTokenExpiration: 3600,

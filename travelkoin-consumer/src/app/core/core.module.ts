@@ -22,6 +22,7 @@ import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
 import {WindowRefService} from './window-ref.service';
 import {TokenContractService} from './token-contract.service';
+import {MandrillService} from './mandrill.service';
 
 @NgModule({
     imports: [
@@ -50,7 +51,8 @@ import {TokenContractService} from './token-contract.service';
         TimeSeriesService,
         Web3Service,
         WindowRefService,
-        TokenContractService
+        TokenContractService,
+        MandrillService
     ]
 })
 export class CoreModule {

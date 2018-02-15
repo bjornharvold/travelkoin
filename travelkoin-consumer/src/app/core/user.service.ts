@@ -22,9 +22,9 @@ export class UserService {
         this.update(user.uid, user);
     }
 
-    approveUser(user: User): void {
+    approveUser(user: User): Observable<void> {
         user.approved = true;
-        this.update(user.uid, user);
+        return this.update(user.uid, user);
     }
 
     list(limit: number, approved: boolean, submittedDocuments: boolean, blocked: boolean): Observable<Array<User> | null> {
