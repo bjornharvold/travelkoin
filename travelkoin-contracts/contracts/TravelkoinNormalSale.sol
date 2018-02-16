@@ -26,7 +26,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
 
     // minimum contribution, 0.1ETH
     uint256 public minContribution = 0.1 ether;
-    uint256 public maxContributionFirstTwentyFourHours = 1 ether;
 
     // stakes contains contribution stake in wei
     mapping(address => uint256) public stakesPerUser;
@@ -68,7 +67,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         uint256 _startTime,
         uint256 _endTime,
         uint256 _minContribution,
-        uint256 _maxContributionFirstTwentyFourHours,
         uint256 _rate,
         uint256 _cap,
         address _wallet
@@ -87,7 +85,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         rate = _rate;
 
         minContribution = _minContribution;
-        maxContributionFirstTwentyFourHours = _maxContributionFirstTwentyFourHours;
     }
 
     /// @notice claimToken() for multiple addresses
@@ -123,6 +120,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
             whitelistDayCount = uint8(_whitelistLimits.length);
 
             for (i = 0; i < _whitelistLimits.length; i++) {
+                // instead of making the array day value 0-based we make it more logical so Day 1 = 1.
                 j = uint8(i.add(1));
                 if (whitelistDayMaxStake[j] != _whitelistLimits[i]) {
                     whitelistDayMaxStake[j] = _whitelistLimits[i];
@@ -155,11 +153,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     /// @notice Sets min contribution before sale
     function setMinContribution(uint256 _minContribution) public onlyOwner beforeSale {
         minContribution = _minContribution;
-    }
-
-    /// @notice Sets min contribution before sale
-    function setMaxContributionFirstTwentyFourHours(uint256 _maxContributionFirstTwentyFourHours) public onlyOwner beforeSale {
-        maxContributionFirstTwentyFourHours = _maxContributionFirstTwentyFourHours;
     }
 
     /// @notice Sets soft and max cap

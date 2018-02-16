@@ -35,7 +35,7 @@ module.exports = function (deployer) {
         return (TravelkoinController.at(TravelkoinController.address)).setToken(TravelkoinMiniMeToken.address, 0);
     }).then(function () {
         // then NormalSale
-        return deployer.deploy(NormalSale, TravelkoinController.address, dateStart, dateEnd, web3.toWei(0.1, 'ether'), web3.toWei(1, 'ether'), 1000, web3.toWei(55555, 'ether'), Wallet.address);
+        return deployer.deploy(NormalSale, TravelkoinController.address, dateStart, dateEnd, web3.toWei(0.1, 'ether'), 1000, web3.toWei(55555, 'ether'), Wallet.address);
     }).then(function () {
         // set crowdsale
         return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(100, 'ether')).mul(1000));
