@@ -20,22 +20,21 @@ const TravelkoinNormalSale = artifacts.require('TravelkoinNormalSale');
 const TravelkoinHodler = artifacts.require('TravelkoinHodler');
 
 contract('TravelkoinController', function ([deployer, investor, wallet, advisor, purchaser, teammate]) {
-    const rate = new BigNumber(1000);
-    const bonuses = [new BigNumber(1.4), new BigNumber(1.2), new BigNumber(1.15), new BigNumber(1.1), new BigNumber(1.05)];
-
-    const cap = ether(10);
-    const softCap = ether(5);
-    const softCapTime = duration.hours(120);
-    const lessThanCap = ether(8);
-    const lessThanSoftCap = ether(4);
-
-    const minContribution = ether(0.1);
-    const maxGasPrice = gwei(100);
-    const aboveGasLimit = maxGasPrice.plus(1);
-    const maxGasPenalty = new BigNumber(80);
-    const maxGasFix = maxGasPenalty.div(100);
-
-    const expectedTokenAmount = rate.mul(cap);
+    // const rate = new BigNumber(1000);
+    //
+    // const cap = ether(10);
+    // const softCap = ether(5);
+    // const softCapTime = duration.hours(120);
+    // const lessThanCap = ether(8);
+    // const lessThanSoftCap = ether(4);
+    //
+    // const minContribution = ether(0.1);
+    // const maxGasPrice = gwei(100);
+    // const aboveGasLimit = maxGasPrice.plus(1);
+    // const maxGasPenalty = new BigNumber(80);
+    // const maxGasFix = maxGasPenalty.div(100);
+    //
+    // const expectedTokenAmount = rate.mul(cap);
 
     before(async function () {
         // Advance to the next block to correctly read time in the solidity "now" function interpreted by testrpc
