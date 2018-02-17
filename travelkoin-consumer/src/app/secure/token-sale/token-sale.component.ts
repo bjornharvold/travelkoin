@@ -56,7 +56,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((startTime: BigNumber) => {
                     this.startDate = DateService.bigNumberToMoment(startTime);
-                    console.log(this.startDate.format());
+                    // console.log(this.startDate.format());
                 }, error => this.status = 'CODE.ERROR',
                 () => {
                 }
@@ -71,7 +71,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((endTime: BigNumber) => {
                     this.endDate = DateService.bigNumberToMoment(endTime);
-                    console.log(this.endDate.format());
+                    // console.log(this.endDate.format());
                 }, error => this.status = 'CODE.ERROR',
                 () => {
                 }

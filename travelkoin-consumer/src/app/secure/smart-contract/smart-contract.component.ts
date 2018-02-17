@@ -162,10 +162,10 @@ export class SmartContractComponent implements OnInit, OnDestroy {
     }
 
     private loadInvestorSupply(form: FormGroup): void {
-        this.tokenContractService.investorSupply()
+        this.tokenContractService.earlyContributorSupply()
             .takeWhile(() => this.alive)
             .subscribe((investorSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'investorSupply', new FormControl({value: this.web3Service.weiToEther(investorSupply), disabled: true}))
+                    FormHelper.addOrReplaceFormControl(form, 'earlyContributorSupply', new FormControl({value: this.web3Service.weiToEther(investorSupply), disabled: true}))
                 },
                 error => this.error = error,
                 () => {

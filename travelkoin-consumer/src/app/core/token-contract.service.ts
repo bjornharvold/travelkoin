@@ -93,6 +93,22 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.endTime()));
     }
 
+    tokenSold(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.tokenSold()));
+    }
+
+    tokenBalance(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.tokenBalance()));
+    }
+
+    stakesPerUser(address: string): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.stakesPerUser(address)));
+    }
+
+    weiRaised(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.weiRaised()));
+    }
+
     crowdsaleAddress(): Observable<string> {
         return this.getTravelkoinNormalSale().map((ti: TravelkoinNormalSale) => ti.address);
     }
@@ -105,7 +121,15 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.cap()));
     }
 
+    travelkoinBalance(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
+    }
+
     // ================== TOKEN FEATURES ==================
+    balanceOf(account: string): Observable<BigNumber> {
+        return this.getTravelkoinMiniMeToken().switchMap((ti: TravelkoinMiniMeToken) => Observable.fromPromise(ti.balanceOf(account)));
+    }
+
     totalSupply(): Observable<BigNumber> {
         return this.getTravelkoinMiniMeToken().switchMap((ti: TravelkoinMiniMeToken) => Observable.fromPromise(ti.totalSupply()));
     }
@@ -135,8 +159,8 @@ export class TokenContractService {
         return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.TOKEN_FOUNDERS()));
     }
 
-    investorSupply(): Observable<BigNumber> {
-        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.TOKEN_INVESTORS()));
+    earlyContributorSupply(): Observable<BigNumber> {
+        return this.getTravelkoinController().switchMap((ti: TravelkoinController) => Observable.fromPromise(ti.TOKEN_EARLY_CONTRIBUTORS()));
     }
 
     threeMonthHODLSupply(): Observable<BigNumber> {

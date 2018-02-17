@@ -440,7 +440,15 @@
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
-    "TITLE": "Travelkoin Wallet"
+    "TITLE": "Travelkoin Wallet",
+    "PURCHASED_TOKENS": "Purchased tokens",
+    "CLAIM_AFTER_SALE": "Claim tokens after sale",
+    "WAITING_TO_START": "Sale not yet started",
+    "SALE_ONGOING": "Sale ongoing",
+    "YOU_HAVE_PURCHASED": "Purchased",
+    "YOU_OWN": "You own",
+    "CLAIM_AFTER_SALE_DESC": "You can claim your tokens after the sale has finished.",
+    "CLAIM_TOKENS": "Claim tokens"
   },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
