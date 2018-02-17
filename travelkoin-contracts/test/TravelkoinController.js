@@ -209,9 +209,9 @@ contract('TravelkoinController', function ([deployer, investor, wallet, advisor,
     });
 
     describe('token distribution', function () {
-      it('should create a total 100M tokens', async function () {
+      it('should create a total 85M tokens', async function () {
         const tokens = await this.token.totalSupply();
-        tokens.should.be.bignumber.equal(ether(100000000));
+        tokens.should.be.bignumber.equal(ether(85000000));
       });
 
       it('should allocate 43M token to SALE address', async function () {
@@ -220,33 +220,33 @@ contract('TravelkoinController', function ([deployer, investor, wallet, advisor,
         tokens.should.be.bignumber.equal(ether(43000000));
       });
 
-      it('should allocate 20M token to wallet address', async function () {
+      it('should allocate 17M token to multisig wallet address', async function () {
         const tokens = await this.token.balanceOf(wallet);
-        tokens.should.be.bignumber.equal(ether(20000000));
+        tokens.should.be.bignumber.equal(ether(17000000));
       });
 
-      it('should allocate 10M token to HODL address', async function () {
+      it('should allocate 3.5M token to HODL address', async function () {
         const tokens = await this.token.balanceOf(this.hodler.address);
-        tokens.should.be.bignumber.equal(ether(10000000));
-      });
-
-      it('should allocate 20.5M token to controller address', async function () {
-        const tokens = await this.token.balanceOf(this.controller.address);
-        tokens.should.be.bignumber.equal(ether(20500000));
-      });
-
-      it('should allocate 3.5M token to deployer address', async function () {
-        const tokens = await this.token.balanceOf(deployer);
         tokens.should.be.bignumber.equal(ether(3500000));
       });
 
+      it('should allocate 18M token to controller (founders and team) address', async function () {
+        const tokens = await this.token.balanceOf(this.controller.address);
+        tokens.should.be.bignumber.equal(ether(18000000));
+      });
+
+      it('should allocate 500K token to deployer (bounty) address', async function () {
+        const tokens = await this.token.balanceOf(deployer);
+        tokens.should.be.bignumber.equal(ether(500000));
+      });
+
       it('should allocate 3M token to investor address', async function () {
-        let investor = await this.controller.INVESTOR1();
+        let investor = await this.controller.CONTRIBUTOR1();
         let tokens = await this.token.balanceOf(investor);
-        tokens.should.be.bignumber.equal(ether(2000000));
-        investor = await this.controller.INVESTOR2();
+        tokens.should.be.bignumber.equal(ether(1500000));
+        investor = await this.controller.CONTRIBUTOR1();
         tokens = await this.token.balanceOf(investor);
-        tokens.should.be.bignumber.equal(ether(1000000));
+        tokens.should.be.bignumber.equal(ether(1500000));
       });
     });
 
