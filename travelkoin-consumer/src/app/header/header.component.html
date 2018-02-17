@@ -46,11 +46,17 @@
 </div>
 <div class="main-header bg-header">
     <div class="container">
-        <div class="logo-container">
-            <div app-logo></div>
-            <div class="logo-motto">
-                <a [routerLink]="['/']" class="font-blue">TRAVELKOIN</a>
-                <!--<p class="font-blue">{{ 'HEADER.SLOGAN' | translate }}</p>-->
+        <div class="logo-motto">
+            <div class="wrapper">
+                <div app-logo class="logo"></div>
+                <div class="logo-motto">
+                    <a [routerLink]="['/']" class="font-blue">
+                        TRAVELKOIN
+                    </a>
+                    <p class="font-blue">
+                        {{ 'HEADER.SLOGAN' | translate }}
+                    </p>
+                </div>
             </div>
         </div>
         <div class="right-header-btn">

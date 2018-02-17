@@ -32,21 +32,21 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
     uint256 public constant MILLION = 10 ** 6;
     uint256 public constant TOKEN_SALE1_NORMAL = 31 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_SALE2 = 12 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_3M = 300 * THOUSAND * TKT_UNIT;
-    uint256 public constant TOKEN_HODL_6M = 600 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_3M = 500 * THOUSAND * TKT_UNIT;
+    uint256 public constant TOKEN_HODL_6M = 900 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_HODL_9M = 2100 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_BOUNTY = 500 * THOUSAND * TKT_UNIT;
     uint256 public constant TOKEN_COMMUNITY = 17 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_TEAM = 12 * MILLION * TKT_UNIT;
     uint256 public constant TOKEN_FOUNDERS = 6 * MILLION * TKT_UNIT;
-    uint256 public constant TOKEN_INVESTORS = 3 * MILLION * TKT_UNIT;
+    uint256 public constant TOKEN_EARLY_CONTRIBUTORS = 3 * MILLION * TKT_UNIT;
 
     // addresses only SALE will remain, the others will be real eth addresses
     address public SALE = 0x1;
     address public FOUNDER1 = 0x2;
     address public FOUNDER2 = 0x3;
-    address public INVESTOR1 = 0x4;
-    address public INVESTOR2 = 0x5;
+    address public CONTRIBUTOR1 = 0x4;
+    address public CONTRIBUTOR2 = 0x5;
 
     // addresses for multisig and crowdsale
     address public multiSigWallet;
@@ -229,15 +229,15 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
             token.generateTokens(SALE, TOKEN_SALE1_NORMAL.add(TOKEN_SALE2));
             // hodler reward
             token.generateTokens(address(hodler), TOKEN_HODL_3M.add(TOKEN_HODL_6M).add(TOKEN_HODL_9M));
-            // bounty + referral
+            // bounty
             token.generateTokens(owner, TOKEN_BOUNTY);
             // community fund
             token.generateTokens(address(multiSigWallet), TOKEN_COMMUNITY);
             // team -> grantable
             token.generateTokens(address(this), TOKEN_FOUNDERS.add(TOKEN_TEAM));
-            // investors
-            token.generateTokens(INVESTOR1, TOKEN_INVESTORS.div(3).mul(2));
-            token.generateTokens(INVESTOR2, TOKEN_INVESTORS.div(3));
+            // early contributors
+            token.generateTokens(CONTRIBUTOR1, TOKEN_EARLY_CONTRIBUTORS.div(2));
+            token.generateTokens(CONTRIBUTOR2, TOKEN_EARLY_CONTRIBUTORS.div(2));
         }
     }
 
