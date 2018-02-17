@@ -1,6 +1,6 @@
 {
   "name": "travelkoinsale",
-  "version": "5.31.0",
+  "version": "5.32.0",
   "description": "Travelkoin token sale",
   "scripts": {
     "generate": "rm -rf ../travelkoin-consumer/src/app/contracts ../travelkoin-consumer/src/app/types build && truffle compile && soltsice ./build/contracts ./build/types && mkdir ../travelkoin-consumer/src/app/contracts && mkdir ../travelkoin-consumer/src/app/types && cp -fv ./build/contracts/*.* ../travelkoin-consumer/src/app/contracts/ && cp -fv ./build/types/*.* ../travelkoin-consumer/src/app/types/",
