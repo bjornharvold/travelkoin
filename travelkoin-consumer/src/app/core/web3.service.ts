@@ -25,6 +25,14 @@ export class Web3Service {
         return result;
     }
 
+    etherToWei(value: number): BigNumber {
+        let result: BigNumber = null;
+        if (value != null) {
+            result= this.getW3().web3.toWei(value, 'ether');
+        }
+        return result;
+    }
+
     /**
      * Loads Ethereum's Web3 into the app
      * @returns {Web3}

@@ -393,6 +393,7 @@
     "ERROR_AMOUNT_REQUIRED": "Amount cannot be empty",
     "ERROR_MIN_CONTRIBUTION": "Minimum contribution is 0.1 ETH",
     "ERROR_MAX_CONTRIBUTION": "Maximum contribution the first 24 hours is 1 ETH per person.",
+    "INITIATING_TRANSACTION": "'Initiating transaction... (please wait)'",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },

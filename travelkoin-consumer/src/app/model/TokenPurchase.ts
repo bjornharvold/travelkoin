@@ -36,6 +36,6 @@ export class TokenPurchase {
         }
     }
 
-    constructor(private readonly account: string) {
+    constructor(public readonly account: string) {
     }
 }

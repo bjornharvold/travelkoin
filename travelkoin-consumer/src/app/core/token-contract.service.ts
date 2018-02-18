@@ -132,6 +132,17 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.setTimes(startTime, endTime, txParams)));
     }
 
+    buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
+        const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
+        const tx: TxParams = {
+            from: beneficiary,
+            gas: 21000,
+            gasPrice: 1,
+            value: amountInWei
+        };
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
+    }
+
     // ================== TOKEN FEATURES ==================
     balanceOf(account: string): Observable<BigNumber> {
         return this.getTravelkoinMiniMeToken().switchMap((ti: TravelkoinMiniMeToken) => Observable.fromPromise(ti.balanceOf(account)));

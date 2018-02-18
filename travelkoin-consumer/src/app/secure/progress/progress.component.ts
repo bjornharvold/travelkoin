@@ -22,7 +22,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.tokenContractService.saleSupply()
+        this.tokenContractService.travelkoinBalance()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // console.log(`saleSupply: ${this.web3Service.weiToEther(value)}`);
@@ -34,7 +34,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
                 }
             );
 
-        this.tokenContractService.travelkoinBalance()
+        this.tokenContractService.tokenBalance()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // console.log(`travelkoinBalance: ${this.web3Service.weiToEther(value)}`);

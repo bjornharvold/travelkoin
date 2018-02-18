@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
 import {DateService} from '../../core/date.service';
+import {W3} from 'soltsice';
+import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -24,7 +26,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     startDate: moment.Moment;
     endDate: moment.Moment;
     status = null;
+    error = null;
     hasStarted = false;
+    loading = false;
     hasEnded = false;
     isCrowdsaleOpen = false;
 
@@ -37,7 +41,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 },
                 error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -57,7 +61,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     // console.log(this.startDate.format());
                 }, error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -75,7 +79,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     // console.log(this.endDate.format());
                 }, error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -96,7 +100,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     }
                 }, error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -113,7 +117,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     this.hasStarted = isOpen;
                 }, error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -141,7 +145,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 },
                 error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -149,17 +153,27 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     buyTokens(): void {
-        // this.status = 'Initiating transaction... (please wait)';
+        this.loading = true;
+        this.error = null;
+        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
 
-        // this.tokenContractService.getTravelkoinNormalSale()
-        //     .takeWhile(() => this.alive)
-        //     .subscribe((tokenInstance: any) => {
-        //             console.log(`Buying ${this.dto.amount} tokens...`);
-        //         },
-        //         error => this.status = error,
-        //         () => {
-        //         }
-        //     );
+        this.dto.updateFromFormValues(this.form);
+        this.tokenContractService.buyTokens(this.dto.account, this.dto.amount)
+            .takeWhile(() => this.alive)
+            .subscribe((tx: TransactionResult) => {
+                    console.log(tx);
+                },
+                error => {
+                    this.loading = false;
+                    this.status = null;
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
+                () => {
+                    this.loading = false;
+                    this.status = null;
+                }
+            );
 
     }
 

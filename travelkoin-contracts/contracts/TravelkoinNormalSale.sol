@@ -29,7 +29,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
 
     // stakes contains contribution stake in wei
     mapping(address => uint256) public stakesPerUser;
-    uint256 totalStakes;
 
     // first {whitelistDayCount} days of token sale is exclusive for whitelisted addresses
     // {whitelistDayMaxStake} contains the max stake limits per address for each whitelist sales day
@@ -199,7 +198,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         require(stake > 0);
 
         // calculate token count
-        uint256 tokens = tokenSold.mul(stakesPerUser[_beneficiary]).div(totalStakes);
+        uint256 tokens = stakesPerUser[_beneficiary];
 
         // set the stake 0 for beneficiary
         stakesPerUser[_beneficiary] = 0;
@@ -315,7 +314,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         return contributors;
     }
 
-    /// @notice How many TKT tokens do this contract have
+    /// @notice How many TKT tokens does this contract have
     function getTravelkoinBalance() view public returns (uint256) {
         return travelkoinController.token().balanceOf(address(this));
     }
@@ -358,9 +357,6 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         require(_beneficiary != address(0));
 
         uint256 _stake = _weiAmount;
-
-        // saving total stakes to be able to distribute tokens at the end
-        totalStakes = totalStakes.add(_stake);
 
         if (stakesPerUser[_beneficiary] == 0) {
             contributorsKeys.push(_beneficiary);

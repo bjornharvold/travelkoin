@@ -39,6 +39,6 @@ module.exports = function (deployer) {
         return deployer.deploy(NormalSale, TravelkoinController.address, dateStart, dateEnd, web3.toWei(0.1, 'ether'), 1000, web3.toWei(55555, 'ether'), Wallet.address);
     }).then(function () {
         // set crowdsale
-        return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(85, 'ether')).mul(1000));
+        return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(31, 'ether')).mul(1000000));
     });
 };
