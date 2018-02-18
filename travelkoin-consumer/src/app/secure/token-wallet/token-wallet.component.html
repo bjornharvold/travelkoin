@@ -1,16 +1,29 @@
-<div class="tile-box bg-white content-box">
-    <div class="tile-header">
+<div class="content-box">
+    <h3 class="content-box-header bg-white">
+        <span class="icon-separator">
+            <i class="icon-travelkoin font-blue fa-fw"></i>
+        </span>
         {{ 'TOKEN_WALLET.TITLE' | translate }}
-    </div>
-    <div class="tile-content-wrapper">
-        <div class="tile-content">
-            <!--<span><i *ngIf="loading === true" class="k-i-loading"></i> </span>-->
-            <!--<span *ngIf="loading === false && wallet != null">{{ wallet.balance | number:'1.0-8' }}</span>-->
-            <span>0</span>
-            <span>TKT</span>
+        <div class="header-buttons">
+            <a class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" (click)="claimTokens()" *ngIf="hasEnded === true && stake > 0">{{ 'TOKEN_WALLET.CLAIM_TOKENS' | translate }}</a>
+            <span class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" *ngIf="isOpen === true">{{ 'TOKEN_WALLET.SALE_ONGOING' | translate }}</span>
+            <span class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" *ngIf="hasStarted === false"><span class="font-white">{{ 'TOKEN_WALLET.WAITING_TO_START' | translate }}</span></span>
         </div>
+    </h3>
+    <div class="content-box-wrapper text-center mrg30A font-size-35" *ngIf="isOpen === false && hasEnded === false">
+        <!-- Not yet started -->
+        {{ 'TOKEN_WALLET.YOU_OWN' | translate }}: 0 TKT
     </div>
-    <div class="tile-footer tooltip-button font-red" *ngIf="error != null">
-        {{ 'WALLET.TRANSACTION_ERROR_DETAILS' | translate }}: {{ error }}
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="isOpen === true && hasEnded === false">
+        {{ 'TOKEN_WALLET.YOU_HAVE_PURCHASED' | translate }}: {{ stake }}
+        <span>TKT</span>
+    </div>
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="isOpen === false && hasEnded === true">
+        <span *ngIf="balance === 0">{{ 'TOKEN_WALLET.YOU_HAVE_PURCHASED' | translate }}: {{ stake }}</span>
+        <span *ngIf="stake === 0">{{ 'TOKEN_WALLET.YOU_OWN' | translate }}: {{ balance }}</span>
+        <span>TKT</span>
+    </div>
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="error != null">
+        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }}
     </div>
 </div>

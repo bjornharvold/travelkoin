@@ -1,12 +1,7 @@
-import {AfterViewInit, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
-import {Observable} from 'rxjs/Observable';
-import {TokenPurchase} from '../../model/TokenPurchase';
-import {FormGroup} from '@angular/forms';
-import {DateService} from '../../core/date.service';
-import {environment} from '../../../environments/environment';
-import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
+import { BigNumber } from "bignumber.js";
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -16,73 +11,127 @@ import {TokenContractService} from '../../core/token-contract.service';
 export class TokenWalletComponent implements OnInit, OnDestroy {
     private alive = true;
     accounts: string[];
-    provider: string;
-    currentAccountBalanceWei: number = 0;
-    currentAccountBalanceEther: string = '';
-    currentTokenBalance: number = 0;
-    form: FormGroup;
-    startDate: moment.Moment;
-    endDate: moment.Moment;
-    status = null;
-    started = false;
+    account: string;
+    hasStarted = false;
+    hasEnded = false;
+    isOpen = false;
     error: string = null;
+    stake = 0;
+    balance = 0;
 
     /**
-     * Execute method on contract to retrieve token balance
-     * @param tokenInstance
+     * This is the user's current investment in the crowdsale
      * @param {string} account
      */
-    // private getTokenBalance(tokenInstance: any, account: string): void {
-    //     console.log(tokenInstance);
-    //     Observable.fromPromise(tokenInstance.getBalance.call(account))
-    //         .takeWhile(() => this.alive)
-    //         .subscribe((balance: number) => {
-    //                 this.currentTokenBalance = balance;
-    //             },
-    //             error => this.status = error,
-    //             () => {
-    //             }
-    //         );
-    // }
+    private getUserStakeDuringCrowdsale(account: string): void {
+        this.tokenContractService.stakesPerUser(account)
+            .takeWhile(() => this.alive)
+            .subscribe((stake: BigNumber) => {
+                    this.stake = stake.toNumber();
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
 
     /**
-     * Retrieve the instantiated version of the oken contract
+     * This is the user's current investment in the crowdsale
      * @param {string} account
      */
-    // private getTokenInstance(account: string): void {
-    //     this.tokenContractService.getTokenInstance()
-    //         .takeWhile(() => this.alive)
-    //         .subscribe((tokenInstance: any) => {
-    //                 this.getTokenBalance(tokenInstance, account);
-    //             },
-    //             error => this.status = error,
-    //             () => {
-    //             }
-    //         );
-    // }
+    private getUserTokens(account: string): void {
+        this.tokenContractService.balanceOf(account)
+            .takeWhile(() => this.alive)
+            .subscribe((balance: BigNumber) => {
+                    this.balance = balance.toNumber();
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
+
+    /**
+     * User can only claim tokens after event is over
+     */
+    private hasCrowdsaleEnded(): void {
+        this.tokenContractService.hasEnded()
+            .takeWhile(() => this.alive)
+            .subscribe((hasEnded: boolean) => {
+                    this.hasEnded = hasEnded;
+
+                    if (this.hasEnded === true) {
+                        this.getUserStakeDuringCrowdsale(this.account);
+                        this.getUserTokens(this.account);
+                    }
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
+
+    /**
+     * User can only claim tokens after event is over
+     */
+    private isCrowdsaleOpen(): void {
+        this.tokenContractService.isCrowdsaleOpen()
+            .takeWhile(() => this.alive)
+            .subscribe((isOpen: boolean) => {
+                    this.isOpen = isOpen;
+                    if (this.isOpen === true) {
+                        this.getUserStakeDuringCrowdsale(this.account);
+                    } else {
+                        this.hasCrowdsaleEnded();
+                    }
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
+
+    /**
+     * User can only claim tokens after event is over
+     */
+    private hasCrowdsaleStarted(): void {
+        this.tokenContractService.hasStarted()
+            .takeWhile(() => this.alive)
+            .subscribe((hasStarted: boolean) => {
+                    this.hasStarted = hasStarted;
+                    if (this.hasStarted === true) {
+                        this.isCrowdsaleOpen()
+                    }
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
 
     /**
      * Grab the active account from Ethereum provider
      */
-    // private retrieveAccounts(): void {
-    //     this.web3Service.getAccounts()
-    //         .takeWhile(() => this.alive)
-    //         .subscribe((accounts) => {
-    //                 this.accounts = accounts;
-    //                 this.getTokenInstance(accounts[0]);
-    //             },
-    //             error => this.status = error,
-    //             () => {
-    //             }
-    //         );
-    // }
+    private retrieveAccounts(): void {
+        this.web3Service.getAccounts()
+            .takeWhile(() => this.alive)
+            .subscribe((accounts) => {
+                    this.accounts = accounts;
+                    this.account = accounts[0];
+                    this.isCrowdsaleOpen();
+                },
+                error => this.error = error,
+                () => {
+                }
+            );
+    }
 
     ngOnDestroy() {
         this.alive = false;
     }
 
     ngOnInit() {
-        // this.retrieveAccounts();
+        this.retrieveAccounts();
     }
 
     constructor(private web3Service: Web3Service,

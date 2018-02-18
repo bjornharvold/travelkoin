@@ -136,10 +136,10 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div *ngIf="form.get('investorSupply')" class="form-group">
+                    <div *ngIf="form.get('earlyContributorSupply')" class="form-group">
                         <label for="investorSupply">{{ 'CONTRACT.INVESTOR_SUPPLY' | translate }}</label>
                         <div class="input-group input-group-lg">
-                            <input id="investorSupply" type="text" class="form-control form-control-lg border-green" name="investorSupply" formControlName="investorSupply">
+                            <input id="investorSupply" type="text" class="form-control form-control-lg border-green" name="investorSupply" formControlName="earlyContributorSupply">
                             <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
                         </div>
                         <small class="form-text text-muted">{{ 'CONTRACT.INVESTOR_SUPPLY_HELP' | translate }}</small>

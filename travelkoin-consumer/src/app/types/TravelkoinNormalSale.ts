@@ -19,7 +19,7 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     }
 
     // tslint:disable-next-line:max-line-length
-    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_travelkoinController: string, _startTime: BigNumber | number, _endTime: BigNumber | number, _minContribution: BigNumber | number, _maxContributionFirstTwentyFourHours: BigNumber | number, _rate: BigNumber | number, _cap: BigNumber | number, _wallet: string}, w3?: W3, link?: SoltsiceContract[]): Promise<TravelkoinNormalSale> {
+    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_travelkoinController: string, _startTime: BigNumber | number, _endTime: BigNumber | number, _minContribution: BigNumber | number, _rate: BigNumber | number, _cap: BigNumber | number, _wallet: string}, w3?: W3, link?: SoltsiceContract[]): Promise<TravelkoinNormalSale> {
         let contract = new TravelkoinNormalSale(deploymentParams, ctorParams, w3, link);
         await contract._instancePromise;
         return contract;
@@ -39,7 +39,7 @@ export class TravelkoinNormalSale extends SoltsiceContract {
 
     protected constructor(
         deploymentParams: string | W3.TX.TxParams | object,
-        ctorParams?: {_travelkoinController: string, _startTime: BigNumber | number, _endTime: BigNumber | number, _minContribution: BigNumber | number, _maxContributionFirstTwentyFourHours: BigNumber | number, _rate: BigNumber | number, _cap: BigNumber | number, _wallet: string},
+        ctorParams?: {_travelkoinController: string, _startTime: BigNumber | number, _endTime: BigNumber | number, _minContribution: BigNumber | number, _rate: BigNumber | number, _cap: BigNumber | number, _wallet: string},
         w3?: W3,
         link?: SoltsiceContract[]
     ) {
@@ -47,7 +47,7 @@ export class TravelkoinNormalSale extends SoltsiceContract {
         super(
             w3,
             TravelkoinNormalSale.Artifacts,
-            ctorParams ? [ctorParams!._travelkoinController, ctorParams!._startTime, ctorParams!._endTime, ctorParams!._minContribution, ctorParams!._maxContributionFirstTwentyFourHours, ctorParams!._rate, ctorParams!._cap, ctorParams!._wallet] : [],
+            ctorParams ? [ctorParams!._travelkoinController, ctorParams!._startTime, ctorParams!._endTime, ctorParams!._minContribution, ctorParams!._rate, ctorParams!._cap, ctorParams!._wallet] : [],
             deploymentParams,
             link
         );
@@ -55,17 +55,6 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     /*
         Contract methods
     */
-    
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:variable-name
-    public stakes(_0: string, txParams?: W3.TX.TxParams): Promise<BigNumber> {
-        return new Promise((resolve, reject) => {
-            this._instance.stakes
-                .call(_0, txParams || this._sendParams)
-                .then((res) => resolve(res))
-                .catch((err) => reject(err));
-        });
-    }
     
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:variable-name
@@ -340,6 +329,17 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:variable-name
+    public whitelistDayCount( txParams?: W3.TX.TxParams): Promise<BigNumber> {
+        return new Promise((resolve, reject) => {
+            this._instance.whitelistDayCount
+                .call( txParams || this._sendParams)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
+        });
+    }
+    
+    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:variable-name
     public isFinalized( txParams?: W3.TX.TxParams): Promise<boolean> {
         return new Promise((resolve, reject) => {
             this._instance.isFinalized
@@ -355,6 +355,17 @@ export class TravelkoinNormalSale extends SoltsiceContract {
         return new Promise((resolve, reject) => {
             this._instance.owner
                 .call( txParams || this._sendParams)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
+        });
+    }
+    
+    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:variable-name
+    public whitelist(_0: string, txParams?: W3.TX.TxParams): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this._instance.whitelist
+                .call(_0, txParams || this._sendParams)
                 .then((res) => resolve(res))
                 .catch((err) => reject(err));
         });
@@ -384,10 +395,21 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:variable-name
-    public maxContributionFirstTwentyFourHours( txParams?: W3.TX.TxParams): Promise<BigNumber> {
+    public stakesPerUser(_0: string, txParams?: W3.TX.TxParams): Promise<BigNumber> {
         return new Promise((resolve, reject) => {
-            this._instance.maxContributionFirstTwentyFourHours
-                .call( txParams || this._sendParams)
+            this._instance.stakesPerUser
+                .call(_0, txParams || this._sendParams)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
+        });
+    }
+    
+    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:variable-name
+    public whitelistDayMaxStake(_0: BigNumber | number, txParams?: W3.TX.TxParams): Promise<BigNumber> {
+        return new Promise((resolve, reject) => {
+            this._instance.whitelistDayMaxStake
+                .call(_0, txParams || this._sendParams)
                 .then((res) => resolve(res))
                 .catch((err) => reject(err));
         });
@@ -516,6 +538,56 @@ export class TravelkoinNormalSale extends SoltsiceContract {
         });
     
     // tslint:disable-next-line:member-ordering
+    public setWhitelist = Object.assign(
+        // tslint:disable-next-line:max-line-length
+        // tslint:disable-next-line:variable-name
+        (_add: string[], _remove: string[], _whitelistLimits: BigNumber[] | number[], txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
+            return new Promise((resolve, reject) => {
+                this._instance.setWhitelist(_add, _remove, _whitelistLimits, txParams || this._sendParams)
+                    .then((res) => resolve(res))
+                    .catch((err) => reject(err));
+            });
+        },
+        {
+            // tslint:disable-next-line:max-line-length
+            // tslint:disable-next-line:variable-name
+            sendTransaction: Object.assign((_add: string[], _remove: string[], _whitelistLimits: BigNumber[] | number[], txParams?: W3.TX.TxParams): Promise<string> => {
+                    return new Promise((resolve, reject) => {
+                        this._instance.setWhitelist.sendTransaction(_add, _remove, _whitelistLimits, txParams || this._sendParams)
+                            .then((res) => resolve(res))
+                            .catch((err) => reject(err));
+                    });
+                },
+                {
+                    // tslint:disable-next-line:max-line-length
+                    // tslint:disable-next-line:variable-name
+                    sendSigned: (_add: string[], _remove: string[], _whitelistLimits: BigNumber[] | number[], privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
+                        // tslint:disable-next-line:max-line-length
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.setWhitelist.request(_add, _remove, _whitelistLimits).params[0].data, txParams, nonce);
+                    }
+                }
+            )
+        },
+        {
+            // tslint:disable-next-line:max-line-length
+            // tslint:disable-next-line:variable-name
+            data: (_add: string[], _remove: string[], _whitelistLimits: BigNumber[] | number[]): Promise<string> => {
+                return new Promise((resolve, reject) => {
+                    resolve(this._instance.setWhitelist.request(_add, _remove, _whitelistLimits).params[0].data);
+                });
+            }
+        },
+        {
+            // tslint:disable-next-line:max-line-length
+            // tslint:disable-next-line:variable-name
+            estimateGas: (_add: string[], _remove: string[], _whitelistLimits: BigNumber[] | number[]): Promise<number> => {
+                return new Promise((resolve, reject) => {
+                    this._instance.setWhitelist.estimateGas(_add, _remove, _whitelistLimits).then((g) => resolve(g));
+                });
+            }
+        });
+    
+    // tslint:disable-next-line:member-ordering
     public setMinContribution = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
@@ -561,56 +633,6 @@ export class TravelkoinNormalSale extends SoltsiceContract {
             estimateGas: (_minContribution: BigNumber | number): Promise<number> => {
                 return new Promise((resolve, reject) => {
                     this._instance.setMinContribution.estimateGas(_minContribution).then((g) => resolve(g));
-                });
-            }
-        });
-    
-    // tslint:disable-next-line:member-ordering
-    public setMaxContributionFirstTwentyFourHours = Object.assign(
-        // tslint:disable-next-line:max-line-length
-        // tslint:disable-next-line:variable-name
-        (_maxContributionFirstTwentyFourHours: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.setMaxContributionFirstTwentyFourHours(_maxContributionFirstTwentyFourHours, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            sendTransaction: Object.assign((_maxContributionFirstTwentyFourHours: BigNumber | number, txParams?: W3.TX.TxParams): Promise<string> => {
-                    return new Promise((resolve, reject) => {
-                        this._instance.setMaxContributionFirstTwentyFourHours.sendTransaction(_maxContributionFirstTwentyFourHours, txParams || this._sendParams)
-                            .then((res) => resolve(res))
-                            .catch((err) => reject(err));
-                    });
-                },
-                {
-                    // tslint:disable-next-line:max-line-length
-                    // tslint:disable-next-line:variable-name
-                    sendSigned: (_maxContributionFirstTwentyFourHours: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
-                        // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.setMaxContributionFirstTwentyFourHours.request(_maxContributionFirstTwentyFourHours).params[0].data, txParams, nonce);
-                    }
-                }
-            )
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            data: (_maxContributionFirstTwentyFourHours: BigNumber | number): Promise<string> => {
-                return new Promise((resolve, reject) => {
-                    resolve(this._instance.setMaxContributionFirstTwentyFourHours.request(_maxContributionFirstTwentyFourHours).params[0].data);
-                });
-            }
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            estimateGas: (_maxContributionFirstTwentyFourHours: BigNumber | number): Promise<number> => {
-                return new Promise((resolve, reject) => {
-                    this._instance.setMaxContributionFirstTwentyFourHours.estimateGas(_maxContributionFirstTwentyFourHours).then((g) => resolve(g));
                 });
             }
         });
