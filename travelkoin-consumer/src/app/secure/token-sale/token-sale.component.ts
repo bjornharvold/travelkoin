@@ -6,7 +6,7 @@ import {FormGroup} from '@angular/forms';
 import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
-import { BigNumber } from "bignumber.js";
+import {BigNumber} from 'bignumber.js';
 import {DateService} from '../../core/date.service';
 
 @Component({
@@ -57,7 +57,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .subscribe((startTime: BigNumber) => {
                     this.startDate = DateService.bigNumberToMoment(startTime);
                     // console.log(this.startDate.format());
-                }, error => this.status = 'CODE.ERROR',
+                }, error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             )
@@ -72,7 +75,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .subscribe((endTime: BigNumber) => {
                     this.endDate = DateService.bigNumberToMoment(endTime);
                     // console.log(this.endDate.format());
-                }, error => this.status = 'CODE.ERROR',
+                }, error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             )
@@ -86,7 +92,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((isOpen: boolean) => {
                     this.isCrowdsaleOpen = isOpen;
-                }, error => this.status = 'CODE.ERROR',
+                }, error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             )
@@ -111,7 +120,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     // retrieve current account balance in Ether
                     this.getAccountBalance(accounts[0]);
                 },
-                error => this.status = 'CODE.ERROR',
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );

@@ -389,7 +389,7 @@
     "MAKE_PAYMENT": "Buy",
     "TOKEN_SALE": "Token sale",
     "CURRENT_BALANCE": "Balance",
-    "NOT_STARTED": "Our event has not yet started. Please come back later.",
+    "NOT_STARTED": "Event hasn't started",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
@@ -440,7 +440,7 @@
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
-    "TITLE": "Travelkoin Wallet",
+    "TITLE": "Wallet",
     "PURCHASED_TOKENS": "Purchased tokens",
     "CLAIM_AFTER_SALE": "Claim tokens after sale",
     "WAITING_TO_START": "Sale not yet started",

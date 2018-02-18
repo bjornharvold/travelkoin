@@ -19,8 +19,6 @@ export const environment = {
     eventStartDate: '2017-04-09T12:00:00.000',
     eventEndDate: '2017-04-14T12:00:00.000',
     etherScanApiKey: 'TE5MWSJD3HMUJ4585BQJT2CV7D3DVDAXUH',
-    featureLogin: true,
-    featureLanguage: true,
     ethWalletAddress: '0xC85c71F4A7c096Df5E6305Ca940b664e30d8ca55',
     siteUrl: 'https://travelkoin.io',
     contracts: {

@@ -62,11 +62,9 @@
         <div class="right-header-btn">
             <div class="search-btn" [ngClass]="{'border-left': isHome === true, 'border-none': isHome === false }">
                 <div ngbDropdown class="d-inline-block">
-                    <div *ngIf="languageEnabled === true">
-                        <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle [title]="'HEADER.CHOOSE_LANGUAGE' | translate"><i class="fas fa-language"></i></button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button class="dropdown-item" *ngFor="let lang of languages" (click)="changeLanguage(lang.value)"><span *ngIf="lang.value === language"><i class="fas fa-angle-right"></i> </span>{{ 'LANGUAGE.' + lang.label | translate }}</button>
-                        </div>
+                    <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle [title]="'HEADER.CHOOSE_LANGUAGE' | translate"><i class="fas fa-language"></i></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item" *ngFor="let lang of languages" (click)="changeLanguage(lang.value)"><span *ngIf="lang.value === language"><i class="fas fa-angle-right"></i> </span>{{ 'LANGUAGE.' + lang.label | translate }}</button>
                     </div>
                 </div>
             </div>

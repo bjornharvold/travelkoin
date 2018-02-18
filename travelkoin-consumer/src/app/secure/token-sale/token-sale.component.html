@@ -32,8 +32,8 @@
 
         </form>
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="isCrowdsaleOpen === false && status == null">
-        {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="isCrowdsaleOpen === false && status == null">
+        <i class="fas fa-hourglass-half"></i> {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
     </div>
     <div class="content-box-wrapper text-center mrg30A" *ngIf="status != null">
         <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}

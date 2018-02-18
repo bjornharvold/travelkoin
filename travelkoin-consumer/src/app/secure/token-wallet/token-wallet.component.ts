@@ -1,7 +1,7 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
-import { BigNumber } from "bignumber.js";
+import {BigNumber} from 'bignumber.js';
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -15,7 +15,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     isOpen = false;
-    error: string = null;
+    status: string = null;
     stake = 0;
     balance = 0;
 
@@ -29,7 +29,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((stake: BigNumber) => {
                     this.stake = stake.toNumber();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -45,7 +48,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((balance: BigNumber) => {
                     this.balance = balance.toNumber();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -65,7 +71,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                         this.getUserTokens(this.account);
                     }
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -85,7 +94,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                         this.hasCrowdsaleEnded();
                     }
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -103,7 +115,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                         this.isCrowdsaleOpen()
                     }
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -120,7 +135,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                     this.account = accounts[0];
                     this.isCrowdsaleOpen();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );

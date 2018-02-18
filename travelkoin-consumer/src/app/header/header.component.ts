@@ -26,9 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     languages: Array<KeyValuePair>;
     credentials: firebase.User = null;
     language: string;
-    languageEnabled = environment.featureLanguage;
-    loginEnabled = environment.featureLogin;
-    showMobileNav = false;
     showLanguageWarning = false;
 
     logout(): void {
