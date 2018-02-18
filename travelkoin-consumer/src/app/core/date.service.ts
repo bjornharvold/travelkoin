@@ -49,7 +49,16 @@ export class DateService {
      * @returns {moment.Moment}
      */
     static utcToMoment(date: string): moment.Moment {
-        return moment(date, UTC_DATE_FORMAT);
+        return moment.utc(date);
+    }
+
+    /**
+     * Converts a string to a moment.Moment object.
+     * @param date
+     * @returns {moment.Moment}
+     */
+    static iso8601ToMoment(date: string): moment.Moment {
+        return moment(date);
     }
 
     /**

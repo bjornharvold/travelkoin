@@ -5,7 +5,7 @@
         </span>
         {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }} {{ 'TOKEN_CONTRACT.YOU_ARE_USING' | translate }} {{ provider }}
     </h3>
-    <div class="content-box-wrapper" *ngIf="isCrowdsaleOpen === true && status == null">
+    <div class="content-box-wrapper" *ngIf="hasStarted === true && hasEnded === false">
         <form (ngSubmit)="buyTokens()" [formGroup]="form">
 
             <div class="form-group" *ngIf="form.get('account')">
@@ -25,6 +25,13 @@
                     </span>
                     <input id="amount" type="amount" class="form-control" placeholder="{{ 'TOKEN_CONTRACT.AMOUNT' | translate }}" formControlName="amount">
                 </div>
+                <div [hidden]="form.get('amount').valid || form.get('amount').pristine">
+                    <div class="form-control-feedback">
+                        <p class="font-red" *ngIf="form.get('amount').hasError('required')">{{ 'TOKEN_CONTRACT.ERROR_AMOUNT_REQUIRED' | translate }}</p>
+                        <p class="font-red" *ngIf="form.get('amount').hasError('min')">{{ 'TOKEN_CONTRACT.ERROR_MIN_CONTRIBUTION' | translate }}</p>
+                        <p class="font-red" *ngIf="form.get('amount').hasError('max')">{{ 'TOKEN_CONTRACT.ERROR_MAX_CONTRIBUTION' | translate }}</p>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate }}</button>
@@ -32,8 +39,8 @@
 
         </form>
     </div>
-    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="isCrowdsaleOpen === false && status == null">
-        <i class="fas fa-hourglass-half"></i> {{ 'TOKEN_CONTRACT.NOT_STARTED' | translate }}
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasStarted === false">
+        {{ 'TOKEN_CONTRACT.STARTS_AT' | translate }} {{ startDate }}
     </div>
     <div class="content-box-wrapper text-center mrg30A" *ngIf="status != null">
         <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}

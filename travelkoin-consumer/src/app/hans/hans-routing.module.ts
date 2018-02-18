@@ -9,6 +9,7 @@ import {AuthenticatedGuard} from '../core/authenticated.guard';
 import {HansComponent} from './hans/hans.component';
 import {HansGuard} from '../core/hans.guard';
 import {UsersComponent} from './users/users.component';
+import {SmartContractConfigurationComponent} from './smart-contract-configuration/smart-contract-configuration.component';
 
 const routes: Routes = [
     {
@@ -29,6 +30,12 @@ const routes: Routes = [
             {
                 path: 'users',
                 component: UsersComponent,
+                canLoad: [AuthenticatedGuard, HansGuard],
+                canActivate: [AuthenticatedGuard, HansGuard]
+            },
+            {
+                path: 'contract',
+                component: SmartContractConfigurationComponent,
                 canLoad: [AuthenticatedGuard, HansGuard],
                 canActivate: [AuthenticatedGuard, HansGuard]
             }

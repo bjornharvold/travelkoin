@@ -3,7 +3,6 @@ import {Web3Service} from '../../core/web3.service';
 import {Observable} from 'rxjs/Observable';
 import {TokenPurchase} from '../../model/TokenPurchase';
 import {FormGroup} from '@angular/forms';
-import {environment} from '../../../environments/environment';
 import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
@@ -25,14 +24,16 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     startDate: moment.Moment;
     endDate: moment.Moment;
     status = null;
+    hasStarted = false;
+    hasEnded = false;
     isCrowdsaleOpen = false;
 
     private getAccountBalance(account: string): void {
         this.web3Service.getAccountBalance(account)
             .takeWhile(() => this.alive)
             .subscribe((balance: any) => {
-                    this.currentAccountBalanceWei = balance instanceof BigNumber ? balance as BigNumber : null;
-                    this.currentAccountBalanceEther = this.web3Service.weiToEther(this.currentAccountBalanceWei);
+                    this.currentAccountBalanceWei = balance;
+                    this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
                 },
                 error => {
                     console.error(error);
@@ -43,11 +44,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             );
     }
 
-    private createFormObject(account: string): TokenPurchase {
-        const receiver: string = environment.ethWalletAddress;
-        return new TokenPurchase(this.startDate, this.endDate, account, receiver);
-    }
-
     /**
      * Save start time
      */
@@ -56,6 +52,8 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((startTime: BigNumber) => {
                     this.startDate = DateService.bigNumberToMoment(startTime);
+                    this.dto.updateValidator(this.form, this.startDate);
+
                     // console.log(this.startDate.format());
                 }, error => {
                     console.error(error);
@@ -87,11 +85,32 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     /**
      * Check to see if the token sale has ended
      */
-    private getIsCrowdsaleOpen(): void {
-        this.tokenContractService.isCrowdsaleOpen()
+    private hasCrowdsaleEnded(): void {
+        this.tokenContractService.hasEnded()
+            .takeWhile(() => this.alive)
+            .subscribe((isClosed: boolean) => {
+                    this.hasEnded = isClosed;
+
+                    if (this.hasEnded === false) {
+                        this.hasCrowdsaleStarted();
+                    }
+                }, error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
+                () => {
+                }
+            )
+    }
+
+    /**
+     * Check to see if the token sale has ended
+     */
+    private hasCrowdsaleStarted(): void {
+        this.tokenContractService.hasStarted()
             .takeWhile(() => this.alive)
             .subscribe((isOpen: boolean) => {
-                    this.isCrowdsaleOpen = isOpen;
+                    this.hasStarted = isOpen;
                 }, error => {
                     console.error(error);
                     this.status = 'CODE.ERROR';
@@ -108,7 +127,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     this.accounts = accounts;
 
                     // populate the form
-                    this.dto = this.createFormObject(accounts[0]);
+                    this.dto = new TokenPurchase(accounts[0]);
                     this.dto.populateFormValues(this.form);
 
                     // check that the provider exists
@@ -149,6 +168,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.hasCrowdsaleEnded();
         this.provider = this.web3Service.getProviderName();
         this.startTime();
         this.endTime();
@@ -162,10 +182,11 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         this.form = new FormGroup({});
 
         // check if event has started every 5 seconds
+        // this timer is there for investors waiting to there to be able to invest
         Observable.interval(5000)
-            .takeWhile(() => this.alive && this.isCrowdsaleOpen === false)
+            .takeWhile(() => this.alive && this.hasStarted === false)
             .subscribe(() => {
-                this.getIsCrowdsaleOpen();
+                this.hasCrowdsaleEnded();
             });
     }
 

@@ -7,25 +7,25 @@ export class TokenPurchase {
     amount: number;
 
     populateFormValues(form: FormGroup): void {
-        if (this.account != null) {
-            FormHelper.addOrReplaceFormControl(form, 'account',
-                new FormControl({value: this.account, disabled: true}, Validators.required));
-        }
+        FormHelper.addOrReplaceFormControl(form, 'account', new FormControl({value: this.account, disabled: true}, Validators.required));
+        FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}));
+    }
 
-        // now we need to check whether we put in a max number here and we do that by checking whether we are in the first 24 hours of the ICO
+    updateValidator(formGroup: FormGroup, startDate: moment.Moment): void {
         const now: moment.Moment = DateService.getInstanceOfNow();
-        if (DateService.isSameOrAfter(now, this.startDate) && DateService.isSameOrBefore(now, this.endDate)) {
+        if (DateService.isSameOrAfter(now, startDate)) {
             // now we check whether we are within the first 24 hours of the event
-            const plus24Hours = DateService.addDaysToMoment(this.startDate, 1);
+            const plus24Hours = DateService.addDaysToMoment(startDate, 1);
             if (DateService.isSameOrBefore(now, plus24Hours)) {
                 // ok limit here is 1 Ether
-                FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}, [Validators.required, Validators.minLength(1), Validators.min(0.1), Validators.maxLength(1), Validators.max(1)]));
+                formGroup.get('amount').setValidators([Validators.required, Validators.min(0.1), Validators.max(1)]);
             } else {
                 // No limit
-                FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}, [Validators.required, Validators.minLength(1), Validators.min(0.1)]));
+                formGroup.get('amount').setValidators([Validators.required, Validators.min(0.1)]);
             }
-        }
 
+            formGroup.get('amount').updateValueAndValidity();
+        }
     }
 
     updateFromFormValues(form: FormGroup): void {
@@ -36,9 +36,6 @@ export class TokenPurchase {
         }
     }
 
-    constructor(private readonly startDate: moment.Moment,
-                private readonly endDate: moment.Moment,
-                private readonly account: string,
-                private readonly receiver: string) {
+    constructor(private readonly account: string) {
     }
 }

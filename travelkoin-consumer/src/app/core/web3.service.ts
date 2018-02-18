@@ -88,13 +88,35 @@ export class Web3Service {
 
         const w3: W3 = this.getW3();
         if (w3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(this.getW3().eth.getAccounts);
+            const callbackObservable = Observable.bindNodeCallback(w3.eth.getAccounts);
             result = callbackObservable();
         } else {
             result = Observable.throw('CODE.NOT_CONNECTED');
         }
 
         return result;
+    }
+
+    /**
+     * Returns the default account making changes to the contract
+     * @returns {Observable<Array<string>>}
+     */
+    get defaultAccount(): string {
+        let result: string = null;
+
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
+            result = w3.eth.defaultAccount;
+        }
+
+        return result;
+    }
+
+    set defaultAccount(account: string) {
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
+            w3.web3.eth.defaultAccount = account;
+        }
     }
 
     isConnected(): boolean {

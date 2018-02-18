@@ -8,7 +8,8 @@ var TravelkoinRefundVault = artifacts.require('TravelkoinRefundVault');
 var TravelkoinHodler = artifacts.require('TravelkoinHodler');
 var TravelkoinTokenVesting = artifacts.require('TravelkoinTokenVesting');
 
-var dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
+// var dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
+var dateStart = Math.floor(new Date().getTime() / 1000) + 0.01 * 60 * 60 * 24; // starts now
 var dateEnd = dateStart + 5 * 24 * 60 * 60; // lasts 5 days
 
 module.exports = function (deployer) {
@@ -38,6 +39,6 @@ module.exports = function (deployer) {
         return deployer.deploy(NormalSale, TravelkoinController.address, dateStart, dateEnd, web3.toWei(0.1, 'ether'), 1000, web3.toWei(55555, 'ether'), Wallet.address);
     }).then(function () {
         // set crowdsale
-        return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(100, 'ether')).mul(1000));
+        return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(85, 'ether')).mul(1000));
     });
 };

@@ -5,7 +5,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {EtherWalletComponent} from './ether-wallet/ether-wallet.component';
 import {SecureComponent} from './secure/secure.component';
 import {RegisteredGuard} from '../core/registered.guard';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
@@ -25,12 +24,6 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
-                canLoad: [AuthenticatedGuard, RegisteredGuard],
-                canActivate: [AuthenticatedGuard, RegisteredGuard]
-            },
-            {
-                path: 'wallet/:type',
-                component: EtherWalletComponent,
                 canLoad: [AuthenticatedGuard, RegisteredGuard],
                 canActivate: [AuthenticatedGuard, RegisteredGuard]
             },

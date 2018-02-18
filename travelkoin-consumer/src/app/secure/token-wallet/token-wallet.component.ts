@@ -69,29 +69,8 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                     if (this.hasEnded === true) {
                         this.getUserStakeDuringCrowdsale(this.account);
                         this.getUserTokens(this.account);
-                    }
-                },
-                error => {
-                    console.error(error);
-                    this.status = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
-    }
-
-    /**
-     * User can only claim tokens after event is over
-     */
-    private isCrowdsaleOpen(): void {
-        this.tokenContractService.isCrowdsaleOpen()
-            .takeWhile(() => this.alive)
-            .subscribe((isOpen: boolean) => {
-                    this.isOpen = isOpen;
-                    if (this.isOpen === true) {
-                        this.getUserStakeDuringCrowdsale(this.account);
                     } else {
-                        this.hasCrowdsaleEnded();
+                        this.hasCrowdsaleStarted();
                     }
                 },
                 error => {
@@ -112,7 +91,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((hasStarted: boolean) => {
                     this.hasStarted = hasStarted;
                     if (this.hasStarted === true) {
-                        this.isCrowdsaleOpen()
+                        this.getUserStakeDuringCrowdsale(this.account);
                     }
                 },
                 error => {
@@ -133,7 +112,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((accounts) => {
                     this.accounts = accounts;
                     this.account = accounts[0];
-                    this.isCrowdsaleOpen();
+                    this.hasCrowdsaleEnded();
                 },
                 error => {
                     console.error(error);

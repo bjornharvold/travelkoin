@@ -4,6 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {BigNumber} from 'bignumber.js';
 import {TravelkoinController, TravelkoinMiniMeToken, TravelkoinNormalSale} from '../types';
 import {environment} from '../../environments/environment';
+import {W3} from 'soltsice';
+import TransactionResult = W3.TX.TransactionResult;
+import TxParams = W3.TX.TxParams;
 
 @Injectable()
 export class TokenContractService {
@@ -123,6 +126,10 @@ export class TokenContractService {
 
     travelkoinBalance(): Observable<BigNumber> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
+    }
+
+    updateDates(startTime: number, endTime: number, txParams: TxParams): Observable<TransactionResult> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.setTimes(startTime, endTime, txParams)));
     }
 
     // ================== TOKEN FEATURES ==================
