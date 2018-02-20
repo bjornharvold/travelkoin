@@ -429,8 +429,8 @@
     "NINE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 9-month HODLers.",
     "RATE": "TKT / ETH conversion rate",
     "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
-    "CAP": "Token cap for sale during ICO",
-    "CAP_HELP": "This maximum number of tokens set aside for our ICO.",
+    "CAP": "Cap in Ether during ICO",
+    "CAP_HELP": "This is the maximum number of Ether that can be used to purchase our token during the ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
     "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
     "VESTING_TEAM_DURATION": "Team token vesting",
@@ -460,6 +460,7 @@
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
     "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
+    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist and refresh the browser page.",
     "ERROR": "Unknown error: Check the log."
   },
   "FAQ": {

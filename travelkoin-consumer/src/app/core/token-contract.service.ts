@@ -22,7 +22,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinNormalSale.At(environment.contracts.TravelkoinNormalSale, this.web3Service.getW3()))
-                    .map((token: TravelkoinNormalSale) => {this.crowdsaleContract = token; return token;});
+                    .map((token: TravelkoinNormalSale) => {
+                        this.crowdsaleContract = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -41,7 +44,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinMiniMeToken.At(environment.contracts.TravelkoinMiniMeToken, this.web3Service.getW3()))
-                    .map((token: TravelkoinMiniMeToken) => {this.travelkoinTokenContract = token; return token;});
+                    .map((token: TravelkoinMiniMeToken) => {
+                        this.travelkoinTokenContract = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -60,7 +66,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinController.At(environment.contracts.TravelkoinController, this.web3Service.getW3()))
-                    .map((token: TravelkoinController) => {this.travelkoinController = token; return token;});
+                    .map((token: TravelkoinController) => {
+                        this.travelkoinController = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -128,8 +137,53 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
 
-    updateDates(startTime: number, endTime: number, txParams: TxParams): Observable<TransactionResult> {
-        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.setTimes(startTime, endTime, txParams)));
+    setTimes(startTime: number, endTime: number): Observable<TransactionResult> {
+        return this.setDefaultAccount()
+            .switchMap((account: string) => this.getTravelkoinNormalSale()
+                .switchMap((ti: TravelkoinNormalSale) => {
+                    const callbackObservable1 = Observable.bindNodeCallback(this.web3Service.getW3().eth.getGasPrice);
+                    return callbackObservable1()
+                        .switchMap((gasPrice: number) => {
+                            const tx: any = {
+                                gas: 21000
+                            };
+
+                            const callbackObservable2 = Observable.bindNodeCallback(this.web3Service.getW3().eth.estimateGas);
+                            return callbackObservable2(tx)
+                                .switchMap((gas: number) => {
+
+                                    const tx: TxParams = {
+                                        from: account,
+                                        gasPrice: gasPrice,
+                                        gas: gas,
+                                        value: 0
+                                    };
+                                    console.log(tx);
+                                    return Observable.fromPromise(ti.setTimes(startTime, endTime, tx));
+                                });
+                        });
+
+                }));
+
+    }
+
+    setDefaultAccount(): Observable<string> {
+        return this.web3Service.setDefaultAccount()
+            .switchMap((account: string) => {
+                let result: Observable<string | null>;
+
+                if (account != null) {
+                    result = this.getTravelkoinNormalSale()
+                        .map((ti: TravelkoinNormalSale) => {
+                            ti.w3.web3.defaultAccount = account;
+                            return account;
+                        });
+                } else {
+                    result = Observable.throw('No account could be found.');
+                }
+
+                return result;
+            });
     }
 
     buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
@@ -137,7 +191,7 @@ export class TokenContractService {
         const tx: TxParams = {
             from: beneficiary,
             gas: 21000,
-            gasPrice: 1,
+            gasPrice: 4000000000,
             value: amountInWei
         };
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));

@@ -39,8 +39,8 @@
 
         </form>
     </div>
-    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasStarted === false">
-        {{ 'TOKEN_CONTRACT.STARTS_AT' | translate }} {{ startDate }}
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasStarted === false && startDate != null">
+        {{ 'TOKEN_CONTRACT.STARTS_AT' | translate }}<br/> {{ startDate }}
     </div>
     <div class="content-box-wrapper text-center mrg10A" *ngIf="status != null">
         <i class="fas fa-info-circle font-blue"></i> {{ status | translate }}

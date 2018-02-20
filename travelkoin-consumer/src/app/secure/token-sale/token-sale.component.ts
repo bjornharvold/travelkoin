@@ -56,8 +56,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((startTime: BigNumber) => {
                     this.startDate = DateService.bigNumberToMoment(startTime);
-                    this.dto.updateValidator(this.form, this.startDate);
 
+                    if (this.dto != null) {
+                        this.dto.updateValidator(this.form, this.startDate);
+                    }
                     // console.log(this.startDate.format());
                 }, error => {
                     console.error(error);
@@ -92,8 +94,8 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     private hasCrowdsaleEnded(): void {
         this.tokenContractService.hasEnded()
             .takeWhile(() => this.alive)
-            .subscribe((isClosed: boolean) => {
-                    this.hasEnded = isClosed;
+            .subscribe((hasEnded: boolean) => {
+                    this.hasEnded = hasEnded;
 
                     if (this.hasEnded === false) {
                         this.hasCrowdsaleStarted();
@@ -113,8 +115,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     private hasCrowdsaleStarted(): void {
         this.tokenContractService.hasStarted()
             .takeWhile(() => this.alive)
-            .subscribe((isOpen: boolean) => {
-                    this.hasStarted = isOpen;
+            .subscribe((hasStarted: boolean) => {
+                    console.log(`hasStarted: ${hasStarted}`);
+                    this.hasStarted = hasStarted;
                 }, error => {
                     console.error(error);
                     this.error = 'CODE.ERROR';
@@ -128,20 +131,28 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         this.web3Service.getAccounts()
             .takeWhile(() => this.alive)
             .subscribe((accounts) => {
-                    this.accounts = accounts;
-
-                    // populate the form
-                    this.dto = new TokenPurchase(accounts[0]);
-                    this.dto.populateFormValues(this.form);
 
                     // check that the provider exists
                     this.provider = this.web3Service.getProviderName();
                     if (this.provider == null) {
-                        this.status = 'CODE.NOT_CONNECTED';
-                    }
+                        this.error = 'CODE.NOT_CONNECTED';
+                    } else {
+                        if (accounts == null || accounts.length === 0) {
+                            this.error = 'CODE.PROVIDER_LOG_IN';
+                        } else {
+                            this.accounts = accounts;
 
-                    // retrieve current account balance in Ether
-                    this.getAccountBalance(accounts[0]);
+                            // populate the form
+                            this.dto = new TokenPurchase(accounts[0]);
+                            this.dto.populateFormValues(this.form);
+
+                            // retrieve current account balance in Ether
+                            this.getAccountBalance(accounts[0]);
+
+                            this.startTime();
+                            this.endTime();
+                        }
+                    }
                 },
                 error => {
                     console.error(error);
@@ -182,12 +193,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.hasCrowdsaleEnded();
-        this.provider = this.web3Service.getProviderName();
-        this.startTime();
-        this.endTime();
 
         if (this.web3Service.isConnected()) {
+            this.hasCrowdsaleEnded();
+            this.provider = this.web3Service.getProviderName();
             this.retrieveAccounts();
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';

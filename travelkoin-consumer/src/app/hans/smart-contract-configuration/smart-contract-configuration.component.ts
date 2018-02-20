@@ -7,7 +7,6 @@ import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
 import {W3} from 'soltsice';
 import TransactionResult = W3.TX.TransactionResult;
-import TxParams = W3.TX.TxParams;
 
 @Component({
     selector: 'app-smart-contract-configuration',
@@ -27,7 +26,10 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
                     // console.log(`startDate: ${unixTime}`);
                     FormHelper.addOrReplaceFormControl(dateRangeForm, 'startDate', new FormControl({value: DateService.bigNumberToMoment(unixTime).utc().format(), disabled: false}))
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
                 () => {
                 }
             )
@@ -40,7 +42,10 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
                     // console.log(`endDate: ${unixTime}`);
                     FormHelper.addOrReplaceFormControl(dateRangeForm, 'endDate', new FormControl({value: DateService.bigNumberToMoment(unixTime).utc().format(), disabled: false}))
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
                 () => {
                 }
             )
@@ -54,37 +59,20 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
         const startDateUnix = DateService.utcToMoment(startDate).unix();
         const endDateUnix = DateService.utcToMoment(endDate).unix();
 
-        this.web3Service.getAccounts()
+        this.tokenContractService.setTimes(startDateUnix, endDateUnix)
             .takeWhile(() => this.alive)
-            .subscribe((ary: Array<string>) => {
-                    const params: TxParams = {
-                        from: ary[0],
-                        gas: 21000,
-                        gasPrice: 4,
-                        value: 0
-                    };
-
-                    this.tokenContractService.updateDates(startDateUnix, endDateUnix, params)
-                        .takeWhile(() => this.alive)
-                        .subscribe((tx: TransactionResult) => {
-                                console.log(tx);
-                            },
-                            error => {
-                                this.loading = false;
-                                console.error(error);
-                                this.error = 'CODE.ERROR';
-                            },
-                            () => {
-                                this.loading = false;
-                            }
-                        )
+            .subscribe((tx: TransactionResult) => {
+                    console.log(tx);
                 },
-                error => this.error = error,
+                error => {
+                    this.loading = false;
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
                 () => {
+                    this.loading = false;
                 }
             );
-
-
     }
 
     ngOnDestroy() {
@@ -95,6 +83,8 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
         this.dateRangeForm = new FormGroup({});
         this.loadStartDate(this.dateRangeForm);
         this.loadEndDate(this.dateRangeForm);
+
+        this.tokenContractService.setDefaultAccount();
     }
 
     constructor(private web3Service: Web3Service,

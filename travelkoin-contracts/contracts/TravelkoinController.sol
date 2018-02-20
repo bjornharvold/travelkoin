@@ -6,8 +6,8 @@ import "./minime_0.2.0/ERC20MiniMe.sol";
 import "./minime_0.2.0/TokenController.sol";
 import "./TravelkoinMiniMeCrowdsale.sol";
 import "./TravelkoinHodler.sol";
-import "./TravelkoinTokenVesting.sol";
 import "./TravelkoinHasNoTokens.sol";
+import "./TravelkoinTokenVesting.sol";
 
 
 /**
@@ -88,7 +88,7 @@ contract TravelkoinController is Pausable, TravelkoinHasNoTokens, TokenControlle
         multiSigWallet = _wallet;
     }
 
-    /// @dev overrides HasNoTokens#extractTokens to make it possible to extract any tokens after migration or before that any tokens except travelkoin
+    /// @dev overrides TravelkoinHasNoTokens#extractTokens to make it possible to extract any tokens after migration or before that any tokens except travelkoin
     function extractTokens(address _token, address _claimer) onlyOwner public {
         require(newController != address(0) || _token != address(token));
 

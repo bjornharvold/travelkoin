@@ -22,11 +22,11 @@ export const environment = {
     ethWalletAddress: '0x824f97428e3e23ebf8bb7c732ac7abb56f8c02fc',
     siteUrl: 'http://dev.travelkoin.io:8000',
     contracts: {
-        MultiSigWallet: '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf',
-        MiniMeTokenFactory: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f',
-        TravelkoinController: '0x9fbda871d559710256a2502a2517b794b482db40',
-        TravelkoinMiniMeToken: '0x2c2b9c9a4a25e24b174f26114e8926a9f2128fe4',
-        TravelkoinNormalSale: '0xfb88de099e13c3ed21f80a7a1e49f8caecf10df6'
+        MultiSigWallet: '0xeec918d74c746167564401103096d45bbd494b74',
+        MiniMeTokenFactory: '0x0d8cc4b8d15d4c3ef1d70af0071376fb26b5669b',
+        TravelkoinController: '0xecfcab0a285d3380e488a39b4bb21e777f8a4eac',
+        TravelkoinMiniMeToken: '0x38cf23c52bb4b13f051aec09580a2de845a7fa35',
+        TravelkoinNormalSale: '0xbaaa2a3237035a2c7fa2a33c76b44a8c6fe18e87'
     },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',

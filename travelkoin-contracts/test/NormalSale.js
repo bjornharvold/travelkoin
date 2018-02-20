@@ -391,7 +391,7 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         await this.crowdsale.claimToken({ from: investor, gasPrice: 0 }).should.be.fulfilled;
 
         hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.mul(rate));
       });
 
       it('should set hodl stake based on multiple contributions', async function () {
@@ -406,7 +406,7 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         await this.crowdsale.claimToken({ from: investor, gasPrice: 0 }).should.be.fulfilled;
 
         hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.mul(rate));
       });
 
       it('should invalidate hodl stake after transfer', async function () {
@@ -421,12 +421,12 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         await this.crowdsale.claimToken({ from: investor, gasPrice: 0 }).should.be.fulfilled;
 
         hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.mul(rate));
         hodl[1].should.equal(false);
 
         await this.token.transfer(purchaser, 1, { from: investor, gasPrice: 0 }).should.be.fulfilled;
         hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.mul(rate));
         hodl[1].should.equal(true);
       });
 
@@ -445,12 +445,12 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
 
         // investor should be invalidated
         let hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(true);
 
         // purchaser should not be invalidated
         hodl = await this.hodler.hodlerStakes(purchaser);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(false);
 
         // too early claiming
@@ -475,12 +475,12 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
 
         // investor should be invalidated
         let hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(true);
 
         // purchaser should not be invalidated
         hodl = await this.hodler.hodlerStakes(purchaser);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(false);
 
         // claim 3 month tokens
@@ -506,12 +506,12 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
 
         // investor should be invalidated
         let hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(true);
 
         // purchaser should not be invalidated
         hodl = await this.hodler.hodlerStakes(purchaser);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(false);
 
         // claim earlier hodl tokens
@@ -541,12 +541,12 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
 
         // investor should be invalidated
         let hodl = await this.hodler.hodlerStakes(investor);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(true);
 
         // purchaser should not be invalidated
         hodl = await this.hodler.hodlerStakes(purchaser);
-        hodl[0].should.be.bignumber.equal(cap.div(2).mul(rate));
+        hodl[0].should.be.bignumber.equal(fiveEther.div(2).mul(rate));
         hodl[1].should.equal(false);
 
         // claim earlier hodl tokens

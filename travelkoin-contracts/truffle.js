@@ -46,8 +46,6 @@ module.exports = {
     ganache: {
       host: 'localhost',
       port: 7545,
-      gas: 6712388,
-      gasPrice: 65000000000,
       network_id: '*', // eslint-disable-line camelcase
     },
     console: {
@@ -65,3 +63,12 @@ module.exports = {
     },
   },
 };
+
+// ,
+// ganache: {
+//     host: 'localhost',
+//         port: 7545,
+//         gas: 6712388,
+//         gasPrice: 65000000000,
+//         network_id: '*', // eslint-disable-line camelcase
+// }
