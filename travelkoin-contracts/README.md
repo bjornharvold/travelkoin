@@ -85,11 +85,9 @@ This is our crowdsale contract. It has a hard cap of 31000 ETH.
 
 ### Testing
 1. ``npm install -g truffle``
-2. ``npm install within this directory``
+2. ``npm install``
 3. ``truffle compile``
-4. ``truffle develop``
-5. ``test test/NormalSale.js``
-5. ``test test/TravelkoinController.js``
+4. ``./test/test.sh``
 
 ### Initial deployment
 1. deploy multisig wallet
