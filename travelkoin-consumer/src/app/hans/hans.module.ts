@@ -9,6 +9,7 @@ import {RegisteredUsersComponent} from './registered-users/registered-users.comp
 import {ApprovedUsersComponent} from './approved-users/approved-users.component';
 import {WaitingForApprovalUsersComponent} from './waiting-for-approval-users/waiting-for-approval-users.component';
 import {BlockedUsersComponent} from './blocked-users/blocked-users.component';
+import { SmartContractConfigurationComponent } from './smart-contract-configuration/smart-contract-configuration.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import {BlockedUsersComponent} from './blocked-users/blocked-users.component';
         RegisteredUsersComponent,
         ApprovedUsersComponent,
         WaitingForApprovalUsersComponent,
-        BlockedUsersComponent
+        BlockedUsersComponent,
+        SmartContractConfigurationComponent
     ]
 })
 export class HansModule {

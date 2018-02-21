@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {W3} from 'soltsice';
 import 'rxjs/add/observable/bindCallback';
 import 'rxjs/add/observable/bindNodeCallback';
-import { BigNumber } from "bignumber.js";
+import {BigNumber} from 'bignumber.js';
 
 // const Web3 = require('web3');
 
@@ -19,8 +19,16 @@ export class Web3Service {
         // console.log(value.dividedBy(1e18).toFormat(0));
         // console.log(typeof value.dividedBy(1e18).toFormat(0));
         if (value != null) {
-            result= this.getW3().web3.fromWei(value, 'ether');
+            result = this.getW3().web3.fromWei(value, 'ether');
             // result = value.dividedBy(1e18).toFormat(8);
+        }
+        return result;
+    }
+
+    etherToWei(value: number): BigNumber {
+        let result: BigNumber = null;
+        if (value != null) {
+            result = this.getW3().web3.toWei(value, 'ether');
         }
         return result;
     }
@@ -88,13 +96,47 @@ export class Web3Service {
 
         const w3: W3 = this.getW3();
         if (w3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(this.getW3().eth.getAccounts);
+            const callbackObservable = Observable.bindNodeCallback(w3.eth.getAccounts);
             result = callbackObservable();
         } else {
             result = Observable.throw('CODE.NOT_CONNECTED');
         }
 
         return result;
+    }
+
+    /**
+     * Returns the default account making changes to the contract
+     * @returns {Observable<Array<string>>}
+     */
+    getDefaultAccount(): string {
+        let result: string = null;
+
+        const w3: W3 = this.getW3();
+        if (w3 != null) {
+            result = w3.eth.defaultAccount;
+        }
+
+        return result;
+    }
+
+    /**
+     * Sets the main account holder as the default account
+     * @returns {Observable<string>}
+     */
+    setDefaultAccount(): Observable<string> {
+        return this.getAccounts()
+            .switchMap((accounts: Array<string>) => {
+                let result: Observable<string>;
+                if (accounts != null && accounts.length > 0) {
+                    this.getW3().web3.eth.defaultAccount = accounts[0];
+                    result = Observable.of(accounts[0]);
+                } else {
+                    result = Observable.throw('No account could be found');
+                }
+                return result;
+            });
+
     }
 
     isConnected(): boolean {

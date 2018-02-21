@@ -10,20 +10,20 @@
             <span class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" *ngIf="hasStarted === false"><span class="font-white">{{ 'TOKEN_WALLET.WAITING_TO_START' | translate }}</span></span>
         </div>
     </h3>
-    <div class="content-box-wrapper text-center mrg30A font-size-35" *ngIf="isOpen === false && hasEnded === false">
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="isOpen === false && hasEnded === false">
         <!-- Not yet started -->
         {{ 'TOKEN_WALLET.YOU_OWN' | translate }}: 0 TKT
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="isOpen === true && hasEnded === false">
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="isOpen === true && hasEnded === false">
         {{ 'TOKEN_WALLET.YOU_HAVE_PURCHASED' | translate }}: {{ stake }}
         <span>TKT</span>
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="isOpen === false && hasEnded === true">
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="isOpen === false && hasEnded === true">
         <span *ngIf="balance === 0">{{ 'TOKEN_WALLET.YOU_HAVE_PURCHASED' | translate }}: {{ stake }}</span>
         <span *ngIf="stake === 0">{{ 'TOKEN_WALLET.YOU_OWN' | translate }}: {{ balance }}</span>
         <span>TKT</span>
     </div>
-    <div class="content-box-wrapper text-center mrg30A" *ngIf="error != null">
-        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }}
+    <div class="content-box-wrapper text-center mrg30A" *ngIf="status != null">
+        <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}
     </div>
 </div>

@@ -214,7 +214,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 4905,
+          "SourceUnit": 4890,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/minime_0.2.0/ERC20MiniMe.sol",
           "file": "./minime_0.2.0/ERC20MiniMe.sol",
           "scope": 3203,
@@ -229,7 +229,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6199,
+          "SourceUnit": 6184,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "scope": 3203,
@@ -266,7 +266,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 6198,
+                  "referencedDeclaration": 6183,
                   "type": "library SafeMath"
                 },
                 "id": 2978,
@@ -303,7 +303,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "ERC20MiniMe",
-                  "referencedDeclaration": 4904,
+                  "referencedDeclaration": 4889,
                   "type": "contract ERC20MiniMe"
                 },
                 "id": 2981,
@@ -739,7 +739,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -782,7 +782,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6343,
+                                  "referencedDeclaration": 6328,
                                   "type": "uint256",
                                   "value": "now"
                                 },
@@ -833,7 +833,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -927,7 +927,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1024,7 +1024,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1402,7 +1402,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6341,
+                                  "referencedDeclaration": 6326,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1570,7 +1570,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6341,
+                                  "referencedDeclaration": 6326,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1691,7 +1691,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6343,
+                              "referencedDeclaration": 6328,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -1821,7 +1821,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6343,
+                              "referencedDeclaration": 6328,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -1979,7 +1979,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -2076,7 +2076,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -2280,7 +2280,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "add",
-                                  "referencedDeclaration": 6197,
+                                  "referencedDeclaration": 6182,
                                   "type": "function (uint256,uint256) pure returns (uint256)"
                                 },
                                 "children": [
@@ -2551,7 +2551,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "mul",
-                              "referencedDeclaration": 6135,
+                              "referencedDeclaration": 6120,
                               "type": "function (uint256,uint256) pure returns (uint256)"
                             },
                             "children": [
@@ -2632,7 +2632,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "generateTokens",
-                              "referencedDeclaration": 4863,
+                              "referencedDeclaration": 4848,
                               "type": "function (address,uint256) external returns (bool)"
                             },
                             "children": [
@@ -2759,7 +2759,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6341,
+                                  "referencedDeclaration": 6326,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -3136,7 +3136,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6343,
+                                  "referencedDeclaration": 6328,
                                   "type": "uint256",
                                   "value": "now"
                                 },
@@ -3184,7 +3184,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6343,
+                                  "referencedDeclaration": 6328,
                                   "type": "uint256",
                                   "value": "now"
                                 },
@@ -3394,5 +3394,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-17T05:10:40.849Z"
+  "updatedAt": "2018-02-19T09:26:19.052Z"
 }

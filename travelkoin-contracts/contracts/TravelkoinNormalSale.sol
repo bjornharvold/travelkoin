@@ -18,7 +18,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     TokenController public travelkoinController;
 
     uint256 public rate = 1000;
-    uint256 public cap = 55555 ether;
+    uint256 public cap = 31000 ether;
 
     // total token sold and undistributed token count
     uint256 public tokenSold;
@@ -199,7 +199,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         require(stake > 0);
 
         // calculate token count
-        uint256 tokens = tokenSold.mul(stakesPerUser[_beneficiary]).div(totalStakes);
+        uint256 tokens = stake.mul(rate);
 
         // set the stake 0 for beneficiary
         stakesPerUser[_beneficiary] = 0;
@@ -315,7 +315,7 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         return contributors;
     }
 
-    /// @notice How many TKT tokens do this contract have
+    /// @notice How many TKT tokens does this contract have
     function getTravelkoinBalance() view public returns (uint256) {
         return travelkoinController.token().balanceOf(address(this));
     }
@@ -341,6 +341,16 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     /// @dev Extending RefundableCrowdsale#finalization sending back excess tokens to travelkoinController
     function finalization() internal {
         tokenSold = getTravelkoinBalance();
+
+        uint256 _sold = totalStakes.mul(rate);
+
+        if (tokenSold > _sold) {
+            uint256 _excess = tokenSold.sub(_sold);
+
+            tokenSold = _sold;
+
+            travelkoinController.token().transfer(travelkoinController.SALE(), _excess);
+        }
 
         // unclaimed tokens
         tokenBalance = tokenSold;

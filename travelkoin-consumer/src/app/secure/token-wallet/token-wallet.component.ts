@@ -1,7 +1,7 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
-import { BigNumber } from "bignumber.js";
+import {BigNumber} from 'bignumber.js';
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -15,7 +15,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     isOpen = false;
-    error: string = null;
+    status: string = null;
     stake = 0;
     balance = 0;
 
@@ -29,7 +29,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((stake: BigNumber) => {
                     this.stake = stake.toNumber();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -45,7 +48,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((balance: BigNumber) => {
                     this.balance = balance.toNumber();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -63,29 +69,14 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                     if (this.hasEnded === true) {
                         this.getUserStakeDuringCrowdsale(this.account);
                         this.getUserTokens(this.account);
-                    }
-                },
-                error => this.error = error,
-                () => {
-                }
-            );
-    }
-
-    /**
-     * User can only claim tokens after event is over
-     */
-    private isCrowdsaleOpen(): void {
-        this.tokenContractService.isCrowdsaleOpen()
-            .takeWhile(() => this.alive)
-            .subscribe((isOpen: boolean) => {
-                    this.isOpen = isOpen;
-                    if (this.isOpen === true) {
-                        this.getUserStakeDuringCrowdsale(this.account);
                     } else {
-                        this.hasCrowdsaleEnded();
+                        this.hasCrowdsaleStarted();
                     }
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -100,10 +91,13 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((hasStarted: boolean) => {
                     this.hasStarted = hasStarted;
                     if (this.hasStarted === true) {
-                        this.isCrowdsaleOpen()
+                        this.getUserStakeDuringCrowdsale(this.account);
                     }
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );
@@ -118,9 +112,12 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((accounts) => {
                     this.accounts = accounts;
                     this.account = accounts[0];
-                    this.isCrowdsaleOpen();
+                    this.hasCrowdsaleEnded();
                 },
-                error => this.error = error,
+                error => {
+                    console.error(error);
+                    this.status = 'CODE.ERROR';
+                },
                 () => {
                 }
             );

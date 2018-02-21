@@ -4,6 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {BigNumber} from 'bignumber.js';
 import {TravelkoinController, TravelkoinMiniMeToken, TravelkoinNormalSale} from '../types';
 import {environment} from '../../environments/environment';
+import {W3} from 'soltsice';
+import TransactionResult = W3.TX.TransactionResult;
+import TxParams = W3.TX.TxParams;
 
 @Injectable()
 export class TokenContractService {
@@ -19,7 +22,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinNormalSale.At(environment.contracts.TravelkoinNormalSale, this.web3Service.getW3()))
-                    .map((token: TravelkoinNormalSale) => {this.crowdsaleContract = token; return token;});
+                    .map((token: TravelkoinNormalSale) => {
+                        this.crowdsaleContract = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -38,7 +44,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinMiniMeToken.At(environment.contracts.TravelkoinMiniMeToken, this.web3Service.getW3()))
-                    .map((token: TravelkoinMiniMeToken) => {this.travelkoinTokenContract = token; return token;});
+                    .map((token: TravelkoinMiniMeToken) => {
+                        this.travelkoinTokenContract = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -57,7 +66,10 @@ export class TokenContractService {
         } else {
             if (this.web3Service.getW3() != null) {
                 result = Observable.fromPromise(TravelkoinController.At(environment.contracts.TravelkoinController, this.web3Service.getW3()))
-                    .map((token: TravelkoinController) => {this.travelkoinController = token; return token;});
+                    .map((token: TravelkoinController) => {
+                        this.travelkoinController = token;
+                        return token;
+                    });
             } else {
                 const error = 'CODE.NOT_CONNECTED';
                 console.error(error);
@@ -123,6 +135,48 @@ export class TokenContractService {
 
     travelkoinBalance(): Observable<BigNumber> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
+    }
+
+    setTimes(account: string, startTime: number, endTime: number): Observable<TransactionResult> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+            const tx: TxParams = {
+                from: account,
+                gas: 90000,
+                gasPrice: 4000000000,
+                value: 0
+            };
+            return Observable.fromPromise(ti.setTimes(startTime, endTime, tx));
+        });
+    }
+
+    setDefaultAccount(): Observable<string> {
+        return this.web3Service.setDefaultAccount()
+            .switchMap((account: string) => {
+                let result: Observable<string | null>;
+
+                if (account != null) {
+                    result = this.getTravelkoinNormalSale()
+                        .map((ti: TravelkoinNormalSale) => {
+                            ti.w3.web3.defaultAccount = account;
+                            return account;
+                        });
+                } else {
+                    result = Observable.throw('No account could be found.');
+                }
+
+                return result;
+            });
+    }
+
+    buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
+        const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
+        const tx: TxParams = {
+            from: beneficiary,
+            gas: 21000,
+            gasPrice: 4000000000,
+            value: amountInWei
+        };
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
     }
 
     // ================== TOKEN FEATURES ==================

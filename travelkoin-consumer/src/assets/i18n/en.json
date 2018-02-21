@@ -389,7 +389,11 @@
     "MAKE_PAYMENT": "Buy",
     "TOKEN_SALE": "Token sale",
     "CURRENT_BALANCE": "Balance",
-    "NOT_STARTED": "Our event has not yet started. Please come back later.",
+    "STARTS_AT": "Event starts on",
+    "ERROR_AMOUNT_REQUIRED": "Amount cannot be empty",
+    "ERROR_MIN_CONTRIBUTION": "Minimum contribution is 0.1 ETH",
+    "ERROR_MAX_CONTRIBUTION": "Maximum contribution the first 24 hours is 1 ETH per person.",
+    "INITIATING_TRANSACTION": "'Initiating transaction... (please wait)'",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
@@ -413,8 +417,8 @@
     "COMMUNITY_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our community.",
     "TEAM_SUPPLY": "Tokens available to our team members",
     "TEAM_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our team members.",
-    "INVESTOR_SUPPLY": "Tokens available to investors",
-    "INVESTOR_SUPPLY_HELP": "This is the total amount of Travelkoin available to our investors.",
+    "INVESTOR_SUPPLY": "Tokens available to early contributors",
+    "INVESTOR_SUPPLY_HELP": "This is the total amount of Travelkoin available to our early contributors.",
     "FOUNDER_SUPPLY": "Tokens available to our founders",
     "FOUNDER_SUPPLY_HELP": "This is the total amount of Travelkoin tokens available to our founders.",
     "THREE_MONTH_HODL_SUPPLY": "3 month HODL rewards",
@@ -425,8 +429,8 @@
     "NINE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 9-month HODLers.",
     "RATE": "TKT / ETH conversion rate",
     "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
-    "CAP": "Token cap for sale during ICO",
-    "CAP_HELP": "This maximum number of tokens set aside for our ICO.",
+    "CAP": "Cap in Ether during ICO",
+    "CAP_HELP": "This is the maximum number of Ether that can be used to purchase our token during the ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
     "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
     "VESTING_TEAM_DURATION": "Team token vesting",
@@ -440,7 +444,7 @@
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
-    "TITLE": "Travelkoin Wallet",
+    "TITLE": "Wallet",
     "PURCHASED_TOKENS": "Purchased tokens",
     "CLAIM_AFTER_SALE": "Claim tokens after sale",
     "WAITING_TO_START": "Sale not yet started",
@@ -450,9 +454,13 @@
     "CLAIM_AFTER_SALE_DESC": "You can claim your tokens after the sale has finished.",
     "CLAIM_TOKENS": "Claim tokens"
   },
+  "CONTRACT_CONFIGURATION": {
+    "TOKEN_DATES": "Crowdsale dates"
+  },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
     "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
+    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist and refresh the browser page.",
     "ERROR": "Unknown error: Check the log."
   },
   "FAQ": {
@@ -472,7 +480,7 @@
     },
     "4": {
       "QUESTION": "Why don't you offer a pre-sale, bonus structure or other discounts?",
-      "ANSWER": "We want to offer the blockchain community and our investors with a completely egalitarian investment vehicle. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private investor before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
+      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian investment vehicle. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private investor before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
     },
     "5": {
       "QUESTION": "How will you create demand?",
@@ -483,5 +491,6 @@
       "ANSWER": "Our legal entity is a Thai based limited liability company called \"The Blockchain Company Ltd.\" (Reg: 0105561011251) 180 Sixteen Place Building, B Zone, 2nd Floor, Soi Sukhumvit 16 (Sammitr), Klongtoey, Bangkok 10110, Thailand. Phone: +66 (0) 85-489-1301."
     }
   },
+  "BUTTON_SAVE": "Save",
   "END": "End"
 }

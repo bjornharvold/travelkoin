@@ -879,7 +879,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6199,
+          "SourceUnit": 6184,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "scope": 2203,
@@ -894,7 +894,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6101,
+          "SourceUnit": 6086,
           "absolutePath": "zeppelin-solidity/contracts/lifecycle/Pausable.sol",
           "file": "zeppelin-solidity/contracts/lifecycle/Pausable.sol",
           "scope": 2203,
@@ -909,7 +909,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 4905,
+          "SourceUnit": 4890,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/minime_0.2.0/ERC20MiniMe.sol",
           "file": "./minime_0.2.0/ERC20MiniMe.sol",
           "scope": 2203,
@@ -924,7 +924,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6041,
+          "SourceUnit": 6026,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/minime_0.2.0/TokenController.sol",
           "file": "./minime_0.2.0/TokenController.sol",
           "scope": 2203,
@@ -969,7 +969,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 4763,
+          "SourceUnit": 4748,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinTokenVesting.sol",
           "file": "./TravelkoinTokenVesting.sol",
           "scope": 2203,
@@ -1002,20 +1002,20 @@
           "contractDependencies": [
             2314,
             2973,
-            4762,
-            6040,
-            6100,
-            6254
+            4747,
+            6025,
+            6085,
+            6239
           ],
           "contractKind": "contract",
           "documentation": "@title TravelkoinController\n@author Bjorn Harvold\n@notice Controller of the Travelkoin Token\n@dev Crowdsale can be only replaced when no active crowdsale is running.\n The contract is paused by default. It has to be unpaused to enable token transfer.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             2202,
-            6040,
+            6025,
             2314,
-            6100,
-            6254
+            6085,
+            6239
           ],
           "name": "TravelkoinController",
           "scope": 2203
@@ -1032,7 +1032,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Pausable",
-                  "referencedDeclaration": 6100,
+                  "referencedDeclaration": 6085,
                   "type": "contract Pausable"
                 },
                 "id": 1373,
@@ -1078,7 +1078,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "TokenController",
-                  "referencedDeclaration": 6040,
+                  "referencedDeclaration": 6025,
                   "type": "contract TokenController"
                 },
                 "id": 1377,
@@ -1096,7 +1096,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 6198,
+                  "referencedDeclaration": 6183,
                   "type": "library SafeMath"
                 },
                 "id": 1379,
@@ -1133,7 +1133,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "TokenController",
-                  "referencedDeclaration": 6040,
+                  "referencedDeclaration": 6025,
                   "type": "contract TokenController"
                 },
                 "id": 1382,
@@ -1161,7 +1161,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "ERC20MiniMe",
-                  "referencedDeclaration": 4904,
+                  "referencedDeclaration": 4889,
                   "type": "contract ERC20MiniMe"
                 },
                 "id": 1384,
@@ -2824,7 +2824,7 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "TravelkoinTokenVesting",
-                      "referencedDeclaration": 4762,
+                      "referencedDeclaration": 4747,
                       "type": "contract TravelkoinTokenVesting"
                     },
                     "id": 1492,
@@ -3167,7 +3167,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -3208,7 +3208,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6341,
+                                      "referencedDeclaration": 6326,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -3351,7 +3351,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -3392,7 +3392,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6341,
+                                      "referencedDeclaration": 6326,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -3578,7 +3578,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -3705,7 +3705,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6052,
+                              "referencedDeclaration": 6037,
                               "type": "bool",
                               "value": "paused"
                             },
@@ -3897,7 +3897,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -3940,7 +3940,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -4101,7 +4101,7 @@
                                         "attributes": {
                                           "argumentTypes": [
                                             {
-                                              "typeIdentifier": "t_contract$_ERC20MiniMe_$4904",
+                                              "typeIdentifier": "t_contract$_ERC20MiniMe_$4889",
                                               "typeString": "contract ERC20MiniMe"
                                             }
                                           ],
@@ -4199,7 +4199,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6385,
+                                  "referencedDeclaration": 6370,
                                   "type": "contract super TravelkoinController",
                                   "value": "super"
                                 },
@@ -4356,7 +4356,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -4399,7 +4399,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -4622,7 +4622,7 @@
                                         "attributes": {
                                           "argumentTypes": [
                                             {
-                                              "typeIdentifier": "t_contract$_ERC20MiniMe_$4904",
+                                              "typeIdentifier": "t_contract$_ERC20MiniMe_$4889",
                                               "typeString": "contract ERC20MiniMe"
                                             }
                                           ],
@@ -4850,7 +4850,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -4894,7 +4894,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "transferFrom",
-                                  "referencedDeclaration": 6279,
+                                  "referencedDeclaration": 6264,
                                   "type": "function (address,address,uint256) external returns (bool)"
                                 },
                                 "children": [
@@ -5538,7 +5538,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -5581,7 +5581,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -5800,7 +5800,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6343,
+                                      "referencedDeclaration": 6328,
                                       "type": "uint256",
                                       "value": "now"
                                     },
@@ -5867,7 +5867,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4762",
+                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4747",
                                           "typeString": "contract TravelkoinTokenVesting"
                                         }
                                       ],
@@ -5949,7 +5949,7 @@
                                             "attributes": {
                                               "contractScope": null,
                                               "name": "TravelkoinTokenVesting",
-                                              "referencedDeclaration": 4762,
+                                              "referencedDeclaration": 4747,
                                               "type": "contract TravelkoinTokenVesting"
                                             },
                                             "id": 1694,
@@ -6074,7 +6074,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4762",
+                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4747",
                                           "typeString": "contract TravelkoinTokenVesting"
                                         }
                                       ],
@@ -6156,7 +6156,7 @@
                                             "attributes": {
                                               "contractScope": null,
                                               "name": "TravelkoinTokenVesting",
-                                              "referencedDeclaration": 4762,
+                                              "referencedDeclaration": 4747,
                                               "type": "contract TravelkoinTokenVesting"
                                             },
                                             "id": 1708,
@@ -6331,7 +6331,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "sub",
-                                  "referencedDeclaration": 6173,
+                                  "referencedDeclaration": 6158,
                                   "type": "function (uint256,uint256) pure returns (uint256)"
                                 },
                                 "children": [
@@ -6523,7 +6523,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -6566,7 +6566,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -6746,7 +6746,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6343,
+                                      "referencedDeclaration": 6328,
                                       "type": "uint256",
                                       "value": "now"
                                     },
@@ -6782,7 +6782,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "start",
-                                          "referencedDeclaration": 4527,
+                                          "referencedDeclaration": 4512,
                                           "type": "function () view external returns (uint256)"
                                         },
                                         "children": [
@@ -6887,7 +6887,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -6927,7 +6927,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "transfer",
-                                  "referencedDeclaration": 6320,
+                                  "referencedDeclaration": 6305,
                                   "type": "function (address,uint256) external returns (bool)"
                                 },
                                 "children": [
@@ -6969,7 +6969,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4762",
+                                          "typeIdentifier": "t_contract$_TravelkoinTokenVesting_$4747",
                                           "typeString": "contract TravelkoinTokenVesting"
                                         }
                                       ],
@@ -7141,7 +7141,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -7184,7 +7184,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -7288,7 +7288,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_ERC20MiniMe_$4904",
+                                  "typeIdentifier": "t_contract$_ERC20MiniMe_$4889",
                                   "typeString": "contract ERC20MiniMe"
                                 }
                               ],
@@ -7297,7 +7297,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "revoke",
-                              "referencedDeclaration": 4687,
+                              "referencedDeclaration": 4672,
                               "type": "function (contract ERC20MiniMe) external"
                             },
                             "children": [
@@ -7635,7 +7635,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -7727,7 +7727,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 6384,
+                                          "referencedDeclaration": 6369,
                                           "type": "contract TravelkoinController",
                                           "value": "this"
                                         },
@@ -7836,7 +7836,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -7876,7 +7876,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "destroyTokens",
-                                  "referencedDeclaration": 4872,
+                                  "referencedDeclaration": 4857,
                                   "type": "function (address,uint256) external returns (bool)"
                                 },
                                 "children": [
@@ -8065,7 +8065,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -8336,7 +8336,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6040,
+                                  "referencedDeclaration": 6025,
                                   "type": "type(contract TokenController)",
                                   "value": "TokenController"
                                 },
@@ -8403,7 +8403,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "changeController",
-                              "referencedDeclaration": 4798,
+                              "referencedDeclaration": 4783,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -8480,7 +8480,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "transferOwnership",
-                              "referencedDeclaration": 6253,
+                              "referencedDeclaration": 6238,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -8578,7 +8578,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6384,
+                              "referencedDeclaration": 6369,
                               "type": "contract TravelkoinController",
                               "value": "this"
                             },
@@ -8789,7 +8789,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "balanceOf",
-                                  "referencedDeclaration": 6311,
+                                  "referencedDeclaration": 6296,
                                   "type": "function (address) view external returns (uint256)"
                                 },
                                 "children": [
@@ -8818,7 +8818,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6384,
+                                  "referencedDeclaration": 6369,
                                   "type": "contract TravelkoinController",
                                   "value": "this"
                                 },
@@ -8931,7 +8931,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "transfer",
-                                  "referencedDeclaration": 6320,
+                                  "referencedDeclaration": 6305,
                                   "type": "function (address,uint256) external returns (bool)"
                                 },
                                 "children": [
@@ -9120,7 +9120,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -9385,7 +9385,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -9411,7 +9411,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6069,
+                      "referencedDeclaration": 6054,
                       "type": "modifier ()",
                       "value": "whenPaused"
                     },
@@ -9454,7 +9454,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -9615,7 +9615,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 4904,
+                                  "referencedDeclaration": 4889,
                                   "type": "type(contract ERC20MiniMe)",
                                   "value": "ERC20MiniMe"
                                 },
@@ -10139,7 +10139,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "totalSupply",
-                                  "referencedDeclaration": 4823,
+                                  "referencedDeclaration": 4808,
                                   "type": "function () view external returns (uint256)"
                                 },
                                 "children": [
@@ -10225,7 +10225,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -10290,7 +10290,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "add",
-                                          "referencedDeclaration": 6197,
+                                          "referencedDeclaration": 6182,
                                           "type": "function (uint256,uint256) pure returns (uint256)"
                                         },
                                         "children": [
@@ -10376,7 +10376,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -10480,7 +10480,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "add",
-                                          "referencedDeclaration": 6197,
+                                          "referencedDeclaration": 6182,
                                           "type": "function (uint256,uint256) pure returns (uint256)"
                                         },
                                         "children": [
@@ -10512,7 +10512,7 @@
                                                   "isPure": false,
                                                   "lValueRequested": false,
                                                   "member_name": "add",
-                                                  "referencedDeclaration": 6197,
+                                                  "referencedDeclaration": 6182,
                                                   "type": "function (uint256,uint256) pure returns (uint256)"
                                                 },
                                                 "children": [
@@ -10622,7 +10622,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -10651,7 +10651,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6202,
+                                      "referencedDeclaration": 6187,
                                       "type": "address",
                                       "value": "owner"
                                     },
@@ -10717,7 +10717,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -10851,7 +10851,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -10914,7 +10914,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 6384,
+                                          "referencedDeclaration": 6369,
                                           "type": "contract TravelkoinController",
                                           "value": "this"
                                         },
@@ -10955,7 +10955,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "add",
-                                          "referencedDeclaration": 6197,
+                                          "referencedDeclaration": 6182,
                                           "type": "function (uint256,uint256) pure returns (uint256)"
                                         },
                                         "children": [
@@ -11041,7 +11041,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -11106,7 +11106,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "div",
-                                          "referencedDeclaration": 6153,
+                                          "referencedDeclaration": 6138,
                                           "type": "function (uint256,uint256) pure returns (uint256)"
                                         },
                                         "children": [
@@ -11195,7 +11195,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "generateTokens",
-                                      "referencedDeclaration": 4863,
+                                      "referencedDeclaration": 4848,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -11260,7 +11260,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "div",
-                                          "referencedDeclaration": 6153,
+                                          "referencedDeclaration": 6138,
                                           "type": "function (uint256,uint256) pure returns (uint256)"
                                         },
                                         "children": [
@@ -11344,7 +11344,7 @@
               "payable": false,
               "scope": 2202,
               "stateMutability": "nonpayable",
-              "superFunction": 6010,
+              "superFunction": 5995,
               "visibility": "public"
             },
             "children": [
@@ -11516,7 +11516,7 @@
               "payable": false,
               "scope": 2202,
               "stateMutability": "nonpayable",
-              "superFunction": 5998,
+              "superFunction": 5983,
               "visibility": "public"
             },
             "children": [
@@ -11732,7 +11732,7 @@
               "payable": false,
               "scope": 2202,
               "stateMutability": "nonpayable",
-              "superFunction": 6005,
+              "superFunction": 5990,
               "visibility": "public"
             },
             "children": [
@@ -11951,7 +11951,7 @@
               "payable": true,
               "scope": 2202,
               "stateMutability": "payable",
-              "superFunction": 6017,
+              "superFunction": 6002,
               "visibility": "public"
             },
             "children": [
@@ -12051,7 +12051,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6345,
+                              "referencedDeclaration": 6330,
                               "type": "function () pure",
                               "value": "revert"
                             },
@@ -12091,7 +12091,7 @@
               "payable": false,
               "scope": 2202,
               "stateMutability": "nonpayable",
-              "superFunction": 6028,
+              "superFunction": 6013,
               "visibility": "public"
             },
             "children": [
@@ -12375,7 +12375,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 6052,
+                                              "referencedDeclaration": 6037,
                                               "type": "bool",
                                               "value": "paused"
                                             },
@@ -12457,7 +12457,7 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 6384,
+                                                  "referencedDeclaration": 6369,
                                                   "type": "contract TravelkoinController",
                                                   "value": "this"
                                                 },
@@ -12549,7 +12549,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 6384,
+                                              "referencedDeclaration": 6369,
                                               "type": "contract TravelkoinController",
                                               "value": "this"
                                             },
@@ -12783,7 +12783,7 @@
               "payable": false,
               "scope": 2202,
               "stateMutability": "nonpayable",
-              "superFunction": 6039,
+              "superFunction": 6024,
               "visibility": "public"
             },
             "children": [
@@ -12930,7 +12930,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6052,
+                              "referencedDeclaration": 6037,
                               "type": "bool",
                               "value": "paused"
                             },
@@ -13028,7 +13028,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6228,
+                      "referencedDeclaration": 6213,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -13071,7 +13071,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6344,
+                              "referencedDeclaration": 6329,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -13127,7 +13127,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_ERC20MiniMe_$4904",
+                                          "typeIdentifier": "t_contract$_ERC20MiniMe_$4889",
                                           "typeString": "contract ERC20MiniMe"
                                         }
                                       ],
@@ -13206,7 +13206,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "claimTokens",
-                              "referencedDeclaration": 4882,
+                              "referencedDeclaration": 4867,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -13279,5 +13279,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-17T05:10:40.845Z"
+  "updatedAt": "2018-02-19T09:26:19.050Z"
 }
