@@ -455,7 +455,8 @@
     "CLAIM_TOKENS": "Claim tokens"
   },
   "CONTRACT_CONFIGURATION": {
-    "TOKEN_DATES": "Crowdsale dates"
+    "TOKEN_DATES": "Crowdsale dates",
+    "TRANSACTION_RESULT": "Transaction result"
   },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",

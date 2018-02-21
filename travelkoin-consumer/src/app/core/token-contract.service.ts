@@ -137,11 +137,25 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
 
+    listenToEvents(): Observable<any> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+            // console.log(ti.instance);
+            // console.log(ti.instance.TimeChangeErrorOccurred);
+            const events: any = ti.instance.allEvents({}, {fromBlock: 0, toBlock: 'latest'});
+            console.log(Object.getOwnPropertyNames(events));
+            events.get(function (error, logs) {
+                logs.forEach(log => console.log(log.args));
+            });
+
+            return Observable.bindNodeCallback(ti.instance.allEvents)();
+        });
+    }
+
     setTimes(account: string, startTime: number, endTime: number): Observable<TransactionResult> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
             const tx: TxParams = {
                 from: account,
-                gas: 90000,
+                gas: 40000,
                 gasPrice: 4000000000,
                 value: 0
             };
@@ -172,7 +186,7 @@ export class TokenContractService {
         const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
         const tx: TxParams = {
             from: beneficiary,
-            gas: 21000,
+            gas: 300000,
             gasPrice: 4000000000,
             value: amountInWei
         };

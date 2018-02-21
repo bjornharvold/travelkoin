@@ -14,10 +14,9 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     account: string;
     hasStarted = false;
     hasEnded = false;
-    isOpen = false;
     status: string = null;
-    stake = 0;
-    balance = 0;
+    stake: string = null;
+    balance: string = null;
 
     /**
      * This is the user's current investment in the crowdsale
@@ -27,7 +26,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         this.tokenContractService.stakesPerUser(account)
             .takeWhile(() => this.alive)
             .subscribe((stake: BigNumber) => {
-                    this.stake = stake.toNumber();
+                    this.stake = stake.div(1000000000000000).toFormat();
                 },
                 error => {
                     console.error(error);
@@ -46,7 +45,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         this.tokenContractService.balanceOf(account)
             .takeWhile(() => this.alive)
             .subscribe((balance: BigNumber) => {
-                    this.balance = balance.toNumber();
+                    this.balance = balance.div(1000000000000000).toFormat();
                 },
                 error => {
                     console.error(error);

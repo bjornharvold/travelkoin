@@ -13,7 +13,9 @@ export class ProgressComponent implements OnInit, OnDestroy {
     private alive = true;
     value = 0;
     valueString = '0';
+    valueBigNumber: BigNumber;
     max = 0;
+    maxBigNumber: BigNumber;
     maxString = '0';
     error: string = null;
 
@@ -26,20 +28,23 @@ export class ProgressComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // console.log(`saleSupply: ${this.web3Service.weiToEther(value)}`);
-                    this.max = value.toNumber();
-                    this.maxString = this.web3Service.weiToEther(value);
+                    // simplify by adding rate here (1 ETH = 1000 TKT)
+                    this.maxBigNumber = value.div(1000000000000000);
+                    this.max = this.maxBigNumber.toNumber();
+                    this.maxString = this.maxBigNumber.toFormat();
                 },
                 error => this.error = error,
                 () => {
                 }
             );
 
-        this.tokenContractService.tokenBalance()
+        this.tokenContractService.weiRaised()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // console.log(`travelkoinBalance: ${this.web3Service.weiToEther(value)}`);
-                    this.value = value.toNumber();
-                    this.valueString = this.web3Service.weiToEther(value);
+                    this.valueBigNumber = value.div(1000000000000000);
+                    this.value = this.valueBigNumber.toNumber();
+                    this.valueString = this.valueBigNumber.toFormat();
                 },
                 error => this.error = error,
                 () => {

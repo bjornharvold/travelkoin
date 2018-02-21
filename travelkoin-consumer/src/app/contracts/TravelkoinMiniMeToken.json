@@ -597,7 +597,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 5970,
+          "SourceUnit": 6066,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/minime_0.2.0/MiniMeToken.sol",
           "file": "./minime_0.2.0/MiniMeToken.sol",
           "scope": 3230,
@@ -613,16 +613,16 @@
       {
         "attributes": {
           "contractDependencies": [
-            4784,
-            5928
+            4880,
+            6024
           ],
           "contractKind": "contract",
           "documentation": "@title TravelkoinMiniMeToken\n@dev Basic MiniMe token",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             3229,
-            5928,
-            4784
+            6024,
+            4880
           ],
           "name": "TravelkoinMiniMeToken",
           "scope": 3230
@@ -639,7 +639,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "MiniMeToken",
-                  "referencedDeclaration": 5928,
+                  "referencedDeclaration": 6024,
                   "type": "contract MiniMeToken"
                 },
                 "id": 3206,
@@ -742,7 +742,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 5928,
+                      "referencedDeclaration": 6024,
                       "type": "type(contract MiniMeToken)",
                       "value": "MiniMeToken"
                     },
@@ -901,7 +901,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4783,
+                              "referencedDeclaration": 4879,
                               "type": "function (address)",
                               "value": "changeController"
                             },
@@ -959,5 +959,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-19T09:26:19.055Z"
+  "updatedAt": "2018-02-21T06:58:07.181Z"
 }
