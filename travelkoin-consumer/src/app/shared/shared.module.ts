@@ -24,6 +24,7 @@ import {MultimediaDivComponent} from './multimedia-div/multimedia-div.component'
 import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
+import {TransactionLogComponent} from './transaction-log/transaction-log.component';
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
-        MultimediaDivComponent
+        MultimediaDivComponent,
+        TransactionLogComponent
     ],
     exports: [
         CommonModule,
@@ -61,15 +63,16 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         QRCodeModule,
         GridModule,
         DialogModule,
+        CloudinaryModule,
+        UploadModule,
+        ClipboardModule,
+        ButtonsModule,
         TimerComponent,
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
         MultimediaDivComponent,
-        CloudinaryModule,
-        UploadModule,
-        ClipboardModule,
-        ButtonsModule
+        TransactionLogComponent
     ],
     providers: []
 })

@@ -106,9 +106,9 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
         this.loadStartDate(this.dateRangeForm);
         this.loadEndDate(this.dateRangeForm);
 
-        this.tokenContractService.listenToEvents()
-            .takeWhile(() => this.alive)
-            .subscribe((event: any) => console.error(event));
+        // this.tokenContractService.listenToEvents()
+        //     .takeWhile(() => this.alive)
+        //     .subscribe((event: any) => console.error(event));
     }
 
     constructor(private web3Service: Web3Service,

@@ -14,6 +14,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     account: string;
     hasStarted = false;
     hasEnded = false;
+    loading = true;
     status: string = null;
     stake: string = null;
     balance: string = null;
@@ -26,6 +27,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         this.tokenContractService.stakesPerUser(account)
             .takeWhile(() => this.alive)
             .subscribe((stake: BigNumber) => {
+                    this.loading = false;
                     this.stake = stake.div(1000000000000000).toFormat();
                 },
                 error => {
@@ -59,17 +61,13 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     /**
      * User can only claim tokens after event is over
      */
-    private hasCrowdsaleEnded(): void {
-        this.tokenContractService.hasEnded()
+    private hasCrowdsaleStarted(): void {
+        this.tokenContractService.hasStarted()
             .takeWhile(() => this.alive)
-            .subscribe((hasEnded: boolean) => {
-                    this.hasEnded = hasEnded;
-
-                    if (this.hasEnded === true) {
+            .subscribe((hasStarted: boolean) => {
+                    this.hasStarted = hasStarted;
+                    if (this.hasStarted === true) {
                         this.getUserStakeDuringCrowdsale(this.account);
-                        this.getUserTokens(this.account);
-                    } else {
-                        this.hasCrowdsaleStarted();
                     }
                 },
                 error => {
@@ -84,13 +82,17 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     /**
      * User can only claim tokens after event is over
      */
-    private hasCrowdsaleStarted(): void {
-        this.tokenContractService.hasStarted()
+    private hasCrowdsaleEnded(): void {
+        this.tokenContractService.hasEnded()
             .takeWhile(() => this.alive)
-            .subscribe((hasStarted: boolean) => {
-                    this.hasStarted = hasStarted;
-                    if (this.hasStarted === true) {
+            .subscribe((hasEnded: boolean) => {
+                    this.hasEnded = hasEnded;
+
+                    if (this.hasEnded === true) {
                         this.getUserStakeDuringCrowdsale(this.account);
+                        this.getUserTokens(this.account);
+                    } else {
+                        this.hasCrowdsaleStarted();
                     }
                 },
                 error => {

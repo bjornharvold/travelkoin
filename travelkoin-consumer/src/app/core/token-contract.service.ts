@@ -137,19 +137,20 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
 
-    listenToEvents(): Observable<any> {
-        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
-            // console.log(ti.instance);
-            // console.log(ti.instance.TimeChangeErrorOccurred);
-            const events: any = ti.instance.allEvents({}, {fromBlock: 0, toBlock: 'latest'});
-            console.log(Object.getOwnPropertyNames(events));
-            events.get(function (error, logs) {
-                logs.forEach(log => console.log(log.args));
-            });
-
-            return Observable.bindNodeCallback(ti.instance.allEvents)();
-        });
-    }
+    // listenToEvents(): Observable<any> {
+    //     return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+    //         // console.log(ti.instance);
+    //         // console.log(ti.instance.TimeChangeErrorOccurred);
+    //         const events: any = ti.parseLogs()
+    //         instance.allEvents({}, {fromBlock: 0, toBlock: 'latest'});
+    //         console.log(Object.getOwnPropertyNames(events));
+    //         events.get(function (error, logs) {
+    //             logs.forEach(log => console.log(log.args));
+    //         });
+    //
+    //         return Observable.bindNodeCallback(ti.instance.allEvents)();
+    //     });
+    // }
 
     setTimes(account: string, startTime: number, endTime: number): Observable<TransactionResult> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
@@ -190,7 +191,11 @@ export class TokenContractService {
             gasPrice: 4000000000,
             value: amountInWei
         };
-        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+            const tx2: TxParams = ti.TxParams;
+            console.log(tx2);
+            return Observable.fromPromise(ti.buyTokens(beneficiary, tx));
+        });
     }
 
     // ================== TOKEN FEATURES ==================

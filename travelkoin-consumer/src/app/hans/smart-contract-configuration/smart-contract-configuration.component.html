@@ -5,26 +5,6 @@
     <p>{{ 'CONTRACT.DESCRIPTION' | translate }}</p>
 </div>
 
-<div class="content-box" *ngIf="loading === true || tx != null || error != null">
-    <h3 class="content-box-header bg-white">
-            <span class="icon-separator" *ngIf="loading === true">
-                <i class="fas fa-spinner fa-spin fa-fw"></i>
-            </span>
-        {{ 'CONTRACT_CONFIGURATION.TRANSACTION_RESULT' | translate }}
-    </h3>
-    <div class="content-box-wrapper">
-        <div class="row" *ngIf="tx != null">
-            <div class="col-sm-12">
-                {{tx | json}}
-            </div>
-        </div>
-        <div class="row" *ngIf="error != null">
-            <div class="col-sm-12 font-red">
-                {{ error | translate }}
-            </div>
-        </div>
-    </div>
-</div>
 
 <form [formGroup]="dateRangeForm" (ngSubmit)="updateDates()" *ngIf="dateRangeForm != null">
     <div class="content-box">
