@@ -12,9 +12,9 @@ const infuraProvider = network => providerWithMnemonic(
   `https://${network}.infura.io/${process.env.INFURA_API_KEY}`
 );
 
-const ropstenProvider = process.env.SOLIDITY_COVERAGE
+const rinkebyProvider = process.env.SOLIDITY_COVERAGE
   ? undefined
-  : infuraProvider('ropsten');
+  : infuraProvider('rinkeby');
 
 module.exports = {
   networks: {
@@ -25,9 +25,9 @@ module.exports = {
       gasPrice: 65000000000,
       network_id: '*', // eslint-disable-line camelcase
     },
-    ropsten: {
-      provider: ropstenProvider,
-      network_id: 3, // eslint-disable-line camelcase
+    rinkeby: {
+      provider: rinkebyProvider,
+      network_id: 4, // eslint-disable-line camelcase
     },
     coverage: {
       host: 'localhost',
@@ -51,8 +51,6 @@ module.exports = {
     console: {
       host: 'localhost',
       port: 9545,
-      gas: 6712388,
-      gasPrice: 65000000000,
       network_id: '*', // eslint-disable-line camelcase
     },
   },

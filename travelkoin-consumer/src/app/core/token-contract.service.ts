@@ -137,34 +137,16 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
 
-    setTimes(startTime: number, endTime: number): Observable<TransactionResult> {
-        return this.setDefaultAccount()
-            .switchMap((account: string) => this.getTravelkoinNormalSale()
-                .switchMap((ti: TravelkoinNormalSale) => {
-                    const callbackObservable1 = Observable.bindNodeCallback(this.web3Service.getW3().eth.getGasPrice);
-                    return callbackObservable1()
-                        .switchMap((gasPrice: number) => {
-                            const tx: any = {
-                                gas: 21000
-                            };
-
-                            const callbackObservable2 = Observable.bindNodeCallback(this.web3Service.getW3().eth.estimateGas);
-                            return callbackObservable2(tx)
-                                .switchMap((gas: number) => {
-
-                                    const tx: TxParams = {
-                                        from: account,
-                                        gasPrice: gasPrice,
-                                        gas: gas,
-                                        value: 0
-                                    };
-                                    console.log(tx);
-                                    return Observable.fromPromise(ti.setTimes(startTime, endTime, tx));
-                                });
-                        });
-
-                }));
-
+    setTimes(account: string, startTime: number, endTime: number): Observable<TransactionResult> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+            const tx: TxParams = {
+                from: account,
+                gas: 90000,
+                gasPrice: 4000000000,
+                value: 0
+            };
+            return Observable.fromPromise(ti.setTimes(startTime, endTime, tx));
+        });
     }
 
     setDefaultAccount(): Observable<string> {
