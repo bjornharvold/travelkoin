@@ -1,14 +1,11 @@
-<div class="content-box" *ngIf="loading === true || tx != null || error != null">
+<div class="content-box" *ngIf="txs != null && txs.length > 0">
     <h3 class="content-box-header bg-white">
-            <span class="icon-separator" *ngIf="loading === true">
-                <i class="fas fa-spinner fa-spin fa-fw"></i>
-            </span>
-        {{ 'CONTRACT_CONFIGURATION.TRANSACTION_RESULT' | translate }}
+        {{ 'TRANSACTION_LOG.TITLE' | translate }}
     </h3>
     <div class="content-box-wrapper">
-        <div class="row" *ngIf="tx != null">
-            <div class="col-sm-12">
-                {{tx | json}}
+        <div class="row" *ngIf="txs != null">
+            <div class="col-sm-12" *ngFor="let tx of txs">
+                <i class="fas fa-fw" [ngClass]="{'fa-check font-green': tx.receipt.status === 1, 'fa-times font-red': tx.receipt.status === 0}"></i> Transaction ID: {{tx.tx}}.  {{ 'TRANSACTION_LOG.PURCHASED' | translate }} {{ tx.logs[0].args._stake / 1000000000000000 }} {{ 'TRANSACTION_LOG.TOKENS' | translate }}
             </div>
         </div>
         <div class="row" *ngIf="error != null">

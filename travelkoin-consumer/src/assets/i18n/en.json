@@ -33,7 +33,8 @@
       "2": "A de-centralized payment gateway made specifically for airlines, hotels, car rental, cruise ships, rail, online travel agencies, booking engines and channel managers.",
       "3": "A white-labeled loyalty platform that will unify the industry, generate more revenue for suppliers and create real customer value and satisfaction.",
       "4": "Our blockchain platform is fast, smart, secure, eco-friendly and built for the travel industry.",
-      "FOLLOW_US": "Follow us",
+      "FOLLOW": "Follow",
+      "CHAT": "Chat",
       "WHITE_PAPER": "White paper",
       "ROAD_MAP": "Road map"
     },
@@ -457,6 +458,11 @@
   "CONTRACT_CONFIGURATION": {
     "TOKEN_DATES": "Crowdsale dates",
     "TRANSACTION_RESULT": "Transaction result"
+  },
+  "TRANSACTION_LOG": {
+    "TITLE": "Transactions",
+    "PURCHASED": "Purchased",
+    "TOKENS": "tokens. Wallet will update momentarily."
   },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",

@@ -137,20 +137,9 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
 
-    // listenToEvents(): Observable<any> {
-    //     return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
-    //         // console.log(ti.instance);
-    //         // console.log(ti.instance.TimeChangeErrorOccurred);
-    //         const events: any = ti.parseLogs()
-    //         instance.allEvents({}, {fromBlock: 0, toBlock: 'latest'});
-    //         console.log(Object.getOwnPropertyNames(events));
-    //         events.get(function (error, logs) {
-    //             logs.forEach(log => console.log(log.args));
-    //         });
-    //
-    //         return Observable.bindNodeCallback(ti.instance.allEvents)();
-    //     });
-    // }
+    listenToEvents(): Observable<Array<W3.Log>> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getLogs(0)));
+    }
 
     setTimes(account: string, startTime: number, endTime: number): Observable<TransactionResult> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
@@ -192,8 +181,6 @@ export class TokenContractService {
             value: amountInWei
         };
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
-            const tx2: TxParams = ti.TxParams;
-            console.log(tx2);
             return Observable.fromPromise(ti.buyTokens(beneficiary, tx));
         });
     }

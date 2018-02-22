@@ -577,7 +577,7 @@
       "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinMiniMeToken.sol",
       "exportedSymbols": {
         "TravelkoinMiniMeToken": [
-          3229
+          3237
         ]
       }
     },
@@ -591,41 +591,41 @@
             ".18"
           ]
         },
-        "id": 3204,
+        "id": 3212,
         "name": "PragmaDirective",
         "src": "0:24:8"
       },
       {
         "attributes": {
-          "SourceUnit": 6066,
+          "SourceUnit": 6074,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/minime_0.2.0/MiniMeToken.sol",
           "file": "./minime_0.2.0/MiniMeToken.sol",
-          "scope": 3230,
+          "scope": 3238,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 3205,
+        "id": 3213,
         "name": "ImportDirective",
         "src": "26:40:8"
       },
       {
         "attributes": {
           "contractDependencies": [
-            4880,
-            6024
+            4888,
+            6032
           ],
           "contractKind": "contract",
           "documentation": "@title TravelkoinMiniMeToken\n@dev Basic MiniMe token",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            3229,
-            6024,
-            4880
+            3237,
+            6032,
+            4888
           ],
           "name": "TravelkoinMiniMeToken",
-          "scope": 3230
+          "scope": 3238
         },
         "children": [
           {
@@ -639,15 +639,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "MiniMeToken",
-                  "referencedDeclaration": 6024,
+                  "referencedDeclaration": 6032,
                   "type": "contract MiniMeToken"
                 },
-                "id": 3206,
+                "id": 3214,
                 "name": "UserDefinedTypeName",
                 "src": "170:11:8"
               }
             ],
-            "id": 3207,
+            "id": 3215,
             "name": "InheritanceSpecifier",
             "src": "170:11:8"
           },
@@ -658,7 +658,7 @@
               "isConstructor": true,
               "name": "TravelkoinMiniMeToken",
               "payable": false,
-              "scope": 3229,
+              "scope": 3237,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -670,7 +670,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_controller",
-                      "scope": 3228,
+                      "scope": 3236,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -683,12 +683,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 3208,
+                        "id": 3216,
                         "name": "ElementaryTypeName",
                         "src": "219:7:8"
                       }
                     ],
-                    "id": 3209,
+                    "id": 3217,
                     "name": "VariableDeclaration",
                     "src": "219:19:8"
                   },
@@ -696,7 +696,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_tokenFactory",
-                      "scope": 3228,
+                      "scope": 3236,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -709,17 +709,17 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 3210,
+                        "id": 3218,
                         "name": "ElementaryTypeName",
                         "src": "240:7:8"
                       }
                     ],
-                    "id": 3211,
+                    "id": 3219,
                     "name": "VariableDeclaration",
                     "src": "240:21:8"
                   }
                 ],
-                "id": 3212,
+                "id": 3220,
                 "name": "ParameterList",
                 "src": "218:44:8"
               },
@@ -730,7 +730,7 @@
                   ]
                 },
                 "children": [],
-                "id": 3222,
+                "id": 3230,
                 "name": "ParameterList",
                 "src": "542:0:8"
               },
@@ -742,11 +742,11 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6024,
+                      "referencedDeclaration": 6032,
                       "type": "type(contract MiniMeToken)",
                       "value": "MiniMeToken"
                     },
-                    "id": 3213,
+                    "id": 3221,
                     "name": "Identifier",
                     "src": "267:11:8"
                   },
@@ -756,11 +756,11 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 3211,
+                      "referencedDeclaration": 3219,
                       "type": "address",
                       "value": "_tokenFactory"
                     },
-                    "id": 3214,
+                    "id": 3222,
                     "name": "Identifier",
                     "src": "288:13:8"
                   },
@@ -777,7 +777,7 @@
                       "type": "int_const 0",
                       "value": "0x0"
                     },
-                    "id": 3215,
+                    "id": 3223,
                     "name": "Literal",
                     "src": "311:3:8"
                   },
@@ -794,7 +794,7 @@
                       "type": "int_const 0",
                       "value": "0"
                     },
-                    "id": 3216,
+                    "id": 3224,
                     "name": "Literal",
                     "src": "343:1:8"
                   },
@@ -811,7 +811,7 @@
                       "type": "literal_string \"Travelkoin Token\"",
                       "value": "Travelkoin Token"
                     },
-                    "id": 3217,
+                    "id": 3225,
                     "name": "Literal",
                     "src": "394:18:8"
                   },
@@ -828,7 +828,7 @@
                       "type": "int_const 18",
                       "value": "18"
                     },
-                    "id": 3218,
+                    "id": 3226,
                     "name": "Literal",
                     "src": "436:2:8"
                   },
@@ -845,7 +845,7 @@
                       "type": "literal_string \"TKT\"",
                       "value": "TKT"
                     },
-                    "id": 3219,
+                    "id": 3227,
                     "name": "Literal",
                     "src": "460:5:8"
                   },
@@ -862,12 +862,12 @@
                       "type": "bool",
                       "value": "true"
                     },
-                    "id": 3220,
+                    "id": 3228,
                     "name": "Literal",
                     "src": "485:4:8"
                   }
                 ],
-                "id": 3221,
+                "id": 3229,
                 "name": "ModifierInvocation",
                 "src": "267:263:8"
               },
@@ -901,11 +901,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4879,
+                              "referencedDeclaration": 4887,
                               "type": "function (address)",
                               "value": "changeController"
                             },
-                            "id": 3223,
+                            "id": 3231,
                             "name": "Identifier",
                             "src": "552:16:8"
                           },
@@ -915,41 +915,41 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 3209,
+                              "referencedDeclaration": 3217,
                               "type": "address",
                               "value": "_controller"
                             },
-                            "id": 3224,
+                            "id": 3232,
                             "name": "Identifier",
                             "src": "569:11:8"
                           }
                         ],
-                        "id": 3225,
+                        "id": 3233,
                         "name": "FunctionCall",
                         "src": "552:29:8"
                       }
                     ],
-                    "id": 3226,
+                    "id": 3234,
                     "name": "ExpressionStatement",
                     "src": "552:29:8"
                   }
                 ],
-                "id": 3227,
+                "id": 3235,
                 "name": "Block",
                 "src": "542:46:8"
               }
             ],
-            "id": 3228,
+            "id": 3236,
             "name": "FunctionDefinition",
             "src": "188:400:8"
           }
         ],
-        "id": 3229,
+        "id": 3237,
         "name": "ContractDefinition",
         "src": "136:454:8"
       }
     ],
-    "id": 3230,
+    "id": 3238,
     "name": "SourceUnit",
     "src": "0:590:8"
   },
@@ -959,5 +959,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T02:12:15.152Z"
+  "updatedAt": "2018-02-22T08:30:08.737Z"
 }
