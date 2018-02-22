@@ -52,7 +52,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     /**
      * This is our form for submitting payment
      */
-    private updateValidator(): void {
+    private initFormGroup(): void {
         if (this.dto == null && this.accounts != null) {
             this.dto = new TokenPurchase(this.accounts[0]);
             this.dto.populateFormValues(this.form);
@@ -94,6 +94,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                             this.accounts = accounts;
                             // retrieve current account balance in Ether
                             this.getAccountBalance(accounts[0]);
+                            this.initFormGroup();
                         }
                     },
                     error => {
@@ -103,6 +104,13 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     () => {
                     }
                 );
+        }
+    }
+
+    private clearForm(): void {
+        if (this.dto != null) {
+            this.dto.amount = null;
+            this.dto.populateFormValues(this.form);
         }
     }
 
@@ -116,6 +124,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
                     this.transactionLogService.logTransaction(tx);
+                    this.clearForm();
                 },
                 error => {
                     this.loading = false;
@@ -167,7 +176,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 .takeWhile(() => this.hasStarted === true && this.hasEnded === false)
                 .subscribe(() => {
                     // check for 1 ETH limit time
-                    this.updateValidator();
+                    this.initFormGroup();
                 });
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';

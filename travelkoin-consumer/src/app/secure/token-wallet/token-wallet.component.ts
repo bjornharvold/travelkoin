@@ -111,7 +111,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((error: string) => this.error = error);
 
-        Observable.interval(5000)
+        Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 if (this.hasStarted === true && this.hasEnded === false) {

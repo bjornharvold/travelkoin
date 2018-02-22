@@ -62,7 +62,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
                 }
             );
 
-        Observable.interval(5000)
+        Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 this.fetchWeiRaised();

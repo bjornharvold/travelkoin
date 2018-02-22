@@ -19,7 +19,6 @@ export class CrowdsaleTimerService {
      */
     private startTime(): void {
         this.tokenContractService.startTime()
-            .takeWhile(() => this.hasStarted === false)
             .subscribe((startTime: BigNumber) => {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const startDate: moment.Moment = DateService.bigNumberToMoment(startTime);
@@ -44,7 +43,6 @@ export class CrowdsaleTimerService {
      */
     private endTime(): void {
         this.tokenContractService.endTime()
-            .takeWhile(() => this.hasEnded !== false)
             .subscribe((endTime: BigNumber) => {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const endDate = DateService.bigNumberToMoment(endTime);
@@ -69,12 +67,12 @@ export class CrowdsaleTimerService {
         this.hasStartedEvent = new EventEmitter<boolean>(true);
         this.errorEvent = new EventEmitter<string>(true);
 
-        Observable.interval(2500)
+        Observable.interval(2000)
             .subscribe(() => {
                 this.startTime();
             });
 
-        Observable.interval(5000)
+        Observable.interval(2000)
             .subscribe(() => {
                 this.endTime();
             });
