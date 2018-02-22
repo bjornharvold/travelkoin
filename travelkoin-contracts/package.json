@@ -42,7 +42,7 @@
     "coveralls": "3.0.0",
     "eslint": "4.18.1",
     "eslint-config-standard": "11.0.0",
-    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-import": "2.9.0",
     "eslint-plugin-node": "6.0.0",
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-standard": "3.0.1",
@@ -60,7 +60,7 @@
   "dependencies": {
     "dotenv": "5.0.0",
     "ethjs-abi": "0.2.1",
-    "soltsice": "0.10.3",
+    "soltsice": "0.10.11",
     "zeppelin-solidity": "1.6.0"
   }
 }

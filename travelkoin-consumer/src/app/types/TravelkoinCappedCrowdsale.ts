@@ -6,9 +6,9 @@ import { W3, SoltsiceContract } from 'soltsice';
  * TravelkoinCappedCrowdsale API
  */
 export class TravelkoinCappedCrowdsale extends SoltsiceContract {
-    static get Artifacts() { return require('../contracts/TravelkoinCappedCrowdsale.json'); }
+    public static get Artifacts() { return require('../contracts/TravelkoinCappedCrowdsale.json'); }
 
-    static get BytecodeHash() {
+    public static get BytecodeHash() {
         // we need this before ctor, but artifacts are static and we cannot pass it to the base class, so need to generate
         let artifacts = TravelkoinCappedCrowdsale.Artifacts;
         if (!artifacts || !artifacts.bytecode) {
@@ -19,22 +19,39 @@ export class TravelkoinCappedCrowdsale extends SoltsiceContract {
     }
 
     // tslint:disable-next-line:max-line-length
-    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_cap: BigNumber | number}, w3?: W3, link?: SoltsiceContract[]): Promise<TravelkoinCappedCrowdsale> {
-        let contract = new TravelkoinCappedCrowdsale(deploymentParams, ctorParams, w3, link);
-        await contract._instancePromise;
-        return contract;
+    public static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_cap: BigNumber | number}, w3?: W3, link?: SoltsiceContract[], privateKey?: string): Promise<TravelkoinCappedCrowdsale> {
+        w3 = w3 || W3.Default;
+        if (!privateKey) {
+            let contract = new TravelkoinCappedCrowdsale(deploymentParams, ctorParams, w3, link);
+            await contract._instancePromise;
+            return contract;
+        } else {
+            let data = TravelkoinCappedCrowdsale.NewData(ctorParams, w3);
+            let txHash = await w3.sendSignedTransaction(W3.zeroAddress, privateKey, data, deploymentParams);
+            let txReceipt = await w3.waitTransactionReceipt(txHash);
+            let rawAddress = txReceipt.contractAddress;
+            let contract = await TravelkoinCappedCrowdsale.At(rawAddress, w3);
+            return contract;
+        }
     }
 
-    static async At(address: string | object, w3?: W3): Promise<TravelkoinCappedCrowdsale> {
+    public static async At(address: string | object, w3?: W3): Promise<TravelkoinCappedCrowdsale> {
         let contract = new TravelkoinCappedCrowdsale(address, undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
     }
 
-    static async Deployed(w3?: W3): Promise<TravelkoinCappedCrowdsale> {
+    public static async Deployed(w3?: W3): Promise<TravelkoinCappedCrowdsale> {
         let contract = new TravelkoinCappedCrowdsale('', undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
+    }
+
+    // tslint:disable-next-line:max-line-length
+    public static NewData(ctorParams?: {_cap: BigNumber | number}, w3?: W3): string {
+        // tslint:disable-next-line:max-line-length
+        let data = SoltsiceContract.NewDataImpl(w3, TravelkoinCappedCrowdsale.Artifacts, ctorParams ? [ctorParams!._cap] : []);
+        return data;
     }
 
     protected constructor(
@@ -148,12 +165,20 @@ export class TravelkoinCappedCrowdsale extends SoltsiceContract {
     public buyTokens = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (beneficiary: string, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.buyTokens(beneficiary, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (beneficiary: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.buyTokens(beneficiary, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.buyTokens.request(beneficiary).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -170,7 +195,7 @@ export class TravelkoinCappedCrowdsale extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (beneficiary: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.buyTokens.request(beneficiary).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.buyTokens.request(beneficiary).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )

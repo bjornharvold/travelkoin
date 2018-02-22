@@ -6,9 +6,9 @@ import { W3, SoltsiceContract } from 'soltsice';
  * MultiSigWalletWithDailyLimit API
  */
 export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
-    static get Artifacts() { return require('../contracts/MultiSigWalletWithDailyLimit.json'); }
+    public static get Artifacts() { return require('../contracts/MultiSigWalletWithDailyLimit.json'); }
 
-    static get BytecodeHash() {
+    public static get BytecodeHash() {
         // we need this before ctor, but artifacts are static and we cannot pass it to the base class, so need to generate
         let artifacts = MultiSigWalletWithDailyLimit.Artifacts;
         if (!artifacts || !artifacts.bytecode) {
@@ -19,22 +19,39 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     }
 
     // tslint:disable-next-line:max-line-length
-    static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_owners: string[], _required: BigNumber | number, _dailyLimit: BigNumber | number}, w3?: W3, link?: SoltsiceContract[]): Promise<MultiSigWalletWithDailyLimit> {
-        let contract = new MultiSigWalletWithDailyLimit(deploymentParams, ctorParams, w3, link);
-        await contract._instancePromise;
-        return contract;
+    public static async New(deploymentParams: W3.TX.TxParams, ctorParams?: {_owners: string[], _required: BigNumber | number, _dailyLimit: BigNumber | number}, w3?: W3, link?: SoltsiceContract[], privateKey?: string): Promise<MultiSigWalletWithDailyLimit> {
+        w3 = w3 || W3.Default;
+        if (!privateKey) {
+            let contract = new MultiSigWalletWithDailyLimit(deploymentParams, ctorParams, w3, link);
+            await contract._instancePromise;
+            return contract;
+        } else {
+            let data = MultiSigWalletWithDailyLimit.NewData(ctorParams, w3);
+            let txHash = await w3.sendSignedTransaction(W3.zeroAddress, privateKey, data, deploymentParams);
+            let txReceipt = await w3.waitTransactionReceipt(txHash);
+            let rawAddress = txReceipt.contractAddress;
+            let contract = await MultiSigWalletWithDailyLimit.At(rawAddress, w3);
+            return contract;
+        }
     }
 
-    static async At(address: string | object, w3?: W3): Promise<MultiSigWalletWithDailyLimit> {
+    public static async At(address: string | object, w3?: W3): Promise<MultiSigWalletWithDailyLimit> {
         let contract = new MultiSigWalletWithDailyLimit(address, undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
     }
 
-    static async Deployed(w3?: W3): Promise<MultiSigWalletWithDailyLimit> {
+    public static async Deployed(w3?: W3): Promise<MultiSigWalletWithDailyLimit> {
         let contract = new MultiSigWalletWithDailyLimit('', undefined, w3, undefined);
         await contract._instancePromise;
         return contract;
+    }
+
+    // tslint:disable-next-line:max-line-length
+    public static NewData(ctorParams?: {_owners: string[], _required: BigNumber | number, _dailyLimit: BigNumber | number}, w3?: W3): string {
+        // tslint:disable-next-line:max-line-length
+        let data = SoltsiceContract.NewDataImpl(w3, MultiSigWalletWithDailyLimit.Artifacts, ctorParams ? [ctorParams!._owners, ctorParams!._required, ctorParams!._dailyLimit] : []);
+        return data;
     }
 
     protected constructor(
@@ -148,12 +165,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public changeDailyLimit = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (_dailyLimit: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.changeDailyLimit(_dailyLimit, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (_dailyLimit: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.changeDailyLimit(_dailyLimit, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeDailyLimit.request(_dailyLimit).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -170,7 +195,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (_dailyLimit: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeDailyLimit.request(_dailyLimit).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeDailyLimit.request(_dailyLimit).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -231,12 +256,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public addOwner = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (owner: string, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.addOwner(owner, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (owner: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.addOwner(owner, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.addOwner.request(owner).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -253,7 +286,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (owner: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.addOwner.request(owner).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.addOwner.request(owner).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -281,12 +314,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public removeOwner = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (owner: string, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.removeOwner(owner, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (owner: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.removeOwner(owner, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.removeOwner.request(owner).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -303,7 +344,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (owner: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.removeOwner.request(owner).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.removeOwner.request(owner).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -331,12 +372,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public replaceOwner = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (owner: string, newOwner: string, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.replaceOwner(owner, newOwner, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (owner: string, newOwner: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.replaceOwner(owner, newOwner, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.replaceOwner.request(owner, newOwner).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -353,7 +402,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (owner: string, newOwner: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.replaceOwner.request(owner, newOwner).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.replaceOwner.request(owner, newOwner).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -381,12 +430,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public changeRequirement = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (_required: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.changeRequirement(_required, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (_required: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.changeRequirement(_required, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeRequirement.request(_required).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -403,7 +460,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (_required: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeRequirement.request(_required).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.changeRequirement.request(_required).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -431,12 +488,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public submitTransaction = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (destination: string, value: BigNumber | number, data: string, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.submitTransaction(destination, value, data, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (destination: string, value: BigNumber | number, data: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.submitTransaction(destination, value, data, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.submitTransaction.request(destination, value, data).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -453,7 +518,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (destination: string, value: BigNumber | number, data: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.submitTransaction.request(destination, value, data).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.submitTransaction.request(destination, value, data).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -481,12 +546,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public confirmTransaction = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.confirmTransaction(transactionId, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.confirmTransaction(transactionId, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.confirmTransaction.request(transactionId).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -503,7 +576,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (transactionId: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.confirmTransaction.request(transactionId).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.confirmTransaction.request(transactionId).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -531,12 +604,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public revokeConfirmation = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.revokeConfirmation(transactionId, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.revokeConfirmation(transactionId, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.revokeConfirmation.request(transactionId).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -553,7 +634,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (transactionId: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.revokeConfirmation.request(transactionId).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.revokeConfirmation.request(transactionId).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
@@ -581,12 +662,20 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
     public executeTransaction = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
-        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams): Promise<W3.TX.TransactionResult> => {
-            return new Promise((resolve, reject) => {
-                this._instance.executeTransaction(transactionId, txParams || this._sendParams)
-                    .then((res) => resolve(res))
-                    .catch((err) => reject(err));
-            });
+        (transactionId: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
+            if (!privateKey) {
+                return new Promise((resolve, reject) => {
+                    this._instance.executeTransaction(transactionId, txParams || this._sendParams)
+                        .then((res) => resolve(res))
+                        .catch((err) => reject(err));
+                });
+            } else {
+                // tslint:disable-next-line:max-line-length
+                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.executeTransaction.request(transactionId).params[0].data, txParams || this._sendParams, undefined)
+                    .then(txHash => {
+                        return this.waitTransactionReceipt(txHash);
+                    });
+            }
         },
         {
             // tslint:disable-next-line:max-line-length
@@ -603,7 +692,7 @@ export class MultiSigWalletWithDailyLimit extends SoltsiceContract {
                     // tslint:disable-next-line:variable-name
                     sendSigned: (transactionId: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
                         // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.executeTransaction.request(transactionId).params[0].data, txParams, nonce);
+                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.executeTransaction.request(transactionId).params[0].data, txParams || this._sendParams, nonce);
                     }
                 }
             )
