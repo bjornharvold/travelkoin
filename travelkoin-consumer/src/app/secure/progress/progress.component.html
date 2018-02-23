@@ -10,8 +10,8 @@
         <ngb-progressbar [value]="value" [max]="max"></ngb-progressbar>
         <p class="text-center font-size-20">{{ valueString }} of {{ maxString }} tokens sold</p>
     </div>
-
-    <div class="content-box-wrapper text-center mrg25A" *ngIf="status != null">
-        <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}
+    <div class="content-box-wrapper text-center mrg10A" *ngIf="error != null">
+        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }}
     </div>
 </div>
+

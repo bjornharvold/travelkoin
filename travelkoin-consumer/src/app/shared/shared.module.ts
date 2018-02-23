@@ -16,7 +16,6 @@ import {GridModule} from '@progress/kendo-angular-grid';
 import {DialogModule} from '@progress/kendo-angular-dialog';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import 'hammerjs';
-import {QRCodeModule} from 'angularx-qrcode';
 import {SuccessBoxComponent} from './success-box/success-box.component';
 import {FailureBoxComponent} from './failure-box/failure-box.component';
 import {MultimediaManagerComponent} from './multimedia-manager/multimedia-manager.component';
@@ -36,7 +35,6 @@ import {TransactionLogComponent} from './transaction-log/transaction-log.compone
         NgbModule,
         TranslateModule,
         ChartModule,
-        QRCodeModule,
         GridModule,
         DialogModule,
         CloudinaryModule,
@@ -60,7 +58,6 @@ import {TransactionLogComponent} from './transaction-log/transaction-log.compone
         NgbModule,
         TranslateModule,
         ChartModule,
-        QRCodeModule,
         GridModule,
         DialogModule,
         CloudinaryModule,
