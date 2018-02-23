@@ -19,6 +19,7 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
     loading = false;
     dateRangeForm: FormGroup;
     error: string;
+    tx: TransactionResult = null;
 
     private getAccount(): void {
         this.web3Service.getAccounts()
@@ -69,6 +70,8 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
 
     updateDates(): void {
         this.loading = true;
+        this.tx = null;
+        this.error = null;
         const startDate: string = this.dateRangeForm.get('startDate').value;
         const endDate: string = this.dateRangeForm.get('endDate').value;
 
@@ -78,11 +81,12 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
         this.tokenContractService.setTimes(this.account, startDateUnix, endDateUnix)
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
-                    console.log(tx);
+                    this.tx = tx;
                 },
                 error => {
                     this.loading = false;
-                    console.error(error);
+                    console.log(Object.getOwnPropertyNames(error));
+                    // console.error(error);
                     this.error = 'CODE.ERROR';
                 },
                 () => {
@@ -101,6 +105,10 @@ export class SmartContractConfigurationComponent implements OnInit, OnDestroy {
         this.dateRangeForm = new FormGroup({});
         this.loadStartDate(this.dateRangeForm);
         this.loadEndDate(this.dateRangeForm);
+
+        // this.tokenContractService.listenToEvents()
+        //     .takeWhile(() => this.alive)
+        //     .subscribe((event: any) => console.error(event));
     }
 
     constructor(private web3Service: Web3Service,

@@ -1,7 +1,11 @@
-import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
+import {DateService} from '../../core/date.service';
+import * as moment from 'moment';
+import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -14,93 +18,55 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     account: string;
     hasStarted = false;
     hasEnded = false;
-    isOpen = false;
+    loading = false;
     status: string = null;
-    stake = 0;
-    balance = 0;
+    error = null;
+    stake: string = null;
+    balance: string = null;
+    startDate: moment.Moment;
+    endDate: moment.Moment;
+    nowDate: moment.Moment = DateService.getInstanceOfNow();
 
     /**
      * This is the user's current investment in the crowdsale
-     * @param {string} account
      */
-    private getUserStakeDuringCrowdsale(account: string): void {
-        this.tokenContractService.stakesPerUser(account)
-            .takeWhile(() => this.alive)
-            .subscribe((stake: BigNumber) => {
-                    this.stake = stake.toNumber();
-                },
-                error => {
-                    console.error(error);
-                    this.status = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
+    private getUserStakeDuringCrowdsale(): void {
+        if (this.account != null) {
+            this.loading = true;
+            this.tokenContractService.stakesPerUser(this.account)
+                .takeWhile(() => this.alive)
+                .subscribe((stake: BigNumber) => {
+                        this.stake = stake.div(1000000000000000).toFormat();
+                    },
+                    error => {
+                        this.loading = false;
+                        console.error(error);
+                        this.status = 'CODE.ERROR';
+                    },
+                    () => this.loading = false
+                );
+        }
     }
 
     /**
-     * This is the user's current investment in the crowdsale
-     * @param {string} account
+     * This is the user's claimed tokens available after the crowdsale
      */
-    private getUserTokens(account: string): void {
-        this.tokenContractService.balanceOf(account)
-            .takeWhile(() => this.alive)
-            .subscribe((balance: BigNumber) => {
-                    this.balance = balance.toNumber();
-                },
-                error => {
-                    console.error(error);
-                    this.status = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
-    }
-
-    /**
-     * User can only claim tokens after event is over
-     */
-    private hasCrowdsaleEnded(): void {
-        this.tokenContractService.hasEnded()
-            .takeWhile(() => this.alive)
-            .subscribe((hasEnded: boolean) => {
-                    this.hasEnded = hasEnded;
-
-                    if (this.hasEnded === true) {
-                        this.getUserStakeDuringCrowdsale(this.account);
-                        this.getUserTokens(this.account);
-                    } else {
-                        this.hasCrowdsaleStarted();
-                    }
-                },
-                error => {
-                    console.error(error);
-                    this.status = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
-    }
-
-    /**
-     * User can only claim tokens after event is over
-     */
-    private hasCrowdsaleStarted(): void {
-        this.tokenContractService.hasStarted()
-            .takeWhile(() => this.alive)
-            .subscribe((hasStarted: boolean) => {
-                    this.hasStarted = hasStarted;
-                    if (this.hasStarted === true) {
-                        this.getUserStakeDuringCrowdsale(this.account);
-                    }
-                },
-                error => {
-                    console.error(error);
-                    this.status = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
+    private getUserTokens(): void {
+        if (this.account != null) {
+            this.loading = true;
+            this.tokenContractService.balanceOf(this.account)
+                .takeWhile(() => this.alive)
+                .subscribe((balance: BigNumber) => {
+                        this.balance = balance.div(1000000000000000).toFormat();
+                    },
+                    error => {
+                        this.loading = false;
+                        console.error(error);
+                        this.status = 'CODE.ERROR';
+                    },
+                    () => this.loading = false
+                );
+        }
     }
 
     /**
@@ -112,11 +78,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((accounts) => {
                     this.accounts = accounts;
                     this.account = accounts[0];
-                    this.hasCrowdsaleEnded();
                 },
                 error => {
                     console.error(error);
-                    this.status = 'CODE.ERROR';
+                    this.error = 'CODE.ERROR';
                 },
                 () => {
                 }
@@ -129,10 +94,38 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.retrieveAccounts();
+
+        this.crowdsaleTimerService.hasStartedEvent
+            .takeWhile(() => this.alive)
+            .subscribe((started: boolean) => {
+                this.hasStarted = started;
+            });
+
+        this.crowdsaleTimerService.hasEndedEvent
+            .takeWhile(() => this.alive)
+            .subscribe((ended: boolean) => {
+                this.hasEnded = ended;
+            });
+
+        this.crowdsaleTimerService.errorEvent
+            .takeWhile(() => this.alive)
+            .subscribe((error: string) => this.error = error);
+
+        Observable.interval(2000)
+            .takeWhile(() => this.alive)
+            .subscribe(() => {
+                if (this.hasStarted === true && this.hasEnded === false) {
+                    this.getUserStakeDuringCrowdsale();
+                }
+
+                if (this.hasStarted === true && this.hasEnded === true) {
+                    this.getUserTokens();
+                }
+            });
     }
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
-                private ngZone: NgZone) {
+                private crowdsaleTimerService: CrowdsaleTimerService) {
     }
 }

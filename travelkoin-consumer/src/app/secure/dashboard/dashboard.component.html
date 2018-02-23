@@ -1,34 +1,28 @@
-<div id="page-title" *ngIf="user != null">
-    <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
-    <p>{{ 'DASHBOARD.DESCRIPTION' | translate }}</p>
-    <p *ngIf="user.approved === false"><span class="label label-info">{{ 'DASHBOARD.WAITING_FOR_APPROVAL' | translate }}</span></p>
-</div>
+<div *ngIf="user != null">
+    <div id="page-title">
+        <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
+        <p>{{ 'DASHBOARD.DESCRIPTION' | translate }}</p>
+        <p *ngIf="user.approved === false"><span class="label label-info">{{ 'DASHBOARD.WAITING_FOR_APPROVAL' | translate }}</span></p>
+    </div>
 
-<div class="row" *ngIf="user != null">
-    <div class="col-sm-6">
-        <app-secure-token-sale></app-secure-token-sale>
-    </div>
-    <div class="col-sm-6">
-        <app-secure-token-wallet></app-secure-token-wallet>
-    </div>
-    <!--<div class="col-md-3">-->
-        <!--<app-secure-invested-ether></app-secure-invested-ether>-->
-    <!--</div>-->
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel">
-            <div class="panel-body">
-                <h3 class="title-hero">
-                    {{ 'DASHBOARD.GOAL_REACHED' | translate }}
-                </h3>
-                <div>
-                    <div class="mrg20B">
-                        <app-secure-progress></app-secure-progress>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <app-shared-transaction-log></app-shared-transaction-log>
         </div>
+    </div>
 
+    <div class="row">
+        <div class="col-sm-12">
+            <app-secure-token-sale></app-secure-token-sale>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <app-secure-progress></app-secure-progress>
+        </div>
+        <div class="col-sm-4">
+            <app-secure-token-wallet></app-secure-token-wallet>
+        </div>
     </div>
 </div>

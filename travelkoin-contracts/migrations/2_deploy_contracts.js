@@ -9,7 +9,7 @@ var TravelkoinHodler = artifacts.require('TravelkoinHodler');
 var TokenVesting = artifacts.require('TravelkoinTokenVesting');
 
 // var dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
-var dateStart = Math.floor(new Date().getTime() / 1000) + 0.01 * 60 * 60 * 24; // starts now
+var dateStart = Math.floor(new Date().getTime() / 1000) + 0.001 * 60 * 60 * 24; // starts now
 var dateEnd = dateStart + 5 * 24 * 60 * 60; // lasts 5 days
 
 module.exports = function (deployer) {

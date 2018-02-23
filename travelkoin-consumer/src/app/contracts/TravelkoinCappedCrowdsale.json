@@ -102,6 +102,20 @@
     {
       "constant": true,
       "inputs": [],
+      "name": "valueOfNow",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
       "name": "token",
       "outputs": [
         {
@@ -216,7 +230,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 3203,
+          "SourceUnit": 3211,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinMiniMeCrowdsale.sol",
           "file": "./TravelkoinMiniMeCrowdsale.sol",
           "scope": 1363,
@@ -232,14 +246,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            3202
+            3210
           ],
           "contractKind": "contract",
           "documentation": "@author Bjorn Harvold\n@title TravelkoinCappedCrowdsale\n@dev Extension of CappedCrowdsale adding partial refund logic",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
             1362,
-            3202
+            3210
           ],
           "name": "TravelkoinCappedCrowdsale",
           "scope": 1363
@@ -256,7 +270,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "TravelkoinMiniMeCrowdsale",
-                  "referencedDeclaration": 3202,
+                  "referencedDeclaration": 3210,
                   "type": "contract TravelkoinMiniMeCrowdsale"
                 },
                 "id": 1247,
@@ -274,7 +288,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 6183,
+                  "referencedDeclaration": 6287,
                   "type": "library SafeMath"
                 },
                 "id": 1249,
@@ -411,7 +425,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6329,
+                              "referencedDeclaration": 6433,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -664,7 +678,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "sub",
-                              "referencedDeclaration": 6158,
+                              "referencedDeclaration": 6262,
                               "type": "function (uint256,uint256) pure returns (uint256)"
                             },
                             "children": [
@@ -801,7 +815,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6326,
+                                      "referencedDeclaration": 6430,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -851,7 +865,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6326,
+                                  "referencedDeclaration": 6430,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -908,7 +922,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "buyTokens",
-                              "referencedDeclaration": 3131,
+                              "referencedDeclaration": 3139,
                               "type": "function (address,uint256)"
                             },
                             "children": [
@@ -918,7 +932,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6356,
+                                  "referencedDeclaration": 6460,
                                   "type": "contract super TravelkoinCappedCrowdsale",
                                   "value": "super"
                                 },
@@ -1030,7 +1044,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "sub",
-                              "referencedDeclaration": 6158,
+                              "referencedDeclaration": 6262,
                               "type": "function (uint256,uint256) pure returns (uint256)"
                             },
                             "children": [
@@ -1052,7 +1066,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6326,
+                                      "referencedDeclaration": 6430,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -1204,7 +1218,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 6326,
+                                              "referencedDeclaration": 6430,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -1386,7 +1400,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6356,
+                                      "referencedDeclaration": 6460,
                                       "type": "contract super TravelkoinCappedCrowdsale",
                                       "value": "super"
                                     },
@@ -1605,7 +1619,7 @@
               "payable": false,
               "scope": 1362,
               "stateMutability": "view",
-              "superFunction": 3201,
+              "superFunction": 3209,
               "visibility": "internal"
             },
             "children": [
@@ -1725,7 +1739,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "validPurchase",
-                                  "referencedDeclaration": 3201,
+                                  "referencedDeclaration": 3209,
                                   "type": "function (uint256) view returns (bool)"
                                 },
                                 "children": [
@@ -1735,7 +1749,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6356,
+                                      "referencedDeclaration": 6460,
                                       "type": "contract super TravelkoinCappedCrowdsale",
                                       "value": "super"
                                     },
@@ -1859,5 +1873,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-19T09:26:19.050Z"
+  "updatedAt": "2018-02-22T08:30:08.731Z"
 }

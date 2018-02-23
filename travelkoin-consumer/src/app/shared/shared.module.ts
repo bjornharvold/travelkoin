@@ -16,7 +16,6 @@ import {GridModule} from '@progress/kendo-angular-grid';
 import {DialogModule} from '@progress/kendo-angular-dialog';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import 'hammerjs';
-import {QRCodeModule} from 'angularx-qrcode';
 import {SuccessBoxComponent} from './success-box/success-box.component';
 import {FailureBoxComponent} from './failure-box/failure-box.component';
 import {MultimediaManagerComponent} from './multimedia-manager/multimedia-manager.component';
@@ -24,6 +23,7 @@ import {MultimediaDivComponent} from './multimedia-div/multimedia-div.component'
 import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
+import {TransactionLogComponent} from './transaction-log/transaction-log.component';
 
 @NgModule({
     imports: [
@@ -35,7 +35,6 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         NgbModule,
         TranslateModule,
         ChartModule,
-        QRCodeModule,
         GridModule,
         DialogModule,
         CloudinaryModule,
@@ -48,7 +47,8 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
-        MultimediaDivComponent
+        MultimediaDivComponent,
+        TransactionLogComponent
     ],
     exports: [
         CommonModule,
@@ -58,18 +58,18 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         NgbModule,
         TranslateModule,
         ChartModule,
-        QRCodeModule,
         GridModule,
         DialogModule,
+        CloudinaryModule,
+        UploadModule,
+        ClipboardModule,
+        ButtonsModule,
         TimerComponent,
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
         MultimediaDivComponent,
-        CloudinaryModule,
-        UploadModule,
-        ClipboardModule,
-        ButtonsModule
+        TransactionLogComponent
     ],
     providers: []
 })

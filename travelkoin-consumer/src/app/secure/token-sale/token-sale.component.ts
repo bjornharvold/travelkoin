@@ -1,6 +1,5 @@
-import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
-import {Observable} from 'rxjs/Observable';
 import {TokenPurchase} from '../../model/TokenPurchase';
 import {FormGroup} from '@angular/forms';
 import * as moment from 'moment';
@@ -8,6 +7,9 @@ import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
 import {DateService} from '../../core/date.service';
 import {W3} from 'soltsice';
+import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
+import {Observable} from 'rxjs/Observable';
+import {TransactionLogService} from '../../core/transaction-log.service';
 import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
@@ -24,12 +26,11 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     currentAccountBalanceEther: string = '0';
     form: FormGroup;
     startDate: moment.Moment;
-    endDate: moment.Moment;
     status = null;
     error = null;
     hasStarted = false;
-    loading = false;
     hasEnded = false;
+    loading = false;
     isCrowdsaleOpen = false;
 
     private getAccountBalance(account: string): void {
@@ -49,17 +50,27 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * This is our form for submitting payment
+     */
+    private initFormGroup(): void {
+        if (this.dto == null && this.accounts != null) {
+            this.dto = new TokenPurchase(this.accounts[0]);
+            this.dto.populateFormValues(this.form);
+        }
+
+        if (this.dto != null && this.startDate != null) {
+            this.dto.updateValidator(this.form, this.startDate);
+        }
+    }
+
+    /**
      * Save start time
      */
-    private startTime(): void {
+    private displayStartTime(): void {
         this.tokenContractService.startTime()
             .takeWhile(() => this.alive)
             .subscribe((startTime: BigNumber) => {
                     this.startDate = DateService.bigNumberToMoment(startTime);
-
-                    if (this.dto != null) {
-                        this.dto.updateValidator(this.form, this.startDate);
-                    }
                     // console.log(this.startDate.format());
                 }, error => {
                     console.error(error);
@@ -70,97 +81,37 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             )
     }
 
-    /**
-     * Save end time
-     */
-    private endTime(): void {
-        this.tokenContractService.endTime()
-            .takeWhile(() => this.alive)
-            .subscribe((endTime: BigNumber) => {
-                    this.endDate = DateService.bigNumberToMoment(endTime);
-                    // console.log(this.endDate.format());
-                }, error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            )
-    }
-
-    /**
-     * Check to see if the token sale has ended
-     */
-    private hasCrowdsaleEnded(): void {
-        this.tokenContractService.hasEnded()
-            .takeWhile(() => this.alive)
-            .subscribe((hasEnded: boolean) => {
-                    this.hasEnded = hasEnded;
-
-                    if (this.hasEnded === false) {
-                        this.hasCrowdsaleStarted();
-                    }
-                }, error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            )
-    }
-
-    /**
-     * Check to see if the token sale has ended
-     */
-    private hasCrowdsaleStarted(): void {
-        this.tokenContractService.hasStarted()
-            .takeWhile(() => this.alive)
-            .subscribe((hasStarted: boolean) => {
-                    console.log(`hasStarted: ${hasStarted}`);
-                    this.hasStarted = hasStarted;
-                }, error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            )
-    }
-
     private retrieveAccounts(): void {
-        this.web3Service.getAccounts()
-            .takeWhile(() => this.alive)
-            .subscribe((accounts) => {
-
-                    // check that the provider exists
-                    this.provider = this.web3Service.getProviderName();
-                    if (this.provider == null) {
-                        this.error = 'CODE.NOT_CONNECTED';
-                    } else {
+        if (this.provider == null) {
+            this.error = 'CODE.NOT_CONNECTED';
+        } else {
+            this.web3Service.getAccounts()
+                .takeWhile(() => this.alive)
+                .subscribe((accounts) => {
                         if (accounts == null || accounts.length === 0) {
                             this.error = 'CODE.PROVIDER_LOG_IN';
                         } else {
                             this.accounts = accounts;
-
-                            // populate the form
-                            this.dto = new TokenPurchase(accounts[0]);
-                            this.dto.populateFormValues(this.form);
-
                             // retrieve current account balance in Ether
                             this.getAccountBalance(accounts[0]);
-
-                            this.startTime();
-                            this.endTime();
+                            this.initFormGroup();
                         }
+                    },
+                    error => {
+                        console.error(error);
+                        this.error = 'CODE.ERROR';
+                    },
+                    () => {
                     }
-                },
-                error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
+                );
+        }
+    }
+
+    private clearForm(): void {
+        if (this.dto != null) {
+            this.dto.amount = null;
+            this.dto.populateFormValues(this.form);
+        }
     }
 
     buyTokens(): void {
@@ -172,7 +123,8 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         this.tokenContractService.buyTokens(this.dto.account, this.dto.amount)
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
-                    console.log(tx);
+                    this.transactionLogService.logTransaction(tx);
+                    this.clearForm();
                 },
                 error => {
                     this.loading = false;
@@ -195,26 +147,46 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.web3Service.isConnected()) {
-            this.hasCrowdsaleEnded();
+            this.displayStartTime();
+
             this.provider = this.web3Service.getProviderName();
             this.retrieveAccounts();
+
+            this.form = new FormGroup({});
+
+            // listen to events
+            this.crowdsaleTimerService.hasStartedEvent
+                .takeWhile(() => this.alive)
+                .subscribe((started: boolean) => {
+                    this.hasStarted = started;
+                });
+
+            this.crowdsaleTimerService.hasEndedEvent
+                .takeWhile(() => this.alive)
+                .subscribe((ended: boolean) => {
+                    this.hasEnded = ended;
+                });
+
+            this.crowdsaleTimerService.errorEvent
+                .takeWhile(() => this.alive)
+                .subscribe((error: string) => this.error = error);
+
+
+            Observable.interval(5000)
+                .takeWhile(() => this.hasStarted === true && this.hasEnded === false)
+                .subscribe(() => {
+                    // check for 1 ETH limit time
+                    this.initFormGroup();
+                });
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';
         }
 
-        this.form = new FormGroup({});
-
-        // check if event has started every 5 seconds
-        // this timer is there for investors waiting to there to be able to invest
-        Observable.interval(5000)
-            .takeWhile(() => this.alive && this.hasStarted === false)
-            .subscribe(() => {
-                this.hasCrowdsaleEnded();
-            });
     }
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
-                private ngZone: NgZone) {
+                private crowdsaleTimerService: CrowdsaleTimerService,
+                private transactionLogService: TransactionLogService) {
     }
 }

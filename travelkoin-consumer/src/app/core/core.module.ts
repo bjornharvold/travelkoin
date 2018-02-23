@@ -17,12 +17,13 @@ import {AuthenticatedGuard} from './authenticated.guard';
 import {RegisteredGuard} from './registered.guard';
 import {EthereumService} from './ethereum.service';
 import {ConversionService} from './conversion.service';
-import {TimeSeriesService} from './time-series.service';
 import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
 import {WindowRefService} from './window-ref.service';
 import {TokenContractService} from './token-contract.service';
 import {MandrillService} from './mandrill.service';
+import {TransactionLogService} from './transaction-log.service';
+import {CrowdsaleTimerService} from './crowdsale-timer.service';
 
 @NgModule({
     imports: [
@@ -48,11 +49,12 @@ import {MandrillService} from './mandrill.service';
         RegisteredGuard,
         HansGuard,
         ConversionService,
-        TimeSeriesService,
         Web3Service,
         WindowRefService,
         TokenContractService,
-        MandrillService
+        MandrillService,
+        TransactionLogService,
+        CrowdsaleTimerService
     ]
 })
 export class CoreModule {

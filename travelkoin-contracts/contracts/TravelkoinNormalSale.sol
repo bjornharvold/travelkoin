@@ -49,6 +49,8 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     event WhitelistAddressRemoved(address indexed _whitelister, address indexed _beneficiary);
     event WhitelistSetDay(address indexed _whitelister, uint8 _day, uint256 _maxStake);
 
+    event TimeChange(address owner, uint256 _oldStartTime, uint256 _oldEndTime, uint256 _startTime, uint256 _endTime);
+    event TimeChangeErrorOccurred(address owner, uint256 _oldStartTime, uint256 _oldEndTime, uint256 _startTime, uint256 _endTime);
 
     ////////////////
     // Constructor and inherited function overrides
@@ -163,7 +165,16 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
 
     /// @notice Sets crowdsale start and end time
     function setTimes(uint256 _startTime, uint256 _endTime) public onlyOwner beforeSale {
+        if (_startTime > now && _startTime < _endTime) {
+            // dispatch event that ICO time has changed
+            TimeChange(msg.sender, startTime, endTime, _startTime, _endTime);
+        } else {
+            TimeChangeErrorOccurred(msg.sender, startTime, endTime, _startTime, _endTime);
+        }
+
+        // here's the actual validation that will result in a revert
         require(_startTime > now && _startTime < _endTime);
+
         startTime = _startTime;
         endTime = _endTime;
     }
