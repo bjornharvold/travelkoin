@@ -137,20 +137,6 @@
       "type": "function"
     },
     {
-      "constant": true,
-      "inputs": [],
-      "name": "valueOfNow",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "constant": false,
       "inputs": [
         {
@@ -321,7 +307,7 @@
       "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinRefundableCrowdsale.sol",
       "exportedSymbols": {
         "TravelkoinRefundableCrowdsale": [
-          4594
+          4595
         ]
       }
     },
@@ -335,22 +321,22 @@
             ".18"
           ]
         },
-        "id": 4477,
+        "id": 4478,
         "name": "PragmaDirective",
         "src": "0:24:11"
       },
       {
         "attributes": {
-          "SourceUnit": 6288,
+          "SourceUnit": 6289,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
-          "scope": 4595,
+          "scope": 4596,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 4478,
+        "id": 4479,
         "name": "ImportDirective",
         "src": "27:55:11"
       },
@@ -359,22 +345,7 @@
           "SourceUnit": 2251,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinFinalizableCrowdsale.sol",
           "file": "./TravelkoinFinalizableCrowdsale.sol",
-          "scope": 4595,
-          "symbolAliases": [
-            null
-          ],
-          "unitAlias": ""
-        },
-        "id": 4479,
-        "name": "ImportDirective",
-        "src": "83:46:11"
-      },
-      {
-        "attributes": {
-          "SourceUnit": 4476,
-          "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinRefundVault.sol",
-          "file": "./TravelkoinRefundVault.sol",
-          "scope": 4595,
+          "scope": 4596,
           "symbolAliases": [
             null
           ],
@@ -382,27 +353,42 @@
         },
         "id": 4480,
         "name": "ImportDirective",
+        "src": "83:46:11"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 4477,
+          "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinRefundVault.sol",
+          "file": "./TravelkoinRefundVault.sol",
+          "scope": 4596,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 4481,
+        "name": "ImportDirective",
         "src": "130:37:11"
       },
       {
         "attributes": {
           "contractDependencies": [
             2250,
-            3210,
-            4475,
-            6343
+            3202,
+            4476,
+            6344
           ],
           "contractKind": "contract",
           "documentation": "@title RefundableCrowdsale\n@dev Extension of Crowdsale contract that adds a funding goal, and\nthe possibility of users getting a refund if goal is not met.\nUses a TravelkoinRefundVault as the crowdsale's vault.",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            4594,
+            4595,
             2250,
-            6343,
-            3210
+            6344,
+            3202
           ],
           "name": "TravelkoinRefundableCrowdsale",
-          "scope": 4595
+          "scope": 4596
         },
         "children": [
           {
@@ -419,12 +405,12 @@
                   "referencedDeclaration": 2250,
                   "type": "contract TravelkoinFinalizableCrowdsale"
                 },
-                "id": 4481,
+                "id": 4482,
                 "name": "UserDefinedTypeName",
                 "src": "443:30:11"
               }
             ],
-            "id": 4482,
+            "id": 4483,
             "name": "InheritanceSpecifier",
             "src": "443:30:11"
           },
@@ -434,10 +420,10 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 6287,
+                  "referencedDeclaration": 6288,
                   "type": "library SafeMath"
                 },
-                "id": 4483,
+                "id": 4484,
                 "name": "UserDefinedTypeName",
                 "src": "486:8:11"
               },
@@ -446,12 +432,12 @@
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 4484,
+                "id": 4485,
                 "name": "ElementaryTypeName",
                 "src": "499:7:11"
               }
             ],
-            "id": 4485,
+            "id": 4486,
             "name": "UsingForDirective",
             "src": "480:27:11"
           },
@@ -459,7 +445,7 @@
             "attributes": {
               "constant": false,
               "name": "goal",
-              "scope": 4594,
+              "scope": 4595,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256",
@@ -472,12 +458,12 @@
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 4486,
+                "id": 4487,
                 "name": "ElementaryTypeName",
                 "src": "565:7:11"
               }
             ],
-            "id": 4487,
+            "id": 4488,
             "name": "VariableDeclaration",
             "src": "565:19:11"
           },
@@ -485,7 +471,7 @@
             "attributes": {
               "constant": false,
               "name": "vault",
-              "scope": 4594,
+              "scope": 4595,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "contract TravelkoinRefundVault",
@@ -497,15 +483,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "TravelkoinRefundVault",
-                  "referencedDeclaration": 4475,
+                  "referencedDeclaration": 4476,
                   "type": "contract TravelkoinRefundVault"
                 },
-                "id": 4488,
+                "id": 4489,
                 "name": "UserDefinedTypeName",
                 "src": "657:21:11"
               }
             ],
-            "id": 4489,
+            "id": 4490,
             "name": "VariableDeclaration",
             "src": "657:34:11"
           },
@@ -519,7 +505,7 @@
               ],
               "name": "TravelkoinRefundableCrowdsale",
               "payable": false,
-              "scope": 4594,
+              "scope": 4595,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -531,7 +517,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_goal",
-                      "scope": 4512,
+                      "scope": 4513,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -544,17 +530,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 4490,
+                        "id": 4491,
                         "name": "ElementaryTypeName",
                         "src": "737:7:11"
                       }
                     ],
-                    "id": 4491,
+                    "id": 4492,
                     "name": "VariableDeclaration",
                     "src": "737:13:11"
                   }
                 ],
-                "id": 4492,
+                "id": 4493,
                 "name": "ParameterList",
                 "src": "736:15:11"
               },
@@ -565,7 +551,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4493,
+                "id": 4494,
                 "name": "ParameterList",
                 "src": "759:0:11"
               },
@@ -599,11 +585,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6433,
+                              "referencedDeclaration": 6434,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 4494,
+                            "id": 4495,
                             "name": "Identifier",
                             "src": "769:7:11"
                           },
@@ -628,11 +614,11 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 4491,
+                                  "referencedDeclaration": 4492,
                                   "type": "uint256",
                                   "value": "_goal"
                                 },
-                                "id": 4495,
+                                "id": 4496,
                                 "name": "Identifier",
                                 "src": "777:5:11"
                               },
@@ -649,22 +635,22 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 4496,
+                                "id": 4497,
                                 "name": "Literal",
                                 "src": "785:1:11"
                               }
                             ],
-                            "id": 4497,
+                            "id": 4498,
                             "name": "BinaryOperation",
                             "src": "777:9:11"
                           }
                         ],
-                        "id": 4498,
+                        "id": 4499,
                         "name": "FunctionCall",
                         "src": "769:18:11"
                       }
                     ],
-                    "id": 4499,
+                    "id": 4500,
                     "name": "ExpressionStatement",
                     "src": "769:18:11"
                   },
@@ -687,11 +673,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4489,
+                              "referencedDeclaration": 4490,
                               "type": "contract TravelkoinRefundVault",
                               "value": "vault"
                             },
-                            "id": 4500,
+                            "id": 4501,
                             "name": "Identifier",
                             "src": "797:5:11"
                           },
@@ -729,15 +715,15 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "TravelkoinRefundVault",
-                                      "referencedDeclaration": 4475,
+                                      "referencedDeclaration": 4476,
                                       "type": "contract TravelkoinRefundVault"
                                     },
-                                    "id": 4501,
+                                    "id": 4502,
                                     "name": "UserDefinedTypeName",
                                     "src": "809:21:11"
                                   }
                                 ],
-                                "id": 4502,
+                                "id": 4503,
                                 "name": "NewExpression",
                                 "src": "805:25:11"
                               },
@@ -751,22 +737,22 @@
                                   "type": "address",
                                   "value": "wallet"
                                 },
-                                "id": 4503,
+                                "id": 4504,
                                 "name": "Identifier",
                                 "src": "831:6:11"
                               }
                             ],
-                            "id": 4504,
+                            "id": 4505,
                             "name": "FunctionCall",
                             "src": "805:33:11"
                           }
                         ],
-                        "id": 4505,
+                        "id": 4506,
                         "name": "Assignment",
                         "src": "797:41:11"
                       }
                     ],
-                    "id": 4506,
+                    "id": 4507,
                     "name": "ExpressionStatement",
                     "src": "797:41:11"
                   },
@@ -789,11 +775,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4487,
+                              "referencedDeclaration": 4488,
                               "type": "uint256",
                               "value": "goal"
                             },
-                            "id": 4507,
+                            "id": 4508,
                             "name": "Identifier",
                             "src": "848:4:11"
                           },
@@ -803,31 +789,31 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4491,
+                              "referencedDeclaration": 4492,
                               "type": "uint256",
                               "value": "_goal"
                             },
-                            "id": 4508,
+                            "id": 4509,
                             "name": "Identifier",
                             "src": "855:5:11"
                           }
                         ],
-                        "id": 4509,
+                        "id": 4510,
                         "name": "Assignment",
                         "src": "848:12:11"
                       }
                     ],
-                    "id": 4510,
+                    "id": 4511,
                     "name": "ExpressionStatement",
                     "src": "848:12:11"
                   }
                 ],
-                "id": 4511,
+                "id": 4512,
                 "name": "Block",
                 "src": "759:108:11"
               }
             ],
-            "id": 4512,
+            "id": 4513,
             "name": "FunctionDefinition",
             "src": "698:169:11"
           },
@@ -841,7 +827,7 @@
               ],
               "name": "claimRefund",
               "payable": false,
-              "scope": 4594,
+              "scope": 4595,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -854,7 +840,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4513,
+                "id": 4514,
                 "name": "ParameterList",
                 "src": "963:2:11"
               },
@@ -865,7 +851,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4514,
+                "id": 4515,
                 "name": "ParameterList",
                 "src": "973:0:11"
               },
@@ -899,11 +885,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6433,
+                              "referencedDeclaration": 6434,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 4515,
+                            "id": 4516,
                             "name": "Identifier",
                             "src": "983:7:11"
                           },
@@ -917,17 +903,17 @@
                               "type": "bool",
                               "value": "isFinalized"
                             },
-                            "id": 4516,
+                            "id": 4517,
                             "name": "Identifier",
                             "src": "991:11:11"
                           }
                         ],
-                        "id": 4517,
+                        "id": 4518,
                         "name": "FunctionCall",
                         "src": "983:20:11"
                       }
                     ],
-                    "id": 4518,
+                    "id": 4519,
                     "name": "ExpressionStatement",
                     "src": "983:20:11"
                   },
@@ -959,11 +945,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6433,
+                              "referencedDeclaration": 6434,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 4519,
+                            "id": 4520,
                             "name": "Identifier",
                             "src": "1013:7:11"
                           },
@@ -1005,31 +991,31 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 4543,
+                                      "referencedDeclaration": 4544,
                                       "type": "function () view returns (bool)",
                                       "value": "goalReached"
                                     },
-                                    "id": 4520,
+                                    "id": 4521,
                                     "name": "Identifier",
                                     "src": "1022:11:11"
                                   }
                                 ],
-                                "id": 4521,
+                                "id": 4522,
                                 "name": "FunctionCall",
                                 "src": "1022:13:11"
                               }
                             ],
-                            "id": 4522,
+                            "id": 4523,
                             "name": "UnaryOperation",
                             "src": "1021:14:11"
                           }
                         ],
-                        "id": 4523,
+                        "id": 4524,
                         "name": "FunctionCall",
                         "src": "1013:23:11"
                       }
                     ],
-                    "id": 4524,
+                    "id": 4525,
                     "name": "ExpressionStatement",
                     "src": "1013:23:11"
                   },
@@ -1063,7 +1049,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "refund",
-                              "referencedDeclaration": 4474,
+                              "referencedDeclaration": 4475,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -1073,16 +1059,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 4489,
+                                  "referencedDeclaration": 4490,
                                   "type": "contract TravelkoinRefundVault",
                                   "value": "vault"
                                 },
-                                "id": 4525,
+                                "id": 4526,
                                 "name": "Identifier",
                                 "src": "1047:5:11"
                               }
                             ],
-                            "id": 4527,
+                            "id": 4528,
                             "name": "MemberAccess",
                             "src": "1047:12:11"
                           },
@@ -1104,36 +1090,36 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6430,
+                                  "referencedDeclaration": 6431,
                                   "type": "msg",
                                   "value": "msg"
                                 },
-                                "id": 4528,
+                                "id": 4529,
                                 "name": "Identifier",
                                 "src": "1060:3:11"
                               }
                             ],
-                            "id": 4529,
+                            "id": 4530,
                             "name": "MemberAccess",
                             "src": "1060:10:11"
                           }
                         ],
-                        "id": 4530,
+                        "id": 4531,
                         "name": "FunctionCall",
                         "src": "1047:24:11"
                       }
                     ],
-                    "id": 4531,
+                    "id": 4532,
                     "name": "ExpressionStatement",
                     "src": "1047:24:11"
                   }
                 ],
-                "id": 4532,
+                "id": 4533,
                 "name": "Block",
                 "src": "973:105:11"
               }
             ],
-            "id": 4533,
+            "id": 4534,
             "name": "FunctionDefinition",
             "src": "943:135:11"
           },
@@ -1147,7 +1133,7 @@
               ],
               "name": "goalReached",
               "payable": false,
-              "scope": 4594,
+              "scope": 4595,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -1160,7 +1146,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4534,
+                "id": 4535,
                 "name": "ParameterList",
                 "src": "1104:2:11"
               },
@@ -1170,7 +1156,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 4543,
+                      "scope": 4544,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1183,17 +1169,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 4535,
+                        "id": 4536,
                         "name": "ElementaryTypeName",
                         "src": "1132:4:11"
                       }
                     ],
-                    "id": 4536,
+                    "id": 4537,
                     "name": "VariableDeclaration",
                     "src": "1132:4:11"
                   }
                 ],
-                "id": 4537,
+                "id": 4538,
                 "name": "ParameterList",
                 "src": "1131:6:11"
               },
@@ -1201,7 +1187,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 4537
+                      "functionReturnParameters": 4538
                     },
                     "children": [
                       {
@@ -1229,7 +1215,7 @@
                               "type": "uint256",
                               "value": "weiRaised"
                             },
-                            "id": 4538,
+                            "id": 4539,
                             "name": "Identifier",
                             "src": "1155:9:11"
                           },
@@ -1239,31 +1225,31 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4487,
+                              "referencedDeclaration": 4488,
                               "type": "uint256",
                               "value": "goal"
                             },
-                            "id": 4539,
+                            "id": 4540,
                             "name": "Identifier",
                             "src": "1168:4:11"
                           }
                         ],
-                        "id": 4540,
+                        "id": 4541,
                         "name": "BinaryOperation",
                         "src": "1155:17:11"
                       }
                     ],
-                    "id": 4541,
+                    "id": 4542,
                     "name": "Return",
                     "src": "1148:24:11"
                   }
                 ],
-                "id": 4542,
+                "id": 4543,
                 "name": "Block",
                 "src": "1138:41:11"
               }
             ],
-            "id": 4543,
+            "id": 4544,
             "name": "FunctionDefinition",
             "src": "1084:95:11"
           },
@@ -1277,9 +1263,9 @@
               ],
               "name": "forwardFunds",
               "payable": false,
-              "scope": 4594,
+              "scope": 4595,
               "stateMutability": "nonpayable",
-              "superFunction": 3181,
+              "superFunction": 3173,
               "visibility": "internal"
             },
             "children": [
@@ -1289,7 +1275,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "weiAmount",
-                      "scope": 4569,
+                      "scope": 4570,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1302,17 +1288,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 4544,
+                        "id": 4545,
                         "name": "ElementaryTypeName",
                         "src": "1446:7:11"
                       }
                     ],
-                    "id": 4545,
+                    "id": 4546,
                     "name": "VariableDeclaration",
                     "src": "1446:17:11"
                   }
                 ],
-                "id": 4546,
+                "id": 4547,
                 "name": "ParameterList",
                 "src": "1445:19:11"
               },
@@ -1323,7 +1309,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4547,
+                "id": 4548,
                 "name": "ParameterList",
                 "src": "1474:0:11"
               },
@@ -1357,16 +1343,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4543,
+                              "referencedDeclaration": 4544,
                               "type": "function () view returns (bool)",
                               "value": "goalReached"
                             },
-                            "id": 4548,
+                            "id": 4549,
                             "name": "Identifier",
                             "src": "1488:11:11"
                           }
                         ],
-                        "id": 4549,
+                        "id": 4550,
                         "name": "FunctionCall",
                         "src": "1488:13:11"
                       },
@@ -1414,12 +1400,12 @@
                                       "type": "address",
                                       "value": "wallet"
                                     },
-                                    "id": 4550,
+                                    "id": 4551,
                                     "name": "Identifier",
                                     "src": "1515:6:11"
                                   }
                                 ],
-                                "id": 4552,
+                                "id": 4553,
                                 "name": "MemberAccess",
                                 "src": "1515:15:11"
                               },
@@ -1429,21 +1415,21 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 4545,
+                                  "referencedDeclaration": 4546,
                                   "type": "uint256",
                                   "value": "weiAmount"
                                 },
-                                "id": 4553,
+                                "id": 4554,
                                 "name": "Identifier",
                                 "src": "1531:9:11"
                               }
                             ],
-                            "id": 4554,
+                            "id": 4555,
                             "name": "FunctionCall",
                             "src": "1515:26:11"
                           }
                         ],
-                        "id": 4555,
+                        "id": 4556,
                         "name": "ExpressionStatement",
                         "src": "1515:26:11"
                       },
@@ -1509,7 +1495,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "deposit",
-                                          "referencedDeclaration": 4389,
+                                          "referencedDeclaration": 4390,
                                           "type": "function (address) payable external"
                                         },
                                         "children": [
@@ -1519,21 +1505,21 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 4489,
+                                              "referencedDeclaration": 4490,
                                               "type": "contract TravelkoinRefundVault",
                                               "value": "vault"
                                             },
-                                            "id": 4556,
+                                            "id": 4557,
                                             "name": "Identifier",
                                             "src": "1568:5:11"
                                           }
                                         ],
-                                        "id": 4559,
+                                        "id": 4560,
                                         "name": "MemberAccess",
                                         "src": "1568:13:11"
                                       }
                                     ],
-                                    "id": 4560,
+                                    "id": 4561,
                                     "name": "MemberAccess",
                                     "src": "1568:19:11"
                                   },
@@ -1543,16 +1529,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 4545,
+                                      "referencedDeclaration": 4546,
                                       "type": "uint256",
                                       "value": "weiAmount"
                                     },
-                                    "id": 4561,
+                                    "id": 4562,
                                     "name": "Identifier",
                                     "src": "1588:9:11"
                                   }
                                 ],
-                                "id": 4562,
+                                "id": 4563,
                                 "name": "FunctionCall",
                                 "src": "1568:30:11"
                               },
@@ -1574,41 +1560,41 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 6430,
+                                      "referencedDeclaration": 6431,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 4563,
+                                    "id": 4564,
                                     "name": "Identifier",
                                     "src": "1599:3:11"
                                   }
                                 ],
-                                "id": 4564,
+                                "id": 4565,
                                 "name": "MemberAccess",
                                 "src": "1599:10:11"
                               }
                             ],
-                            "id": 4565,
+                            "id": 4566,
                             "name": "FunctionCall",
                             "src": "1568:42:11"
                           }
                         ],
-                        "id": 4566,
+                        "id": 4567,
                         "name": "ExpressionStatement",
                         "src": "1568:42:11"
                       }
                     ],
-                    "id": 4567,
+                    "id": 4568,
                     "name": "IfStatement",
                     "src": "1484:126:11"
                   }
                 ],
-                "id": 4568,
+                "id": 4569,
                 "name": "Block",
                 "src": "1474:143:11"
               }
             ],
-            "id": 4569,
+            "id": 4570,
             "name": "FunctionDefinition",
             "src": "1424:193:11"
           },
@@ -1622,7 +1608,7 @@
               ],
               "name": "finalization",
               "payable": false,
-              "scope": 4594,
+              "scope": 4595,
               "stateMutability": "nonpayable",
               "superFunction": 2249,
               "visibility": "internal"
@@ -1635,7 +1621,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4570,
+                "id": 4571,
                 "name": "ParameterList",
                 "src": "1711:2:11"
               },
@@ -1646,7 +1632,7 @@
                   ]
                 },
                 "children": [],
-                "id": 4571,
+                "id": 4572,
                 "name": "ParameterList",
                 "src": "1723:0:11"
               },
@@ -1680,16 +1666,16 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 4543,
+                              "referencedDeclaration": 4544,
                               "type": "function () view returns (bool)",
                               "value": "goalReached"
                             },
-                            "id": 4572,
+                            "id": 4573,
                             "name": "Identifier",
                             "src": "1737:11:11"
                           }
                         ],
-                        "id": 4573,
+                        "id": 4574,
                         "name": "FunctionCall",
                         "src": "1737:13:11"
                       },
@@ -1725,7 +1711,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "close",
-                                      "referencedDeclaration": 4417,
+                                      "referencedDeclaration": 4418,
                                       "type": "function () external"
                                     },
                                     "children": [
@@ -1735,31 +1721,31 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 4489,
+                                          "referencedDeclaration": 4490,
                                           "type": "contract TravelkoinRefundVault",
                                           "value": "vault"
                                         },
-                                        "id": 4574,
+                                        "id": 4575,
                                         "name": "Identifier",
                                         "src": "1766:5:11"
                                       }
                                     ],
-                                    "id": 4576,
+                                    "id": 4577,
                                     "name": "MemberAccess",
                                     "src": "1766:11:11"
                                   }
                                 ],
-                                "id": 4577,
+                                "id": 4578,
                                 "name": "FunctionCall",
                                 "src": "1766:13:11"
                               }
                             ],
-                            "id": 4578,
+                            "id": 4579,
                             "name": "ExpressionStatement",
                             "src": "1766:13:11"
                           }
                         ],
-                        "id": 4579,
+                        "id": 4580,
                         "name": "Block",
                         "src": "1752:38:11"
                       },
@@ -1795,7 +1781,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "enableRefunds",
-                                      "referencedDeclaration": 4438,
+                                      "referencedDeclaration": 4439,
                                       "type": "function () external"
                                     },
                                     "children": [
@@ -1805,36 +1791,36 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 4489,
+                                          "referencedDeclaration": 4490,
                                           "type": "contract TravelkoinRefundVault",
                                           "value": "vault"
                                         },
-                                        "id": 4580,
+                                        "id": 4581,
                                         "name": "Identifier",
                                         "src": "1810:5:11"
                                       }
                                     ],
-                                    "id": 4582,
+                                    "id": 4583,
                                     "name": "MemberAccess",
                                     "src": "1810:19:11"
                                   }
                                 ],
-                                "id": 4583,
+                                "id": 4584,
                                 "name": "FunctionCall",
                                 "src": "1810:21:11"
                               }
                             ],
-                            "id": 4584,
+                            "id": 4585,
                             "name": "ExpressionStatement",
                             "src": "1810:21:11"
                           }
                         ],
-                        "id": 4585,
+                        "id": 4586,
                         "name": "Block",
                         "src": "1796:46:11"
                       }
                     ],
-                    "id": 4586,
+                    "id": 4587,
                     "name": "IfStatement",
                     "src": "1733:109:11"
                   },
@@ -1878,46 +1864,46 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 6490,
+                                  "referencedDeclaration": 6491,
                                   "type": "contract super TravelkoinRefundableCrowdsale",
                                   "value": "super"
                                 },
-                                "id": 4587,
+                                "id": 4588,
                                 "name": "Identifier",
                                 "src": "1852:5:11"
                               }
                             ],
-                            "id": 4589,
+                            "id": 4590,
                             "name": "MemberAccess",
                             "src": "1852:18:11"
                           }
                         ],
-                        "id": 4590,
+                        "id": 4591,
                         "name": "FunctionCall",
                         "src": "1852:20:11"
                       }
                     ],
-                    "id": 4591,
+                    "id": 4592,
                     "name": "ExpressionStatement",
                     "src": "1852:20:11"
                   }
                 ],
-                "id": 4592,
+                "id": 4593,
                 "name": "Block",
                 "src": "1723:156:11"
               }
             ],
-            "id": 4593,
+            "id": 4594,
             "name": "FunctionDefinition",
             "src": "1690:189:11"
           }
         ],
-        "id": 4594,
+        "id": 4595,
         "name": "ContractDefinition",
         "src": "401:1481:11"
       }
     ],
-    "id": 4595,
+    "id": 4596,
     "name": "SourceUnit",
     "src": "0:1882:11"
   },
@@ -1927,5 +1913,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T08:30:08.740Z"
+  "updatedAt": "2018-02-23T11:34:51.190Z"
 }

@@ -118,7 +118,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6344,
+          "SourceUnit": 6345,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 2315,
@@ -133,7 +133,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6387,
+          "SourceUnit": 6388,
           "absolutePath": "zeppelin-solidity/contracts/token/ERC20/ERC20.sol",
           "file": "zeppelin-solidity/contracts/token/ERC20/ERC20.sol",
           "scope": 2315,
@@ -149,14 +149,14 @@
       {
         "attributes": {
           "contractDependencies": [
-            6343
+            6344
           ],
           "contractKind": "contract",
           "documentation": "@title claim accidentally sent tokens",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             2314,
-            6343
+            6344
           ],
           "name": "TravelkoinHasNoTokens",
           "scope": 2315
@@ -173,7 +173,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 6343,
+                  "referencedDeclaration": 6344,
                   "type": "contract Ownable"
                 },
                 "id": 2255,
@@ -380,7 +380,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6317,
+                      "referencedDeclaration": 6318,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -524,7 +524,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 6469,
+                                          "referencedDeclaration": 6470,
                                           "type": "contract TravelkoinHasNoTokens",
                                           "value": "this"
                                         },
@@ -589,7 +589,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "ERC20",
-                              "referencedDeclaration": 6386,
+                              "referencedDeclaration": 6387,
                               "type": "contract ERC20"
                             },
                             "id": 2286,
@@ -627,7 +627,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6386,
+                              "referencedDeclaration": 6387,
                               "type": "type(contract ERC20)",
                               "value": "ERC20"
                             },
@@ -720,7 +720,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "balanceOf",
-                              "referencedDeclaration": 6400,
+                              "referencedDeclaration": 6401,
                               "type": "function (address) view external returns (uint256)"
                             },
                             "children": [
@@ -749,7 +749,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6469,
+                              "referencedDeclaration": 6470,
                               "type": "contract TravelkoinHasNoTokens",
                               "value": "this"
                             },
@@ -801,7 +801,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "transfer",
-                              "referencedDeclaration": 6409,
+                              "referencedDeclaration": 6410,
                               "type": "function (address,uint256) external returns (bool)"
                             },
                             "children": [
@@ -984,5 +984,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T08:30:08.734Z"
+  "updatedAt": "2018-02-23T11:34:51.183Z"
 }

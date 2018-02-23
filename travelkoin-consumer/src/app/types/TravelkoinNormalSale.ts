@@ -447,17 +447,6 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:variable-name
-    public valueOfNow( txParams?: W3.TX.TxParams): Promise<BigNumber> {
-        return new Promise((resolve, reject) => {
-            this._instance.valueOfNow
-                .call( txParams || this._sendParams)
-                .then((res) => resolve(res))
-                .catch((err) => reject(err));
-        });
-    }
-    
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:variable-name
     public whitelistDayMaxStake(_0: BigNumber | number, txParams?: W3.TX.TxParams): Promise<BigNumber> {
         return new Promise((resolve, reject) => {
             this._instance.whitelistDayMaxStake
@@ -1068,10 +1057,10 @@ export class TravelkoinNormalSale extends SoltsiceContract {
     
     // tslint:disable-next-line:max-line-length
     // tslint:disable-next-line:variable-name
-    public getContributors(_pending: boolean, _claimed: boolean, txParams?: W3.TX.TxParams): Promise<string[]> {
+    public getContributors( txParams?: W3.TX.TxParams): Promise<string[]> {
         return new Promise((resolve, reject) => {
             this._instance.getContributors
-                .call(_pending, _claimed, txParams || this._sendParams)
+                .call( txParams || this._sendParams)
                 .then((res) => resolve(res))
                 .catch((err) => reject(err));
         });

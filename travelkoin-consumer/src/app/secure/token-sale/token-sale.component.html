@@ -28,8 +28,8 @@
                 <div [hidden]="form.get('amount').valid || form.get('amount').pristine">
                     <div class="form-control-feedback">
                         <p class="font-red" *ngIf="form.get('amount').hasError('required')">{{ 'TOKEN_CONTRACT.ERROR_AMOUNT_REQUIRED' | translate }}</p>
-                        <p class="font-red" *ngIf="form.get('amount').hasError('min')">{{ 'TOKEN_CONTRACT.ERROR_MIN_CONTRIBUTION' | translate }}</p>
-                        <p class="font-red" *ngIf="form.get('amount').hasError('max')">{{ 'TOKEN_CONTRACT.ERROR_MAX_CONTRIBUTION' | translate }}</p>
+                        <p class="font-red" *ngIf="form.get('amount').hasError('min')">{{ 'TOKEN_CONTRACT.ERROR_MIN_CONTRIBUTION' | translate }} {{ minContribution }}</p>
+                        <p class="font-red" *ngIf="form.get('amount').hasError('max')">{{ 'TOKEN_CONTRACT.ERROR_MAX_CONTRIBUTION' | translate }} {{ maxContribution }}</p>
                     </div>
                 </div>
             </div>

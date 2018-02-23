@@ -89,6 +89,18 @@ export class TokenContractService {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.minContribution()));
     }
 
+    howMuchCanXContributeNow(account: string): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.howMuchCanXContributeNow(account)));
+    }
+
+    getSaleDayNow(): Observable<BigNumber> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getSaleDayNow()));
+    }
+
+    getContributors(): Observable<Array<string>> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getContributors()));
+    }
+
     balance(): Observable<BigNumber> {
         return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => Observable.fromPromise(ti.getTravelkoinBalance()));
     }
@@ -150,6 +162,18 @@ export class TokenContractService {
                 value: 0
             };
             return Observable.fromPromise(ti.setTimes(startTime, endTime, tx));
+        });
+    }
+
+    setWhitelist(owner: string, add: Array<string>, remove: Array<string>): Observable<TransactionResult> {
+        return this.getTravelkoinNormalSale().switchMap((ti: TravelkoinNormalSale) => {
+            const tx: TxParams = {
+                from: owner,
+                gas: 40000,
+                gasPrice: 4000000000,
+                value: 0
+            };
+            return Observable.fromPromise(ti.setWhitelist(add, remove, [0.1], tx));
         });
     }
 

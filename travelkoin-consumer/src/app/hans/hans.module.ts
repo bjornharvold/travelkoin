@@ -10,6 +10,8 @@ import {ApprovedUsersComponent} from './approved-users/approved-users.component'
 import {WaitingForApprovalUsersComponent} from './waiting-for-approval-users/waiting-for-approval-users.component';
 import {BlockedUsersComponent} from './blocked-users/blocked-users.component';
 import { SmartContractConfigurationComponent } from './smart-contract-configuration/smart-contract-configuration.component';
+import { SmartContractDateTimeComponent } from './smart-contract-date-time/smart-contract-date-time.component';
+import { SmartContractWhitelistComponent } from './smart-contract-whitelist/smart-contract-whitelist.component';
 
 @NgModule({
     imports: [
@@ -25,7 +27,9 @@ import { SmartContractConfigurationComponent } from './smart-contract-configurat
         ApprovedUsersComponent,
         WaitingForApprovalUsersComponent,
         BlockedUsersComponent,
-        SmartContractConfigurationComponent
+        SmartContractConfigurationComponent,
+        SmartContractDateTimeComponent,
+        SmartContractWhitelistComponent
     ]
 })
 export class HansModule {
