@@ -114,20 +114,6 @@
       "type": "function"
     },
     {
-      "constant": true,
-      "inputs": [],
-      "name": "valueOfNow",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "constant": false,
       "inputs": [
         {
@@ -279,7 +265,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6288,
+          "SourceUnit": 6289,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "scope": 2251,
@@ -294,7 +280,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 6344,
+          "SourceUnit": 6345,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "scope": 2251,
@@ -309,7 +295,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 3211,
+          "SourceUnit": 3203,
           "absolutePath": "/Users/crash/git/travelkoin/travelkoin-contracts/contracts/TravelkoinMiniMeCrowdsale.sol",
           "file": "./TravelkoinMiniMeCrowdsale.sol",
           "scope": 2251,
@@ -325,16 +311,16 @@
       {
         "attributes": {
           "contractDependencies": [
-            3210,
-            6343
+            3202,
+            6344
           ],
           "contractKind": "contract",
           "documentation": "@title TravelkoinFinalizableCrowdsale\n@dev Extension of Crowdsale where an owner can do extra work\nafter finishing.",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
             2250,
-            6343,
-            3210
+            6344,
+            3202
           ],
           "name": "TravelkoinFinalizableCrowdsale",
           "scope": 2251
@@ -351,7 +337,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "TravelkoinMiniMeCrowdsale",
-                  "referencedDeclaration": 3210,
+                  "referencedDeclaration": 3202,
                   "type": "contract TravelkoinMiniMeCrowdsale"
                 },
                 "id": 2208,
@@ -374,7 +360,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 6343,
+                  "referencedDeclaration": 6344,
                   "type": "contract Ownable"
                 },
                 "id": 2210,
@@ -392,7 +378,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 6287,
+                  "referencedDeclaration": 6288,
                   "type": "library SafeMath"
                 },
                 "id": 2212,
@@ -525,7 +511,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 6317,
+                      "referencedDeclaration": 6318,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -568,7 +554,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6433,
+                              "referencedDeclaration": 6434,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -645,7 +631,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6433,
+                              "referencedDeclaration": 6434,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -928,5 +914,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T08:30:08.734Z"
+  "updatedAt": "2018-02-23T11:34:51.183Z"
 }

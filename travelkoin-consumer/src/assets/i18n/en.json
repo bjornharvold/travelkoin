@@ -392,8 +392,8 @@
     "CURRENT_BALANCE": "Balance",
     "STARTS_AT": "Event starts on",
     "ERROR_AMOUNT_REQUIRED": "Amount cannot be empty",
-    "ERROR_MIN_CONTRIBUTION": "Minimum contribution is 0.1 ETH",
-    "ERROR_MAX_CONTRIBUTION": "Maximum contribution the first 24 hours is 1 ETH per person.",
+    "ERROR_MIN_CONTRIBUTION": "Minimum contribution is:",
+    "ERROR_MAX_CONTRIBUTION": "Your maximum contribution right now is:",
     "INITIATING_TRANSACTION": "'Initiating transaction... (please wait)'",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
@@ -457,6 +457,10 @@
   },
   "CONTRACT_CONFIGURATION": {
     "TOKEN_DATES": "Crowdsale dates",
+    "WHITELIST": "Whitelist",
+    "ADDRESS": "Address",
+    "ADDRESS_HELP": "Enter the address you'd like to add to the whitelist",
+    "ADDRESS_PLACEHOLDER": "Enter address",
     "TRANSACTION_RESULT": "Transaction result"
   },
   "TRANSACTION_LOG": {

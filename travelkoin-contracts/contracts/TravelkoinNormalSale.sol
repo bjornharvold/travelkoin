@@ -253,16 +253,16 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
         if (!hasStarted() || hasEnded()) {
             return 0;
         }
+        // address can't contribute if it is not whitelisted
+        if (!whitelist[_beneficiary]) {
+            return 0;
+        }
 
         // wei to hard cap
         uint256 weiToCap = cap.sub(weiRaised);
 
         uint8 _saleDay = getSaleDayNow();
         if (_saleDay <= whitelistDayCount) {
-            // address can't contribute if it is not whitelisted
-            if (!whitelist[_beneficiary]) {
-                return 0;
-            }
 
             // personal cap is the daily whitelist limit minus the stakes the address already has
             uint256 weiToPersonalCap = whitelistDayMaxStake[_saleDay].sub(stakesPerUser[_beneficiary]);
@@ -281,6 +281,10 @@ contract TravelkoinNormalSale is Pausable, TravelkoinFinalizableCrowdsale, Trave
     /// @return Number of 24 hour blocks elapsing since token sale start starting from 1
     function getSaleDay(uint256 _time) view public returns (uint8) {
         return uint8(_time.sub(startTime).div(60 * 60 * 24).add(1));
+    }
+
+    function getContributors() view public returns (address[]) {
+        return contributorsKeys;
     }
 
     /// @notice How many 24 hour blocks have ellapsed since token sale start

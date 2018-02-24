@@ -32,21 +32,71 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     hasEnded = false;
     loading = false;
     isCrowdsaleOpen = false;
+    maxContribution = null;
+    minContribution = null;
 
-    private getAccountBalance(account: string): void {
-        this.web3Service.getAccountBalance(account)
-            .takeWhile(() => this.alive)
-            .subscribe((balance: any) => {
-                    this.currentAccountBalanceWei = balance;
-                    this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
-                },
-                error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            );
+    private updateFormValidators(): void {
+        if (this.dto != null && this.minContribution != null && this.maxContribution != null) {
+            this.dto.updateContributionValidator(this.form, this.minContribution, this.maxContribution);
+        }
+    }
+
+    private getMaxContribution(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
+            this.tokenContractService.howMuchCanXContributeNow(this.accounts[0])
+                .takeWhile(() => this.alive)
+                .subscribe((maxLimit: BigNumber) => {
+                        if (maxLimit != null) {
+                            this.maxContribution = maxLimit.div(1000000000000000000).toNumber();
+                            this.updateFormValidators();
+                            // console.log(this.maxContribution);
+                        }
+                    }, error => {
+                        console.error(error);
+                        this.error = 'CODE.ERROR';
+                    },
+                    () => {
+                    }
+                )
+        }
+    }
+
+    private getMinContribution(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
+            this.tokenContractService.minContribution()
+                .takeWhile(() => this.alive)
+                .subscribe((minLimit: BigNumber) => {
+                        if (minLimit != null) {
+                            this.minContribution = minLimit.div(1000000000000000000).toNumber();
+                            this.updateFormValidators();
+                            // console.log(this.minContribution);
+                        }
+                    }, error => {
+                        console.error(error);
+                        this.error = 'CODE.ERROR';
+                    },
+                    () => {
+                    }
+                )
+        }
+    }
+
+    private getAccountBalance(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
+            this.web3Service.getAccountBalance(this.accounts[0])
+                .takeWhile(() => this.alive)
+                .subscribe((balance: any) => {
+                        this.currentAccountBalanceWei = balance;
+                        this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
+                    },
+                    error => {
+                        console.error(error);
+                        this.error = 'CODE.ERROR';
+                    },
+                    () => {
+                    }
+                );
+        }
     }
 
     /**
@@ -56,10 +106,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         if (this.dto == null && this.accounts != null) {
             this.dto = new TokenPurchase(this.accounts[0]);
             this.dto.populateFormValues(this.form);
-        }
-
-        if (this.dto != null && this.startDate != null) {
-            this.dto.updateValidator(this.form, this.startDate);
         }
     }
 
@@ -92,8 +138,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                             this.error = 'CODE.PROVIDER_LOG_IN';
                         } else {
                             this.accounts = accounts;
-                            // retrieve current account balance in Ether
-                            this.getAccountBalance(accounts[0]);
                             this.initFormGroup();
                         }
                     },
@@ -148,7 +192,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
         if (this.web3Service.isConnected()) {
             this.displayStartTime();
-
             this.provider = this.web3Service.getProviderName();
             this.retrieveAccounts();
 
@@ -172,11 +215,13 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 .subscribe((error: string) => this.error = error);
 
 
-            Observable.interval(5000)
+            Observable.interval(2000)
                 .takeWhile(() => this.hasStarted === true && this.hasEnded === false)
                 .subscribe(() => {
                     // check for 1 ETH limit time
-                    this.initFormGroup();
+                    this.getMaxContribution();
+                    this.getMinContribution();
+                    this.getAccountBalance();
                 });
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';
