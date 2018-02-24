@@ -129,13 +129,21 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
           await this.crowdsale.buyTokens(investor, { value: minContribution.minus(1), from: purchaser }).should.be.rejectedWith(EVMRevert);
         });
 
-        it('should accept payments after start', async function () {
+        it('should not accept payments after start if not whitelisted', async function () {
+          await increaseTimeTo(this.startTime);
+          await this.crowdsale.send(minContribution).should.be.fulfilled;
+          await this.crowdsale.buyTokens(investor, { value: minContribution, from: purchaser }).should.be.rejectedWith(EVMRevert);
+        });
+
+        it('should accept payments after start if whitelisted', async function () {
+          await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1)]).should.be.fulfilled
           await increaseTimeTo(this.startTime);
           await this.crowdsale.send(minContribution).should.be.fulfilled;
           await this.crowdsale.buyTokens(investor, { value: minContribution, from: purchaser }).should.be.fulfilled;
         });
 
-        it('should measure buyTokens tx costs', async function () {
+        it('should measure buyTokens tx costs if whitelisted', async function () {
+          await this.crowdsale.setWhitelist([investor,purchaser],[],[ether(1)]).should.be.fulfilled
           await increaseTimeTo(this.startTime);
           let tx = await this.crowdsale.buyTokens(investor, { value: minContribution, from: purchaser }).should.be.fulfilled;
           console.log('*** BUY TOKENS: ' + tx.receipt.gasUsed + ' gas used.');
@@ -148,6 +156,7 @@ contract('NormalSale', function ([deployer, investor, wallet, purchaser, purchas
         });
 
         it('should reject payments outside cap', async function () {
+          await this.crowdsale.setWhitelist([purchaser2],[],[]).should.be.fulfilled
           await increaseTimeTo(this.startTime);
 
           await this.crowdsale.sendTransaction({ value: cap, from: purchaser2 }).should.be.fulfilled;
