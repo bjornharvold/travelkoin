@@ -68,7 +68,7 @@
     "soltsice": "0.10.11",
     "typeface-raleway": "0.0.54",
     "web3": "1.0.0-beta.30",
-    "zeppelin-solidity": "1.6.0",
+    "zeppelin-solidity": "^1.7.0",
     "zone.js": "0.8.20"
   },
   "devDependencies": {
