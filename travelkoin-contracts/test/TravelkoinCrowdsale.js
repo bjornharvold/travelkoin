@@ -75,7 +75,11 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
         it('should reject payments of more than 1 ETH on the first day', async function () {
             await increaseTimeTo(this.openingTime);
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.rejectedWith(EVMRevert);
+            await this.crowdsale.buyTokens(investor, {value: dayOneMaxContribution, from: purchaser2}).should.be.fulfilled;
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMThrow);
+        });
 
+        it('should accept payments of more than 1 ETH after the first day', async function () {
             await increaseTimeTo(this.openingTimePlusOneDay);
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.fulfilled;
         });
