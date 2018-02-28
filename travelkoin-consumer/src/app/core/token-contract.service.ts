@@ -65,8 +65,13 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.dayOneMaxContribution()));
     }
 
-    howMuchCanIContributeNow(): Observable<BigNumber> {
-        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.howMuchCanIContributeNow()));
+    howMuchCanIContributeNow(owner: string): Observable<BigNumber> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
+            const tx: any = {
+                from: owner
+            };
+            return Observable.fromPromise(ti.howMuchCanIContributeNow(tx));
+        });
     }
 
     startTime(): Observable<BigNumber> {

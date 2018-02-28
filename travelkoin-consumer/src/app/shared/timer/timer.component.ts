@@ -55,14 +55,18 @@ export class TimerComponent implements OnInit, OnDestroy {
     }
 
     startTimer() {
-        this.timer.hasStarted = true;
-        this.timer.runTimer = true;
-        this.timerTick();
+        if (this.timer != null) {
+            this.timer.hasStarted = true;
+            this.timer.runTimer = true;
+            this.timerTick();
+        }
     }
 
     timerTick() {
         setTimeout(() => {
-            if (!this.timer.runTimer) { return; }
+            if (!this.timer.runTimer) {
+                return;
+            }
             this.timer.secondsRemaining--;
             this.timer.displayTime = TimerComponent.getSecondsAsDigitalClock(this.timer.secondsRemaining);
             if (this.timer.secondsRemaining > 0) {
@@ -83,5 +87,6 @@ export class TimerComponent implements OnInit, OnDestroy {
     }
 
     constructor() {
+
     }
 }

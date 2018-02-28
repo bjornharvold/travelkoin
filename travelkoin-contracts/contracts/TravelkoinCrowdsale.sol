@@ -32,10 +32,10 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
 
     // makes sure the user is only sending the amount allowed for any given day
     modifier amountOk(address _beneficiary, uint256 _weiAmount) {
-        if (balances[_beneficiary] + _weiAmount > howMuchCanXContributeNow(_beneficiary)) {
+        if (balances[_beneficiary] + _weiAmount > _howMuchCanXContributeNow(_beneficiary)) {
             ExceededAmount(_beneficiary, _weiAmount);
         }
-        require(balances[_beneficiary] + _weiAmount <= howMuchCanXContributeNow(_beneficiary));
+        require(balances[_beneficiary] + _weiAmount <= _howMuchCanXContributeNow(_beneficiary));
         _;
     }
 
@@ -73,13 +73,13 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
 
     /// @notice How many wei can the msg.sender contribute now.
     function howMuchCanIContributeNow() view public returns (uint256) {
-        return howMuchCanXContributeNow(msg.sender);
+        return _howMuchCanXContributeNow(msg.sender);
     }
 
     /// @notice How many wei can an Ethereum address contribute now.
     /// @param _beneficiary Ethereum address
     /// @return Number of wei the _beneficiary can contribute now.
-    function howMuchCanXContributeNow(address _beneficiary) view internal returns (uint256) {
+    function _howMuchCanXContributeNow(address _beneficiary) view internal returns (uint256) {
         // wei to hard cap
         uint256 weiToCap = cap.sub(weiRaised);
 
@@ -99,7 +99,7 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     /// @notice How many 24 hour blocks have ellapsed since token sale start
     /// @return Number of 24 hour blocks elapsed since token sale start starting from 1
     function getSaleDayNow() view internal returns (uint8) {
-        return getSaleDay(now);
+        return _getSaleDay(now);
     }
 
     /// @notice For a give date how many 24 hour blocks have elapsed since token sale start
@@ -108,7 +108,7 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     ///  between 24 and 48 hours it will return 2, etc.
     /// @param _time Date in seconds for which we want to know which sale day it is
     /// @return Number of 24 hour blocks elapsing since token sale start starting from 1
-    function getSaleDay(uint256 _time) view internal returns (uint8) {
+    function _getSaleDay(uint256 _time) view internal returns (uint8) {
         return uint8(_time.sub(openingTime).div(60 * 60 * 24).add(1));
     }
 

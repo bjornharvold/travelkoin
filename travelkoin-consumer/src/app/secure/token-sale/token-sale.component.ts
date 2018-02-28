@@ -43,7 +43,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     private getMaxContribution(): void {
         if (this.accounts != null && this.accounts.length > 0) {
-            this.tokenContractService.howMuchCanXContributeNow(this.accounts[0])
+            this.tokenContractService.howMuchCanIContributeNow(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((maxLimit: BigNumber) => {
                         if (maxLimit != null) {
