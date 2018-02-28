@@ -1,16 +1,19 @@
-var MiniMeTokenFactory = artifacts.require('MiniMeTokenFactory');
-var TravelkoinMiniMeToken = artifacts.require('TravelkoinMiniMeToken');
-var MultiSigWallet = artifacts.require('MultiSigWallet');
-var NormalSale = artifacts.require('TravelkoinNormalSale');
-var SafeMath = artifacts.require('SafeMath');
-var TravelkoinController = artifacts.require('TravelkoinController');
-var TravelkoinRefundVault = artifacts.require('TravelkoinRefundVault');
-var TravelkoinHodler = artifacts.require('TravelkoinHodler');
-var TokenVesting = artifacts.require('TravelkoinTokenVesting');
+const Token = artifacts.require('TravelkoinToken');
+const Crowdsale = artifacts.require('TravelkoinCrowdsale');
+const SafeMath = artifacts.require('SafeMath');
 
-// var dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
-var dateStart = Math.floor(new Date().getTime() / 1000) + 0.001 * 60 * 60 * 24; // starts now
-var dateEnd = dateStart + 5 * 24 * 60 * 60; // lasts 5 days
+// const dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
+const dateStart = Math.floor(new Date().getTime() / 1000) + 0.005 * 60 * 60 * 24; // starts now
+const dateEnd = dateStart + 5 * 24 * 60 * 60; // lasts 5 days
+const initialSupply = 85000000; // 85 million tokens
+const owner = web3.eth.accounts[0];
+const minContribution = web3.toWei(0.1, 'ether');
+const dayOneMaxContribution = web3.toWei(1, 'ether');
+const rate = 1000; // how many tokens per 1 ETH
+const crowdsaleTokens = web3.toWei(31000, 'ether');
+const tokenName = 'Travelkoin';
+const tokenSymbol = 'Travelkoin';
+const tokenDecimals = 18;
 
 module.exports = function (deployer) {
     return deployer.then(function () {
@@ -18,27 +21,12 @@ module.exports = function (deployer) {
         return deployer.deploy(SafeMath);
     }).then(function () {
         // link SafeMath
-        return deployer.link(SafeMath, [NormalSale, TravelkoinRefundVault, TravelkoinController, TravelkoinHodler, TokenVesting]);
-    }).then(function () {
-        // then Wallet
-        return deployer.deploy(MultiSigWallet, [web3.eth.accounts[0], web3.eth.accounts[1], web3.eth.accounts[2]], 2);
-    }).then(function () {
-        // then Factory
-        return deployer.deploy(MiniMeTokenFactory);
-    }).then(function () {
-        // then Controller
-        return deployer.deploy(TravelkoinController, MultiSigWallet.address);
+        return deployer.link(SafeMath, [Crowdsale]);
     }).then(function () {
         // then TravelkoinMiniMeToken
-        return deployer.deploy(TravelkoinMiniMeToken, TravelkoinController.address, MiniMeTokenFactory.address);
+        return deployer.deploy(Token, tokenName, tokenSymbol, tokenDecimals, initialSupply);
     }).then(function () {
-        // set Token and generate token amount
-        return (TravelkoinController.at(TravelkoinController.address)).setToken(TravelkoinMiniMeToken.address, 0);
-    }).then(function () {
-        // then NormalSale
-        return deployer.deploy(NormalSale, TravelkoinController.address, dateStart, dateEnd, web3.toWei(0.1, 'ether'), 1000, web3.toWei(31000, 'ether'), MultiSigWallet.address);
-    }).then(function () {
-        // set crowdsale - 31M tokens at 1 ETH = 1000 tokens
-        return (TravelkoinController.at(TravelkoinController.address)).setCrowdsaleTransfer(NormalSale.address, web3.toBigNumber(web3.toWei(31000, 'ether')));
+        // then Crowdsale
+        return deployer.deploy(Crowdsale, dateStart, dateEnd, minContribution, dayOneMaxContribution, rate, crowdsaleTokens, owner, Token.address);
     });
 };

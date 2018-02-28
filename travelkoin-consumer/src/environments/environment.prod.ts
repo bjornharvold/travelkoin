@@ -5,7 +5,7 @@
 export const environment = {
     production: true,
     environment: 'prod',
-    build: '5.39.0',
+    build: '5.40.0',
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
@@ -22,11 +22,8 @@ export const environment = {
     ethWalletAddress: '0xC85c71F4A7c096Df5E6305Ca940b664e30d8ca55',
     siteUrl: 'https://travelkoin.io',
     contracts: {
-        MultiSigWallet: 'fillmein',
-        MiniMeTokenFactory: 'fillmein',
-        TravelkoinController: 'fillmein',
-        TravelkoinMiniMeToken: 'fillmein',
-        TravelkoinNormalSale: 'fillmein'
+        TravelkoinToken: 'fillmein',
+        TravelkoinCrowdsale: 'fillmein'
     },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',

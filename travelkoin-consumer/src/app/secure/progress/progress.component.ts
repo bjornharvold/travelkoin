@@ -47,7 +47,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loading = true;
-        this.tokenContractService.travelkoinBalance()
+        this.tokenContractService.cap()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // console.log(`saleSupply: ${this.web3Service.weiToEther(value)}`);

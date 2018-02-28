@@ -24,7 +24,7 @@ export class SmartContractWhitelistComponent implements OnInit, OnChanges, OnDes
         this.error = null;
         const address: string = this.whitelistForm.get('address').value;
 
-        this.tokenContractService.setWhitelist(this.account, [address], [])
+        this.tokenContractService.addToWhitelist(this.account, address)
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
                     this.tx = tx;
