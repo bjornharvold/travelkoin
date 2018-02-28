@@ -1,28 +1,38 @@
 <form [formGroup]="whitelistForm" (ngSubmit)="addToWhitelist()" *ngIf="whitelistForm != null">
-  <div class="content-box">
-    <h3 class="content-box-header bg-white">
-      {{ 'CONTRACT_CONFIGURATION.WHITELIST' | translate }}
-    </h3>
-    <div class="content-box-wrapper">
-      <div class="row">
-        <div class="col-sm-12">
-          <div *ngIf="whitelistForm.get('address')" class="form-group">
-            <label for="startDate">{{ 'CONTRACT_CONFIGURATION.ADDRESS' | translate }}</label>
-            <div class="input-group input-group-lg">
-              <input id="startDate" type="text" class="form-control form-control-lg border-green" name="address" formControlName="address" placeholder="{{ 'CONTRACT_CONFIGURATION.ADDRESS_PLACEHOLDER' | translate}}">
-              <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+    <div class="content-box">
+        <h3 class="content-box-header bg-white">
+      <span class="icon-separator">
+            <i class="fas fa-spinner font-blue fa-fw" [ngClass]="{'fa-spin': loading === true}"></i>
+        </span>
+            {{ 'CONTRACT_CONFIGURATION.WHITELIST' | translate }}
+        </h3>
+        <div class="content-box-wrapper">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="tx != null" class="form-group">
+                        {{ tx }}
+                    </div>
+                </div>
             </div>
-            <small class="form-text text-muted">{{ 'CONTRACT_CONFIGURATION.ADDRESS_HELP' | translate }}</small>
-          </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="whitelistForm.get('address')" class="form-group">
+                        <label for="startDate">{{ 'CONTRACT_CONFIGURATION.ADDRESS' | translate }}</label>
+                        <div class="input-group input-group-lg">
+                            <input id="startDate" type="text" class="form-control form-control-lg border-green" name="address" formControlName="address" placeholder="{{ 'CONTRACT_CONFIGURATION.ADDRESS_PLACEHOLDER' | translate}}">
+                            <span class="input-group-addon"><i class="fas fa-shield-check font-blue"></i></span>
+                        </div>
+                        <small class="form-text text-muted">{{ 'CONTRACT_CONFIGURATION.ADDRESS_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info">{{ 'BUTTON_SAVE' | translate }}</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <button type="submit" class="btn btn-info">{{ 'BUTTON_SAVE' | translate }}</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </form>

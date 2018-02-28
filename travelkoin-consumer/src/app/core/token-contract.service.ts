@@ -74,16 +74,24 @@ export class TokenContractService {
         });
     }
 
+    whitelist(account: string): Observable<boolean> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.whitelist(account)));
+    }
+
+    balances(account: string): Observable<BigNumber> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(account)));
+    }
+
+    capReached(): Observable<boolean> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.capReached()));
+    }
+
     startTime(): Observable<BigNumber> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.openingTime()));
     }
 
     endTime(): Observable<BigNumber> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.closingTime()));
-    }
-
-    stakesPerUser(address: string): Observable<BigNumber> {
-        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(address)));
     }
 
     weiRaised(): Observable<BigNumber> {
@@ -110,7 +118,7 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             const tx: TxParams = {
                 from: owner,
-                gas: 40000,
+                gas: 60000,
                 gasPrice: 4000000000,
                 value: 0
             };

@@ -31,7 +31,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     loading = false;
-    isCrowdsaleOpen = false;
+    isWhitelisted = false;
     maxContribution = null;
     minContribution = null;
 
@@ -51,6 +51,22 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                             this.updateFormValidators();
                             // console.log(this.maxContribution);
                         }
+                    }, error => {
+                        console.error(error);
+                        this.error = 'CODE.ERROR';
+                    },
+                    () => {
+                    }
+                )
+        }
+    }
+
+    private whitelist(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
+            this.tokenContractService.whitelist(this.accounts[0])
+                .takeWhile(() => this.alive)
+                .subscribe((isWhitelisted: boolean) => {
+                        this.isWhitelisted = isWhitelisted;
                     }, error => {
                         console.error(error);
                         this.error = 'CODE.ERROR';
@@ -102,9 +118,13 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     /**
      * This is our form for submitting payment
      */
-    private initFormGroup(): void {
-        if (this.dto == null && this.accounts != null) {
-            this.dto = new TokenPurchase(this.accounts[0]);
+    private initFormGroup(accounts: Array<string>): void {
+        if (this.dto == null) {
+            this.dto = new TokenPurchase();
+        }
+
+        if (accounts != null && this.dto.account !== accounts[0]) {
+            this.dto.account = accounts[0];
             this.dto.populateFormValues(this.form);
         }
     }
@@ -138,7 +158,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                             this.error = 'CODE.PROVIDER_LOG_IN';
                         } else {
                             this.accounts = accounts;
-                            this.initFormGroup();
+                            this.initFormGroup(this.accounts);
                         }
                     },
                     error => {
@@ -184,6 +204,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     }
 
+    clearErrors(): void {
+        this.error = null;
+    }
+
     ngOnDestroy() {
         this.alive = false;
     }
@@ -193,7 +217,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         if (this.web3Service.isConnected()) {
             this.displayStartTime();
             this.provider = this.web3Service.getProviderName();
-            this.retrieveAccounts();
 
             this.form = new FormGroup({});
 
@@ -215,13 +238,19 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 .subscribe((error: string) => this.error = error);
 
 
-            Observable.interval(2000)
-                .takeWhile(() => this.hasStarted === true && this.hasEnded === false)
+            Observable.interval(1500)
+                .takeWhile(() => this.alive)
                 .subscribe(() => {
-                    // check for 1 ETH limit time
+                    this.retrieveAccounts();
+                });
+
+            Observable.interval(2000)
+                .takeWhile(() => this.hasEnded === false)
+                .subscribe(() => {
                     this.getMaxContribution();
                     this.getMinContribution();
                     this.getAccountBalance();
+                    this.whitelist();
                 });
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';

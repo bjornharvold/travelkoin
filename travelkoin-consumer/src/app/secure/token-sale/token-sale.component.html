@@ -5,7 +5,7 @@
         </span>
         {{ 'TOKEN_CONTRACT.TOKEN_SALE' | translate }} {{ 'TOKEN_CONTRACT.YOU_ARE_USING' | translate }} {{ provider }}
     </h3>
-    <div class="content-box-wrapper" *ngIf="hasStarted === true && hasEnded === false">
+    <div class="content-box-wrapper" *ngIf="hasStarted === true && hasEnded === false && isWhitelisted === true">
         <form (ngSubmit)="buyTokens()" [formGroup]="form">
 
             <div class="form-group" *ngIf="form.get('account')">
@@ -34,18 +34,30 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
+                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
             </div>
 
         </form>
     </div>
     <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasStarted === false && startDate != null">
+        <span *ngIf="isWhitelisted === false">{{ 'TOKEN_CONTRACT.WAITING_ON_APPROVAL' | translate }}</span><br/>
+        <span *ngIf="isWhitelisted === true">{{ 'TOKEN_CONTRACT.WHITELISTED' | translate }} <i class="fas fa-check font-green"></i></span><br/>
         {{ 'TOKEN_CONTRACT.STARTS_AT' | translate }}<br/> {{ startDate }}<br/><br/> {{ nowDate }}
+    </div>
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasStarted === true && isWhitelisted === false">
+        {{ 'TOKEN_CONTRACT.WAITING_ON_APPROVAL' | translate }}<br/>
+        {{ 'TOKEN_CONTRACT.EVENT_HAS_STARTED' | translate }}
+    </div>
+    <div class="content-box-wrapper text-center mrg30A font-size-20" *ngIf="hasEnded === true">
+        <p>{{ 'TOKEN_CONTRACT.SALE_ENDED' | translate }}</p>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-blue-alt" (click)="claimTokens()">{{ 'TOKEN_CONTRACT.CLAIM_YOUR_TOKENS' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
+        </div>
     </div>
     <div class="content-box-wrapper text-center mrg10A" *ngIf="status != null">
         <i class="fas fa-info-circle font-blue"></i> {{ status | translate }}
     </div>
     <div class="content-box-wrapper text-center mrg10A" *ngIf="error != null">
-        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }}
+        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }} <a class="font-blue pointer" (click)="clearErrors()">{{ 'TOKEN_CONTRACT.CLEAR' | translate }}</a>
     </div>
 </div>

@@ -19,24 +19,22 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     loading = false;
+    claimed = false;
     status: string = null;
     error = null;
-    stake: string = null;
     balance: string = null;
-    startDate: moment.Moment;
-    endDate: moment.Moment;
-    nowDate: moment.Moment = DateService.getInstanceOfNow();
 
     /**
      * This is the user's current investment in the crowdsale
      */
-    private getUserStakeDuringCrowdsale(): void {
+    private crowdsaleBalance(): void {
         if (this.account != null) {
             this.loading = true;
-            this.tokenContractService.stakesPerUser(this.account)
+            this.tokenContractService.balances(this.account)
                 .takeWhile(() => this.alive)
                 .subscribe((stake: BigNumber) => {
-                        this.stake = stake.div(1000000000000000).toFormat();
+                        this.claimed = false;
+                        this.balance = stake.div(1000000000000000).toFormat();
                     },
                     error => {
                         this.loading = false;
@@ -51,12 +49,13 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     /**
      * This is the user's claimed tokens available after the crowdsale
      */
-    private getUserTokens(): void {
+    private tokenBalance(): void {
         if (this.account != null) {
             this.loading = true;
             this.tokenContractService.balanceOf(this.account)
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
+                        this.claimed = true;
                         this.balance = balance.div(1000000000000000).toFormat();
                     },
                     error => {
@@ -115,11 +114,11 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe(() => {
                 if (this.hasStarted === true && this.hasEnded === false) {
-                    this.getUserStakeDuringCrowdsale();
+                    this.crowdsaleBalance();
                 }
 
                 if (this.hasStarted === true && this.hasEnded === true) {
-                    this.getUserTokens();
+                    this.tokenBalance();
                 }
             });
     }

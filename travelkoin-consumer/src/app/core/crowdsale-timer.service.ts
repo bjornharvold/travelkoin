@@ -38,20 +38,18 @@ export class CrowdsaleTimerService {
             )
     }
 
-    /**
-     * Save end time
-     */
-    private endTime(): void {
+    private checkForEndTime(): void {
         this.tokenContractService.endTime()
             .subscribe((endTime: BigNumber) => {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const endDate = DateService.bigNumberToMoment(endTime);
 
-                    if (DateService.isAfter(endDate, now)) {
+                    if (DateService.isAfter(now, endDate)) {
                         this.hasEnded = true;
+                        // console.log(`hasEnded ${this.hasEnded} on ${endDate.format()}`);
                     }
 
-                    this.hasStartedEvent.emit(this.hasStarted);
+                    this.hasEndedEvent.emit(this.hasEnded);
                     // console.log(this.endDate.format());
                 }, error => {
                     console.error(error);
@@ -60,6 +58,24 @@ export class CrowdsaleTimerService {
                 () => {
                 }
             )
+    }
+
+    /**
+     * Save end time
+     */
+    private endTime(): void {
+        // first check if cap has been reached - then check the time
+        this.tokenContractService.capReached()
+            .subscribe((capReached: boolean) => {
+                // console.log(capReached);
+                if (capReached === true) {
+                    this.hasEnded = true;
+
+                    this.hasEndedEvent.emit(this.hasEnded);
+                } else {
+                    this.checkForEndTime();
+                }
+            });
     }
 
     constructor(private tokenContractService: TokenContractService) {
