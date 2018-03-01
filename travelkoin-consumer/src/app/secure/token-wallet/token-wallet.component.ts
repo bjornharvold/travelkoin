@@ -34,7 +34,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                 .takeWhile(() => this.alive)
                 .subscribe((stake: BigNumber) => {
                         this.claimed = false;
-                        this.balance = stake.div(1000000000000000).toFormat();
+                        this.balance = this.web3Service.weiToEther(stake).toFormat();
                     },
                     error => {
                         this.loading = false;
@@ -113,6 +113,8 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
+                this.retrieveAccounts();
+
                 if (this.hasStarted === true && this.hasEnded === false) {
                     this.crowdsaleBalance();
                 }

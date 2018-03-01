@@ -24,6 +24,7 @@ export class TransactionLogComponent implements OnInit, OnDestroy {
         this.transactionLogService.eventStream
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
+                console.log(tx);
                 this.txs.push(tx);
 
                 // fix this array at 10 items

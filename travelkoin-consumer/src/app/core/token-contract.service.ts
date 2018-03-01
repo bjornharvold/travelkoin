@@ -8,6 +8,8 @@ import {W3} from 'soltsice';
 import TransactionResult = W3.TX.TransactionResult;
 import TxParams = W3.TX.TxParams;
 
+const MINIMUM_GAS_IN_GWEI = 21000;
+
 @Injectable()
 export class TokenContractService {
     private crowdsaleContract: TravelkoinCrowdsale;
@@ -122,7 +124,10 @@ export class TokenContractService {
     addToWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.addToWhitelist.estimateGas(beneficiary))
-                .switchMap((gas: BigNumber) => {
+                .switchMap((gas: number) => {
+                    if (gas - MINIMUM_GAS_IN_GWEI < 0) {
+                        gas = MINIMUM_GAS_IN_GWEI * 4;
+                    }
                     const tx: TxParams = {
                         from: owner,
                         gas: gas,
@@ -136,8 +141,11 @@ export class TokenContractService {
 
     addManyToWhitelist(owner: string, beneficiaries: Array<string>): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
-            return Observable.fromPromise(ti.addManyToWhitelist.estimateGas(beneficiary))
-                .switchMap((gas: BigNumber) => {
+            return Observable.fromPromise(ti.addManyToWhitelist.estimateGas(beneficiaries))
+                .switchMap((gas: number) => {
+                    if (gas - MINIMUM_GAS_IN_GWEI < 0) {
+                        gas = MINIMUM_GAS_IN_GWEI * 4;
+                    }
                     const tx: TxParams = {
                         from: owner,
                         gas: gas,
@@ -152,7 +160,10 @@ export class TokenContractService {
     removeFromWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.removeFromWhitelist.estimateGas(beneficiary))
-                .switchMap((gas: BigNumber) => {
+                .switchMap((gas: number) => {
+                    if (gas - MINIMUM_GAS_IN_GWEI < 0) {
+                        gas = MINIMUM_GAS_IN_GWEI * 4;
+                    }
                     const tx: TxParams = {
                         from: owner,
                         gas: gas,
@@ -168,7 +179,10 @@ export class TokenContractService {
         const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.removeFromWhitelist.estimateGas(beneficiary))
-                .switchMap((gas: BigNumber) => {
+                .switchMap((gas: number) => {
+                    if (gas - MINIMUM_GAS_IN_GWEI < 0) {
+                        gas = MINIMUM_GAS_IN_GWEI * 4;
+                    }
                     const tx: TxParams = {
                         from: beneficiary,
                         gas: gas,

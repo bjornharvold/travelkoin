@@ -56,15 +56,18 @@ export class Web3Service {
         const w3: W3 = this.getW3();
         if (w3 != null) {
             // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-            this._provider = w3.currentProvider.constructor.name;
+            this._provider = w3.web3.currentProvider.constructor.name;
 
-            if (this._provider === 'MetamaskInpageProvider') {
+            // console.log(`Using provider: ${this._provider}`);
+            if (this._provider === 'MetamaskInpageProvider' || this._provider === 'f') {
                 providerName = 'METAMASK';
             } else if (this._provider === 'EthereumProvider') {
                 providerName = 'MIST';
             } else if (this._provider === 'o') {
                 providerName = 'PARITY';
             }
+        } else {
+            console.error('No W3');
         }
 
         return providerName

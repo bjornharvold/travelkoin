@@ -32,10 +32,10 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
 
     // makes sure the user is only sending the amount allowed for any given day
     modifier amountOk(address _beneficiary, uint256 _weiAmount) {
-        if (balances[_beneficiary] + _weiAmount > _howMuchCanXContributeNow(_beneficiary)) {
+        if (_weiAmount > _howMuchCanXContributeNow(_beneficiary)) {
             ExceededAmount(_beneficiary, _weiAmount);
         }
-        require(balances[_beneficiary] + _weiAmount <= _howMuchCanXContributeNow(_beneficiary));
+        require(_weiAmount <= _howMuchCanXContributeNow(_beneficiary));
         _;
     }
 
@@ -93,10 +93,14 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         // limit to 1 ETH for the first day
         if (_saleDay == 1) {
 
-            // personal cap is the daily whitelist limit minus the stakes the address already has
-            uint256 weiToPersonalCap = dayOneMaxContribution.sub(balances[_beneficiary]);
-
-            weiToCap = uint256Min(weiToCap, weiToPersonalCap);
+            if (balances[_beneficiary] > 0) {
+                // personal cap is the daily whitelist limit minus the stakes the address already has
+                uint256 tokenAmount = balances[_beneficiary] / rate;
+                uint256 weiToPersonalCap = dayOneMaxContribution - tokenAmount;
+                weiToCap = uint256Min(weiToCap, weiToPersonalCap);
+            } else {
+                weiToCap = uint256Min(weiToCap, dayOneMaxContribution);
+            }
         }
 
         return weiToCap;
@@ -110,11 +114,6 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     /// @return Number of 24 hour blocks elapsing since token sale start starting from 1
     function _getSaleDay(uint256 _time) view internal returns (uint8) {
         return uint8(_time.sub(openingTime).div(60 * 60 * 24).add(1));
-    }
-
-    /// @notice Minimum between two uint8 numbers
-    function uint8Min(uint8 a, uint8 b) pure internal returns (uint8) {
-        return a > b ? b : a;
     }
 
     /// @notice Minimum between two uint256 numbers

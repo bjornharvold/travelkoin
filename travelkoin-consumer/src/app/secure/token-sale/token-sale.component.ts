@@ -23,7 +23,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     provider: string;
     dto: TokenPurchase;
     currentAccountBalanceWei: BigNumber;
-    currentAccountBalanceEther: string = '0';
+    currentAccountBalanceEther: BigNumber = new BigNumber(0);
     form: FormGroup;
     startDate: moment.Moment;
     status = null;
@@ -49,7 +49,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                         if (maxLimit != null) {
                             this.maxContribution = maxLimit.div(1000000000000000000).toNumber();
                             this.updateFormValidators();
-                            console.log(this.maxContribution);
+                            // console.log(this.maxContribution);
                         }
                     }, error => {
                         console.error(error);
@@ -66,6 +66,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             this.tokenContractService.whitelist(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((isWhitelisted: boolean) => {
+                        // console.log(`isWhitelisted: ${isWhitelisted}`);
                         this.isWhitelisted = isWhitelisted;
                     }, error => {
                         console.error(error);
@@ -215,9 +216,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.web3Service.isConnected()) {
+            this.provider = this.web3Service.getProviderName();
 
             this.displayStartTime();
-            this.provider = this.web3Service.getProviderName();
 
             this.form = new FormGroup({});
 
