@@ -42,12 +42,12 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getMaxContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0) {
+        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
             this.tokenContractService.howMuchCanIContributeNow(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((maxLimit: BigNumber) => {
                         if (maxLimit != null) {
-                            this.maxContribution = maxLimit.div(1000000000000000000).toNumber();
+                            this.maxContribution = this.web3Service.weiToEther(maxLimit).toNumber();
                             this.updateFormValidators();
                             // console.log(this.maxContribution);
                         }
@@ -79,12 +79,12 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getMinContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0) {
+        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
             this.tokenContractService.minContribution()
                 .takeWhile(() => this.alive)
                 .subscribe((minLimit: BigNumber) => {
                         if (minLimit != null) {
-                            this.minContribution = minLimit.div(1000000000000000000).toNumber();
+                            this.minContribution = this.web3Service.weiToEther(minLimit).toNumber();
                             this.updateFormValidators();
                             // console.log(this.minContribution);
                         }
@@ -99,7 +99,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getAccountBalance(): void {
-        if (this.accounts != null && this.accounts.length > 0) {
+        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
             this.web3Service.getAccountBalance(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: any) => {

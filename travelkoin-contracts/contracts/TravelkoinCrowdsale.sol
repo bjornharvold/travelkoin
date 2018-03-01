@@ -72,7 +72,7 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     }
 
     /// @notice How many wei can the msg.sender contribute now.
-    function howMuchCanIContributeNow() view public returns (uint256) {
+    function howMuchCanIContributeNow() view public isWhitelisted(msg.sender) returns (uint256) {
         return _howMuchCanXContributeNow(msg.sender);
     }
 
