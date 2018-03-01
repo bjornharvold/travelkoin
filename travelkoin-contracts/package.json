@@ -1,5 +1,5 @@
 {
-  "name": "travelkoinsale",
+  "name": "travelkoin-contract",
   "version": "5.40.0",
   "description": "Travelkoin token sale",
   "scripts": {
@@ -60,7 +60,7 @@
   "dependencies": {
     "dotenv": "5.0.1",
     "ethjs-abi": "0.2.1",
-    "soltsice": "0.10.11",
+    "soltsice": "^0.10.11",
     "zeppelin-solidity": "^1.7.0"
   }
 }

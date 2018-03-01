@@ -586,4 +586,15 @@ export class TravelkoinCrowdsale extends SoltsiceContract {
         });
     }
     
+    // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:variable-name
+    public getSaleDayNow( txParams?: W3.TX.TxParams): Promise<BigNumber> {
+        return new Promise((resolve, reject) => {
+            this._instance.getSaleDayNow
+                .call( txParams || this._sendParams)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
+        });
+    }
+    
 }

@@ -91,7 +91,7 @@
       "BONUSES": "Bonuses",
       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
       "LIMIT": "Limit",
-      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. Minimum investment 0.1 ETH. No max limits after the first 24 hours.",
+      "LIMIT_DESC": "Limit 1 ETH contribution during the first 24 hours. Minimum contribution 0.1 ETH. No max limits after the first 24 hours.",
       "CAPS": "Cap",
       "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
       "HODLR": "HODLers",
@@ -252,7 +252,7 @@
     "BTC": "Bitcoin"
   },
   "WALLET": {
-    "TITLE": "My investment",
+    "TITLE": "My contribution",
     "TRANSACTIONS": "TXS",
     "TRANSACTION_ERROR": "Error",
     "TRANSACTION_ERROR_DETAILS": "Details",
@@ -264,7 +264,7 @@
     "RECEIVE": "Receive",
     "EXCHANGE": "Exchange",
     "SEE_TRANSACTIONS": "See transactions",
-    "DESCRIPTION": "This section allows you to see the investments you've made in Travelkoin."
+    "DESCRIPTION": "This section allows you to see the contributions you've made in Travelkoin."
   },
   "VALUE": {
     "ADD_PAYMENT": "Add transaction",
@@ -436,18 +436,12 @@
     "NINE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 9-month HODLers.",
     "RATE": "TKT / ETH conversion rate",
     "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
-    "CAP": "Cap in Ether during ICO",
+    "CAP": "Crowdsale hard cap",
     "CAP_HELP": "This is the maximum number of Ether that can be used to purchase our token during the ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
-    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
-    "VESTING_TEAM_DURATION": "Team token vesting",
-    "VESTING_TEAM_DURATION_HELP": "This is how long it takes for team tokens to vest (in days).",
-    "VESTING_ADVISORS_DURATION": "Advisors token vesting",
-    "VESTING_ADVISORS_DURATION_HELP": "This is how long it takes for advisors tokens to vest (in days).",
-    "VESTING_TEAM_CLIFF": "Team token cliff",
-    "VESTING_TEAM_CLIFF_HELP": "This is the minimum amount of time a team member has to stay with the team before that person gets any tokens at all (in days).",
-    "VESTING_ADVISORS_CLIFF": "Advisors token cliff",
-    "VESTING_ADVISORS_CLIFF_HELP": "This is the minimum amount of time an advisor has to stay with the team before that person gets any tokens at all (in days).",
+    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to contribute in this ICO.",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION": "Max contribution on day 1",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION_HELP": "This is the maximum allowed amount in Ether to contribute on day 1. After day 1, there are no imposed limits.",
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
@@ -484,12 +478,12 @@
     "DESCRIPTION": "This page is frequently updated as we answer your questions.",
     "LAST_UPDATED": "Last updated",
     "1": {
-      "QUESTION": "Why should I invest? / Why will the value of the TKT token increase?",
+      "QUESTION": "Why should I contribute? / Why will the value of the TKT token increase?",
       "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. Our two first applications will be a payment gateway and a white-labeled loyalty program. When an airline, hotel or any other travel tech company use these services and run out of tokens, they need to buy more. As we add more services and as global travel increases, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to depart with their tokens in return for a good deal. But, there won't be enough travelers for everyone so there will be a need to purchase tokens to run our service. Our token will always increase in value as long as we offer up great services to our travel tech partners and global travel steadily increases."
     },
     "2": {
       "QUESTION": "Can anyone participate?",
-      "ANSWER": "We expect each investor to know all applicable laws governing an ICO in his or her country. The Travelkoin team does KYC (Know Your Customer) upon registration but we do not limit participation. Investors, especially from the U.S., the People's Republic of China and South Korea, need to check their current limitations imposed upon them by their respective governments before participating in our ICO."
+      "ANSWER": "We expect each contributors to know all applicable laws governing an ICO in his or her country. The Travelkoin team does KYC (Know Your Customer) upon registration but we do not limit participation. Investors, especially from the U.S., the People's Republic of China and South Korea, need to check their current limitations imposed upon them by their respective governments before participating in our ICO."
     },
     "3": {
       "QUESTION": "Roger Ver: How is Travelkoin going to peg STU to a basket of fiat currencies? Will it be backed by fiat in an auditable account somewhere? If yes, how are you going to hedge again forex risk if you allow holders of STU to cash out into their local fiat at a pegged rate?",
@@ -497,7 +491,7 @@
     },
     "4": {
       "QUESTION": "Why don't you offer a pre-sale, bonus structure or other discounts?",
-      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian investment vehicle. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private investor before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
+      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian tool to contribute. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private contributors before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
     },
     "5": {
       "QUESTION": "How will you create demand?",

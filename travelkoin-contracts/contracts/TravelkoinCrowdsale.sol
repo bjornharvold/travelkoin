@@ -76,6 +76,12 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         return _howMuchCanXContributeNow(msg.sender);
     }
 
+    /// @notice How many 24 hour blocks have elapsed since token sale start
+    /// @return Number of 24 hour blocks elapsed since token sale start starting from 1
+    function getSaleDayNow() view public returns (uint8) {
+        return _getSaleDay(now);
+    }
+
     /// @notice How many wei can an Ethereum address contribute now.
     /// @param _beneficiary Ethereum address
     /// @return Number of wei the _beneficiary can contribute now.
@@ -83,8 +89,8 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         // wei to hard cap
         uint256 weiToCap = cap.sub(weiRaised);
 
-        uint8 _saleDay = getSaleDayNow();
-        // limit to 1 ETH for on the first day
+        uint8 _saleDay = _getSaleDay(now);
+        // limit to 1 ETH for the first day
         if (_saleDay == 1) {
 
             // personal cap is the daily whitelist limit minus the stakes the address already has
@@ -94,12 +100,6 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         }
 
         return weiToCap;
-    }
-
-    /// @notice How many 24 hour blocks have ellapsed since token sale start
-    /// @return Number of 24 hour blocks elapsed since token sale start starting from 1
-    function getSaleDayNow() view internal returns (uint8) {
-        return _getSaleDay(now);
     }
 
     /// @notice For a give date how many 24 hour blocks have elapsed since token sale start

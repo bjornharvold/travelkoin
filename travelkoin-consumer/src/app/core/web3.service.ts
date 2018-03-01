@@ -12,8 +12,8 @@ export class Web3Service {
     private _w3: W3;
     private _provider: string;
 
-    weiToEther(value: BigNumber): string {
-        let result: string = null;
+    weiToEther(value: BigNumber): BigNumber {
+        let result: BigNumber = null;
         // console.log(this.getWeb3().utils);
         // return this.getWeb3().utils.fromWei(value, 'ether');
         // console.log(value.dividedBy(1e18).toFormat(0));

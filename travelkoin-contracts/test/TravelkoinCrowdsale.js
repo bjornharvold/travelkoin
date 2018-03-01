@@ -72,6 +72,22 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
             await this.crowdsale.addToWhitelist(investor);
         });
 
+        it('should be able to contribute 1 ETH for day one', async function () {
+            await increaseTimeTo(this.openingTime);
+            let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(dayOneMaxContribution);
+            let saleDay = await this.crowdsale.getSaleDayNow({from: investor});
+            saleDay.should.be.bignumber.equal(new BigNumber(1));
+        });
+
+        it('should be able to contribute up to cap after day one', async function () {
+            await increaseTimeTo(this.openingTimePlusOneDay);
+            let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(cap);
+            let saleDay = await this.crowdsale.getSaleDayNow({from: investor});
+            saleDay.should.be.bignumber.equal(new BigNumber(2));
+        });
+
         it('should reject payments of more than 1 ETH on the first day', async function () {
             await increaseTimeTo(this.openingTime);
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.rejectedWith(EVMRevert);

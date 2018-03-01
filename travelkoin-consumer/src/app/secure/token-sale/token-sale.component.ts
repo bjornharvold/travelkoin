@@ -49,7 +49,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                         if (maxLimit != null) {
                             this.maxContribution = maxLimit.div(1000000000000000000).toNumber();
                             this.updateFormValidators();
-                            // console.log(this.maxContribution);
+                            console.log(this.maxContribution);
                         }
                     }, error => {
                         console.error(error);
@@ -215,6 +215,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.web3Service.isConnected()) {
+
             this.displayStartTime();
             this.provider = this.web3Service.getProviderName();
 

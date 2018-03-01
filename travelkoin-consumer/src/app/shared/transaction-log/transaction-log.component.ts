@@ -38,7 +38,7 @@ export class TransactionLogComponent implements OnInit, OnDestroy {
                 this.tokenContractService.listenToEvents()
                     .takeWhile(() => this.alive)
                     .subscribe((logs: Array<W3.Log>) => {
-                        console.log(logs);
+                        // console.log(logs);
                         this.logs = logs;
                     });
             });

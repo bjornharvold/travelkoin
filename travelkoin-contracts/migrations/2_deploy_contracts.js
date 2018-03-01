@@ -4,7 +4,7 @@ const SafeMath = artifacts.require('SafeMath');
 
 // const dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
 const dateStart = Math.floor(new Date().getTime() / 1000) + 0.005 * 60 * 60 * 24; // starts now
-const dateEnd = dateStart + 5 * 24 * 60 * 60; // lasts 5 days
+const dateEnd = dateStart + 0.2 * 60 * 60 * 24; // lasts 5 days
 const initialSupply = 85000000; // 85 million tokens
 const owner = web3.eth.accounts[0];
 const minContribution = web3.toWei(0.1, 'ether');
@@ -12,7 +12,7 @@ const dayOneMaxContribution = web3.toWei(1, 'ether');
 const rate = 1000; // how many tokens per 1 ETH
 const crowdsaleTokens = web3.toWei(31000, 'ether');
 const tokenName = 'Travelkoin';
-const tokenSymbol = 'Travelkoin';
+const tokenSymbol = 'TKT';
 const tokenDecimals = 18;
 
 module.exports = function (deployer) {

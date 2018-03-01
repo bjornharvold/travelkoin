@@ -10,7 +10,12 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div *ngIf="tx != null" class="form-group">
-                        {{ tx }}
+                        {{ tx | json }}
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div *ngIf="error != null" class="form-group font-red">
+                        {{ error }}
                     </div>
                 </div>
             </div>
