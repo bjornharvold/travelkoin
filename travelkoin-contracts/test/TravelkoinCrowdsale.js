@@ -262,9 +262,9 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
                 });
 
                 it('should reject payments to not whitelisted (from whichever buyers)', async function () {
-                    await this.crowdsale.send(minContribution).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
 
                 it('should reject payments to addresses removed from whitelist', async function () {
@@ -298,9 +298,9 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
                 });
 
                 it('should reject payments to not whitelisted (with whichever buyers)', async function () {
-                    await this.crowdsale.send(minContribution).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
 
                 it('should reject payments to addresses removed from whitelist', async function () {
