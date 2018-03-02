@@ -19,7 +19,7 @@ import TransactionResult = W3.TX.TransactionResult;
 })
 export class TokenSaleComponent implements OnInit, OnDestroy {
     private alive = true;
-    accounts: string[];
+    accounts: Array<string>;
     provider: string;
     dto: TokenPurchase;
     currentAccountBalanceWei: BigNumber;
@@ -29,6 +29,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     status = null;
     error = null;
     hasStarted = false;
+    claimed = false;
     hasEnded = false;
     loading = false;
     isWhitelisted = false;
@@ -42,7 +43,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getMaxContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
+        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true && this.hasStarted === true) {
             this.tokenContractService.howMuchCanIContributeNow(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((maxLimit: BigNumber) => {
@@ -79,7 +80,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getMinContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
+        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true && this.hasStarted === true) {
             this.tokenContractService.minContribution()
                 .takeWhile(() => this.alive)
                 .subscribe((minLimit: BigNumber) => {
@@ -205,6 +206,31 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     }
 
+    withdrawTokens(): void {
+        this.loading = true;
+        this.error = null;
+        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
+
+        this.tokenContractService.withdrawTokens(this.accounts[0])
+            .takeWhile(() => this.alive)
+            .subscribe((tx: TransactionResult) => {
+                    this.transactionLogService.logTransaction(tx);
+                    this.claimed = true;
+                },
+                error => {
+                    this.loading = false;
+                    this.status = null;
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
+                () => {
+                    this.loading = false;
+                    this.status = null;
+                }
+            );
+
+    }
+
     clearErrors(): void {
         this.error = null;
     }
@@ -247,7 +273,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 });
 
             Observable.interval(2000)
-                .takeWhile(() => this.hasEnded === false)
+                .takeWhile(() => this.alive)
                 .subscribe(() => {
                     this.getMaxContribution();
                     this.getMinContribution();

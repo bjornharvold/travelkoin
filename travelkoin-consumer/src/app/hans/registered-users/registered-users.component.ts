@@ -9,11 +9,10 @@ import {User} from '../../model/user';
 })
 export class RegisteredUsersComponent implements OnInit, OnDestroy {
     private alive = true;
-    limit: number = 25;
     list: Array<User> = [];
 
     private listUsers(): void {
-        this.userService.list(this.limit, false, false, false)
+        this.userService.listRegistered()
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;

@@ -368,12 +368,16 @@
     "TH": "Thai"
   },
   "HANS": {
+    "WHITELIST": {
+      "ADD_APPROVED_TO_WHITELIST": "Add approved users to whitelist"
+    },
     "USERS": {
       "TITLE": "Users",
       "DESCRIPTION": "Approve and whitelist users here.",
       "BLOCK": "Block",
       "UNBLOCK": "Re-enable",
       "APPROVE": "Approve",
+      "WHITELISTED": "Whitelisted",
       "UPLOADED_DOCUMENT": "Uploaded document",
       "NO_RECORDS": "No users in this category",
       "NO_IMAGES_UPLOADED": "No images have been submitted by this user",
@@ -394,16 +398,16 @@
     "TOKEN_SALE": "Token sale",
     "WAITING_ON_APPROVAL": "You are not yet whitelisted.",
     "EVENT_HAS_STARTED": "Event has started.",
-    "WHITELISTED": "Whitelisted",
+    "WHITELISTED": "You have been whitelisted",
     "SALE_ENDED": "Sale complete",
-    "CLAIM_YOUR_TOKENS": "Claim your tokens",
+    "CLAIM_YOUR_TOKENS": "Click here to claim your tokens",
     "CURRENT_BALANCE": "Balance",
     "CLEAR": "Clear",
     "STARTS_AT": "Event starts on",
     "ERROR_AMOUNT_REQUIRED": "Amount cannot be empty",
     "ERROR_MIN_CONTRIBUTION": "Minimum contribution is:",
     "ERROR_MAX_CONTRIBUTION": "Your maximum contribution right now is:",
-    "INITIATING_TRANSACTION": "'Initiating transaction... (please wait)'",
+    "INITIATING_TRANSACTION": "'Initiating transaction...'",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
@@ -506,5 +510,6 @@
     }
   },
   "BUTTON_SAVE": "Save",
+  "BUTTON_ADD": "Add",
   "END": "End"
 }

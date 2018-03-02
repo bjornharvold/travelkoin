@@ -1,24 +1,21 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ImprovedMultimedia} from '../../model/improved-multimedia';
-import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
+import {UserService} from '../../core/user.service';
 
 @Component({
-  selector: 'app-hans-blocked-users',
-  templateUrl: './blocked-users.component.html',
-  styleUrls: ['./blocked-users.component.scss']
+  selector: 'app-hans-whitelisted-users',
+  templateUrl: './whitelisted-users.component.html',
+  styleUrls: ['./whitelisted-users.component.scss']
 })
-export class BlockedUsersComponent implements OnInit, OnDestroy {
+export class WhitelistedUsersComponent implements OnInit, OnDestroy {
     private alive = true;
-    @Input() approved = false;
-    @Input() submittedDocuments = false;
-    @Input() blocked = false;
     list: Array<User> = [];
     openModalButtonClicked = false;
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listBlocked()
+        this.userService.listWhitelisted()
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;
@@ -37,8 +34,7 @@ export class BlockedUsersComponent implements OnInit, OnDestroy {
 
     toggleBlockUser(index: number): void {
         const user: User = this.list[index];
-        user.blocked = !user.blocked;
-        this.userService.update(user.uid, user);
+        this.userService.toggleBlockUser(user);
     }
 
     ngOnDestroy() {

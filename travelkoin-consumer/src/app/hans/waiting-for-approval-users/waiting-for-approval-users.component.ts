@@ -11,13 +11,12 @@ import {MandrillService} from '../../core/mandrill.service';
 })
 export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
     private alive = true;
-    limit: number = 25;
     list: Array<User> = [];
     openModalButtonClicked = false;
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.list(this.limit, false, true, false)
+        this.userService.listRegistered()
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;

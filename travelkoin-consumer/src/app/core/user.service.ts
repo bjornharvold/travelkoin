@@ -17,6 +17,16 @@ export class UserService {
         return result;
     }
 
+    private list(approved: boolean, submittedDocuments: boolean, blocked: boolean, whitelisted: boolean): Observable<Array<User> | null> {
+        return this.afs.collection<User>('users', ref => ref
+            .where('approved', '==', approved)
+            .where('blocked', '==', blocked)
+            .where('submitted', '==', submittedDocuments)
+            .where('whitelisted', '==', whitelisted)
+            .orderBy('email'))
+            .valueChanges().map((users: Array<User>) => UserService.deserializeUsers(users));
+    }
+
     toggleBlockUser(user: User): void {
         user.blocked = !user.blocked;
         this.update(user.uid, user);
@@ -27,14 +37,20 @@ export class UserService {
         return this.update(user.uid, user);
     }
 
-    list(limit: number, approved: boolean, submittedDocuments: boolean, blocked: boolean): Observable<Array<User> | null> {
-        return this.afs.collection<User>('users', ref => ref
-                .where('approved', '==', approved)
-                .where('blocked', '==', blocked)
-                .where('submitted', '==', submittedDocuments)
-                .orderBy('email')
-                .limit(limit))
-                .valueChanges().map((users: Array<User>) => UserService.deserializeUsers(users));
+    listWhitelisted(): Observable<Array<User> | null> {
+        return this.list(true, true, false, true);
+    }
+
+    listApproved(): Observable<Array<User> | null> {
+        return this.list(true, true, false, false);
+    }
+
+    listRegistered(): Observable<Array<User> | null> {
+        return this.list(false, true, false, false);
+    }
+
+    listBlocked(): Observable<Array<User> | null> {
+        return this.list(true, true, false, false);
     }
 
     get(id: string): Observable<User | null> {

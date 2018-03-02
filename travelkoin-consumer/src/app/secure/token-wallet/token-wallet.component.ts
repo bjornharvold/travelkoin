@@ -2,8 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
-import {DateService} from '../../core/date.service';
-import * as moment from 'moment';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 
@@ -22,7 +20,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     claimed = false;
     status: string = null;
     error = null;
-    balance: string = null;
+    balance: string = "0";
 
     /**
      * This is the user's current investment in the crowdsale
@@ -33,8 +31,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balances(this.account)
                 .takeWhile(() => this.alive)
                 .subscribe((stake: BigNumber) => {
-                        this.claimed = false;
-                        this.balance = this.web3Service.weiToEther(stake).toFormat();
+                        if (stake.greaterThan(0)) {
+                            this.claimed = false;
+                            this.balance = this.web3Service.weiToEther(stake).toFormat();
+                        }
                     },
                     error => {
                         this.loading = false;
@@ -55,8 +55,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balanceOf(this.account)
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
-                        this.claimed = true;
-                        this.balance = balance.div(1000000000000000).toFormat();
+                        if (balance.greaterThan(0)) {
+                            this.claimed = true;
+                            this.balance = balance.div(1000000000000000).toFormat();
+                        }
                     },
                     error => {
                         this.loading = false;
@@ -115,11 +117,11 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe(() => {
                 this.retrieveAccounts();
 
-                if (this.hasStarted === true && this.hasEnded === false) {
+                if (this.hasStarted === true || this.hasEnded === true && this.claimed === false) {
                     this.crowdsaleBalance();
                 }
 
-                if (this.hasStarted === true && this.hasEnded === true) {
+                if (this.hasEnded === true) {
                     this.tokenBalance();
                 }
             });

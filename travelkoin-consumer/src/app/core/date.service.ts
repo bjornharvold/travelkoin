@@ -232,8 +232,8 @@ export class DateService {
     static isSame(moment1: moment.Moment, moment2: moment.Moment): boolean {
         let result = false;
 
-        if (moment1 && moment2) {
-            result = moment1.isSame(moment2, 'day');
+        if (moment1 != null && moment2 != null) {
+            result = moment1.isSame(moment2);
         }
 
         return result;
@@ -242,8 +242,8 @@ export class DateService {
     static isBefore(moment1: moment.Moment, moment2: moment.Moment): boolean {
         let result = false;
 
-        if (moment1 && moment2) {
-            result = moment1.isBefore(moment2, 'day');
+        if (moment1 != null && moment2 != null) {
+            result = moment1.isBefore(moment2);
         }
 
         return result;
@@ -252,8 +252,8 @@ export class DateService {
     static isAfter(moment1: moment.Moment, moment2: moment.Moment): boolean {
         let result = false;
 
-        if (moment1 && moment2) {
-            result = moment1.isAfter(moment2, 'day');
+        if (moment1 != null && moment2 != null) {
+            result = moment1.isAfter(moment2);
         }
 
         return result;
@@ -262,8 +262,8 @@ export class DateService {
     static isSameOrBefore(moment1: moment.Moment, moment2: moment.Moment): boolean {
         let result = false;
 
-        if (moment1 && moment2) {
-            result = moment1.isSameOrBefore(moment2, 'day');
+        if (moment1 != null && moment2 != null) {
+            result = moment1.isSameOrBefore(moment2);
         }
 
         return result;
@@ -272,8 +272,8 @@ export class DateService {
     static isSameOrAfter(moment1: moment.Moment, moment2: moment.Moment): boolean {
         let result = false;
 
-        if (moment1 && moment2) {
-            result = moment1.isSameOrAfter(moment2, 'day');
+        if (moment1 != null && moment2 != null) {
+            result = moment1.isSameOrAfter(moment2);
         }
 
         return result;

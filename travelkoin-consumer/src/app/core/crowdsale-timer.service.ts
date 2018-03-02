@@ -23,7 +23,7 @@ export class CrowdsaleTimerService {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const startDate: moment.Moment = DateService.bigNumberToMoment(startTime);
 
-                    if (DateService.isSameOrAfter(startDate, now)) {
+                    if (DateService.isSameOrAfter(now, startDate)) {
                         this.hasStarted = true;
                     }
                     this.hasStartedEvent.emit(this.hasStarted);
@@ -44,6 +44,7 @@ export class CrowdsaleTimerService {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const endDate = DateService.bigNumberToMoment(endTime);
 
+                    // console.log(`now: ${now.format()} - endDate: ${endDate.format()}`);
                     if (DateService.isAfter(now, endDate)) {
                         this.hasEnded = true;
                         // console.log(`hasEnded ${this.hasEnded} on ${endDate.format()}`);

@@ -32,6 +32,7 @@ export class UserSessionService {
         newUser.approved = false;
         newUser.blocked = false;
         newUser.submitted = false;
+        newUser.whitelisted = false;
 
         return this.userService.set(newUser.uid, newUser)
             .map(() => newUser);

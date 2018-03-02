@@ -23,6 +23,12 @@
         </ng-template>
     </ngb-tab>
     <ngb-tab>
+        <ng-template ngbTabTitle>{{ 'HANS.USERS.WHITELISTED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+            <app-hans-whitelisted-users></app-hans-whitelisted-users>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
         <ng-template ngbTabTitle>{{ 'HANS.USERS.BLOCKED' | translate }}</ng-template>
         <ng-template ngbTabContent>
             <app-hans-blocked-users></app-hans-blocked-users>
