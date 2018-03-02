@@ -25,10 +25,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="users != null">
                     <div class="col">
                         <div class="form-group">
-                            <button type="button" class="btn btn-info" (click)="addUsersToWhitelist()">{{ 'BUTTON_ADD' | translate }}</button>
+                            <button type="button" class="btn btn-info" (click)="addUsersToWhitelist()" [disabled]="users.length === 0">{{ 'BUTTON_ADD' | translate }}: {{ users.length }}</button>
                         </div>
                     </div>
                 </div>

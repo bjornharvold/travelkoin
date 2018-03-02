@@ -50,7 +50,7 @@ export class UserService {
     }
 
     listBlocked(): Observable<Array<User> | null> {
-        return this.list(true, true, false, false);
+        return this.list(true, true, true, false);
     }
 
     get(id: string): Observable<User | null> {
