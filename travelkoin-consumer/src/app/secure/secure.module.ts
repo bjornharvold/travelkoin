@@ -9,6 +9,9 @@ import {FormsComponent} from './forms/forms.component';
 import {TokenSaleComponent} from './token-sale/token-sale.component';
 import {TokenWalletComponent} from './token-wallet/token-wallet.component';
 import {SmartContractComponent} from './smart-contract/smart-contract.component';
+import { TokenSaleEndedComponent } from './token-sale-ended/token-sale-ended.component';
+import { UserStatusComponent } from './user-status/user-status.component';
+import { TokenSaleNotStartedComponent } from './token-sale-not-started/token-sale-not-started.component';
 
 @NgModule({
     imports: [
@@ -23,7 +26,10 @@ import {SmartContractComponent} from './smart-contract/smart-contract.component'
         FormsComponent,
         TokenSaleComponent,
         TokenWalletComponent,
-        SmartContractComponent
+        SmartContractComponent,
+        TokenSaleEndedComponent,
+        UserStatusComponent,
+        TokenSaleNotStartedComponent
     ]
 })
 export class SecureModule {

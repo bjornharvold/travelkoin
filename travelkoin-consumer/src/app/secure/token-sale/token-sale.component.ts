@@ -2,15 +2,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenPurchase} from '../../model/TokenPurchase';
 import {FormGroup} from '@angular/forms';
-import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
-import {DateService} from '../../core/date.service';
 import {W3} from 'soltsice';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {TransactionLogService} from '../../core/transaction-log.service';
 import TransactionResult = W3.TX.TransactionResult;
+import {AccountsService} from '../../core/accounts.service';
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -25,14 +24,9 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     currentAccountBalanceWei: BigNumber;
     currentAccountBalanceEther: BigNumber = new BigNumber(0);
     form: FormGroup;
-    startDate: moment.Moment;
     status = null;
     error = null;
-    hasStarted = false;
-    claimed = false;
-    hasEnded = false;
     loading = false;
-    isWhitelisted = false;
     maxContribution = null;
     minContribution = null;
 
@@ -43,7 +37,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getMaxContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true && this.hasStarted === true) {
+        if (this.accounts != null && this.accounts.length > 0) {
             this.tokenContractService.howMuchCanIContributeNow(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((maxLimit: BigNumber) => {
@@ -62,25 +56,8 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         }
     }
 
-    private whitelist(): void {
-        if (this.accounts != null && this.accounts.length > 0) {
-            this.tokenContractService.whitelist(this.accounts[0])
-                .takeWhile(() => this.alive)
-                .subscribe((isWhitelisted: boolean) => {
-                        // console.log(`isWhitelisted: ${isWhitelisted}`);
-                        this.isWhitelisted = isWhitelisted;
-                    }, error => {
-                        console.error(error);
-                        this.error = 'CODE.ERROR';
-                    },
-                    () => {
-                    }
-                )
-        }
-    }
-
     private getMinContribution(): void {
-        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true && this.hasStarted === true) {
+        if (this.accounts != null && this.accounts.length > 0) {
             this.tokenContractService.minContribution()
                 .takeWhile(() => this.alive)
                 .subscribe((minLimit: BigNumber) => {
@@ -100,7 +77,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     }
 
     private getAccountBalance(): void {
-        if (this.accounts != null && this.accounts.length > 0 && this.isWhitelisted === true) {
+        if (this.accounts != null && this.accounts.length > 0) {
             this.web3Service.getAccountBalance(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: any) => {
@@ -128,48 +105,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
         if (accounts != null && this.dto.account !== accounts[0]) {
             this.dto.account = accounts[0];
             this.dto.populateFormValues(this.form);
-        }
-    }
-
-    /**
-     * Save start time
-     */
-    private displayStartTime(): void {
-        this.tokenContractService.startTime()
-            .takeWhile(() => this.alive)
-            .subscribe((startTime: BigNumber) => {
-                    this.startDate = DateService.bigNumberToMoment(startTime);
-                    // console.log(this.startDate.format());
-                }, error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            )
-    }
-
-    private retrieveAccounts(): void {
-        if (this.provider == null) {
-            this.error = 'CODE.NOT_CONNECTED';
-        } else {
-            this.web3Service.getAccounts()
-                .takeWhile(() => this.alive)
-                .subscribe((accounts) => {
-                        if (accounts == null || accounts.length === 0) {
-                            this.error = 'CODE.PROVIDER_LOG_IN';
-                        } else {
-                            this.accounts = accounts;
-                            this.initFormGroup(this.accounts);
-                        }
-                    },
-                    error => {
-                        console.error(error);
-                        this.error = 'CODE.ERROR';
-                    },
-                    () => {
-                    }
-                );
         }
     }
 
@@ -206,31 +141,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     }
 
-    withdrawTokens(): void {
-        this.loading = true;
-        this.error = null;
-        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
-
-        this.tokenContractService.withdrawTokens(this.accounts[0])
-            .takeWhile(() => this.alive)
-            .subscribe((tx: TransactionResult) => {
-                    this.transactionLogService.logTransaction(tx);
-                    this.claimed = true;
-                },
-                error => {
-                    this.loading = false;
-                    this.status = null;
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                    this.loading = false;
-                    this.status = null;
-                }
-            );
-
-    }
-
     clearErrors(): void {
         this.error = null;
     }
@@ -242,34 +152,24 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.web3Service.isConnected()) {
-            this.provider = this.web3Service.getProviderName();
 
-            this.displayStartTime();
+            if (this.web3Service.getProviderName() == null) {
+                this.error = 'CODE.NOT_CONNECTED';
+            } else {
+                this.provider = this.web3Service.getProviderName();
+            }
 
             this.form = new FormGroup({});
 
-            // listen to events
-            this.crowdsaleTimerService.hasStartedEvent
+            this.accountsService.accountsUpdatedEvent
                 .takeWhile(() => this.alive)
-                .subscribe((started: boolean) => {
-                    this.hasStarted = started;
-                });
-
-            this.crowdsaleTimerService.hasEndedEvent
-                .takeWhile(() => this.alive)
-                .subscribe((ended: boolean) => {
-                    this.hasEnded = ended;
-                });
-
-            this.crowdsaleTimerService.errorEvent
-                .takeWhile(() => this.alive)
-                .subscribe((error: string) => this.error = error);
-
-
-            Observable.interval(1500)
-                .takeWhile(() => this.alive)
-                .subscribe(() => {
-                    this.retrieveAccounts();
+                .subscribe((accounts: Array<string>) => {
+                    if (accounts == null || accounts.length === 0) {
+                        this.error = 'CODE.PROVIDER_LOG_IN';
+                    } else {
+                        this.accounts = accounts;
+                        this.initFormGroup(this.accounts);
+                    }
                 });
 
             Observable.interval(2000)
@@ -278,7 +178,6 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     this.getMaxContribution();
                     this.getMinContribution();
                     this.getAccountBalance();
-                    this.whitelist();
                 });
         } else {
             this.status = 'CODE.NOT_LOGGED_IN';
@@ -288,6 +187,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
+                private accountsService: AccountsService,
                 private crowdsaleTimerService: CrowdsaleTimerService,
                 private transactionLogService: TransactionLogService) {
     }

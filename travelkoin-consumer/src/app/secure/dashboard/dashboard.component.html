@@ -2,7 +2,6 @@
     <div id="page-title">
         <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
         <p>{{ 'DASHBOARD.DESCRIPTION' | translate }}</p>
-        <p *ngIf="user.approved === false"><span class="label label-info">{{ 'DASHBOARD.WAITING_FOR_APPROVAL' | translate }}</span></p>
     </div>
 
     <div class="row">
@@ -11,9 +10,21 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="accounts != null && isWhitelisted === false || user.blocked === true">
+        <div class="col-sm-12">
+            <app-secure-user-status [blocked]="user.blocked" [whitelisted]="isWhitelisted" [account]="accounts[0]"></app-secure-user-status>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isWhitelisted === true && hasStarted === true && hasEnded === false">
         <div class="col-sm-12">
             <app-secure-token-sale></app-secure-token-sale>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="hasEnded === true">
+        <div class="col-sm-12">
+            <app-secure-token-sale-ended></app-secure-token-sale-ended>
         </div>
     </div>
 

@@ -5,6 +5,9 @@ import {BigNumber} from 'bignumber.js';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {AccountsService} from '../../core/accounts.service';
+import {W3} from 'soltsice';
+import TransactionResult = W3.TX.TransactionResult;
+import {TransactionLogService} from '../../core/transaction-log.service';
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -70,6 +73,31 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         }
     }
 
+    withdrawTokens(): void {
+        this.loading = true;
+        this.error = null;
+        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
+
+        this.tokenContractService.withdrawTokens(this.accounts[0])
+            .takeWhile(() => this.alive)
+            .subscribe((tx: TransactionResult) => {
+                    this.transactionLogService.logTransaction(tx);
+                    this.claimed = true;
+                },
+                error => {
+                    this.loading = false;
+                    this.status = null;
+                    console.error(error);
+                    this.error = 'CODE.ERROR';
+                },
+                () => {
+                    this.loading = false;
+                    this.status = null;
+                }
+            );
+
+    }
+
     ngOnDestroy() {
         this.alive = false;
     }
@@ -118,6 +146,7 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
                 private accountsService: AccountsService,
-                private crowdsaleTimerService: CrowdsaleTimerService) {
+                private crowdsaleTimerService: CrowdsaleTimerService,
+                private transactionLogService: TransactionLogService) {
     }
 }
