@@ -50,6 +50,8 @@ import { NewsComponent } from './home/news/news.component';
 import { FaqComponent } from './faq/faq.component';
 import { FaqHeaderComponent } from './faq/faq-header/faq-header.component';
 import { FaqDetailsComponent } from './faq/faq-details/faq-details.component';
+import { EventFinishedComponent } from './home/event-finished/event-finished.component';
+import {EventCountdownComponent} from './home/event-countdown/event-countdown.component';
 
 /**
  * In case the key cannot be found in the translation file
@@ -143,6 +145,7 @@ const prop: IShareButtons = {
         MailchimpComponent,
         HomeComponent,
         CountdownComponent,
+        EventCountdownComponent,
         TermsComponent,
         PrivacyComponent,
         TeamComponent,
@@ -151,7 +154,8 @@ const prop: IShareButtons = {
         NewsComponent,
         FaqComponent,
         FaqHeaderComponent,
-        FaqDetailsComponent
+        FaqDetailsComponent,
+        EventFinishedComponent
     ],
     bootstrap: [
         AppComponent

@@ -4,6 +4,7 @@ import {UserSessionService} from '../../core/user-session.service';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {AccountsService} from '../../core/accounts.service';
 import {TokenContractService} from '../../core/token-contract.service';
+import {Web3Service} from '../../core/web3.service';
 
 @Component({
     selector: 'app-secure-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     isWhitelisted = false;
+    provider: string = null;
 
     ngOnDestroy() {
         this.alive = false;
@@ -39,6 +41,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        if (this.web3Service.getProviderName() != null) {
+            this.provider = this.web3Service.getProviderName();
+            console.log(`Found ${this.provider}`);
+        } else {
+            console.error('Missing web3 provider. Please use MetaMask / Mist / Parity');
+        }
+
         this.accountsService.accountsUpdatedEvent
             .takeWhile(() => this.alive)
             .subscribe((accounts: Array<string>) => {
@@ -77,6 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     constructor(private readonly userSessionService: UserSessionService,
                 private readonly accountsService: AccountsService,
+                private readonly web3Service: Web3Service,
                 private readonly tokenContractService: TokenContractService,
                 private readonly crowdsaleTimerService: CrowdsaleTimerService) {
     }

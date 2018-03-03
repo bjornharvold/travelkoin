@@ -12,6 +12,8 @@ import {SmartContractComponent} from './smart-contract/smart-contract.component'
 import { TokenSaleEndedComponent } from './token-sale-ended/token-sale-ended.component';
 import { UserStatusComponent } from './user-status/user-status.component';
 import { TokenSaleNotStartedComponent } from './token-sale-not-started/token-sale-not-started.component';
+import { MissingProviderComponent } from './missing-provider/missing-provider.component';
+import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
 
 @NgModule({
     imports: [
@@ -29,7 +31,9 @@ import { TokenSaleNotStartedComponent } from './token-sale-not-started/token-sal
         SmartContractComponent,
         TokenSaleEndedComponent,
         UserStatusComponent,
-        TokenSaleNotStartedComponent
+        TokenSaleNotStartedComponent,
+        MissingProviderComponent,
+        NotLoggedInComponent
     ]
 })
 export class SecureModule {

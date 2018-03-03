@@ -30,8 +30,8 @@ export class CrowdsaleTimerService {
 
                     // console.log(this.startDate.format());
                 }, error => {
-                    console.error(error);
-                    this.errorEvent.emit('CODE.ERROR');
+                    // console.error(error);
+                    this.errorEvent.emit(error);
                 },
                 () => {
                 }
@@ -53,8 +53,8 @@ export class CrowdsaleTimerService {
                     this.hasEndedEvent.emit(this.hasEnded);
                     // console.log(this.endDate.format());
                 }, error => {
-                    console.error(error);
-                    this.errorEvent.emit('CODE.ERROR');
+                    // console.error(error);
+                    this.errorEvent.emit(error);
                 },
                 () => {
                 }

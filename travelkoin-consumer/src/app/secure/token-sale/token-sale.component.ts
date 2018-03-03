@@ -8,8 +8,8 @@ import {W3} from 'soltsice';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {TransactionLogService} from '../../core/transaction-log.service';
-import TransactionResult = W3.TX.TransactionResult;
 import {AccountsService} from '../../core/accounts.service';
+import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -153,11 +153,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
         if (this.web3Service.isConnected()) {
 
-            if (this.web3Service.getProviderName() == null) {
-                this.error = 'CODE.NOT_CONNECTED';
-            } else {
-                this.provider = this.web3Service.getProviderName();
-            }
+            this.provider = this.web3Service.getProviderName();
 
             this.form = new FormGroup({});
 

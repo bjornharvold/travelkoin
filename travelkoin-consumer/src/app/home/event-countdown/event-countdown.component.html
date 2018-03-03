@@ -1,0 +1,13 @@
+<div *ngIf="hasStarted === true && hasEnded === false">
+    <h3 class="p-title">
+        <span>{{ 'HOME.COUNTDOWN.HEADER_STARTED' | translate }}</span>
+    </h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 center-div">
+                <app-timer [countdownTimeInMilliseconds]="eventEndTimeEpochInMilliseconds" (hasFinishedEvent)="hasFinished()"></app-timer>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,17 +1,19 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {MyTimer} from '../../model/my-timer';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-timer',
     templateUrl: './timer.component.html',
     styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit, OnDestroy {
+export class TimerComponent implements OnInit, OnChanges, OnDestroy {
     private alive = true;
-    @Input() timeInMilliSeconds: number;
+    @Output() hasFinishedEvent: EventEmitter<boolean>;
+    @Input() countdownTimeInMilliseconds: number;
     timer: MyTimer;
 
-    static getSecondsAsDigitalClock(timeInMilliSeconds: number) {
+    private static getSecondsAsDigitalClock(timeInMilliSeconds: number) {
         const now: Date = new Date();
         let futureDate: Date = new Date();
         futureDate.setTime(timeInMilliSeconds);
@@ -34,48 +36,58 @@ export class TimerComponent implements OnInit, OnDestroy {
         return daysString + 'd ' + hoursString + 'h ' + minutesString + 'm ' + secondsString + 's';
     }
 
-    hasFinished() {
-        return this.timer.hasFinished;
+    private tick(): void {
+        // console.log('tick');
+        // console.log(`hasFinished: ${this.timer.hasFinished}`);
+        // console.log(`secondsRemaining: ${this.timer.secondsRemaining}`);
+        Observable.interval(1000)
+            .takeWhile(() => this.alive && !this.timer.hasFinished)
+            .subscribe(() => {
+                this.timer.secondsRemaining--;
+                this.timer.displayTime = TimerComponent.getSecondsAsDigitalClock(this.timer.secondsRemaining);
+                const now = new Date().getTime();
+                // console.log(`secondsRemaining inside: ${this.timer.seconds} vs ${now}`);
+                if (this.timer.seconds < new Date().getTime()) {
+                    // console.log('timer has finished');
+                    this.timer.hasFinished = true;
+                    this.hasFinishedEvent.emit(true);
+                }
+            });
     }
 
-    initTimer() {
-        if (!this.timeInMilliSeconds) {
-            this.timeInMilliSeconds = 0;
-        }
-
+    private initTimer() {
         this.timer = {
-            seconds: this.timeInMilliSeconds,
+            seconds: this.countdownTimeInMilliseconds,
             runTimer: false,
             hasStarted: false,
             hasFinished: false,
-            secondsRemaining: this.timeInMilliSeconds
+            secondsRemaining: this.countdownTimeInMilliseconds,
         };
 
         this.timer.displayTime = TimerComponent.getSecondsAsDigitalClock(this.timer.secondsRemaining);
     }
 
-    startTimer() {
-        if (this.timer != null) {
-            this.timer.hasStarted = true;
-            this.timer.runTimer = true;
-            this.timerTick();
-        }
+    private startTimer() {
+        // console.log('Starting timer');
+        this.initTimer();
+        this.timer.hasStarted = true;
+        this.timer.runTimer = true;
+        this.tick();
+
     }
 
-    timerTick() {
-        setTimeout(() => {
-            if (!this.timer.runTimer) {
-                return;
-            }
-            this.timer.secondsRemaining--;
-            this.timer.displayTime = TimerComponent.getSecondsAsDigitalClock(this.timer.secondsRemaining);
-            if (this.timer.secondsRemaining > 0) {
-                this.timerTick();
-            }
-            else {
-                this.timer.hasFinished = true;
-            }
-        }, 1000);
+    ngOnChanges(changes: SimpleChanges) {
+        // console.log('changes');
+        const countdownTimeInMilliseconds: SimpleChange = changes.countdownTimeInMilliseconds;
+        // console.log(`${countdownTimeInMilliseconds.currentValue}`);
+        // console.log(`${this.countdownTimeInMilliseconds}`);
+        const now = new Date().getTime();
+
+        if (countdownTimeInMilliseconds != null && countdownTimeInMilliseconds.currentValue !== this.countdownTimeInMilliseconds && now < countdownTimeInMilliseconds.currentValue) {
+            this.countdownTimeInMilliseconds = countdownTimeInMilliseconds.currentValue;
+            // console.log('starting timer');
+            this.startTimer()
+        }
     }
 
     ngOnDestroy() {
@@ -83,10 +95,13 @@ export class TimerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.initTimer();
+        if (this.countdownTimeInMilliseconds != null) {
+            // console.log('starting timer');
+            this.startTimer();
+        }
     }
 
     constructor() {
-
+        this.hasFinishedEvent = new EventEmitter<boolean>(true);
     }
 }

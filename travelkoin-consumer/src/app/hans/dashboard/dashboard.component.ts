@@ -16,7 +16,7 @@ import TransactionResult = W3.TX.TransactionResult;
 export class DashboardComponent implements OnInit, OnDestroy {
     private alive = true;
     private accounts: Array<string>;
-    private users: Array<User> = null;
+    users: Array<User> = null;
     error: string = null;
     loading = false;
 

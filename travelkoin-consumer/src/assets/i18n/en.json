@@ -39,7 +39,10 @@
       "ROAD_MAP": "Road map"
     },
     "COUNTDOWN": {
-      "HEADER": "Event starts in"
+      "HEADER": "Event starts in",
+      "HEADER_STARTED": "Event will end in",
+      "HEADER_FINISHED": "Event has finished",
+      "FINISHED": "Thank you for your participation"
     },
     "NEWSLETTER": {
       "HEADER": "Stay in touch",
@@ -400,6 +403,7 @@
     "WAITING_ON_APPROVAL": "Your address has not been whitelisted",
     "EVENT_HAS_STARTED": "Event has started.",
     "WHITELISTED": "You have been whitelisted",
+    "MISSING_PROVIDER": "No provider",
     "SALE_ENDED": "Sale complete",
     "THANK_YOU": "Thank you for your participation",
     "CLAIM_YOUR_TOKENS": "Click here to claim your tokens",
@@ -480,8 +484,8 @@
   },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
-    "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
-    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist and refresh the browser page.",
+    "NOT_LOGGED_IN": "Are you logged into your Ethereum account.",
+    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist.",
     "ERROR": "Unknown error: Check the log."
   },
   "FAQ": {

@@ -10,8 +10,8 @@ export class SecureComponent implements OnInit {
     @ViewChild(TimerComponent) timer: TimerComponent;
 
     ngOnInit() {
-        setTimeout(() => {
-            this.timer.startTimer();
-        }, 1000);
+        // setTimeout(() => {
+        //     this.timer.startTimer();
+        // }, 1000);
     }
 }
