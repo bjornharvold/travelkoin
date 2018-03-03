@@ -1,0 +1,3 @@
+<app-timer [countdownTimeInMilliseconds]="eventStartTimeEpochInMilliseconds" *ngIf="hasStarted === false"></app-timer>
+<app-timer [countdownTimeInMilliseconds]="eventEndTimeEpochInMilliseconds" *ngIf="hasStarted === true && hasEnded === false"></app-timer>
+<h2 class="hero-heading" *ngIf="hasStarted === true && hasEnded === true">{{ 'HOME.COUNTDOWN.FINISHED' | translate }}</h2>

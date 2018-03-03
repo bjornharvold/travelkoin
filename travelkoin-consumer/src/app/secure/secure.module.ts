@@ -14,6 +14,7 @@ import { UserStatusComponent } from './user-status/user-status.component';
 import { TokenSaleNotStartedComponent } from './token-sale-not-started/token-sale-not-started.component';
 import { MissingProviderComponent } from './missing-provider/missing-provider.component';
 import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
+import { SecureTimerComponent } from './secure-timer/secure-timer.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
         UserStatusComponent,
         TokenSaleNotStartedComponent,
         MissingProviderComponent,
-        NotLoggedInComponent
+        NotLoggedInComponent,
+        SecureTimerComponent
     ]
 })
 export class SecureModule {

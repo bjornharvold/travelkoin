@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {TimerComponent} from '../../shared/timer/timer.component';
+import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-secure',
@@ -7,11 +7,9 @@ import {TimerComponent} from '../../shared/timer/timer.component';
     styleUrls: ['./secure.component.scss']
 })
 export class SecureComponent implements OnInit {
-    @ViewChild(TimerComponent) timer: TimerComponent;
+
 
     ngOnInit() {
-        // setTimeout(() => {
-        //     this.timer.startTimer();
-        // }, 1000);
+
     }
 }
