@@ -5,10 +5,17 @@ export class TokenPurchase {
     private minContribution: number;
     private maxContribution: number;
     amount: number;
+    account: string;
 
     populateFormValues(form: FormGroup): void {
         FormHelper.addOrReplaceFormControl(form, 'account', new FormControl({value: this.account, disabled: true}, Validators.required));
-        FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}));
+
+        if (this.amount != null && form.get('amount').value !== this.amount) {
+            FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: this.amount, disabled: false}));
+        } else {
+            FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}));
+        }
+
     }
 
     updateContributionValidator(formGroup: FormGroup, minContribution: number, maxContribution: number): void {
@@ -31,6 +38,6 @@ export class TokenPurchase {
         }
     }
 
-    constructor(public readonly account: string) {
+    constructor() {
     }
 }

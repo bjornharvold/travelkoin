@@ -23,15 +23,38 @@ export class CrowdsaleTimerService {
                     const now: moment.Moment = DateService.getInstanceOfNow();
                     const startDate: moment.Moment = DateService.bigNumberToMoment(startTime);
 
-                    if (DateService.isSameOrAfter(startDate, now)) {
+                    if (DateService.isSameOrAfter(now, startDate)) {
                         this.hasStarted = true;
                     }
                     this.hasStartedEvent.emit(this.hasStarted);
 
                     // console.log(this.startDate.format());
                 }, error => {
-                    console.error(error);
-                    this.errorEvent.emit('CODE.ERROR');
+                    // console.error(error);
+                    this.errorEvent.emit(error);
+                },
+                () => {
+                }
+            )
+    }
+
+    private checkForEndTime(): void {
+        this.tokenContractService.endTime()
+            .subscribe((endTime: BigNumber) => {
+                    const now: moment.Moment = DateService.getInstanceOfNow();
+                    const endDate = DateService.bigNumberToMoment(endTime);
+
+                    // console.log(`now: ${now.format()} - endDate: ${endDate.format()}`);
+                    if (DateService.isAfter(now, endDate)) {
+                        this.hasEnded = true;
+                        // console.log(`hasEnded ${this.hasEnded} on ${endDate.format()}`);
+                    }
+
+                    this.hasEndedEvent.emit(this.hasEnded);
+                    // console.log(this.endDate.format());
+                }, error => {
+                    // console.error(error);
+                    this.errorEvent.emit(error);
                 },
                 () => {
                 }
@@ -42,24 +65,18 @@ export class CrowdsaleTimerService {
      * Save end time
      */
     private endTime(): void {
-        this.tokenContractService.endTime()
-            .subscribe((endTime: BigNumber) => {
-                    const now: moment.Moment = DateService.getInstanceOfNow();
-                    const endDate = DateService.bigNumberToMoment(endTime);
+        // first check if cap has been reached - then check the time
+        this.tokenContractService.capReached()
+            .subscribe((capReached: boolean) => {
+                // console.log(capReached);
+                if (capReached === true) {
+                    this.hasEnded = true;
 
-                    if (DateService.isAfter(endDate, now)) {
-                        this.hasEnded = true;
-                    }
-
-                    this.hasStartedEvent.emit(this.hasStarted);
-                    // console.log(this.endDate.format());
-                }, error => {
-                    console.error(error);
-                    this.errorEvent.emit('CODE.ERROR');
-                },
-                () => {
+                    this.hasEndedEvent.emit(this.hasEnded);
+                } else {
+                    this.checkForEndTime();
                 }
-            )
+            });
     }
 
     constructor(private tokenContractService: TokenContractService) {

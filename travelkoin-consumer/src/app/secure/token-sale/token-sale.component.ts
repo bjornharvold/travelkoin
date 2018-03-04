@@ -2,15 +2,15 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenPurchase} from '../../model/TokenPurchase';
 import {FormGroup} from '@angular/forms';
-import * as moment from 'moment';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
-import {DateService} from '../../core/date.service';
 import {W3} from 'soltsice';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {TransactionLogService} from '../../core/transaction-log.service';
+import {AccountsService} from '../../core/accounts.service';
 import TransactionResult = W3.TX.TransactionResult;
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -19,19 +19,15 @@ import TransactionResult = W3.TX.TransactionResult;
 })
 export class TokenSaleComponent implements OnInit, OnDestroy {
     private alive = true;
-    accounts: string[];
+    accounts: Array<string>;
     provider: string;
     dto: TokenPurchase;
     currentAccountBalanceWei: BigNumber;
-    currentAccountBalanceEther: string = '0';
+    currentAccountBalanceEther: BigNumber = new BigNumber(0);
     form: FormGroup;
-    startDate: moment.Moment;
     status = null;
     error = null;
-    hasStarted = false;
-    hasEnded = false;
     loading = false;
-    isCrowdsaleOpen = false;
     maxContribution = null;
     minContribution = null;
 
@@ -47,7 +43,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 .takeWhile(() => this.alive)
                 .subscribe((maxLimit: BigNumber) => {
                         if (maxLimit != null) {
-                            this.maxContribution = maxLimit.div(1000000000000000000).toNumber();
+                            this.maxContribution = this.web3Service.weiToEther(maxLimit).toNumber();
                             this.updateFormValidators();
                             // console.log(this.maxContribution);
                         }
@@ -67,7 +63,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                 .takeWhile(() => this.alive)
                 .subscribe((minLimit: BigNumber) => {
                         if (minLimit != null) {
-                            this.minContribution = minLimit.div(1000000000000000000).toNumber();
+                            this.minContribution = this.web3Service.weiToEther(minLimit).toNumber();
                             this.updateFormValidators();
                             // console.log(this.minContribution);
                         }
@@ -102,52 +98,14 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     /**
      * This is our form for submitting payment
      */
-    private initFormGroup(): void {
-        if (this.dto == null && this.accounts != null) {
-            this.dto = new TokenPurchase(this.accounts[0]);
-            this.dto.populateFormValues(this.form);
+    private initFormGroup(accounts: Array<string>): void {
+        if (this.dto == null) {
+            this.dto = new TokenPurchase();
         }
-    }
 
-    /**
-     * Save start time
-     */
-    private displayStartTime(): void {
-        this.tokenContractService.startTime()
-            .takeWhile(() => this.alive)
-            .subscribe((startTime: BigNumber) => {
-                    this.startDate = DateService.bigNumberToMoment(startTime);
-                    // console.log(this.startDate.format());
-                }, error => {
-                    console.error(error);
-                    this.error = 'CODE.ERROR';
-                },
-                () => {
-                }
-            )
-    }
-
-    private retrieveAccounts(): void {
-        if (this.provider == null) {
-            this.error = 'CODE.NOT_CONNECTED';
-        } else {
-            this.web3Service.getAccounts()
-                .takeWhile(() => this.alive)
-                .subscribe((accounts) => {
-                        if (accounts == null || accounts.length === 0) {
-                            this.error = 'CODE.PROVIDER_LOG_IN';
-                        } else {
-                            this.accounts = accounts;
-                            this.initFormGroup();
-                        }
-                    },
-                    error => {
-                        console.error(error);
-                        this.error = 'CODE.ERROR';
-                    },
-                    () => {
-                    }
-                );
+        if (accounts != null && this.dto.account !== accounts[0]) {
+            this.dto.account = accounts[0];
+            this.dto.populateFormValues(this.form);
         }
     }
 
@@ -184,6 +142,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     }
 
+    clearErrors(): void {
+        this.error = null;
+    }
+
     ngOnDestroy() {
         this.alive = false;
     }
@@ -191,34 +153,29 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.web3Service.isConnected()) {
-            this.displayStartTime();
+
             this.provider = this.web3Service.getProviderName();
-            this.retrieveAccounts();
 
             this.form = new FormGroup({});
 
-            // listen to events
-            this.crowdsaleTimerService.hasStartedEvent
+            this.accountsService.accountsUpdatedEvent
                 .takeWhile(() => this.alive)
-                .subscribe((started: boolean) => {
-                    this.hasStarted = started;
+                .subscribe((accounts: Array<string>) => {
+                    if (accounts == null || accounts.length === 0) {
+                        this.error = 'CODE.PROVIDER_LOG_IN';
+                    } else {
+                        const equal: Array<string> = _.differenceWith(accounts, this.accounts, _.isEqual);
+
+                        if (equal.length > 0) {
+                            this.accounts = accounts;
+                            this.initFormGroup(this.accounts);
+                        }
+                    }
                 });
-
-            this.crowdsaleTimerService.hasEndedEvent
-                .takeWhile(() => this.alive)
-                .subscribe((ended: boolean) => {
-                    this.hasEnded = ended;
-                });
-
-            this.crowdsaleTimerService.errorEvent
-                .takeWhile(() => this.alive)
-                .subscribe((error: string) => this.error = error);
-
 
             Observable.interval(2000)
-                .takeWhile(() => this.hasStarted === true && this.hasEnded === false)
+                .takeWhile(() => this.alive)
                 .subscribe(() => {
-                    // check for 1 ETH limit time
                     this.getMaxContribution();
                     this.getMinContribution();
                     this.getAccountBalance();
@@ -231,6 +188,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
+                private accountsService: AccountsService,
                 private crowdsaleTimerService: CrowdsaleTimerService,
                 private transactionLogService: TransactionLogService) {
     }

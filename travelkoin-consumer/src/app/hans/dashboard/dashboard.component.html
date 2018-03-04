@@ -1,3 +1,38 @@
 <div id="page-title">
     <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
 </div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <app-shared-transaction-log></app-shared-transaction-log>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="content-box">
+            <h3 class="content-box-header bg-white">
+                <span class="icon-separator">
+                    <i class="fas fa-spinner font-blue fa-fw" [ngClass]="{'fa-spin': loading === true}"></i>
+                </span>
+                {{ 'HANS.WHITELIST.ADD_APPROVED_TO_WHITELIST' | translate }}
+            </h3>
+            <div class="content-box-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div *ngIf="error != null" class="form-group font-red">
+                            {{ error }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="users != null">
+                    <div class="col">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info" (click)="addUsersToWhitelist()" [disabled]="users.length === 0">{{ 'BUTTON_ADD' | translate }}: {{ users.length }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

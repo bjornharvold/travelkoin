@@ -4,26 +4,20 @@
             <i class="fas icon-travelkoin font-blue fa-fw"></i>
         </span>
         {{ 'TOKEN_WALLET.TITLE' | translate }}
-        <div class="header-buttons">
-            <a class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" (click)="claimTokens()" *ngIf="hasEnded === true && stake != null">{{ 'TOKEN_WALLET.CLAIM_TOKENS' | translate }}</a>
-            <span class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" *ngIf="hasStarted === true && hasEnded === false">{{ 'TOKEN_WALLET.SALE_ONGOING' | translate }}</span>
-            <span class="btn btn-sm btn-info no-border" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate" *ngIf="hasStarted === false"><span class="font-white">{{ 'TOKEN_WALLET.WAITING_TO_START' | translate }}</span></span>
-        </div>
     </h3>
-    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasStarted === false && hasEnded === false">
-        <!-- Not yet started -->
-        0 TKT
-    </div>
-    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasStarted === true && hasEnded === false">
-        {{ stake }}
-        <span>TKT</span>
-    </div>
-    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasStarted === false && hasEnded === true">
-        <span *ngIf="balance == null">{{ 'TOKEN_WALLET.YOU_HAVE_PURCHASED' | translate }}: {{ stake }}</span>
-        <span *ngIf="stake == null">{{ 'TOKEN_WALLET.YOU_OWN' | translate }}: {{ balance }}</span>
-        <span>TKT</span>
+    <div class="content-box-wrapper text-center mrg25A font-size-20">
+        {{ balance }}
+        <span>
+            TKT
+            <sup *ngIf="claimed === false && balance != null" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate"><i class="fas fa-asterisk"></i></sup>
+        </span>
     </div>
     <div class="content-box-wrapper text-center mrg25A" *ngIf="status != null">
         <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}
     </div>
+</div>
+
+
+<div class="form-group">
+    <button type="submit" class="btn btn-block btn-blue-alt" (click)="withdrawTokens()" [disabled]="loading === true">{{ 'TOKEN_CONTRACT.CLAIM_YOUR_TOKENS' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
 </div>

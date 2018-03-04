@@ -16,10 +16,8 @@ export const environment = {
     recaptchaAPIKey: '6LdixT0UAAAAABKK2MPtwxtFYr4MOFedXuClPJ_3',
     authTokenName: 'x-auth-token',
     authTokenExpiration: 3600,
-    etherScanApiKey: 'KN8324XYZGIC1E2UKGCH9GY4Q6Q2FBT9MM',
-    featureLogin: true,
-    featureLanguage: true,
-    ethWalletAddress: '0x824f97428e3e23ebf8bb7c732ac7abb56f8c02fc',
+    eventStartTimeEpochInMilliseconds: 1520141391000,
+    eventEndTimeEpochInMilliseconds: 1520141491000,
     siteUrl: 'http://dev.travelkoin.io:8000',
     contracts: {
         TravelkoinToken: '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf',

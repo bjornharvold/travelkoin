@@ -10,6 +10,7 @@ import {RegisteredGuard} from '../core/registered.guard';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
 import {FormsComponent} from './forms/forms.component';
 import {SmartContractComponent} from './smart-contract/smart-contract.component';
+import {HelpComponent} from './help/help.component';
 
 const routes: Routes = [
     {
@@ -36,6 +37,12 @@ const routes: Routes = [
             {
                 path: 'forms',
                 component: FormsComponent,
+                canLoad: [AuthenticatedGuard],
+                canActivate: [AuthenticatedGuard]
+            },
+            {
+                path: 'help',
+                component: HelpComponent,
                 canLoad: [AuthenticatedGuard],
                 canActivate: [AuthenticatedGuard]
             }

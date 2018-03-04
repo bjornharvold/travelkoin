@@ -4,14 +4,14 @@
         <span class="icon-separator">
             <i class="fas fa-spinner font-blue fa-fw" [ngClass]="{'fa-spin': hasStarted === true && hasEnded === false}"></i>
         </span>
-        {{ 'DASHBOARD.GOAL_REACHED' | translate }}
+        {{ 'PROGRESS.GOAL_REACHED' | translate }} <span *ngIf="hasStarted === true && hasEnded === false">({{ 'PROGRESS.ENDS' | translate }}: {{ endTime }})</span>
     </h3>
     <div class="content-box-wrapper text-center font-size-20">
         <ngb-progressbar [value]="value" [max]="max"></ngb-progressbar>
         <p class="text-center font-size-20">{{ valueString }} of {{ maxString }} tokens sold</p>
     </div>
     <div class="content-box-wrapper text-center mrg10A" *ngIf="error != null">
-        <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }}
+        <i class="fas fa-exclamation-circle font-red"></i> {{ error }}
     </div>
 </div>
 

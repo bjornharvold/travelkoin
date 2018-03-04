@@ -11,6 +11,7 @@ import {WaitingForApprovalUsersComponent} from './waiting-for-approval-users/wai
 import {BlockedUsersComponent} from './blocked-users/blocked-users.component';
 import { SmartContractConfigurationComponent } from './smart-contract-configuration/smart-contract-configuration.component';
 import { SmartContractWhitelistComponent } from './smart-contract-whitelist/smart-contract-whitelist.component';
+import { WhitelistedUsersComponent } from './whitelisted-users/whitelisted-users.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { SmartContractWhitelistComponent } from './smart-contract-whitelist/smar
         WaitingForApprovalUsersComponent,
         BlockedUsersComponent,
         SmartContractConfigurationComponent,
-        SmartContractWhitelistComponent
+        SmartContractWhitelistComponent,
+        WhitelistedUsersComponent
     ]
 })
 export class HansModule {

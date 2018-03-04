@@ -7,6 +7,7 @@ export class User {
     ethWalletAddress: string;
     multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
+    whitelisted: boolean;
     submitted: boolean;
     blocked: boolean;
     roles: Array<string>;
@@ -33,6 +34,10 @@ export class User {
             result.approved = dto.approved;
         }
 
+        if (dto.whitelisted != null) {
+            result.whitelisted = dto.whitelisted;
+        }
+
         if (images != null && images.length > 0) {
             result.multimedia = images;
         }
@@ -49,6 +54,7 @@ export class User {
         result.approved = dto.approved;
         result.blocked = dto.blocked;
         result.submitted = dto.submitted;
+        result.whitelisted = dto.whitelisted;
 
         return result;
     }
@@ -84,6 +90,11 @@ export class User {
                 result.approved = obj.approved;
             } else {
                 result.approved = false;
+            }
+            if (obj.whitelisted != null) {
+                result.whitelisted = obj.whitelisted;
+            } else {
+                result.whitelisted = false;
             }
             if (obj.blocked != null) {
                 result.blocked = obj.blocked;

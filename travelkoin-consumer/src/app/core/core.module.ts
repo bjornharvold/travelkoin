@@ -24,6 +24,7 @@ import {TokenContractService} from './token-contract.service';
 import {MandrillService} from './mandrill.service';
 import {TransactionLogService} from './transaction-log.service';
 import {CrowdsaleTimerService} from './crowdsale-timer.service';
+import {AccountsService} from './accounts.service';
 
 @NgModule({
     imports: [
@@ -54,7 +55,8 @@ import {CrowdsaleTimerService} from './crowdsale-timer.service';
         TokenContractService,
         MandrillService,
         TransactionLogService,
-        CrowdsaleTimerService
+        CrowdsaleTimerService,
+        AccountsService
     ]
 })
 export class CoreModule {

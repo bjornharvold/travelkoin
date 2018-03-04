@@ -13,13 +13,12 @@ export class BlockedUsersComponent implements OnInit, OnDestroy {
     @Input() approved = false;
     @Input() submittedDocuments = false;
     @Input() blocked = false;
-    limit: number = 25;
     list: Array<User> = [];
     openModalButtonClicked = false;
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.list(this.limit, true, true, true)
+        this.userService.listBlocked()
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;

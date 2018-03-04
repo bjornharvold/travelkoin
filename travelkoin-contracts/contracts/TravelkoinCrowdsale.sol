@@ -32,10 +32,10 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
 
     // makes sure the user is only sending the amount allowed for any given day
     modifier amountOk(address _beneficiary, uint256 _weiAmount) {
-        if (balances[_beneficiary] + _weiAmount > _howMuchCanXContributeNow(_beneficiary)) {
+        if (_weiAmount > _howMuchCanXContributeNow(_beneficiary)) {
             ExceededAmount(_beneficiary, _weiAmount);
         }
-        require(balances[_beneficiary] + _weiAmount <= _howMuchCanXContributeNow(_beneficiary));
+        require(_weiAmount <= _howMuchCanXContributeNow(_beneficiary));
         _;
     }
 
@@ -72,8 +72,14 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     }
 
     /// @notice How many wei can the msg.sender contribute now.
-    function howMuchCanIContributeNow() view public returns (uint256) {
+    function howMuchCanIContributeNow() view public isWhitelisted(msg.sender) returns (uint256) {
         return _howMuchCanXContributeNow(msg.sender);
+    }
+
+    /// @notice How many 24 hour blocks have elapsed since token sale start
+    /// @return Number of 24 hour blocks elapsed since token sale start starting from 1
+    function getSaleDayNow() view public returns (uint8) {
+        return _getSaleDay(now);
     }
 
     /// @notice How many wei can an Ethereum address contribute now.
@@ -83,23 +89,21 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         // wei to hard cap
         uint256 weiToCap = cap.sub(weiRaised);
 
-        uint8 _saleDay = getSaleDayNow();
-        // limit to 1 ETH for on the first day
+        uint8 _saleDay = _getSaleDay(now);
+        // limit to 1 ETH for the first day
         if (_saleDay == 1) {
 
-            // personal cap is the daily whitelist limit minus the stakes the address already has
-            uint256 weiToPersonalCap = dayOneMaxContribution.sub(balances[_beneficiary]);
-
-            weiToCap = uint256Min(weiToCap, weiToPersonalCap);
+            if (balances[_beneficiary] > 0) {
+                // personal cap is the daily whitelist limit minus the stakes the address already has
+                uint256 tokenAmount = balances[_beneficiary] / rate;
+                uint256 weiToPersonalCap = dayOneMaxContribution - tokenAmount;
+                weiToCap = uint256Min(weiToCap, weiToPersonalCap);
+            } else {
+                weiToCap = uint256Min(weiToCap, dayOneMaxContribution);
+            }
         }
 
         return weiToCap;
-    }
-
-    /// @notice How many 24 hour blocks have ellapsed since token sale start
-    /// @return Number of 24 hour blocks elapsed since token sale start starting from 1
-    function getSaleDayNow() view internal returns (uint8) {
-        return _getSaleDay(now);
     }
 
     /// @notice For a give date how many 24 hour blocks have elapsed since token sale start
@@ -110,11 +114,6 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
     /// @return Number of 24 hour blocks elapsing since token sale start starting from 1
     function _getSaleDay(uint256 _time) view internal returns (uint8) {
         return uint8(_time.sub(openingTime).div(60 * 60 * 24).add(1));
-    }
-
-    /// @notice Minimum between two uint8 numbers
-    function uint8Min(uint8 a, uint8 b) pure internal returns (uint8) {
-        return a > b ? b : a;
     }
 
     /// @notice Minimum between two uint256 numbers

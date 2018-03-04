@@ -1,8 +1,10 @@
 import ether from './helpers/ether';
+import fromWei from './helpers/fromWei';
 import {advanceBlock} from './helpers/advanceToBlock';
 import {duration, increaseTimeTo} from './helpers/increaseTime';
 import latestTime from './helpers/latestTime';
 import EVMRevert from './helpers/EVMRevert';
+import EVMThrow from './helpers/EVMThrow';
 
 
 const BigNumber = web3.BigNumber;
@@ -38,6 +40,7 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
 
     beforeEach(async function () {
         this.openingTime = latestTime() + duration.weeks(1);
+        this.beforeOpeningTime = this.openingTime - duration.hours(1);
         this.openingTimePlusOneDay = this.openingTime + duration.days(1);
         this.closingTime = this.openingTime + duration.weeks(4);
         this.beforeClosingTime = this.closingTime - duration.hours(1);
@@ -71,10 +74,56 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
             await this.crowdsale.addToWhitelist(investor);
         });
 
+        it('should be able to contribute 1 ETH for day one', async function () {
+            await increaseTimeTo(this.openingTime);
+            let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(dayOneMaxContribution);
+            let saleDay = await this.crowdsale.getSaleDayNow({from: investor});
+            saleDay.should.be.bignumber.equal(new BigNumber(1));
+        });
+
+        it('should be able to contribute up to cap after day one', async function () {
+            await increaseTimeTo(this.openingTimePlusOneDay);
+            let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(cap);
+            let saleDay = await this.crowdsale.getSaleDayNow({from: investor});
+            saleDay.should.be.bignumber.equal(new BigNumber(2));
+        });
+
         it('should reject payments of more than 1 ETH on the first day', async function () {
             await increaseTimeTo(this.openingTime);
+            let currentBalance = await this.crowdsale.balances(investor, {from: investor});
+            currentBalance.should.be.bignumber.equal(new BigNumber(0));
+
+            let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            // console.log(`how much can I contribute in ether: ${fromWei(amount).toFormat()}`);
+            amount.should.be.bignumber.equal(dayOneMaxContribution);
+
+            let saleDay = await this.crowdsale.getSaleDayNow({from: investor});
+            saleDay.should.be.bignumber.equal(new BigNumber(1));
+
+            // too much and will fail
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.rejectedWith(EVMRevert);
 
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+            currentBalance = await this.crowdsale.balances(investor, {from: investor});
+            // console.log(`currentBalance in ether: ${fromWei(currentBalance).div(rate).toFormat()}`);
+            currentBalance.should.be.bignumber.equal(minContribution.mul(rate));
+
+            amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            // console.log(`how much can I contribute now in ether: ${fromWei(amount).toFormat()}`);
+            amount.should.be.bignumber.equal(dayOneMaxContribution.sub(minContribution));
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+
+            amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(dayOneMaxContribution.sub(minContribution.mul(2)));
+            await this.crowdsale.buyTokens(investor, {value: amount, from: purchaser2}).should.be.fulfilled;
+
+            amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
+            amount.should.be.bignumber.equal(new BigNumber(0));
+        });
+
+        it('should accept payments of more than 1 ETH after the first day', async function () {
             await increaseTimeTo(this.openingTimePlusOneDay);
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.fulfilled;
         });
@@ -94,23 +143,25 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
         describe('accepting payments', function () {
             beforeEach(async function () {
                 await this.crowdsale.addToWhitelist(investor);
+                await this.crowdsale.addToWhitelist(purchaser);
             });
 
             it('should reject payments before start', async function () {
-                await this.crowdsale.send(value).should.be.rejectedWith(EVMRevert);
-                await this.crowdsale.buyTokens(investor, {from: purchaser, value: value}).should.be.rejectedWith(EVMRevert);
+                await increaseTimeTo(this.beforeOpeningTime);
+                await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMThrow);
+                await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.rejectedWith(EVMThrow);
             });
 
             it('should accept payments after start', async function () {
                 await increaseTimeTo(this.openingTime);
-                await this.crowdsale.send(value).should.be.fulfilled;
-                await this.crowdsale.buyTokens(investor, {value: value, from: purchaser}).should.be.fulfilled;
+                await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.fulfilled;
             });
 
             it('should reject payments after end', async function () {
                 await increaseTimeTo(this.afterClosingTime);
-                await this.crowdsale.send(value).should.be.rejectedWith(EVMRevert);
-                await this.crowdsale.buyTokens(investor, {value: value, from: purchaser}).should.be.rejectedWith(EVMRevert);
+                await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.rejectedWith(EVMRevert);
             });
         });
     });
@@ -118,18 +169,18 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
     describe('is CappedCrowdsale', function () {
         beforeEach(async function () {
             await this.crowdsale.addToWhitelist(investor);
-            await increaseTimeTo(this.openingTime);
+            await this.crowdsale.addToWhitelist(purchaser);
+            await increaseTimeTo(this.openingTimePlusOneDay); // there is a limit on the first day so we can only test cap on second day
         });
 
         describe('accepting payments', function () {
             it('should accept payments within cap', async function () {
-                await this.crowdsale.send(cap.minus(lessThanCap)).should.be.fulfilled;
-                await this.crowdsale.send(lessThanCap).should.be.fulfilled;
+                await this.crowdsale.buyTokens(investor, {value: cap, from: purchaser}).should.be.fulfilled;
             });
 
             it('should reject payments outside cap', async function () {
-                await this.crowdsale.send(cap);
-                await this.crowdsale.send(1).should.be.rejectedWith(EVMRevert);
+                await this.crowdsale.buyTokens(investor, {value: cap, from: purchaser}).should.be.fulfilled;
+                await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.rejectedWith(EVMRevert);
             });
 
             it('should reject payments that exceed cap', async function () {
@@ -141,19 +192,19 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
             it('should not reach cap if sent under cap', async function () {
                 let capReached = await this.crowdsale.capReached();
                 capReached.should.equal(false);
-                await this.crowdsale.send(lessThanCap);
+                await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.fulfilled;
                 capReached = await this.crowdsale.capReached();
                 capReached.should.equal(false);
             });
 
             it('should not reach cap if sent just under cap', async function () {
-                await this.crowdsale.send(cap.minus(1));
+                await this.crowdsale.buyTokens(investor, {value: cap.minus(1), from: purchaser}).should.be.fulfilled;
                 let capReached = await this.crowdsale.capReached();
                 capReached.should.equal(false);
             });
 
             it('should reach cap if cap sent', async function () {
-                await this.crowdsale.send(cap);
+                await this.crowdsale.buyTokens(investor, {value: cap, from: purchaser}).should.be.fulfilled;
                 let capReached = await this.crowdsale.capReached();
                 capReached.should.equal(true);
             });
@@ -163,35 +214,36 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
     describe('is PostDeliveryCrowdsale', function () {
         beforeEach(async function () {
             await this.crowdsale.addToWhitelist(investor);
+            await this.crowdsale.addToWhitelist(purchaser);
         });
 
         it('should not immediately assign tokens to beneficiary', async function () {
             await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: value, from: purchaser});
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
             const balance = await this.token.balanceOf(investor);
             balance.should.be.bignumber.equal(0);
         });
 
         it('should not allow beneficiaries to withdraw tokens before crowdsale ends', async function () {
             await increaseTimeTo(this.beforeClosingTime);
-            await this.crowdsale.buyTokens(investor, {value: value, from: purchaser});
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
             await this.crowdsale.withdrawTokens({from: investor}).should.be.rejectedWith(EVMRevert);
         });
 
         it('should allow beneficiaries to withdraw tokens after crowdsale ends', async function () {
             await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: value, from: purchaser});
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
             await increaseTimeTo(this.afterClosingTime);
             await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
         });
 
         it('should return the amount of tokens bought', async function () {
             await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: value, from: purchaser});
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.fulfilled;
             await increaseTimeTo(this.afterClosingTime);
-            await this.crowdsale.withdrawTokens({from: investor});
+            await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
             const balance = await this.token.balanceOf(investor);
-            balance.should.be.bignumber.equal(value);
+            balance.should.be.bignumber.equal(minContribution.mul(rate));
         });
 
     });
@@ -200,23 +252,24 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
         describe('single user whitelisting', function () {
             beforeEach(async function () {
                 await this.crowdsale.addToWhitelist(purchaser2);
+                await increaseTimeTo(this.openingTime);
             });
 
             describe('accepting payments', function () {
-                it('should accept payments to whitelisted (from whichever buyers)', async function () {
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser2}).should.be.fulfilled;
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser3}).should.be.fulfilled;
+                it('should accept payments to whitelisted', async function () {
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser3}).should.be.fulfilled;
                 });
 
                 it('should reject payments to not whitelisted (from whichever buyers)', async function () {
-                    await this.crowdsale.send(value).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: value, from: purchaser3}).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: value, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
 
                 it('should reject payments to addresses removed from whitelist', async function () {
                     await this.crowdsale.removeFromWhitelist(purchaser2);
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
             });
 
@@ -233,26 +286,27 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
         describe('many user whitelisting', function () {
             beforeEach(async function () {
                 await this.crowdsale.addManyToWhitelist([purchaser2, purchaser4]);
+                await increaseTimeTo(this.openingTime);
             });
 
             describe('accepting payments', function () {
-                it('should accept payments to whitelisted (from whichever buyers)', async function () {
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser2}).should.be.fulfilled;
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser3}).should.be.fulfilled;
-                    await this.crowdsale.buyTokens(purchaser4, {value: value, from: purchaser2}).should.be.fulfilled;
-                    await this.crowdsale.buyTokens(purchaser4, {value: value, from: purchaser3}).should.be.fulfilled;
+                it('should accept payments to whitelisted', async function () {
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser3}).should.be.fulfilled;
+                    await this.crowdsale.buyTokens(purchaser4, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+                    await this.crowdsale.buyTokens(purchaser4, {value: minContribution, from: purchaser3}).should.be.fulfilled;
                 });
 
                 it('should reject payments to not whitelisted (with whichever buyers)', async function () {
-                    await this.crowdsale.send(value).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: value, from: purchaser3}).should.be.rejected;
-                    await this.crowdsale.buyTokens(purchaser3, {value: value, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.send(minContribution).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser3}).should.be.rejectedWith(EVMRevert);
+                    await this.crowdsale.buyTokens(purchaser3, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
 
                 it('should reject payments to addresses removed from whitelist', async function () {
                     await this.crowdsale.removeFromWhitelist(purchaser4);
-                    await this.crowdsale.buyTokens(purchaser2, {value: value, from: purchaser2}).should.be.fulfilled;
-                    await this.crowdsale.buyTokens(purchaser4, {value: value, from: purchaser2}).should.be.rejected;
+                    await this.crowdsale.buyTokens(purchaser2, {value: minContribution, from: purchaser2}).should.be.fulfilled;
+                    await this.crowdsale.buyTokens(purchaser4, {value: minContribution, from: purchaser2}).should.be.rejectedWith(EVMRevert);
                 });
             });
 

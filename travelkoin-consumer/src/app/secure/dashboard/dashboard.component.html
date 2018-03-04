@@ -2,27 +2,62 @@
     <div id="page-title">
         <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
         <p>{{ 'DASHBOARD.DESCRIPTION' | translate }}</p>
-        <p *ngIf="user.approved === false"><span class="label label-info">{{ 'DASHBOARD.WAITING_FOR_APPROVAL' | translate }}</span></p>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <app-shared-transaction-log></app-shared-transaction-log>
+    <div *ngIf="provider == null">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-secure-missing-provider></app-secure-missing-provider>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <app-secure-token-sale></app-secure-token-sale>
+    <div *ngIf="accounts == null">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-secure-not-logged-in></app-secure-not-logged-in>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <app-secure-progress></app-secure-progress>
+    <div *ngIf="provider != null && accounts != null">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-shared-transaction-log></app-shared-transaction-log>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <app-secure-token-wallet></app-secure-token-wallet>
+
+        <div class="row" *ngIf="accounts != null && isWhitelisted === false || user.blocked === true">
+            <div class="col-sm-12">
+                <app-secure-user-status [blocked]="user.blocked" [whitelisted]="isWhitelisted" [account]="accounts[0]"></app-secure-user-status>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="isWhitelisted === true && hasStarted === false && hasEnded === false">
+            <div class="col-sm-12">
+                <app-secure-token-sale-not-started></app-secure-token-sale-not-started>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="isWhitelisted === true && hasStarted === true && hasEnded === false">
+            <div class="col-sm-12">
+                <app-secure-token-sale></app-secure-token-sale>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="hasEnded === true">
+            <div class="col-sm-12">
+                <app-secure-token-sale-ended></app-secure-token-sale-ended>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8" [ngClass]="{'col-sm-8': isWhitelisted === true, 'col-sm-12': isWhitelisted === false}">
+                <app-secure-progress></app-secure-progress>
+            </div>
+            <div class="col-sm-4" *ngIf="isWhitelisted === true">
+                <app-secure-token-wallet></app-secure-token-wallet>
+            </div>
         </div>
     </div>
 </div>

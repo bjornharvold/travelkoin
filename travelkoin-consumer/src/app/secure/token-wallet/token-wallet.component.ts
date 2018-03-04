@@ -2,10 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Web3Service} from '../../core/web3.service';
 import {TokenContractService} from '../../core/token-contract.service';
 import {BigNumber} from 'bignumber.js';
-import {DateService} from '../../core/date.service';
-import * as moment from 'moment';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
+import {AccountsService} from '../../core/accounts.service';
+import {W3} from 'soltsice';
+import TransactionResult = W3.TX.TransactionResult;
+import {TransactionLogService} from '../../core/transaction-log.service';
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -15,28 +17,27 @@ import {Observable} from 'rxjs/Observable';
 export class TokenWalletComponent implements OnInit, OnDestroy {
     private alive = true;
     accounts: string[];
-    account: string;
     hasStarted = false;
     hasEnded = false;
     loading = false;
+    claimed = false;
     status: string = null;
     error = null;
-    stake: string = null;
-    balance: string = null;
-    startDate: moment.Moment;
-    endDate: moment.Moment;
-    nowDate: moment.Moment = DateService.getInstanceOfNow();
+    balance: string = "0";
 
     /**
      * This is the user's current investment in the crowdsale
      */
-    private getUserStakeDuringCrowdsale(): void {
-        if (this.account != null) {
+    private crowdsaleBalance(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
             this.loading = true;
-            this.tokenContractService.stakesPerUser(this.account)
+            this.tokenContractService.balances(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((stake: BigNumber) => {
-                        this.stake = stake.div(1000000000000000).toFormat();
+                        if (stake.greaterThan(0)) {
+                            this.claimed = false;
+                            this.balance = this.web3Service.weiToEther(stake).toFormat();
+                        }
                     },
                     error => {
                         this.loading = false;
@@ -51,13 +52,16 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     /**
      * This is the user's claimed tokens available after the crowdsale
      */
-    private getUserTokens(): void {
-        if (this.account != null) {
+    private tokenBalance(): void {
+        if (this.accounts != null && this.accounts.length > 0) {
             this.loading = true;
-            this.tokenContractService.balanceOf(this.account)
+            this.tokenContractService.balanceOf(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
-                        this.balance = balance.div(1000000000000000).toFormat();
+                        if (balance.greaterThan(0)) {
+                            this.claimed = true;
+                            this.balance = this.web3Service.weiToEther(balance).mul(1000).toFormat();
+                        }
                     },
                     error => {
                         this.loading = false;
@@ -69,23 +73,29 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         }
     }
 
-    /**
-     * Grab the active account from Ethereum provider
-     */
-    private retrieveAccounts(): void {
-        this.web3Service.getAccounts()
+    withdrawTokens(): void {
+        this.loading = true;
+        this.error = null;
+        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
+
+        this.tokenContractService.withdrawTokens(this.accounts[0])
             .takeWhile(() => this.alive)
-            .subscribe((accounts) => {
-                    this.accounts = accounts;
-                    this.account = accounts[0];
+            .subscribe((tx: TransactionResult) => {
+                    this.transactionLogService.logTransaction(tx);
+                    this.claimed = true;
                 },
                 error => {
+                    this.loading = false;
+                    this.status = null;
                     console.error(error);
                     this.error = 'CODE.ERROR';
                 },
                 () => {
+                    this.loading = false;
+                    this.status = null;
                 }
             );
+
     }
 
     ngOnDestroy() {
@@ -93,7 +103,6 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.retrieveAccounts();
 
         this.crowdsaleTimerService.hasStartedEvent
             .takeWhile(() => this.alive)
@@ -107,6 +116,16 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
                 this.hasEnded = ended;
             });
 
+        this.accountsService.accountsUpdatedEvent
+            .takeWhile(() => this.alive)
+            .subscribe((accounts: Array<string>) => {
+                if (accounts != null) {
+                    this.accounts = accounts;
+                } else {
+                    this.error = 'CODE.ERROR';
+                }
+            });
+
         this.crowdsaleTimerService.errorEvent
             .takeWhile(() => this.alive)
             .subscribe((error: string) => this.error = error);
@@ -114,18 +133,20 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
-                if (this.hasStarted === true && this.hasEnded === false) {
-                    this.getUserStakeDuringCrowdsale();
+                if (this.hasStarted === true || this.hasEnded === true && this.claimed === false) {
+                    this.crowdsaleBalance();
                 }
 
-                if (this.hasStarted === true && this.hasEnded === true) {
-                    this.getUserTokens();
+                if (this.hasEnded === true) {
+                    this.tokenBalance();
                 }
             });
     }
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
-                private crowdsaleTimerService: CrowdsaleTimerService) {
+                private accountsService: AccountsService,
+                private crowdsaleTimerService: CrowdsaleTimerService,
+                private transactionLogService: TransactionLogService) {
     }
 }

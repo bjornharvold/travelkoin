@@ -4,7 +4,7 @@ import {TokenContractService} from '../../core/token-contract.service';
 import {FormHelper} from '../../model/form-helper';
 import {DateService} from '../../core/date.service';
 import {Web3Service} from '../../core/web3.service';
-import { BigNumber } from 'bignumber.js';
+import {BigNumber} from 'bignumber.js';
 
 @Component({
     selector: 'app-smart-contract',
@@ -45,7 +45,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.tokenContractService.totalSupply()
             .takeWhile(() => this.alive)
             .subscribe((totalSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'totalSupply', new FormControl({value: this.web3Service.weiToEther(totalSupply), disabled: true}))
+                    FormHelper.addOrReplaceFormControl(form, 'totalSupply', new FormControl({value: totalSupply.toFormat(), disabled: true}))
                 },
                 error => this.error = error,
                 () => {
@@ -89,11 +89,23 @@ export class SmartContractComponent implements OnInit, OnDestroy {
             )
     }
 
+    private loadDayOneMaxContribution(form: FormGroup): void {
+        this.tokenContractService.dayOneMaxContribution()
+            .takeWhile(() => this.alive)
+            .subscribe((dayOneMaxContribution: BigNumber) => {
+                    FormHelper.addOrReplaceFormControl(form, 'dayOneMaxContribution', new FormControl({value: this.web3Service.weiToEther(dayOneMaxContribution), disabled: true}))
+                },
+                error => this.error = error,
+                () => {
+                }
+            )
+    }
+
     private loadRate(form: FormGroup): void {
         this.tokenContractService.rate()
             .takeWhile(() => this.alive)
             .subscribe((rate: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'rate', new FormControl({value: rate.toNumber(), disabled: true}))
+                    FormHelper.addOrReplaceFormControl(form, 'rate', new FormControl({value: rate.toFormat(), disabled: true}))
                 },
                 error => this.error = error,
                 () => {
@@ -105,7 +117,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.tokenContractService.cap()
             .takeWhile(() => this.alive)
             .subscribe((cap: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'cap', new FormControl({value: this.web3Service.weiToEther(cap), disabled: true}))
+                    FormHelper.addOrReplaceFormControl(form, 'cap', new FormControl({value: this.web3Service.weiToEther(cap).toFormat(), disabled: true}))
                 },
                 error => this.error = error,
                 () => {
@@ -126,6 +138,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.loadEndDate(this.form);
         this.loadTotalSupply(this.form);
         this.loadMinContribution(this.form);
+        this.loadDayOneMaxContribution(this.form);
         this.loadRate(this.form);
         this.loadCrowdsaleCap(this.form);
     }

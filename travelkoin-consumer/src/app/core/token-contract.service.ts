@@ -8,6 +8,8 @@ import {W3} from 'soltsice';
 import TransactionResult = W3.TX.TransactionResult;
 import TxParams = W3.TX.TxParams;
 
+const MINIMUM_GAS_IN_GWEI = 21000;
+
 @Injectable()
 export class TokenContractService {
     private crowdsaleContract: TravelkoinCrowdsale;
@@ -65,13 +67,30 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.dayOneMaxContribution()));
     }
 
-    howMuchCanIContributeNow(owner: string): Observable<BigNumber> {
+    howMuchCanIContributeNow(account: string): Observable<BigNumber> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             const tx: any = {
-                from: owner
+                from: account,
+                value: 0
             };
             return Observable.fromPromise(ti.howMuchCanIContributeNow(tx));
         });
+    }
+
+    whitelist(account: string): Observable<boolean> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.whitelist(account)));
+    }
+
+    getSaleDayNow(): Observable<BigNumber> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.getSaleDayNow()));
+    }
+
+    balances(account: string): Observable<BigNumber> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(account)));
+    }
+
+    capReached(): Observable<boolean> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.capReached()));
     }
 
     startTime(): Observable<BigNumber> {
@@ -80,10 +99,6 @@ export class TokenContractService {
 
     endTime(): Observable<BigNumber> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.closingTime()));
-    }
-
-    stakesPerUser(address: string): Observable<BigNumber> {
-        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(address)));
     }
 
     weiRaised(): Observable<BigNumber> {
@@ -108,50 +123,79 @@ export class TokenContractService {
 
     addToWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
-            const tx: TxParams = {
-                from: owner,
-                gas: 40000,
-                gasPrice: 4000000000,
-                value: 0
-            };
-            return Observable.fromPromise(ti.addToWhitelist(beneficiary, tx));
+            return Observable.fromPromise(ti.addToWhitelist.estimateGas(beneficiary))
+                .switchMap((gas: number) => {
+                    const tx: TxParams = {
+                        from: owner,
+                        gas: gas,
+                        gasPrice: 4000000000,
+                        value: 0
+                    };
+                    return Observable.fromPromise(ti.addToWhitelist(beneficiary, tx));
+                });
         });
     }
 
     addManyToWhitelist(owner: string, beneficiaries: Array<string>): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
-            const tx: TxParams = {
-                from: owner,
-                gas: 40000,
-                gasPrice: 4000000000,
-                value: 0
-            };
-            return Observable.fromPromise(ti.addManyToWhitelist(beneficiaries, tx));
+            return Observable.fromPromise(ti.addManyToWhitelist.estimateGas(beneficiaries))
+                .switchMap((gas: number) => {
+                    const tx: TxParams = {
+                        from: owner,
+                        gas: gas,
+                        gasPrice: 4000000000,
+                        value: 0
+                    };
+                    return Observable.fromPromise(ti.addManyToWhitelist(beneficiaries, tx));
+                });
         });
     }
 
     removeFromWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
-            const tx: TxParams = {
-                from: owner,
-                gas: 40000,
-                gasPrice: 4000000000,
-                value: 0
-            };
-            return Observable.fromPromise(ti.removeFromWhitelist(beneficiary, tx));
+            return Observable.fromPromise(ti.removeFromWhitelist.estimateGas(beneficiary))
+                .switchMap((gas: number) => {
+                    const tx: TxParams = {
+                        from: owner,
+                        gas: gas,
+                        gasPrice: 4000000000,
+                        value: 0
+                    };
+                    return Observable.fromPromise(ti.removeFromWhitelist(beneficiary, tx));
+                });
         });
     }
 
     buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
         const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
-        const tx: TxParams = {
-            from: beneficiary,
-            gas: 300000,
-            gasPrice: 4000000000,
-            value: amountInWei
-        };
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
-            return Observable.fromPromise(ti.buyTokens(beneficiary, tx));
+            return Observable.fromPromise(ti.buyTokens.estimateGas(beneficiary))
+                .switchMap((gas: number) => {
+                    const tx: TxParams = {
+                        from: beneficiary,
+                        gas: gas,
+                        gasPrice: 4000000000,
+                        value: amountInWei
+                    };
+                    return Observable.fromPromise(ti.buyTokens(beneficiary, tx));
+                });
+
+
+        });
+    }
+
+    withdrawTokens(beneficiary: string): Observable<TransactionResult> {
+        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
+            return Observable.fromPromise(ti.withdrawTokens.estimateGas())
+                .switchMap((gas: number) => {
+                    const tx: TxParams = {
+                        from: beneficiary,
+                        gas: gas,
+                        gasPrice: 4000000000,
+                        value: 0
+                    };
+                    return Observable.fromPromise(ti.withdrawTokens(tx));
+                });
         });
     }
 

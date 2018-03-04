@@ -39,7 +39,10 @@
       "ROAD_MAP": "Road map"
     },
     "COUNTDOWN": {
-      "HEADER": "Event starts in"
+      "HEADER": "Event starts in",
+      "HEADER_STARTED": "Event will end in",
+      "HEADER_FINISHED": "Event has finished",
+      "FINISHED": "Thank you for your participation"
     },
     "NEWSLETTER": {
       "HEADER": "Stay in touch",
@@ -91,7 +94,7 @@
       "BONUSES": "Bonuses",
       "BONUSES_DESC": "No pre-sale, extra sale or whale bonuses.",
       "LIMIT": "Limit",
-      "LIMIT_DESC": "Limit 1 ETH investment during the first 24 hours. Minimum investment 0.1 ETH. No max limits after the first 24 hours.",
+      "LIMIT_DESC": "Limit 1 ETH contribution during the first 24 hours. Minimum contribution 0.1 ETH. No max limits after the first 24 hours.",
       "CAPS": "Cap",
       "CAPS_DESC": "35 million TKT hard cap at 1 ETH = 1000 TKT.",
       "HODLR": "HODLers",
@@ -242,9 +245,13 @@
     "DESCRIPTION": "Welcome to Travelkoin. This will be your interface to our ICO event.",
     "FORMS": "Forms",
     "ADD_FUNDS": "Add funds",
-    "GOAL_REACHED": "Token sale progress",
     "WAITING_FOR_APPROVAL": "Your account is under review. We will notify you once your application has been approved.",
+    "YOU_HAVE_BEEN_BLOCKED": "You have been blocked from this event.",
     "APPROVED": "Approved"
+  },
+  "PROGRESS": {
+    "GOAL_REACHED": "Token sale progress",
+    "ENDS": "Ends on"
   },
   "COIN": {
     "TKT": "Travelkoin",
@@ -252,7 +259,7 @@
     "BTC": "Bitcoin"
   },
   "WALLET": {
-    "TITLE": "My investment",
+    "TITLE": "My contribution",
     "TRANSACTIONS": "TXS",
     "TRANSACTION_ERROR": "Error",
     "TRANSACTION_ERROR_DETAILS": "Details",
@@ -264,7 +271,7 @@
     "RECEIVE": "Receive",
     "EXCHANGE": "Exchange",
     "SEE_TRANSACTIONS": "See transactions",
-    "DESCRIPTION": "This section allows you to see the investments you've made in Travelkoin."
+    "DESCRIPTION": "This section allows you to see the contributions you've made in Travelkoin."
   },
   "VALUE": {
     "ADD_PAYMENT": "Add transaction",
@@ -364,13 +371,57 @@
     "SK": "Slovak",
     "TH": "Thai"
   },
+  "HELP": {
+    "HEADER": "Help",
+    "DESCRIPTION": "This section explains how to get ready for the ICO.",
+    "1": {
+      "QUESTION": "Note",
+      "ANSWER": "This ICO has been tested exclusively with MetaMask. You can most likely use the Mist or Parity browsers but here we will explain how to participate using MetaMask only."
+    },
+    "2": {
+      "QUESTION": "Requirements",
+      "ANSWER_1": "Install",
+      "ANSWER_2": "Google Chrome",
+      "ANSWER_3": "and add the",
+      "ANSWER_4": "MetaMask",
+      "ANSWER_5": "extension"
+    },
+    "3": {
+      "QUESTION": "Before you are logged in with MetaMask",
+      "ANSWER": "This is the message you will see before you have connected your Ethereum account with MetaMask"
+    },
+    "4": {
+      "QUESTION": "Connecting your whitelisted Ethereum account with MetaMask",
+      "ANSWER_1": "After you have installed MetaMask, click on the MetaMask (red fox) icon in the top right corner of your Google Chrome browser.",
+      "ANSWER_2": "Click on the switch user icon (black arrow) and choose \"Import Account\".",
+      "ANSWER_3": "Import the private key for the Ethereum address you used to register for our event. This address has been whitelisted and is the ONLY address you will be able to use for this event."
+    },
+    "5": {
+      "QUESTION": "After connecting with MetaMask",
+      "ANSWER": "Once you are successfully connected with MetaMask, you might not have been whitelisted for the event yet. If that is the case, this is the message you will be seeing."
+    },
+    "6": {
+      "QUESTION": "After you are whitelisted but before the event has started",
+      "ANSWER": "Once you are successfully connected with MetaMask and whitelisted but before the event starts, you will see this message."
+    },
+    "7": {
+      "QUESTION": "During event",
+      "ANSWER_1": "Once the event starts, you will see a form with your current account balance (in parenthesis) and a form field you can use to enter in the amount you wish to contribute.",
+      "ANSWER_2": "Please note, for the first 24 hours of our event, you will only be able to contribute 1 ETH.",
+      "ANSWER_3": "Once the first 24 hour period has expired, you are free to contribute any amount you wish."
+    }
+  },
   "HANS": {
+    "WHITELIST": {
+      "ADD_APPROVED_TO_WHITELIST": "Add users to whitelist"
+    },
     "USERS": {
       "TITLE": "Users",
       "DESCRIPTION": "Approve and whitelist users here.",
       "BLOCK": "Block",
       "UNBLOCK": "Re-enable",
       "APPROVE": "Approve",
+      "WHITELISTED": "Whitelisted",
       "UPLOADED_DOCUMENT": "Uploaded document",
       "NO_RECORDS": "No users in this category",
       "NO_IMAGES_UPLOADED": "No images have been submitted by this user",
@@ -387,14 +438,23 @@
   "TOKEN_CONTRACT": {
     "ACCOUNT": "Account",
     "AMOUNT": "Amount",
-    "MAKE_PAYMENT": "Buy",
+    "MAKE_PAYMENT": "Contribute",
     "TOKEN_SALE": "Token sale",
+    "WAITING_ON_APPROVAL": "Your address has not been whitelisted",
+    "EVENT_HAS_STARTED": "Event has started.",
+    "WHITELISTED": "You have been whitelisted",
+    "MISSING_PROVIDER": "No provider",
+    "SALE_ENDED": "Sale complete",
+    "THANK_YOU": "Thank you for your participation",
+    "CLAIM_YOUR_TOKENS": "Click here to claim your tokens",
     "CURRENT_BALANCE": "Balance",
+    "CLEAR": "Clear",
+    "STATUS": "Your status",
     "STARTS_AT": "Event starts on",
     "ERROR_AMOUNT_REQUIRED": "Amount cannot be empty",
     "ERROR_MIN_CONTRIBUTION": "Minimum contribution is:",
     "ERROR_MAX_CONTRIBUTION": "Your maximum contribution right now is:",
-    "INITIATING_TRANSACTION": "'Initiating transaction... (please wait)'",
+    "INITIATING_TRANSACTION": "'Initiating transaction...'",
     "ERROR": "Error",
     "YOU_ARE_USING": "secured by"
   },
@@ -430,25 +490,19 @@
     "NINE_MONTH_HODL_SUPPLY_HELP": "This is the total amount of Travelkoin tokens that will be given to our 9-month HODLers.",
     "RATE": "TKT / ETH conversion rate",
     "RATE_HELP": "This is the amount of Travelkoin you get for 1 ETH.",
-    "CAP": "Cap in Ether during ICO",
+    "CAP": "Crowdsale hard cap",
     "CAP_HELP": "This is the maximum number of Ether that can be used to purchase our token during the ICO.",
     "MINIMUM_CONTRIBUTION": "Minimum contribution",
-    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to invest in this ICO.",
-    "VESTING_TEAM_DURATION": "Team token vesting",
-    "VESTING_TEAM_DURATION_HELP": "This is how long it takes for team tokens to vest (in days).",
-    "VESTING_ADVISORS_DURATION": "Advisors token vesting",
-    "VESTING_ADVISORS_DURATION_HELP": "This is how long it takes for advisors tokens to vest (in days).",
-    "VESTING_TEAM_CLIFF": "Team token cliff",
-    "VESTING_TEAM_CLIFF_HELP": "This is the minimum amount of time a team member has to stay with the team before that person gets any tokens at all (in days).",
-    "VESTING_ADVISORS_CLIFF": "Advisors token cliff",
-    "VESTING_ADVISORS_CLIFF_HELP": "This is the minimum amount of time an advisor has to stay with the team before that person gets any tokens at all (in days).",
+    "MINIMUM_CONTRIBUTION_HELP": "This is the smallest amount in Ether you are allowed to contribute in this ICO.",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION": "Max contribution on day 1",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION_HELP": "This is the maximum allowed amount in Ether to contribute on day 1. After day 1, there are no imposed limits.",
     "DESCRIPTION": "This section allows you to see the exact details of our immutable smart contract as it is deployed on Ethereum. The values you see here come directly from the contract."
   },
   "TOKEN_WALLET": {
     "TITLE": "Wallet",
     "PURCHASED_TOKENS": "Purchased tokens",
-    "CLAIM_AFTER_SALE": "Claim tokens after sale",
     "WAITING_TO_START": "Locked",
+    "CLAIM_AFTER_SALE": "These are the tokens you have purchased so far for the sale. You don't yet own them. Once the sale ends, you will be able to claim your tokens immediately.",
     "SALE_ONGOING": "Ongoing",
     "YOU_HAVE_PURCHASED": "Purchased",
     "YOU_OWN": "You own",
@@ -470,20 +524,20 @@
   },
   "CODE": {
     "NOT_CONNECTED": "You need to have the Mist browser or MetaMask installed and be on mainnet.",
-    "NOT_LOGGED_IN": "Make sure you are logged into your Ethereum account.",
-    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist and refresh the browser page.",
+    "NOT_LOGGED_IN": "Are you logged into your Ethereum account.",
+    "PROVIDER_LOG_IN": "Please log into your wallet in MetaMask or Mist.",
     "ERROR": "Unknown error: Check the log."
   },
   "FAQ": {
     "DESCRIPTION": "This page is frequently updated as we answer your questions.",
     "LAST_UPDATED": "Last updated",
     "1": {
-      "QUESTION": "Why should I invest? / Why will the value of the TKT token increase?",
+      "QUESTION": "Why should I contribute? / Why will the value of the TKT token increase?",
       "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. Our two first applications will be a payment gateway and a white-labeled loyalty program. When an airline, hotel or any other travel tech company use these services and run out of tokens, they need to buy more. As we add more services and as global travel increases, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to depart with their tokens in return for a good deal. But, there won't be enough travelers for everyone so there will be a need to purchase tokens to run our service. Our token will always increase in value as long as we offer up great services to our travel tech partners and global travel steadily increases."
     },
     "2": {
       "QUESTION": "Can anyone participate?",
-      "ANSWER": "We expect each investor to know all applicable laws governing an ICO in his or her country. The Travelkoin team does KYC (Know Your Customer) upon registration but we do not limit participation. Investors, especially from the U.S., the People's Republic of China and South Korea, need to check their current limitations imposed upon them by their respective governments before participating in our ICO."
+      "ANSWER": "We expect each contributors to know all applicable laws governing an ICO in his or her country. The Travelkoin team does KYC (Know Your Customer) upon registration but we do not limit participation. Investors, especially from the U.S., the People's Republic of China and South Korea, need to check their current limitations imposed upon them by their respective governments before participating in our ICO."
     },
     "3": {
       "QUESTION": "Roger Ver: How is Travelkoin going to peg STU to a basket of fiat currencies? Will it be backed by fiat in an auditable account somewhere? If yes, how are you going to hedge again forex risk if you allow holders of STU to cash out into their local fiat at a pegged rate?",
@@ -491,7 +545,7 @@
     },
     "4": {
       "QUESTION": "Why don't you offer a pre-sale, bonus structure or other discounts?",
-      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian investment vehicle. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private investor before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
+      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian tool to contribute. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private contributors before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
     },
     "5": {
       "QUESTION": "How will you create demand?",
@@ -503,5 +557,6 @@
     }
   },
   "BUTTON_SAVE": "Save",
+  "BUTTON_ADD": "Add",
   "END": "End"
 }
