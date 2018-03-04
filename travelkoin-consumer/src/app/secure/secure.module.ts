@@ -15,6 +15,7 @@ import { TokenSaleNotStartedComponent } from './token-sale-not-started/token-sal
 import { MissingProviderComponent } from './missing-provider/missing-provider.component';
 import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
 import { SecureTimerComponent } from './secure-timer/secure-timer.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { SecureTimerComponent } from './secure-timer/secure-timer.component';
         TokenSaleNotStartedComponent,
         MissingProviderComponent,
         NotLoggedInComponent,
-        SecureTimerComponent
+        SecureTimerComponent,
+        HelpComponent
     ]
 })
 export class SecureModule {

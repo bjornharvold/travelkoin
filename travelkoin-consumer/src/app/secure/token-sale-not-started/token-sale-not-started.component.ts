@@ -5,7 +5,7 @@ import {BigNumber} from 'bignumber.js';
 import {TokenContractService} from '../../core/token-contract.service';
 
 @Component({
-    selector: 'app-token-sale-not-started',
+    selector: 'app-secure-token-sale-not-started',
     templateUrl: './token-sale-not-started.component.html',
     styleUrls: ['./token-sale-not-started.component.scss']
 })

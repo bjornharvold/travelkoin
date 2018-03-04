@@ -3,7 +3,7 @@ const Crowdsale = artifacts.require('TravelkoinCrowdsale');
 const SafeMath = artifacts.require('SafeMath');
 
 // const dateStart = Math.floor(new Date().getTime() / 1000) + 5 * 60 * 60 * 24; // starts in 5 days
-const dateStart = Math.floor(new Date().getTime() / 1000) + 0.005 * 60 * 60 * 24; // starts now
+const dateStart = Math.floor(new Date().getTime() / 1000) + 0.008 * 60 * 60 * 24; // starts now
 const dateEnd = dateStart + 0.02 * 60 * 60 * 24; // lasts 5 days
 const initialSupply = 85000000; // 85 million tokens
 const owner = web3.eth.accounts[0];

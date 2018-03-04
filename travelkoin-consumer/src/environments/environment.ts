@@ -16,8 +16,8 @@ export const environment = {
     recaptchaAPIKey: '6LdixT0UAAAAABKK2MPtwxtFYr4MOFedXuClPJ_3',
     authTokenName: 'x-auth-token',
     authTokenExpiration: 3600,
-    eventStartTimeEpochInMilliseconds: 1520066050000,
-    eventEndTimeEpochInMilliseconds: 1520066350000,
+    eventStartTimeEpochInMilliseconds: 1520141391000,
+    eventEndTimeEpochInMilliseconds: 1520141491000,
     siteUrl: 'http://dev.travelkoin.io:8000',
     contracts: {
         TravelkoinToken: '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf',

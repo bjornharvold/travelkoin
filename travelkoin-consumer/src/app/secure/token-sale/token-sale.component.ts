@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 import {TransactionLogService} from '../../core/transaction-log.service';
 import {AccountsService} from '../../core/accounts.service';
 import TransactionResult = W3.TX.TransactionResult;
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -163,8 +164,12 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
                     if (accounts == null || accounts.length === 0) {
                         this.error = 'CODE.PROVIDER_LOG_IN';
                     } else {
-                        this.accounts = accounts;
-                        this.initFormGroup(this.accounts);
+                        const equal: Array<string> = _.differenceWith(accounts, this.accounts, _.isEqual);
+
+                        if (equal.length > 0) {
+                            this.accounts = accounts;
+                            this.initFormGroup(this.accounts);
+                        }
                     }
                 });
 

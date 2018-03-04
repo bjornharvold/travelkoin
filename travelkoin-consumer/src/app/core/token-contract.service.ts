@@ -174,6 +174,7 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.buyTokens.estimateGas(beneficiary))
                 .switchMap((gas: number) => {
+                    console.log(gas);
                     const tx: TxParams = {
                         from: beneficiary,
                         gas: gas,

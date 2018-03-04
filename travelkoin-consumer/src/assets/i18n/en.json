@@ -371,9 +371,49 @@
     "SK": "Slovak",
     "TH": "Thai"
   },
+  "HELP": {
+    "HEADER": "Help",
+    "DESCRIPTION": "This section explains how to get ready for the ICO.",
+    "1": {
+      "QUESTION": "Note",
+      "ANSWER": "This ICO has been tested exclusively with MetaMask. You can most likely use the Mist or Parity browsers but here we will explain how to participate using MetaMask only."
+    },
+    "2": {
+      "QUESTION": "Requirements",
+      "ANSWER_1": "Install",
+      "ANSWER_2": "Google Chrome",
+      "ANSWER_3": "and add the",
+      "ANSWER_4": "MetaMask",
+      "ANSWER_5": "extension"
+    },
+    "3": {
+      "QUESTION": "Before you are logged in with MetaMask",
+      "ANSWER": "This is the message you will see before you have connected your Ethereum account with MetaMask"
+    },
+    "4": {
+      "QUESTION": "Connecting your whitelisted Ethereum account with MetaMask",
+      "ANSWER_1": "After you have installed MetaMask, click on the MetaMask (red fox) icon in the top right corner of your Google Chrome browser.",
+      "ANSWER_2": "Click on the switch user icon (black arrow) and choose \"Import Account\".",
+      "ANSWER_3": "Import the private key for the Ethereum address you used to register for our event. This address has been whitelisted and is the ONLY address you will be able to use for this event."
+    },
+    "5": {
+      "QUESTION": "After connecting with MetaMask",
+      "ANSWER": "Once you are successfully connected with MetaMask, you might not have been whitelisted for the event yet. If that is the case, this is the message you will be seeing."
+    },
+    "6": {
+      "QUESTION": "After you are whitelisted but before the event has started",
+      "ANSWER": "Once you are successfully connected with MetaMask and whitelisted but before the event starts, you will see this message."
+    },
+    "7": {
+      "QUESTION": "During event",
+      "ANSWER_1": "Once the event starts, you will see a form with your current account balance (in parenthesis) and a form field you can use to enter in the amount you wish to contribute.",
+      "ANSWER_2": "Please note, for the first 24 hours of our event, you will only be able to contribute 1 ETH.",
+      "ANSWER_3": "Once the first 24 hour period has expired, you are free to contribute any amount you wish."
+    }
+  },
   "HANS": {
     "WHITELIST": {
-      "ADD_APPROVED_TO_WHITELIST": "Add approved users to whitelist"
+      "ADD_APPROVED_TO_WHITELIST": "Add users to whitelist"
     },
     "USERS": {
       "TITLE": "Users",

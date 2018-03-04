@@ -33,6 +33,12 @@
             </div>
         </div>
 
+        <div class="row" *ngIf="isWhitelisted === true && hasStarted === false && hasEnded === false">
+            <div class="col-sm-12">
+                <app-secure-token-sale-not-started></app-secure-token-sale-not-started>
+            </div>
+        </div>
+
         <div class="row" *ngIf="isWhitelisted === true && hasStarted === true && hasEnded === false">
             <div class="col-sm-12">
                 <app-secure-token-sale></app-secure-token-sale>
