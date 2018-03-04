@@ -125,9 +125,6 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.addToWhitelist.estimateGas(beneficiary))
                 .switchMap((gas: number) => {
-                    // if (gas - MINIMUM_GAS_IN_GWEI < 0) {
-                    //     gas = MINIMUM_GAS_IN_GWEI * 4;
-                    // }
                     const tx: TxParams = {
                         from: owner,
                         gas: gas,
@@ -174,7 +171,6 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.buyTokens.estimateGas(beneficiary))
                 .switchMap((gas: number) => {
-                    console.log(gas);
                     const tx: TxParams = {
                         from: beneficiary,
                         gas: gas,
@@ -192,7 +188,6 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
             return Observable.fromPromise(ti.withdrawTokens.estimateGas())
                 .switchMap((gas: number) => {
-                    console.log(gas);
                     const tx: TxParams = {
                         from: beneficiary,
                         gas: gas,
