@@ -446,7 +446,7 @@
     "MISSING_PROVIDER": "No provider",
     "SALE_ENDED": "Sale complete",
     "THANK_YOU": "Thank you for your participation",
-    "CLAIM_YOUR_TOKENS": "Click here to claim your tokens",
+    "CLAIM_YOUR_TOKENS": "Withdraw {{value}} tokens",
     "CURRENT_BALANCE": "Balance",
     "CLEAR": "Clear",
     "STATUS": "Your status",
@@ -533,7 +533,7 @@
     "LAST_UPDATED": "Last updated",
     "1": {
       "QUESTION": "Why should I contribute? / Why will the value of the TKT token increase?",
-      "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. Our two first applications will be a payment gateway and a white-labeled loyalty program. When an airline, hotel or any other travel tech company use these services and run out of tokens, they need to buy more. As we add more services and as global travel increases, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to depart with their tokens in return for a good deal. But, there won't be enough travelers for everyone so there will be a need to purchase tokens to run our service. Our token will always increase in value as long as we offer up great services to our travel tech partners and global travel steadily increases."
+      "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. Our two first applications will be a payment gateway and a white-labeled loyalty program. When an airline, hotel or any other travel tech company use these services and run out of tokens, they need to buy more. As we add more services and as global travel increases, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to part with their tokens in return for a good deal. Other travel suppliers with a less gamified business model, will opt to purchase tokens from us directly. Our token will always increase in value as long as we offer up great services to our travel tech partners and global travel steadily increases."
     },
     "2": {
       "QUESTION": "Can anyone participate?",

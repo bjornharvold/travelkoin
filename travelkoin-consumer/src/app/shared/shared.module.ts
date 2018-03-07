@@ -23,7 +23,7 @@ import {MultimediaDivComponent} from './multimedia-div/multimedia-div.component'
 import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
-import {TransactionLogComponent} from './transaction-log/transaction-log.component';
+import {TransactionLogComponent} from '../secure/transaction-log/transaction-log.component';
 
 @NgModule({
     imports: [
@@ -47,8 +47,7 @@ import {TransactionLogComponent} from './transaction-log/transaction-log.compone
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
-        MultimediaDivComponent,
-        TransactionLogComponent
+        MultimediaDivComponent
     ],
     exports: [
         CommonModule,
@@ -68,8 +67,7 @@ import {TransactionLogComponent} from './transaction-log/transaction-log.compone
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
-        MultimediaDivComponent,
-        TransactionLogComponent
+        MultimediaDivComponent
     ],
     providers: []
 })

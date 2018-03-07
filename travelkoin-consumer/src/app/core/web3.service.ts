@@ -78,7 +78,8 @@ export class Web3Service {
 
         const w3: W3 = this.getW3();
         if (w3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(this.getW3().eth.getBalance);
+            const eth: W3.Eth = w3.web3.eth;
+            const callbackObservable = Observable.bindNodeCallback(eth.getBalance);
             result = callbackObservable(account, 'latest');
             // result = Observable.of(10000000000000000);
             // result = Observable.fromPromise(this.getWeb3().eth.getBalance(account));
@@ -99,7 +100,8 @@ export class Web3Service {
 
         const w3: W3 = this.getW3();
         if (w3 != null) {
-            const callbackObservable = Observable.bindNodeCallback(w3.eth.getAccounts);
+            const eth: W3.Eth = w3.web3.eth;
+            const callbackObservable = Observable.bindNodeCallback(eth.getAccounts);
             result = callbackObservable();
         } else {
             result = Observable.throw('CODE.NOT_CONNECTED');
@@ -117,7 +119,7 @@ export class Web3Service {
 
         const w3: W3 = this.getW3();
         if (w3 != null) {
-            result = w3.eth.defaultAccount;
+            result = w3.web3.eth.defaultAccount;
         }
 
         return result;

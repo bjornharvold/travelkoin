@@ -62,10 +62,10 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         address _wallet,
         TravelkoinToken _token
     )
-    Crowdsale(_rate, _wallet, _token)
+    public
     CappedCrowdsale(_cap)
     TimedCrowdsale(_startTime, _endTime)
-    public
+    Crowdsale(_rate, _wallet, _token)
     {
         minContribution = _minContribution;
         dayOneMaxContribution = _dayOneMaxContribution;

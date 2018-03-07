@@ -23,7 +23,7 @@
                     <span class="input-group-addon addon-inside bg-white font-primary">
                         <i class="fab fa-ethereum"></i>
                     </span>
-                    <input id="amount" type="amount" class="form-control" placeholder="{{ 'TOKEN_CONTRACT.AMOUNT' | translate }}" formControlName="amount">
+                    <input id="amount" type="amount" class="form-control" placeholder="{{ 'TOKEN_CONTRACT.AMOUNT' | translate }}" formControlName="amount" autocomplete="off">
                 </div>
                 <div [hidden]="form.get('amount').valid || form.get('amount').pristine">
                     <div class="form-control-feedback">
@@ -34,13 +34,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
+                <button type="submit" class="btn btn-block btn-blue-alt" [disabled]="!form.valid || loading === true">{{ 'TOKEN_CONTRACT.MAKE_PAYMENT' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
             </div>
 
         </form>
-    </div>
-    <div class="content-box-wrapper text-center mrg10A" *ngIf="status != null">
-        <i class="fas fa-info-circle font-blue"></i> {{ status | translate }}
     </div>
     <div class="content-box-wrapper text-center mrg10A" *ngIf="error != null">
         <i class="fas fa-exclamation-circle font-red"></i> {{ error | translate }} <a class="font-blue pointer" (click)="clearErrors()">{{ 'TOKEN_CONTRACT.CLEAR' | translate }}</a>

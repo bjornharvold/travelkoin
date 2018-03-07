@@ -4,11 +4,14 @@
   "HEADER": {
     "LOGIN": "Einloggen",
     "LOGOUT": "Ausloggen",
+    "SLOGAN": "THE TRAVEL ECOSYSTEM",
     "CHOOSE_LANGUAGE": "Sprache wählen",
     "LANGUAGE": "Sprache",
     "CONTACT_US": "Kontaktaufnahme",
     "WHITE_PAPER": "Grundlagenpapier",
     "FEATURES": "Merkmale",
+    "FAQ": "FAQ",
+    "FAQ_DETAILS": "Häufig gestellte Fragen",
     "ROAD_MAP": "Planung",
     "MY_WALLET": "Mein Wallet",
     "LANGUAGE_DIALOG": "Sprache ändern",
@@ -21,19 +24,25 @@
     "CONTACT_US": "Email",
     "FOLLOW_US": "Folgen",
     "PRIVACY": "Datenschutz",
+    "HAVE_A_QUESTION": "Chat",
     "TERMS": "Bedingungen"
   },
   "HOME": {
     "MARKETING_HEADER": {
       "1": "Eine Revolution für die Reisewelt",
       "2": "Ein dezentrales Zahlungsportal speziell für Fluggesellschaften, Hotels, Mietwagen, Kreuzfahrtschiffe, Bahn, Online-Reisebüros, Buchungsmaschinen und Channel-Manager.",
-      "3": "Unsere Blockchain-Plattform ist schnell, intelligent, sicher, umweltfreundlich und für die Reisebranche konzipiert.",
-      "FOLLOW_US": "Folgen",
+      "3": "Ein White-Label-Treueprogramm, das die Branche vereinheitlicht, mehr Umsatz für Partner generiert und echten Kundenwert und Zufriedenheit schafft.",
+      "4": "Unsere Blockchain-Plattform ist schnell, intelligent, sicher, umweltfreundlich und für die Reisebranche konzipiert.",
+      "FOLLOW": "Folgen",
+      "CHAT": "Chat",
       "WHITE_PAPER": "Grundlagenpapier",
       "ROAD_MAP": "Planung"
     },
     "COUNTDOWN": {
-      "HEADER": "Event beginnt in"
+      "HEADER": "Event beginnt in",
+      "HEADER_STARTED": "Event endet in",
+      "HEADER_FINISHED": "Event ist beendet",
+      "FINISHED": "Danke für Ihre Teilnahme"
     },
     "NEWSLETTER": {
       "HEADER": "In Kontakt bleiben",
@@ -46,7 +55,13 @@
       "LOYALTY_PLATFORM": "Treueplattform",
       "LOYALTY_PLATFORM_DESC": "Unser Travelkoin-Token ist ein globales, markenunabhängiges Treueprogramm, das Reisepartner kostenlos für ihre Mitgliedschaftsprogramme nutzen können.",
       "STABLE_SETTLEMENTS": "Wertbeständige Zahlungsabwicklungen",
-      "STABLE_SETTLEMENTS_DESC": "Unser Standard Travel Unit (STU) Token ist an eine Mischung von Währungen gebunden, die am häufigsten in der Reisebranche verwendet werden."
+      "STABLE_SETTLEMENTS_DESC": "Unser Standard Travel Unit (STU) Token ist an eine Mischung von Währungen gebunden, die am häufigsten in der Reisebranche verwendet werden.",
+      "MATURE_TEAM": "Erfahrenes Team",
+      "MATURE_TEAM_DESC": "Unser Team arbeitet für Reiseunternehmen in den Bereichen Technik, Vertrieb, Operations und Marketing. Wir kennen die Technologie und ihre Schwachstellen.",
+      "TOKEN_VALUE": "Token-Wirtschaft 101",
+      "TOKEN_VALUE_DESC": "Ethereum für das Reisen. Unser Treue-Token funktioniert wie Gas. Reisende generieren sie und Parnter benötigen sie, um die Plattform zu betreiben.",
+      "VETERAN_ADVISORS": "Erfahrene Berater",
+      "VETERAN_ADVISORS_DESC": "Unser Beraterteam verfügt über jahrzehntelange Erfahrung in der Reiseindustrie und im Bereich Blockchain. Lernen Sie sie kennen."
     },
     "PAYMENT_GATEWAY": {
       "HEADER": "Zahlungsportal",
@@ -63,8 +78,29 @@
     "TESTIMONIALS": {
       "HEADER": "Empfehlungen"
     },
+    "TEAM": {
+      "HEADER": "Team"
+    },
     "ADVISORS": {
-      "HEADER": "Unsere Unterstützer"
+      "HEADER": "Berater"
+    },
+    "BACKERS": {
+      "HEADER": "Unterstützer"
+    },
+    "ICO": {
+      "HEADER": "Details zum ICO Event",
+      "DURATION": "Dauer",
+      "DURATION_DESC": "Das Event beginnt am 9. April 2018 um 13:00 Uhr UTC und dauert nur 5 Tage.",
+      "BONUSES": "Extras",
+      "BONUSES_DESC": "Kein Vorverkauf, Sonderverkauf oder Whale-Bonus.",
+      "LIMIT": "Limit",
+      "LIMIT_DESC": "Limit max. 1 ETH-Beitrag während der ersten 24 Stunden. Mindestbeitrag 0.1 ETH. Keine Höchstgrenze nach den ersten 24 Stunden.",
+      "CAPS": "Höchstgrenze",
+      "CAPS_DESC": "35 Millionen TKT Hard Cap bei 1 ETH = 1000 TKT.",
+      "HODLR": "HODLers",
+      "HODLR_DESC": "Willkommen! 3/6/9 Monate HODL-Prämien.",
+      "VESTING": "Sperrfristen",
+      "VESTING_DESC": "Team 4 Jahre (1 Jahr Cliff). Berater 1 Jahr (3 Monate Cliff)."
     },
     "FEATURES": {
       "HEADER": "Merkmale",
@@ -108,6 +144,9 @@
         "HEADER": "Travelkoin Zahlungsportal",
         "DESCRIPTION": "Traveliko.com wird die erste Firma sein, die unser Zahlungsportal benutzt, um Zahlungen zu tätigen und zu empfangen."
       }
+    },
+    "NEWS": {
+      "HEADER": "In den Nachrichten"
     }
   },
   "AUTH": {
@@ -206,7 +245,13 @@
     "DESCRIPTION": "Willkommen bei Travelkoin. Dies ist Ihr Direktzugang zu unserem ICO-Event.",
     "FORMS": "Formulare",
     "ADD_FUNDS": "Einlagen",
-    "GOAL_REACHED": "Token Verkaufsverlauf"
+    "WAITING_FOR_APPROVAL": "Ihr Konto wird überprüft. Wir werden Sie benachrichtigen, sobald Ihr Antrag genehmigt wurde.",
+    "YOU_HAVE_BEEN_BLOCKED": "Sie wurden von diesem Ereignis ausgeschlossen.",
+    "APPROVED": "Genehmigt"    
+  },
+  "PROGRESS": {
+    "GOAL_REACHED": "Token Verkaufsverlauf",
+    "ENDS": "Endet am"
   },
   "COIN": {
     "TKT": "Travelkoin",
@@ -225,6 +270,7 @@
     "BALANCE": "Kontostand",
     "RECEIVE": "Empfangen",
     "EXCHANGE": "Wechseln",
+    "SEE_TRANSACTIONS": "Transaktionen anzeigen",
     "DESCRIPTION": "In diesem Abschnitt können Sie uns Informationen zu den Zahlungen geben, die Sie von Ihrem {{type}} Wallet für das Event gesendet haben."
   },
   "VALUE": {
@@ -295,6 +341,7 @@
     "HEADER": "Formulare",
     "DESCRIPTION": "Bitte füllen Sie die erforderlichen Formularfelder aus und laden Sie die von uns benötigten Dokumente hoch. Nach der Genehmigung können Sie BTC und ETH in unser Wallet überführen.",
     "DIALOG": "Senden Sie die erforderlichen Dokumente ab",
+    "ALREADY_APPROVED": "Bereits genehmigt",
     "DIALOG_DESCRIPTION": "Sie sind soweit, Ihre Dokumente einzureichen. Sind Sie bereit?",
     "UPLOAD_DOCUMENTS": "Dokumente hochladen",
     "UPLOAD_DOCUMENTS_HELP": "Wir benötigen 2 Dokumente von Ihnen",
@@ -304,10 +351,7 @@
     "NO_DOCUMENTS_UPLOADED": "Es wurden keine Dokumente hochgeladen",
     "ETH_ADDRESS": "Ethereum-Adresse",
     "ETH_ADDRESS_PLACEHOLDER": "Geben Sie Ihre Ethereum-Adresse ein",
-    "ETH_ADDRESS_HELP": "Geben Sie die Ethereum-Adresse ein, von der Sie Beräge an uns überweisen. Sie können nur diese Adresse verwenden. Andere Transaktionen werden ignoriert.",
-    "BTC_ADDRESS": "Bitcoin-Adresse",
-    "BTC_ADDRESS_PLACEHOLDER": "Geben Sie Ihre Bitcoin-Adresse ein",
-    "BTC_ADDRESS_HELP": "Geben Sie die Bitcoin-Adresse ein, von der Sie Beräge an uns überweisen. Sie können nur diese Adresse verwenden. Andere Transaktionen werden ignoriert."
+    "ETH_ADDRESS_HELP": "Geben Sie die Ethereum-Adresse ein, von der Sie Beräge an uns überweisen. Sie können nur diese Adresse verwenden. Andere Transaktionen werden ignoriert."
   },
   "LANGUAGE": {
     "EN": "English",
@@ -327,5 +371,192 @@
     "SK": "Slovak",
     "TH": "Thai"
   },
+  "HELP": {
+    "HEADER": "Hilfe",
+    "DESCRIPTION": "In diesem Abschnitt wird erläutert, wie Sie sich auf das ICO vorbereiten.",
+    "1": {
+      "QUESTION": "Notiz",
+      "ANSWER": "Dieses ICO wurde ausschließlich mit MetaMask getestet. Sie können ebenfalls die Mist- oder Parity-Browser verwenden, aber hier erklären wir nur, wie Sie mit MetaMask teilnehmen können."
+    },
+    "2": {
+      "QUESTION": "Voraussetzungen",
+      "ANSWER_1": "Installieren Sie",
+      "ANSWER_2": "Google Chrome",
+      "ANSWER_3": "und fügen Sie die",
+      "ANSWER_4": "MetaMask",
+      "ANSWER_5": "Erweiterung hinzu"
+    },
+    "3": {
+      "QUESTION": "Bevor Sie in MetaMask eingeloggt sind",
+      "ANSWER": "Dies ist die Nachricht, die Sie sehen, bevor Sie Ihr Ethereum-Konto mit MetaMask verbunden haben"
+    },
+    "4": {
+      "QUESTION": "Verbinden Sie Ihr genehmigtes Ethereum-Konto mit MetaMask",
+      "ANSWER_1": "Nachdem Sie MetaMask installiert haben, klicken Sie auf das Symbol MetaMask (roter Fuchs) in der oberen rechten Ecke Ihres Google Chrome-Browsers.",
+      "ANSWER_2": "Klicken Sie auf das Benutzerwechsel-Symbol (schwarzer Pfeil) und wählen Sie \"Konto importieren\".",
+      "ANSWER_3": "Importieren Sie den privaten Key für die Ethereum-Adresse, mit der Sie sich für unser Event registriert haben. Diese Adresse wurde auf die Whitelist gesetzt und ist die EINZIGE Adresse, die Sie für dieses Event verwenden können."
+    },
+    "5": {
+      "QUESTION": "Nach Verbindung mit MetaMask",
+      "ANSWER": "Sobald Sie erfolgreich mit MetaMask verbunden sind, kann es sein, dass Sie möglicherweise noch nicht für das Event in die Whitelist aufgenommen wurden. Wenn dies der Fall ist, ist dies die Nachricht, die Sie sehen werden."
+    },
+    "6": {
+      "QUESTION": "Nachdem Sie auf die Whitelist gesetzt wurden, aber bevor das Event gestartet wurde",
+      "ANSWER": "Sobald Sie erfolgreich mit MetaMask verbunden sind und auf der Whitelist sind, aber bevor das Event beginnt, wird diese Nachricht angezeigt."
+    },
+    "7": {
+      "QUESTION": "Während dem Event",
+      "ANSWER_1": "Sobald das Event beginnt, sehen Sie ein Formular mit Ihrem aktuellen Kontostand (in Klammern) und ein Formularfeld, in dem Sie den Betrag eingeben können, den Sie beisteuern möchten.",
+      "ANSWER_2": "Bitte beachten Sie, dass Sie in den ersten 24 Stunden unseres Events nur max. 1 ETH beisteuern können.",
+      "ANSWER_3": "Sobald die ersten 24 Stunden abgelaufen sind, können Sie einen beliebigen Betrag einzahlen."
+    }
+  },
+  "HANS": {
+    "WHITELIST": {
+      "ADD_APPROVED_TO_WHITELIST": "Benutzer zur Whitelist hinzufügen"
+    },
+    "USERS": {
+      "TITLE": "Benutzer",
+      "DESCRIPTION": "Benutzer Genehmigen und zur Whitelist hinzufügen.",
+      "BLOCK": "Blockieren",
+      "UNBLOCK": "Wieder aktivieren",
+      "APPROVE": "Genehmigen",
+      "WHITELISTED": "Zur Whitelist hinzugefügt",
+      "UPLOADED_DOCUMENT": "Dokument hochgeladen",
+      "NO_RECORDS": "Keine benutzer in dieser Kategorie",
+      "NO_IMAGES_UPLOADED": "Von diesem Benutzer wurden keine Bilder hochgeladen",
+      "REGISTERED": "Registriert",
+      "NEEDS_APPROVAL": "Benötigt Genehmogung",
+      "BLOCKED": "Blockiert",
+      "APPROVED": "Genehmigt",
+      "EMAIL": "E-mail",
+      "WALLET_ADDRESS": "Ethereum Adresse",
+      "DOCUMENTS": "Dokumente",
+      "ACTION": "Aktion"
+    }
+  },
+  "TOKEN_CONTRACT": {
+    "ACCOUNT": "Konto",
+    "AMOUNT": "Betrag",
+    "MAKE_PAYMENT": "Beitragen",
+    "TOKEN_SALE": "Token Verkauf",
+    "WAITING_ON_APPROVAL": "Ihre Adresse wurde nicht zur Whitelist hinzugefügt",
+    "EVENT_HAS_STARTED": "Event hat begonnen.",
+    "WHITELISTED": "Sie wurden auf die Whitelist gesetzt",
+    "MISSING_PROVIDER": "Kein Provider",
+    "SALE_ENDED": "Verkauf beendet",
+    "THANK_YOU": "Danke für Ihre Teilnahme",
+    "CLAIM_YOUR_TOKENS": "Klicken Sie hier, um Ihre Token zu erhalten",
+    "CURRENT_BALANCE": "Kontostand",
+    "CLEAR": "Löschen",
+    "STATUS": "Ihr Status",
+    "STARTS_AT": "Event beginnt am",
+    "ERROR_AMOUNT_REQUIRED": "Betrag kann nicht leer bleiben",
+    "ERROR_MIN_CONTRIBUTION": "Minimaler Beitrag ist:",
+    "ERROR_MAX_CONTRIBUTION": "Ihr maximaler Beitrag ist jetzt:",
+    "INITIATING_TRANSACTION": "'Tranaktion beginnen...'",
+    "ERROR": "Fehler",
+    "YOU_ARE_USING": "abgesichert durch"
+  },
+  "CONTRACT": {
+    "TITLE": "ICO Contract",
+    "START_DATE": "Anfangsdatum",
+    "START_DATE_HELP": "Die ICO wird an diesem Datum beginnen.",
+    "END_DATE": "Endtermin",
+    "END_DATE_HELP": "Die ICO endet an diesem Datum, es sei denn, die harte Obergrenze wurde bereits erreicht.",
+    "CROWDSALE_ADDRESS": "ICO Contract Adresse",
+    "CROWDSALE_ADDRESS_HELP": "Dies ist die Adresse für unseren Crowdsale-Smart-Contract.",
+    "TOKEN_ADDRESS": "Token Contract Adresse",
+    "TOKEN_ADDRESS_HELP": "Dies ist die Adresse für Travelkoin-Token.",
+    "TOTAL_SUPPLY": "Gesamtvolumen",
+    "TOTAL_SUPPLY_HELP": "Dies ist der Gesamtmenge aller erstellten Travelkoin-Token.",
+    "SALE_SUPPLY": "Token, die während des ICO zum Verkauf angeboten werden",
+    "SALE_SUPPLY_HELP": "Dies ist der Gesamtmenge an Travelkoin-Token, die für das ICO zur Verfügung stehen.",
+    "BOUNTY_SUPPLY": "Tokens für Bug Bounties",
+    "BOUNTY_SUPPLY_HELP": "Dies ist der Gesamtmenge an Travelkoin-Tokens, die für unser Bug Bounty verzur Verfügung stehen.",
+    "COMMUNITY_SUPPLY": "Token für unsere Community",
+    "COMMUNITY_SUPPLY_HELP": "Dies ist die Gesamtmenge an Travelkoin-Token, die unserer Community zur Verfügung stehen.",
+    "TEAM_SUPPLY": "Tokens für unser Team",
+    "TEAM_SUPPLY_HELP": "Dies ist der Gesamtmenge an Travelkoin-Token, die unseren Teammitgliedern zur Verfügung stehen.",
+    "INVESTOR_SUPPLY": "Token für frühe Beitragszahler",
+    "INVESTOR_SUPPLY_HELP": "Dies ist der Gesamtmenge an Travelkoin-Token, die frühen Beitragszahlern zur Verfügung stehen.",
+    "FOUNDER_SUPPLY": "Tokens für Gründer",
+    "FOUNDER_SUPPLY_HELP": "Dies ist der Gesamtmenge an Travelkoin-Token, die den Gründern zur Verfügung stehen.",
+    "THREE_MONTH_HODL_SUPPLY": "3 Monate HODL Prämie",
+    "THREE_MONTH_HODL_SUPPLY_HELP": "Dies ist der Gesamtbetrag an Travelkoin-Token, die an unsere 3-monatigen HODLer vergeben werden.",
+    "SIX_MONTH_HODL_SUPPLY": "6 Monate HODL Prämie",
+    "SIX_MONTH_HODL_SUPPLY_HELP": "Dies ist der Gesamtbetrag an Travelkoin-Token, die an unsere 6-monatigen HODLer vergeben werden.",
+    "NINE_MONTH_HODL_SUPPLY": "9 Monate HODL Prämie",
+    "NINE_MONTH_HODL_SUPPLY_HELP": "Dies ist der Gesamtbetrag an Travelkoin-Token, die an unsere 9-monatigen HODLer vergeben werden.",
+    "RATE": "TKT / ETH Umrechnungskurs",
+    "RATE_HELP": "Dies ist die Menge an Travelkoin, die Sie für 1 ETH bekommen.",
+    "CAP": "Crowdsale Obergrenze",
+    "CAP_HELP": "Dies ist die maximale Menge an Ether, die während des ICO zum Kauf unserer Token verwendet werden können.",
+    "MINIMUM_CONTRIBUTION": "Mindestbeitrag",
+    "MINIMUM_CONTRIBUTION_HELP": "Dies ist die kleinste Menge an Ether, die Sie für dieses ICO beitragen können.",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION": "Maximaler Betrag am 1. Tag",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION_HELP": "Dies ist die maximal zulässige Menge an Ether, die am Tag 1 beigesteuert werden kann. Nach dem ersten Tag gibt es keine Obergrenze.",
+    "DESCRIPTION": "In diesem Abschnitt können Sie die Details unseres unveränderlichen Smart-Contracts sehen, der auf dem Ethereum-Netwek läuft. Die Werte, die Sie hier sehen, stammen direkt aus dem Vertrag."
+  },
+  "TOKEN_WALLET": {
+    "TITLE": "Wallet",
+    "PURCHASED_TOKENS": "Erworbene Token",
+    "WAITING_TO_START": "Geschlossen",
+    "CLAIM_AFTER_SALE": "Dies sind die Token, die Sie bisher gekauft haben. Diese sind noch nicht in Ihrem Besitz. Sobald der Verkauf endet, können Sie Ihre Tokens sofort einfordern.",
+    "SALE_ONGOING": "Fortlaufend",
+    "YOU_HAVE_PURCHASED": "Gekauft",
+    "YOU_OWN": "Sie besitzen",
+    "CLAIM_AFTER_SALE_DESC": "Sie können Ihre Tokens nach dem Verkauf einfordern.",
+    "CLAIM_TOKENS": "Token einfordern"
+  },
+  "CONTRACT_CONFIGURATION": {
+    "TOKEN_DATES": "Crowdsale Daten",
+    "WHITELIST": "Whitelist",
+    "ADDRESS": "Adresse",
+    "ADDRESS_HELP": "Geben Sie die Adresse ein, die Sie zur Whitelist hinzufügen möchten",
+    "ADDRESS_PLACEHOLDER": "Adresse eingeben",
+    "TRANSACTION_RESULT": "Transaktionsergebnis"
+  },
+  "TRANSACTION_LOG": {
+    "TITLE": "Transaktionen",
+    "PURCHASED": "Gekauft",
+    "TOKENS": "Token. Wallet wird momentan aktualisiert."
+  },
+  "CODE": {
+    "NOT_CONNECTED": "Sie müssen den Mist-Browser oder die MetaMask installiert haben und sich im Mainnet befinden.",
+    "NOT_LOGGED_IN": "Sind Sie in Ihrem Ethereum-Konto angemeldet.",
+    "PROVIDER_LOG_IN": "Bitte loggen Sie sich mit MetaMask oder Mist in Ihr Wallet ein.",
+    "ERROR": "Unbekannter Fehler: Überprüfen Sie die Log-Datei."
+  },
+  "FAQ": {
+    "DESCRIPTION": "Diese Seite wird häufig aktualisiert, um Ihre Fragen zu beantworten.",
+    "LAST_UPDATED": "Zeletzt aktualisiert",
+    "1": {
+      "QUESTION": "Warum sollte ich etwas beitragen? / Warum steigt der Wert des TKT-Tokens?",
+      "ANSWER": "Der TKT-Token ist das \"Gas\", das alle Dienste auf unserer Plattform versorgt. Unsere beiden ersten Anwendungen werden ein Zahlungs-Gateway und ein White-Label-Treueprogramm sein. Wenn eine Fluggesellschaft, ein Hotel oder ein anderes Reiseunternehmen diese Dienste in Anspruch nimmt und keine Token mehr hat, müssen sie mehr kaufen. Wenn wir mehr Services hinzufügen und die globalen Reisen zunehmen, steigt die Nachfrage nach Tokens. Reisende verdienen sich Token; Sie erhalten Token, wenn sie der Plattform einen Mehrwert bieten, wie zum Beispiel eine Buchung. Benutzer können Reisende davon überzeugen, mit ihren Tokens für ein gutes Geschäft zu machen. Aber es wird nicht genug Travelkoin für alle geben, so dass es notwendig sein wird Token zu kaufen, um unseren Service zu betreiben. Unser Token wird an Wert gewinnen, solange wir unseren Reisetechnologie-Partnern großartige Dienstleistungen anbieten und globales Reisen stetig zunimmt."
+    },
+    "2": {
+      "QUESTION": "Kann Jeder teilnehmen?",
+      "ANSWER": "Wir erwarten von jedem Teilnehmer, dass er die Gesetze bezüglich eines ICO in seinem Land kennt. Das Travelkoin-Team führt KYC (Know Your Customer) bei der Registrierung durch, aber wir selbst beschränken die Teilnahme nicht. Investoren, insbesondere aus den USA, der Volksrepublik China und Südkorea, müssen ihre aktuellen Reglungen überprüfen, die ihnen von ihren jeweiligen Regierungen auferlegt werden, bevor sie an unserem ICO teilnehmen."
+    },
+    "3": {
+      "QUESTION": "Roger Ver: Wie wird Travelkoin STU an einen Korb von Fiat-Währungen binden? Wird STU irgendwo in einem auditierbaren Konto durch Fiat gestützt? Wenn ja, wie wird das Forex-Risiko abgesichert, wenn Sie es den Besitzern von STU erlauben, zu einem fixen Satz in ihre lokale Währung zu wechseln?",
+      "ANSWER": "Unsere ursprüngliche Idee war, STU an einen Währungskorb zu binden, der den Special Drawing Rights (SDR) des IWF ähnelt. Diskussionen mit frühen Unterstützern zeigten jedoch, dass dies nicht wirklich wünschenswert ist, da die meisten grenzüberschreitenden Transaktionen in der Reisebranche nur eine Herkunfts- und eine Zielwährung beinhalten, so dass die Bindung an einen ganzen Korb keinen Vorteil bringt. Es ist sinnvoller, die Ursprungswährungen zu digitalisieren, beginnend mit USD, EUR, CNY, JPY. Trotz des schlechten Rufs von Tether (USDT) glauben wir, dass eine 100%-ige Besicherung der beste Weg ist, um Stabilität zu bieten. So würde jede der digitalisierten Währungen auf einem geprüften Bankkonto geführt werden. Die Digitalisierung eliminiert das Forex-Risiko nicht. Wie in traditionellen Trabsaktionen bleibt das Risiko bei den beteiligten Kontrahenten gemäss der Verträge, die sie miteinander haben. Wir planen, einen STU-Token pro Fiat-Währung zu erstellen, und der Wechselkurs sollte zwischen den Kontrahenten festgelegt werden oder dynamisch bleiben, wenn dies so vereinbart wurde. Travelkoin hält grundsätzlich das Fiat als Sicherheit bis zu dem Punkt, wenn der STU-Inhaber seinen STU wieder in Fiat umwandeln will. Wir möchten nicht, dass STU an einer öffentlichen Börse gehandelt wird, da es dann nahezu unmöglich wäre, die erforderliche Stabilität zu gewährleisten. Wenn aus irgendeinem Grund viel mehr Unternehmen STU in USD kaufen und als Zahlung nach Europa senden, wo sie in Fiat EUR umgerechnet werden, müsste Travelkoin die notwendige Transaktion von USD auf EUR vornehmen, um Liquidität auf dem EUR-Markt bereitzustellen. Es könnte für die zahlende Partei von Vorteil sein, den Zielwährungs-STU zu verwenden, wenn dies günstiger erscheint. Wie bereits erwähnt, haben die Gegenparteien immer noch die Verantwortung, ihr Währungs-Risiko selbst einzuschätzen. Aber STU gibt ihnen einige Optionen dabei."
+    },
+    "4": {
+      "QUESTION": "Warum bieten Sie keinen Vorverkauf, keine Bonusstruktur oder andere Rabatte an?",
+      "ANSWER": "Wir möchten der Blockchain-Community und unseren frühen Beitragenden ein völlig egalitäres Werkzeug zur Verfügung stellen. Wir wissen, dass die Travelkoin-Plattform ein großer Erfolg werden und dazu beitragen wird, Reisetechnologie ins 21. Jahrhundert zu bringen. Wir brauchen keine rieseigen Kapitalbeträge und wir kennen die Schwachstellen unserer Partner und unserer eigenen Technik. Rabatte anzubieten, macht für uns keinen Sinn. Wir könnten in Erwägung ziehen, vor dem Start des ICO, strategische private Spenden anzunehmen. Solche Unternehmen werden einen leicht reduzierten Preis erhalten und fur uns bedeutet es eine frühe strategische Partnerschaft zu haben."
+    },
+    "5": {
+      "QUESTION": "Wie werden Sie die Nachfrage erzeugen?",
+      "ANSWER": "Unser Unternehmen ist in erster Linie eine B2B-Integration. Ein Großteil der Geldmittel wird dorthin fließen. Travel-Tech-Unternehmen werden sehen, dass sie Geschäfte auf unserer neuen Plattform kostenlos können. Die Nachfrage nach unserem Zahlungs-Gateway ist bereits überwältigend. Die Plattform beginnt sich selbst zu verkaufen, sobald wir die Nutzung durch die Loyalitäts-Plattform verbessern können. Jeder wird das Bedürfnis verspüren, mit an Bord zu sein."
+    },
+    "6": {
+      "QUESTION": "Was ist die rechtliche Stand dieses ICOs?",
+      "ANSWER": "Unsere juristische Person ist eine in Thailand ansässige Gesellschaft mit beschränkter Haftung namens \"The Blockchain Company Ltd.\" (Reg .: 0105561011251) 180 Sixteen Place Building, B Zone, 2. Stock, Soi Sukhumvit 16 (Sammitr), Klongtoey, Bangkok 10110, Thailand. Telefon: +66 (0) 85-489-1301."
+    }
+  },
+  "BUTTON_SAVE": "Speichern",
+  "BUTTON_ADD": "Hinzufügen",
   "END": "Ende"
 }

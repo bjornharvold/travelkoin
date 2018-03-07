@@ -18,10 +18,20 @@ export class TokenPurchase {
 
     }
 
+    resetForm(form: FormGroup): void {
+        form.reset();
+
+        this.amount = null;
+        FormHelper.addOrReplaceFormControl(form, 'account', new FormControl({value: this.account, disabled: true}, Validators.required));
+        FormHelper.addOrReplaceFormControl(form, 'amount', new FormControl({value: '', disabled: false}, [Validators.required, Validators.min(this.minContribution), Validators.max(this.maxContribution)]));
+    }
+
     updateContributionValidator(formGroup: FormGroup, minContribution: number, maxContribution: number): void {
         if (minContribution != null && maxContribution != null) {
             // only update if a change occurred
-            if (this.minContribution != minContribution || this.maxContribution != this.maxContribution) {
+            // console.log(`old minContribution: ${minContribution} and old maxContribution: ${this.maxContribution}`);
+            if (this.minContribution !== minContribution || this.maxContribution !== this.maxContribution) {
+                // console.log(`new minContribution: ${minContribution} and new maxContribution: ${this.maxContribution}`);
                 this.minContribution = minContribution;
                 this.maxContribution = maxContribution;
                 formGroup.get('amount').setValidators([Validators.required, Validators.min(minContribution), Validators.max(maxContribution)]);
