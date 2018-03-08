@@ -6,7 +6,7 @@ import {TokenContractService} from '../../core/token-contract.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-shared-transaction-log',
+    selector: 'app-secure-transaction-log',
     templateUrl: './transaction-log.component.html',
     styleUrls: ['./transaction-log.component.scss']
 })
@@ -33,17 +33,16 @@ export class TransactionLogComponent implements OnInit, OnDestroy {
                 }
             });
 
-        Observable.interval(5000)
-            .takeWhile(() => this.alive)
-            .subscribe(() => {
-                this.tokenContractService.listenToEvents()
-                    .takeWhile(() => this.alive)
-                    .subscribe((logs: Array<W3.Log>) => {
-                        // console.log(logs);
-                        this.logs = logs;
-                    });
-            });
-
+        // Observable.interval(5000)
+        //     .takeWhile(() => this.alive)
+        //     .subscribe(() => {
+        //         this.tokenContractService.listenToEvents()
+        //             .takeWhile(() => this.alive)
+        //             .subscribe((logs: Array<W3.Log>) => {
+        //                 console.log(logs);
+        //                 // this.logs = logs;
+        //             });
+        //     });
 
     }
 

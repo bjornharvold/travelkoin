@@ -111,8 +111,7 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
 
     private clearForm(): void {
         if (this.dto != null) {
-            this.dto.amount = null;
-            this.dto.populateFormValues(this.form);
+            this.dto.resetForm(this.form);
         }
     }
 

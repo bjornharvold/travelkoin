@@ -7,8 +7,6 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const providerWithMnemonic = (mnemonic, rpcEndpoint) =>
   new HDWalletProvider(mnemonic, rpcEndpoint);
 
-// const infuraProvider = network => providerWithMnemonic('candy maple cake sugar pudding cream honey rich smooth crumble sweet treat', `https://${network}.infura.io/YcXEmutnZk2NbhnHp8Wc`);
-
 const infuraProvider = network => providerWithMnemonic(
   process.env.MNEMONIC || '',
   `https://${network}.infura.io/${process.env.INFURA_API_KEY}`
@@ -28,6 +26,13 @@ module.exports = {
       network_id: '*', // eslint-disable-line camelcase
     },
     rinkeby: {
+        host: "localhost", // Connect to geth on the specified
+        port: 8545,
+        from: "0xbb13e514578aFD3c0031C7A8Bb54132981317675", // default address to use for any transaction Truffle makes during migrations
+        network_id: 4,
+        gas: 4612388 // Gas limit used for deploys
+    },
+    rinkebyOld: {
       provider: rinkebyProvider,
       network_id: 4, // eslint-disable-line camelcase
     },

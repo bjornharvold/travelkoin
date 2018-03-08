@@ -239,7 +239,7 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
 
         it('should return the amount of tokens bought', async function () {
             await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser}).should.be.fulfilled;
+            await this.crowdsale.buyTokens(investor, {value: minContribution, from: investor}).should.be.fulfilled;
             await increaseTimeTo(this.afterClosingTime);
             await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
             const balance = await this.token.balanceOf(investor);

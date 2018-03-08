@@ -5,19 +5,17 @@
         </span>
         {{ 'TOKEN_WALLET.TITLE' | translate }}
     </h3>
-    <div class="content-box-wrapper text-center mrg25A font-size-20">
-        {{ balance }}
+    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasEnded === false">
+        {{ contributionAmountString }}
         <span>
             TKT
-            <sup *ngIf="claimed === false && balance != null" [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate"><i class="fas fa-asterisk"></i></sup>
+            <sup [title]="'TOKEN_WALLET.CLAIM_AFTER_SALE' | translate"><i class="fas fa-asterisk"></i></sup>
         </span>
     </div>
-    <div class="content-box-wrapper text-center mrg25A" *ngIf="status != null">
-        <i class="fas fa-exclamation-circle font-red"></i> {{ status | translate }}
+    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasEnded === true && contributionAmount > 0">
+        <button type="submit" class="btn btn-block btn-blue-alt" (click)="withdrawTokens()" [disabled]="withdrawing === true"><span [translate]="'TOKEN_CONTRACT.CLAIM_YOUR_TOKENS'" [translateParams]="{value: contributionAmountString}"></span> <i *ngIf="withdrawing === true" class="fas fa-spinner fa-spin"></i></button>
     </div>
-</div>
-
-
-<div class="form-group">
-    <button type="submit" class="btn btn-block btn-blue-alt" (click)="withdrawTokens()" [disabled]="loading === true">{{ 'TOKEN_CONTRACT.CLAIM_YOUR_TOKENS' | translate | uppercase }} <i *ngIf="loading === true" class="fas fa-spinner fa-spin"></i></button>
+    <div class="content-box-wrapper text-center mrg25A font-size-20" *ngIf="hasEnded === true && contributionAmount === 0">
+        {{ balance }} TKT
+    </div>
 </div>

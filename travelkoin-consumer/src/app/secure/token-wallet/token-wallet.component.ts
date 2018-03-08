@@ -6,8 +6,8 @@ import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {AccountsService} from '../../core/accounts.service';
 import {W3} from 'soltsice';
-import TransactionResult = W3.TX.TransactionResult;
 import {TransactionLogService} from '../../core/transaction-log.service';
+import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -20,10 +20,11 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     hasStarted = false;
     hasEnded = false;
     loading = false;
-    claimed = false;
-    status: string = null;
-    error = null;
-    balance: string = "0";
+    withdrawing = false;
+    contributionAmountString: string = '0';
+    contributionAmount: number = 0;
+    balanceString: string = '0';
+    balance: number = 0;
 
     /**
      * This is the user's current investment in the crowdsale
@@ -34,15 +35,12 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balances(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((stake: BigNumber) => {
-                        if (stake.greaterThan(0)) {
-                            this.claimed = false;
-                            this.balance = this.web3Service.weiToEther(stake).toFormat();
-                        }
+                        this.contributionAmount = stake.toNumber();
+                        this.contributionAmountString = this.web3Service.weiToEther(stake).toFormat();
                     },
                     error => {
                         this.loading = false;
                         console.error(error);
-                        this.status = 'CODE.ERROR';
                     },
                     () => this.loading = false
                 );
@@ -58,15 +56,12 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balanceOf(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
-                        if (balance.greaterThan(0)) {
-                            this.claimed = true;
-                            this.balance = this.web3Service.weiToEther(balance).mul(1000).toFormat();
-                        }
+                        this.balance = balance.toNumber();
+                        this.balanceString = this.web3Service.weiToEther(balance).mul(1000).toFormat();
                     },
                     error => {
                         this.loading = false;
                         console.error(error);
-                        this.status = 'CODE.ERROR';
                     },
                     () => this.loading = false
                 );
@@ -74,25 +69,19 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
     }
 
     withdrawTokens(): void {
-        this.loading = true;
-        this.error = null;
-        this.status = 'TOKEN_CONTRACT.INITIATING_TRANSACTION';
+        this.withdrawing = true;
 
         this.tokenContractService.withdrawTokens(this.accounts[0])
             .takeWhile(() => this.alive)
             .subscribe((tx: TransactionResult) => {
                     this.transactionLogService.logTransaction(tx);
-                    this.claimed = true;
                 },
                 error => {
-                    this.loading = false;
-                    this.status = null;
+                    this.withdrawing = false;
                     console.error(error);
-                    this.error = 'CODE.ERROR';
                 },
                 () => {
-                    this.loading = false;
-                    this.status = null;
+                    this.withdrawing = false;
                 }
             );
 
@@ -121,19 +110,17 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             .subscribe((accounts: Array<string>) => {
                 if (accounts != null) {
                     this.accounts = accounts;
-                } else {
-                    this.error = 'CODE.ERROR';
                 }
             });
 
         this.crowdsaleTimerService.errorEvent
             .takeWhile(() => this.alive)
-            .subscribe((error: string) => this.error = error);
+            .subscribe((error: string) => console.error(error));
 
         Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
-                if (this.hasStarted === true || this.hasEnded === true && this.claimed === false) {
+                if (this.hasStarted === true || this.hasEnded === true) {
                     this.crowdsaleBalance();
                 }
 
