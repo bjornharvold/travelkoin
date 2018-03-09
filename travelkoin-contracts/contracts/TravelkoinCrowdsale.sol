@@ -1,8 +1,8 @@
 pragma solidity ^0.4.18;
 
-import "zeppelin-solidity/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol";
 import "zeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol";
 import "zeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
+import "zeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "./TravelkoinToken.sol";
 
 
@@ -11,7 +11,7 @@ import "./TravelkoinToken.sol";
  * @author Bjorn Harvold
  * @notice Travelkoin Token Sale round one normal sale contract with hard cap
  */
-contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, CappedCrowdsale {
+contract TravelkoinCrowdsale is WhitelistedCrowdsale, TimedCrowdsale, CappedCrowdsale {
     using SafeMath for uint256;
 
     // minimum contribution, 0.1ETH
@@ -93,9 +93,9 @@ contract TravelkoinCrowdsale is WhitelistedCrowdsale, PostDeliveryCrowdsale, Cap
         // limit to 1 ETH for the first day
         if (_saleDay == 1) {
 
-            if (balances[_beneficiary] > 0) {
+            if (token.balanceOf(_beneficiary) > 0) {
                 // personal cap is the daily whitelist limit minus the stakes the address already has
-                uint256 tokenAmount = balances[_beneficiary] / rate;
+                uint256 tokenAmount = token.balanceOf(_beneficiary) / rate;
                 uint256 weiToPersonalCap = dayOneMaxContribution - tokenAmount;
                 weiToCap = uint256Min(weiToCap, weiToPersonalCap);
             } else {

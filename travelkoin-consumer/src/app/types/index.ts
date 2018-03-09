@@ -1,5 +1,4 @@
 export * from './BasicToken';
-export * from './BurnableToken';
 export * from './CappedCrowdsale';
 export * from './Crowdsale';
 export * from './DetailedERC20';
@@ -7,7 +6,6 @@ export * from './ERC20';
 export * from './ERC20Basic';
 export * from './Migrations';
 export * from './Ownable';
-export * from './PostDeliveryCrowdsale';
 export * from './SafeMath';
 export * from './StandardToken';
 export * from './TimedCrowdsale';

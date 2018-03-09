@@ -72,7 +72,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
                     // simplify by adding rate here (1 ETH = 1000 TKT)
-                    this.maxBigNumber = this.web3Service.weiToEther(value).mul(1000);
+                    this.maxBigNumber = this.web3Service.weiToEther(value);
                     this.max = this.maxBigNumber.toNumber();
                     this.maxString = this.maxBigNumber.toFormat();
                     this.loading = false;

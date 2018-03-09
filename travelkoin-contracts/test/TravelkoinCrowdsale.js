@@ -92,7 +92,7 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
 
         it('should reject payments of more than 1 ETH on the first day', async function () {
             await increaseTimeTo(this.openingTime);
-            let currentBalance = await this.crowdsale.balances(investor, {from: investor});
+            let currentBalance = await this.token.balanceOf(investor, {from: investor});
             currentBalance.should.be.bignumber.equal(new BigNumber(0));
 
             let amount = await this.crowdsale.howMuchCanIContributeNow({from: investor});
@@ -106,7 +106,7 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
             await this.crowdsale.buyTokens(investor, {value: fiveEther, from: purchaser2}).should.be.rejectedWith(EVMRevert);
 
             await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser2}).should.be.fulfilled;
-            currentBalance = await this.crowdsale.balances(investor, {from: investor});
+            currentBalance = await this.token.balanceOf(investor, {from: investor});
             // console.log(`currentBalance in ether: ${fromWei(currentBalance).div(rate).toFormat()}`);
             currentBalance.should.be.bignumber.equal(minContribution.mul(rate));
 
@@ -211,42 +211,42 @@ contract('TravelkoinCrowdsale', function ([_, investor, wallet, purchaser, purch
         });
     });
 
-    describe('is PostDeliveryCrowdsale', function () {
-        beforeEach(async function () {
-            await this.crowdsale.addToWhitelist(investor);
-            await this.crowdsale.addToWhitelist(purchaser);
-        });
-
-        it('should not immediately assign tokens to beneficiary', async function () {
-            await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
-            const balance = await this.token.balanceOf(investor);
-            balance.should.be.bignumber.equal(0);
-        });
-
-        it('should not allow beneficiaries to withdraw tokens before crowdsale ends', async function () {
-            await increaseTimeTo(this.beforeClosingTime);
-            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
-            await this.crowdsale.withdrawTokens({from: investor}).should.be.rejectedWith(EVMRevert);
-        });
-
-        it('should allow beneficiaries to withdraw tokens after crowdsale ends', async function () {
-            await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
-            await increaseTimeTo(this.afterClosingTime);
-            await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
-        });
-
-        it('should return the amount of tokens bought', async function () {
-            await increaseTimeTo(this.openingTime);
-            await this.crowdsale.buyTokens(investor, {value: minContribution, from: investor}).should.be.fulfilled;
-            await increaseTimeTo(this.afterClosingTime);
-            await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
-            const balance = await this.token.balanceOf(investor);
-            balance.should.be.bignumber.equal(minContribution.mul(rate));
-        });
-
-    });
+    // describe('is PostDeliveryCrowdsale', function () {
+    //     beforeEach(async function () {
+    //         await this.crowdsale.addToWhitelist(investor);
+    //         await this.crowdsale.addToWhitelist(purchaser);
+    //     });
+    //
+    //     it('should not immediately assign tokens to beneficiary', async function () {
+    //         await increaseTimeTo(this.openingTime);
+    //         await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
+    //         const balance = await this.token.balanceOf(investor);
+    //         balance.should.be.bignumber.equal(0);
+    //     });
+    //
+    //     it('should not allow beneficiaries to withdraw tokens before crowdsale ends', async function () {
+    //         await increaseTimeTo(this.beforeClosingTime);
+    //         await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
+    //         await this.crowdsale.withdrawTokens({from: investor}).should.be.rejectedWith(EVMRevert);
+    //     });
+    //
+    //     it('should allow beneficiaries to withdraw tokens after crowdsale ends', async function () {
+    //         await increaseTimeTo(this.openingTime);
+    //         await this.crowdsale.buyTokens(investor, {value: minContribution, from: purchaser});
+    //         await increaseTimeTo(this.afterClosingTime);
+    //         await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
+    //     });
+    //
+    //     it('should return the amount of tokens bought', async function () {
+    //         await increaseTimeTo(this.openingTime);
+    //         await this.crowdsale.buyTokens(investor, {value: minContribution, from: investor}).should.be.fulfilled;
+    //         await increaseTimeTo(this.afterClosingTime);
+    //         await this.crowdsale.withdrawTokens({from: investor}).should.be.fulfilled;
+    //         const balance = await this.token.balanceOf(investor);
+    //         balance.should.be.bignumber.equal(minContribution.mul(rate));
+    //     });
+    //
+    // });
 
     describe('is WhitelistedCrowdsale', function () {
         describe('single user whitelisting', function () {

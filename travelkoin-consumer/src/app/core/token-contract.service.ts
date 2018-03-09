@@ -82,9 +82,9 @@ export class TokenContractService {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.getSaleDayNow()));
     }
 
-    balances(account: string): Observable<BigNumber> {
-        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(account)));
-    }
+    // balances(account: string): Observable<BigNumber> {
+    //     return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.balances(account)));
+    // }
 
     capReached(): Observable<boolean> {
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.capReached()));
@@ -119,7 +119,7 @@ export class TokenContractService {
     }
 
     addToWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
-        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 500000, 4000000000);
+        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 50000, 4000000000);
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.addToWhitelist(beneficiary, tx)));
     }
 
@@ -136,7 +136,7 @@ export class TokenContractService {
     // }
 
     addManyToWhitelist(owner: string, beneficiaries: Array<string>): Observable<TransactionResult> {
-        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 500000, 4000000000);
+        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 50000, 4000000000);
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.addManyToWhitelist(beneficiaries, tx)));
     }
 
@@ -153,7 +153,7 @@ export class TokenContractService {
 
 
     removeFromWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
-        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 500000, 4000000000);
+        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 50000, 4000000000);
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.removeFromWhitelist(beneficiary, tx)));
     }
 
@@ -170,7 +170,7 @@ export class TokenContractService {
 
     buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
         const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
-        const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 500000, 4000000000);
+        const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 200000, 4000000000);
         tx.value = amountInWei;
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
     }
@@ -190,10 +190,10 @@ export class TokenContractService {
     //     });
     // }
 
-    withdrawTokens(beneficiary: string): Observable<TransactionResult> {
-        const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 500000, 4000000000);
-        return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.withdrawTokens(tx)));
-    }
+    // withdrawTokens(beneficiary: string): Observable<TransactionResult> {
+    //     const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 50000, 4000000000);
+    //     return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.withdrawTokens(tx)));
+    // }
 
     // TODO figure out to avoid throwing an error when estimating gas
     // withdrawTokens(beneficiary: string): Observable<TransactionResult> {
