@@ -223,64 +223,6 @@ export class TravelkoinToken extends SoltsiceContract {
     }
     
     // tslint:disable-next-line:member-ordering
-    public burn = Object.assign(
-        // tslint:disable-next-line:max-line-length
-        // tslint:disable-next-line:variable-name
-        (_value: BigNumber | number, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
-            if (!privateKey) {
-                return new Promise((resolve, reject) => {
-                    this._instance.burn(_value, txParams || this._sendParams)
-                        .then((res: any) => resolve(res))
-                        .catch((err: any) => reject(err));
-                });
-            } else {
-                // tslint:disable-next-line:max-line-length
-                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.burn.request(_value).params[0].data, txParams || this._sendParams, undefined)
-                    .then(txHash => {
-                        return this.waitTransactionReceipt(txHash);
-                    });
-            }
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            sendTransaction: Object.assign((_value: BigNumber | number, txParams?: W3.TX.TxParams): Promise<string> => {
-                    return new Promise((resolve, reject) => {
-                        this._instance.burn.sendTransaction(_value, txParams || this._sendParams)
-                            .then((res: any) => resolve(res))
-                            .catch((err: any) => reject(err));
-                    });
-                },
-                {
-                    // tslint:disable-next-line:max-line-length
-                    // tslint:disable-next-line:variable-name
-                    sendSigned: (_value: BigNumber | number, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
-                        // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.burn.request(_value).params[0].data, txParams || this._sendParams, nonce);
-                    }
-                }
-            )
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            data: (_value: BigNumber | number): Promise<string> => {
-                return new Promise((resolve, reject) => {
-                    resolve(this._instance.burn.request(_value).params[0].data);
-                });
-            }
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            estimateGas: (_value: BigNumber | number): Promise<number> => {
-                return new Promise((resolve, reject) => {
-                    this._instance.burn.estimateGas(_value).then((g: any) => resolve(g));
-                });
-            }
-        });
-    
-    // tslint:disable-next-line:member-ordering
     public decreaseApproval = Object.assign(
         // tslint:disable-next-line:max-line-length
         // tslint:disable-next-line:variable-name
@@ -344,17 +286,6 @@ export class TravelkoinToken extends SoltsiceContract {
         return new Promise((resolve, reject) => {
             this._instance.balanceOf
                 .call(_owner, txParams || this._sendParams)
-                .then((res: any) => resolve(res))
-                .catch((err: any) => reject(err));
-        });
-    }
-    
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:variable-name
-    public owner( txParams?: W3.TX.TxParams): Promise<string> {
-        return new Promise((resolve, reject) => {
-            this._instance.owner
-                .call( txParams || this._sendParams)
                 .then((res: any) => resolve(res))
                 .catch((err: any) => reject(err));
         });
@@ -497,63 +428,5 @@ export class TravelkoinToken extends SoltsiceContract {
                 .catch((err: any) => reject(err));
         });
     }
-    
-    // tslint:disable-next-line:member-ordering
-    public transferOwnership = Object.assign(
-        // tslint:disable-next-line:max-line-length
-        // tslint:disable-next-line:variable-name
-        (newOwner: string, txParams?: W3.TX.TxParams, privateKey?: string): Promise<W3.TX.TransactionResult> => {
-            if (!privateKey) {
-                return new Promise((resolve, reject) => {
-                    this._instance.transferOwnership(newOwner, txParams || this._sendParams)
-                        .then((res: any) => resolve(res))
-                        .catch((err: any) => reject(err));
-                });
-            } else {
-                // tslint:disable-next-line:max-line-length
-                return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.transferOwnership.request(newOwner).params[0].data, txParams || this._sendParams, undefined)
-                    .then(txHash => {
-                        return this.waitTransactionReceipt(txHash);
-                    });
-            }
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            sendTransaction: Object.assign((newOwner: string, txParams?: W3.TX.TxParams): Promise<string> => {
-                    return new Promise((resolve, reject) => {
-                        this._instance.transferOwnership.sendTransaction(newOwner, txParams || this._sendParams)
-                            .then((res: any) => resolve(res))
-                            .catch((err: any) => reject(err));
-                    });
-                },
-                {
-                    // tslint:disable-next-line:max-line-length
-                    // tslint:disable-next-line:variable-name
-                    sendSigned: (newOwner: string, privateKey: string, txParams?: W3.TX.TxParams, nonce?: number): Promise<string> => {
-                        // tslint:disable-next-line:max-line-length
-                        return this.w3.sendSignedTransaction(this.address, privateKey, this._instance.transferOwnership.request(newOwner).params[0].data, txParams || this._sendParams, nonce);
-                    }
-                }
-            )
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            data: (newOwner: string): Promise<string> => {
-                return new Promise((resolve, reject) => {
-                    resolve(this._instance.transferOwnership.request(newOwner).params[0].data);
-                });
-            }
-        },
-        {
-            // tslint:disable-next-line:max-line-length
-            // tslint:disable-next-line:variable-name
-            estimateGas: (newOwner: string): Promise<number> => {
-                return new Promise((resolve, reject) => {
-                    this._instance.transferOwnership.estimateGas(newOwner).then((g: any) => resolve(g));
-                });
-            }
-        });
     
 }

@@ -20,8 +20,8 @@ export const environment = {
     eventEndTimeEpochInMilliseconds: 1520141491000,
     siteUrl: 'http://dev.travelkoin.io:8000',
     contracts: {
-        TravelkoinToken: '0x71c1c335c11f3109cb19db39c12ce167361c012a',
-        TravelkoinCrowdsale: '0xa74b909b7ea62d280b64c4465c5c8e5b7a9c5ac6'
+        TravelkoinToken: '0xee272c3572b17b66461b6ab965494e41750e5b9d',
+        TravelkoinCrowdsale: '0xb18d04699934f74882e5e77317feee32c6399e8d'
     },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',

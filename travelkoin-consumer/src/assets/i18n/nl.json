@@ -4,11 +4,14 @@
   "HEADER": {
     "LOGIN": "Log in",
     "LOGOUT": "Log uit",
+    "SLOGAN": "HET NIEUWE REIS ECOSYSTEEM",
     "CHOOSE_LANGUAGE": "Kies taal",
     "LANGUAGE": "Taal",
     "CONTACT_US": "Neem contact op",
     "WHITE_PAPER": "White paper",
     "FEATURES": "Kenmerken",
+    "FAQ": "FAQ",
+    "FAQ_DETAILS": "Frequently asked questions",
     "ROAD_MAP": "Stappenplan",
     "MY_WALLET": "Mijn wallet",
     "LANGUAGE_DIALOG": "Verander taal",
@@ -21,19 +24,25 @@
     "CONTACT_US": "Email",
     "FOLLOW_US": "Volg",
     "PRIVACY": "Privacy",
+    "HAVE_A_QUESTION": "Chat",
     "TERMS": "Voorwaarden"
   },
   "HOME": {
     "MARKETING_HEADER": {
       "1": "Een revolutie in de reisindustrie",
       "2": "Een gedecentraliseerde betalings gateway die specifiek is ontworpen voor luchtvaartmaatschappijen, hotels, autoverhuur, cruises, railverkeer, reisagenten, booking engines en channelmanagers.",
-      "3": "Ons blockchain platform is snel, slim, veiling, milieuvriendelijk en ontworpen voor de reisindustrie.",
+      "3": "Een white-labeled loyalty platform dat een hulp is voor de industrie, meer omzet levert voor leveranciers en waarde creeert voor klanten.",
+      "4": "Ons blockchain platform is snel, slim, veiling, milieuvriendelijk en ontworpen voor de reisindustrie.",
       "FOLLOW_US": "Volg ons",
+      "CHAT": "Chat",
       "WHITE_PAPER": "White paper",
       "ROAD_MAP": "Stappenplan"
     },
     "COUNTDOWN": {
-      "HEADER": "Het begint in"
+      "HEADER": "Het begint in",
+      "HEADER_STARTED": "En eindigt in",
+      "HEADER_FINISHED": "Het Event is beeindigd",
+      "FINISHED": "Dank u voor uw participatie"
     },
     "NEWSLETTER": {
       "HEADER": "Hou contact",
@@ -45,8 +54,14 @@
       "PAYMENT_GATEWAY_DESC": "Een solide, veilige, schaalbare en supersnelle betalings gateway op de blockchain voor alle partijen in de reisindustrie om transacties onderling af te handelen zonder kosten.",
       "LOYALTY_PLATFORM": "Loyaliteits platform",
       "LOYALTY_PLATFORM_DESC": "Onze Travelkoin token is een wereldwijd whitelabeled loyalteits programma dat zonder kosten gebruikt kan worden door onze reisindustrie partners.",
-      "STABLE_SETTLEMENTS": "Stabiele ag=fahandeling",
-      "STABLE_SETTLEMENTS_DESC": "Onze Standard Travel Unit token is gelinkt aan een combinatie van relevante en meest gebruikte valuta in de reisindustrie."
+      "STABLE_SETTLEMENTS": "Stabiele afhandeling",
+      "STABLE_SETTLEMENTS_DESC": "Onze Standard Travel Unit token is gelinkt aan een combinatie van relevante en meest gebruikte valuta in de reisindustrie.",
+      "MATURE_TEAM": "Team van veteranen",
+      "MATURE_TEAM_DESC": "Ons team werkt voor online reis bedrijven in tech, verkoop, marketing en operationele activiteiten. Wij kennen de technologie en systemen.",
+      "TOKEN_VALUE": "Token economics 101",
+      "TOKEN_VALUE_DESC": "Ethereum for travel. Ons loyalty token functioneert als brandstof. Reizigers verkrijgen het en leveranciers hebben het nodig om het platform te gebruiken.",
+      "VETERAN_ADVISORS": "Solide adviseurs",
+      "VETERAN_ADVISORS_DESC": "Ons team van adviseurs heeft tientallen jaren ervaring in travel en blockchain. Zie meer informatie hierbeneden."  
     },
     "PAYMENT_GATEWAY": {
       "HEADER": "Betalings gateway",
@@ -58,18 +73,39 @@
     },
     "WAITING_FOR": {
       "HEADER": "Wacht niet langer",
-      "1": "Registreer nu en deel mee in een GROOTS EVENEMENT in de reisindustrie!"
+      "1": "Registreer nu en deel mee in een GROOTS EVENT in de reisindustrie!"
     },
     "TESTIMONIALS": {
       "HEADER": "Aanbevelingen"
     },
+    "TEAM": {
+      "HEADER": "Team"
+    },
     "ADVISORS": {
       "HEADER": "Onze industrie supporters"
+    },
+   "BACKERS": {
+      "HEADER": "Backers"
+    },
+    "ICO": {
+      "HEADER": "ICO evenement details",
+      "DURATION": "Duur",
+      "DURATION_DESC": "Het event begint om 13:00:00 UTC op April 9, 2018 en duurt slechts 5 dagen.",
+      "BONUSES": "Bonuses",
+      "BONUSES_DESC": "Geen pre-sale, extra sale of 'whale' bonuses.",
+      "LIMIT": "Limiet",
+      "LIMIT_DESC": "Limiet 1 ETH contributie gedurende de eerste 24 uur. Minimum contributie 0.1 ETH. Geen Maximale limieten na de eerste 24 uur.",
+      "CAPS": "Cap",
+      "CAPS_DESC": "35 miljoen TKT hard cap met 1 ETH = 1000 TKT.",
+      "HODLR": "HODLers",
+      "HODLR_DESC": "Wij hebben 3 / 6 / 9 maand HODL bonus.",
+      "VESTING": "Vesting",
+      "VESTING_DESC": "Team @ 4 jaar (met 1 jaar cliff). Adviseurs @ 1 jaar (3 maanden cliff)."
     },
     "FEATURES": {
       "HEADER": "Kenmerken",
       "PAYMENT_GATEWAY": "Payment Gateway",
-      "PAYMENT_GATEWAY_1": "Travel suppliers are particularly prone to having to pay excessive transaction fees because their industry is particularly fragmented and, more often than not, require multiple cross-border transactions. It also means payments often take time to process and travel suppliers have to guarantee payments up to 45 days in advance. The only way to currently make transaction fees go down is to process more transactions and receive a bulk discount from the payment provider.",
+      "PAYMENT_GATEWAY_1": "Travel leveranciers betalen vaak hoge transactie kosten omdat de industrie zo versnippert is en vaak over de grenzen gaat. Het betekent ook dat betaling vaak lange tijd nodig heeft. De enige manier om nu lagere transactie kosten te krijgen is om veel transacties te doen en bulk kortingen te krijgen",                      	
       "PAYMENT_GATEWAY_2": "Maakt een eind aan de complexiteit en hoge kosten in de reis industrie. Betalingen worden direct gedaan en leveranciers kunnen direct met hun tegenpartij werken zonder dure tussenpartijen nodig te hebben. Dit wordt mogelijk gemaakt door de blockchain en onze speciale intelligente contracten voor de reisindustrie. Bekijk de video over blockchain, gemaakt door Sloan's School of business, MIT.",
       "LOYALTY_PLATFORM": "Loyaliteits platform",
       "LOYALTY_PLATFORM_1": "Bijna elk bedrijf in de reisindustrie gebruikt een rewards programma om klanten te krijgen en te behouden. Klanten zijn vaak lid van een rewards programma dat hen weinig voordeel geeft en is vaak gericht op het simpel verzamelen van punten. Een goed loyaliteits programma moet een gezamelijk voordeel en plezier opleveren!",
@@ -85,7 +121,7 @@
         "DESCRIPTION": "Traveliko.com, een online travel agency gebaseerd in Singapore , beloont reizigers met Travelkoin tokens in hun loyaliteits platform."
       },
       "STEP2": {
-        "HEADER": "Ga online",
+        "HEADER": "Ga live",
         "DESCRIPTION": "De Blockchain Company wordt gelanceerd. Ean gecombineerde inspanning van traditionale en online reisorganisaties."
       },
       "STEP3": {
@@ -108,8 +144,11 @@
         "HEADER": "Travelkoin Betaling Gateway",
         "DESCRIPTION": "Traveliko.com wordt de eerste gebruiker van onze betaling gateway voor betalingen en ontvangsten."
       }
-    }
-  },
+    },
+    "NEWS": {
+      "HEADER": "In het nieuws"
+    }  
+},
   "AUTH": {
     "LOGIN": {
       "BUTTON_SAVE": "Log in",
@@ -206,7 +245,13 @@
     "DESCRIPTION": "Welkom bij Travelkoin. Dit is uw portaal voor onze ICO.",
     "FORMS": "Formulieren",
     "ADD_FUNDS": "Vul bedrag in",
-    "GOAL_REACHED": "Token verkoop"
+    "WAITING_FOR_APPROVAL": "Uw account wordt beoordeeld. Wij zullen u berichten wanneer uw applicatie is goedgekeurd.",
+    "YOU_HAVE_BEEN_BLOCKED": "Uw deelname is door ons geblokkeerd.",
+    "APPROVED": "Goedgekeurd"
+  },
+  "PROGRESS": {
+    "GOAL_REACHED": "Token verkoop",
+    "ENDS": "Ends on"
   },
   "COIN": {
     "TKT": "Travelkoin",
@@ -214,7 +259,7 @@
     "BTC": "Bitcoin"
   },
   "WALLET": {
-    "TITLE": "Wallet",
+    "TITLE": "Mijn contributie",
     "TRANSACTIONS": "TXS",
     "TRANSACTION_ERROR": "Foutmelding",
     "TRANSACTION_ERROR_DETAILS": "Details",
@@ -225,7 +270,8 @@
     "BALANCE": "Saldo",
     "RECEIVE": "Ontvang",
     "EXCHANGE": "Wissel om",
-    "DESCRIPTION": "Hier geeft u informatie over de betaling van uw {{type}} wallet voor het evenement."
+    "SEE_TRANSACTIONS": "Zie transacties",
+    "DESCRIPTION": "Hier ziet u de contributie die u heeft gedaan in Travelkoin."
   },
   "VALUE": {
     "ADD_PAYMENT": "Verricht transactie",
@@ -254,7 +300,7 @@
     "WALLET_SENDER_PLACEHOLDER": "Vul uw adres in",
     "WALLET_SENDER_HELP": "Optioneel: Vul het adres in van de wallet die u gebruikt heeft om ons het bedrag te sturen.",
     "WALLET_RECIPIENT": "Verstuur bedrag naar dit adres",
-    "WALLET_RECIPIENT_HELP": "Dit is het adres dat u gebruikt om ons het bedrag te sturen voor het evenementomzetten van het bdrag    ."
+    "WALLET_RECIPIENT_HELP": "Dit is het adres dat u gebruikt om ons het bedrag te sturen voor het evenementomzetten van het bedrag."
   },
   "EXCHANGE": {
     "DIALOG": "Bevestig omzetten van het bedrag",
@@ -295,6 +341,7 @@
     "HEADER": "Formulieren",
     "DESCRIPTION": "Vul de informatie in en upload de benodigde documenten. Na goedkeuring kunt u ETH naar onze wallet zenden.",
     "DIALOG": "Verstuur benodidge documenten",
+    "ALREADY_APPROVED": "Al goedgekeurd",
     "DIALOG_DESCRIPTION": "U bent nu klaar om uw documenten te versturen. Versturen?",
     "UPLOAD_DOCUMENTS": "Upload documenten",
     "UPLOAD_DOCUMENTS_HELP": "We heben 2 documenten van u nodig",
@@ -304,11 +351,8 @@
     "NO_DOCUMENTS_UPLOADED": "Er zijn geen documenten uploaded",
     "ETH_ADDRESS": "Ethereum adres",
     "ETH_ADDRESS_PLACEHOLDER": "Vul uw Ethereum adres in",
-    "ETH_ADDRESS_HELP": "Vul het Ethereum adres in dat u gebruikt om het bedrag naar ons te verzenden. U kunt alleen dit adres gebruiken. Andere transacties zullen worden genegeerd.",
-    "BTC_ADDRESS": "Bitcoin adres",
-    "BTC_ADDRESS_PLACEHOLDER": "Vul uw Bitcoin adres in",
-    "BTC_ADDRESS_HELP": "Vul het Bitcoin adres in dat u gebruikt om het bedrag naar ons te verzenden. U kunt alleen dit adres gebruiken. Andere transacties zullen worden genegeerd."
-  },
+    "ETH_ADDRESS_HELP": "Vul het Ethereum adres in dat u gebruikt om het bedrag naar ons te verzenden. U kunt alleen dit adres gebruiken. Andere transacties zullen worden genegeerd."
+    },
   "LANGUAGE": {
     "EN": "Engels",
     "FR": "Frans",
@@ -327,5 +371,192 @@
     "SK": "Slovak",
     "TH": "Thai"
   },
+  "HELP": {
+    "HEADER": "Help",
+    "DESCRIPTION": "Dit deel verklaard hoe gereed te zijn voor de ICO.",
+    "1": {
+      "QUESTION": "Note",
+      "ANSWER": "Deze ICO is exclusief getest met MetaMask. U kunt waarschijnlijk Mist of Parity browsers gebruiken maar hier verklaren we hoe deel te nemen met gebruik van MetaMask."
+    },
+    "2": {
+      "QUESTION": "vereist",
+      "ANSWER_1": "Installeer",
+      "ANSWER_2": "Google Chrome",
+      "ANSWER_3": "en installeer de",
+      "ANSWER_4": "MetaMask",
+      "ANSWER_5": "extentie"
+    },
+    "3": {
+      "QUESTION": "Voordat u met MetaMask inlogt",
+      "ANSWER": "Dit is het bericht dat u ziet voordat u uw Ethereum account aansluit met MetaMask"
+    },
+    "4": {
+      "QUESTION": "Sluit uw whitelisted Ethereum account aan met MetaMask",
+      "ANSWER_1": "Nadat u MetaMask geninstalleerd heeft, klik de MetaMask icon (rode vos) in de top rechter hoek van uw Google Chrome browser.",
+      "ANSWER_2": "Klik op de 'switch user icon' (zwarte pijl) en kies \"Import Account\".",
+      "ANSWER_3": "Importeer de private key voor het Ethereum address dat u genruikt heeft om te registreren voor dit event.  Dit adres is whitelisted en is het ENIGE adres dat u kunt gebruiken voor het event."
+    },
+    "5": {
+      "QUESTION": "Na de connectie met MetaMask",
+      "ANSWER": "Wanneer u bent verbonden met MetaMask kan het modgelijk zijn dat u nog niet whitelisted bent voor het event. In dat geval ziet u het volgende bericht."
+    },
+    "6": {
+      "QUESTION": "Nadat u bent whitelisted maar voordat het event is begonnen.",
+      "ANSWER": "Wanneer u verbonden bent met MetaMask en whitelisted bent maar voordat het event begint  ziet u het volgend bericht."
+    },
+    "7": {
+      "QUESTION": "Geurende het event",
+      "ANSWER_1": "Wanneer het event begint, ziet u een formulier met uw huidige account saldo en een veld dat u kunt gebruiken om het bedrag in te vullen voor uw contributie.",
+      "ANSWER_2": "Voor alle duidelijkheid, in de eerste 24 uur van het event is de maximale contributie 1 ETH.",
+      "ANSWER_3": "Na de eerste 24 uur kunt u zelf bepalen wat uw maximale contributie is."
+    }
+  },
+  "HANS": {
+    "WHITELIST": {
+      "ADD_APPROVED_TO_WHITELIST": "Voeg gebruiker toe aan de whitelist"
+    },
+    "USERS": {
+      "TITLE": "Gebruikers",
+      "DESCRIPTION": "Keur goed en whitelist gebruikers hier.",
+      "BLOCK": "Blokeer",
+      "UNBLOCK": "Opnieuw inschakelen",
+      "APPROVE": "Keur goed",
+      "WHITELISTED": "Whitelisted",
+      "UPLOADED_DOCUMENT": "Uploaded dokument",
+      "NO_RECORDS": "Geen gebruikers in deze categorie",
+      "NO_IMAGES_UPLOADED": "Deze gebruiker heeft geen afbeeldingen verstuurd ",
+      "REGISTERED": "Registreerd",
+      "NEEDS_APPROVAL": "Goedkeuring moet nog gedaan worden",
+      "BLOCKED": "Geblokkeerd",
+      "APPROVED": "Goedgekeurd",
+      "EMAIL": "Email",
+      "WALLET_ADDRESS": "Ethereum adres",
+      "DOCUMENTS": "Dokumenten",
+      "ACTION": "Aktie"
+    }
+  },
+  "TOKEN_CONTRACT": {
+    "ACCOUNT": "Account",
+    "AMOUNT": "Bedrag",
+    "MAKE_PAYMENT": "Contributie",
+    "TOKEN_SALE": "Token verkoop",
+    "WAITING_ON_APPROVAL": "uw adres is niet whitelisted",
+    "EVENT_HAS_STARTED": "Het event is begonnen.",
+    "WHITELISTED": "U bent whitelisted",
+    "MISSING_PROVIDER": "Geen provider",
+    "SALE_ENDED": "Verkoop kompleet",
+    "THANK_YOU": "Dank u voor uw participatie",
+    "CLAIM_YOUR_TOKENS": "Klik hier om uw token te ontvangen",
+    "CURRENT_BALANCE": "Saldo",
+    "CLEAR": "Clear",
+    "STATUS": "Uw status",
+    "STARTS_AT": "Event begint op",
+    "ERROR_AMOUNT_REQUIRED": "Bedrag kan niet leeg zijn",
+    "ERROR_MIN_CONTRIBUTION": "Minimum contributie is:",
+    "ERROR_MAX_CONTRIBUTION": "Uw maximum contribution op dit moment is:",
+    "INITIATING_TRANSACTION": "'Start transactie...'",
+    "ERROR": "Fout",
+    "YOU_ARE_USING": "secured by"
+  },
+  "CONTRACT": {
+    "TITLE": "ICO Contract",
+    "START_DATE": "Start datum",
+    "START_DATE_HELP": "De ICO begint op deze datum.",
+    "END_DATE": "Eind datum",
+    "END_DATE_HELP": "de ICO zal eindigen op deze datum tenzij de hard cap al bereikt is.",
+    "CROWDSALE_ADDRESS": "ICO contract adres",
+    "CROWDSALE_ADDRESS_HELP": "Dit is het adres voor ons crowd sale smart contract.",
+    "TOKEN_ADDRESS": "Token contract adres",
+    "TOKEN_ADDRESS_HELP": "Dit is het adres voor de Travelkoin token.",
+    "TOTAL_SUPPLY": "Totaal aanbod",
+    "TOTAL_SUPPLY_HELP": "Dit is het total saldo van gecreeerde Travelkoin tokens.",
+    "SALE_SUPPLY": "Tokens beschikbaar voor de ICO",
+    "SALE_SUPPLY_HELP": "Dit is het volledige saldo Travelkoin tokens dat beschikbaar is voor de ICO.",
+    "BOUNTY_SUPPLY": "Tokens beschikbaar voor bug bounties",
+    "BOUNTY_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor onze bug bounty.",
+    "COMMUNITY_SUPPLY": "Tokens beschikbaar voor onze gemeenschap",
+    "COMMUNITY_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor onze gemeenschap.",
+    "TEAM_SUPPLY": "Tokens beschikbaar voor team members",
+    "TEAM_SUPPLY_HELP": "Dit is het volledige saldo Travelkoin tokens beschikbaar voor onze team members.",
+    "INVESTOR_SUPPLY": "Tokens beschikbaar voor early contributors",
+    "INVESTOR_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor early contributors.",
+    "FOUNDER_SUPPLY": "Tokens beschikbaar voor founders",
+    "FOUNDER_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor founders.",
+    "THREE_MONTH_HODL_SUPPLY": "3 month HODL bonus",
+    "THREE_MONTH_HODL_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor 3-month HODLers.",
+    "SIX_MONTH_HODL_SUPPLY": "6 month HODL bonus",
+    "SIX_MONTH_HODL_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor 6-month HODLers.",
+    "NINE_MONTH_HODL_SUPPLY": "9 month HODL bonus",
+    "NINE_MONTH_HODL_SUPPLY_HELP": "Dit is het total saldo Travelkoin tokens beschikbaar voor 9-month HODLers.",
+    "RATE": "TKT / ETH conversie koers",
+    "RATE_HELP": "Dit is het aantal Travelkoin dat u krijgt voor 1 ETH.",
+    "CAP": "Crowdsale hard cap",
+    "CAP_HELP": "Dit is het maximale saldo Ether dat gebruikt kan worden om onze token te kopen gedurende de ICO.",
+    "MINIMUM_CONTRIBUTION": "Minimum contributie",
+    "MINIMUM_CONTRIBUTION_HELP": "Dit is kleinste saldo in Ether dat u kunt gebruiken voor de contributie in deze ICO.",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION": "Maximale contribution op dag 1",
+    "DAY_ONE_MAXIMUM_CONTRIBUTION_HELP": "Dit is het maximale saldo Ether dat gebruikt kan worden om onze token te kopen gedurende dag 1. Na dag 1 is er geen limiet.",
+    "DESCRIPTION": "Dit deel laat de exacte details zien van ons onveranderlijke smart contract als vastgelegd op Ethereum. de waarden die u hier ziet komen direct van het contract."
+  },
+  "TOKEN_WALLET": {
+    "TITLE": "Wallet",
+    "PURCHASED_TOKENS": "Tokens gekocht",
+    "WAITING_TO_START": "Locked",
+    "CLAIM_AFTER_SALE": "Dit zijn de tokens die u tot nu toe heeft gekocht. U bent nog geen eigenaar maar wanneer de verkoop is beeindigt kunt u deze tokens onmiddelijk claimen.",
+    "SALE_ONGOING": "Voortdurend",
+    "YOU_HAVE_PURCHASED": "Gekocht",
+    "YOU_OWN": "U bezit",
+    "CLAIM_AFTER_SALE_DESC": "U kunt de tokens claimen wanneer de verkoop beeindigt is.",
+    "CLAIM_TOKENS": "Claim tokens"
+  },
+  "CONTRACT_CONFIGURATION": {
+    "TOKEN_DATES": "Crowdsale data",
+    "WHITELIST": "Whitelist",
+    "ADDRESS": "Adres",
+    "ADDRESS_HELP": "Voeg het adres toe aan de whitelist",
+    "ADDRESS_PLACEHOLDER": "Vul adres in",
+    "TRANSACTION_RESULT": "Transactie resultaat"
+  },
+  "TRANSACTION_LOG": {
+    "TITLE": "Transacties",
+    "PURCHASED": "Gekocht",
+    "TOKENS": "tokens. Wallet wordt bijgewerkt."
+  },
+  "CODE": {
+    "NOT_CONNECTED": "U moet de Mist browser of MetaMask installeren en op mainnet zijn.",
+    "NOT_LOGGED_IN": "Bent u ingelogt op uw Ethereum account.",
+    "PROVIDER_LOG_IN": "Gaarne inloggen in uw wallet in MetaMask or Mist.",
+    "ERROR": "onbekende fout: check uw log."
+  },
+  "FAQ": {
+    "DESCRIPTION": "Deze pagina wordt constant vernieuwd met nieuwe vragen.",
+    "LAST_UPDATED": "Laatste versie",
+    "1": {
+      "QUESTION": "Why should I contribute? / Why will the value of the TKT token increase?",
+      "ANSWER": "The TKT token is the \"gas\" that powers all the services on our platform. Our two first applications will be a payment gateway and a white-labeled loyalty program. When an airline, hotel or any other travel tech company use these services and run out of tokens, they need to buy more. As we add more services and as global travel increases, the demand for tokens goes up. Travelers earn tokens; they receive tokens when adding value to the platform such as making a booking. Users can convince travelers to part with their tokens in return for a good deal. Other travel suppliers with a less gamified business model, will opt to purchase tokens from us directly. Our token will always increase in value as long as we offer up great services to our travel tech partners and global travel steadily increases."
+    },
+    "2": {
+      "QUESTION": "Can anyone participate?",
+      "ANSWER": "We expect each contributors to know all applicable laws governing an ICO in his or her country. The Travelkoin team does KYC (Know Your Customer) upon registration but we do not limit participation. Investors, especially from the U.S., the People's Republic of China and South Korea, need to check their current limitations imposed upon them by their respective governments before participating in our ICO."
+    },
+    "3": {
+      "QUESTION": "Roger Ver: How is Travelkoin going to peg STU to a basket of fiat currencies? Will it be backed by fiat in an auditable account somewhere? If yes, how are you going to hedge again forex risk if you allow holders of STU to cash out into their local fiat at a pegged rate?",
+      "ANSWER": "Our original idea was to peg STU to a currency basket similar to Special Drawing Right (SDR) of IMF. However, discussions with early backers showed that this is not really desirable as most cross-border transactions in the travel industry involve just an origin and a destination currency, so pegging against a whole basket doesn't add any benefit. It makes more sense to tokenize the origin currencies, starting with USD, EUR, CNY, JPY. Despite the bad rap of Tether (USDT), we believe that 100% collateralization is the best way to provide stability. So each of the tokenized currencies would be held in an auditable bank account. The tokenization does not eliminate forex risk. As in traditional settlements the risk remains with the counterparties involved based on the contracts they have with each other. We plan to create a STU token per fiat currency and the exchange rate should be determined between the counterparties, or left dynamic if that is what they agree on. Travelkoin basically holds the fiat as collateral until the point that the token holder wants to convert their token back into fiat. We would not want the STU traded on a public exchange as it will be near impossible to guarantee the required stability then. If for some reason a lot more companies buy STU in USD and send them as payment to Europe where they are converted into fiat EUR, then Travelkoin would have to make the necessary transfer of fiat USD to EUR to provide liquidity in the EUR market. It might be of advantage to the paying party to use the designated destination currency STU if that seems more beneficial to them. As mentioned before, counterparties still have the responsibility to assess their forex exposure and risk. But STU gives them some options."
+    },
+    "4": {
+      "QUESTION": "Why don't you offer a pre-sale, bonus structure or other discounts?",
+      "ANSWER": "We want to offer the blockchain community and our early contributors with a completely egalitarian tool to contribute. We know the Travelkoin platform will be a massive success and help usher travel tech into the 21st century. We don't require silly amounts of capital and we know the pain points of our travel tech partners and those of our own. Offering up discounts doesn't make sense to us. We might consider taking on a strategic private contributors before the ICO starts. That entity will receive a slightly discounted price and we will have ourselves an early strategic partner."
+    },
+    "5": {
+      "QUESTION": "How will you create demand?",
+      "ANSWER": "Our undertaking is, first and foremost, a B2B integration story. A majority of the funds will go here. Travel tech companies will learn to do business on our new platform for free. The demand for our payment gateway is already overwhelming. The platform starts selling itself once we can gamify the experience through the use of the loyalty platform. Everyone will feel the NEED to be on board."
+    },
+    "6": {
+      "QUESTION": "What is the legal entity behind this ICO?",
+      "ANSWER": "Our legal entity is a Thai based limited liability company called \"The Blockchain Company Ltd.\" (Reg: 0105561011251) 180 Sixteen Place Building, B Zone, 2nd Floor, Soi Sukhumvit 16 (Sammitr), Klongtoey, Bangkok 10110, Thailand. Phone: +66 (0) 85-489-1301."
+    }
+  },
+  "BUTTON_SAVE": "Sla op",
+  "BUTTON_ADD": "Voeg toe",
   "END": "Eind"
 }
