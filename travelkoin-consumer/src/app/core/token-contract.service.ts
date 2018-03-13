@@ -153,7 +153,7 @@ export class TokenContractService {
 
 
     removeFromWhitelist(owner: string, beneficiary: string): Observable<TransactionResult> {
-        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 50000, 4000000000);
+        const tx: TxParams = W3.TX.txParamsDefaultSend(owner, 100000, 4000000000);
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.removeFromWhitelist(beneficiary, tx)));
     }
 
