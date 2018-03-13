@@ -19,6 +19,10 @@ export class Web3Service {
         console.log(`value is number: ${typeof value === 'number'}`);
         console.log(`typeof: ${typeof value}`);
 
+        if (typeof value === 'object') {
+            console.log(`type of object: ${value.constructor.name}`);
+        }
+
         let result: BigNumber = null;
         if (value != null) {
             result = this.getW3().web3.fromWei(value, 'ether');
