@@ -15,7 +15,6 @@ import {UserService} from './user.service';
 import {CloudinaryService} from './cloudinary.service';
 import {AuthenticatedGuard} from './authenticated.guard';
 import {RegisteredGuard} from './registered.guard';
-import {EthereumService} from './ethereum.service';
 import {ConversionService} from './conversion.service';
 import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
@@ -43,7 +42,6 @@ import {AccountsService} from './accounts.service';
         ServerHeartBeatService,
         TimezoneOffsetHttpInterceptorService,
         UserSessionService,
-        EthereumService,
         UserService,
         CloudinaryService,
         AuthenticatedGuard,

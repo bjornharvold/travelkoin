@@ -13,6 +13,9 @@ export class Web3Service {
     private _provider: string;
 
     weiToEther(value: BigNumber): BigNumber {
+        console.log(`value is BigNumber: ${value instanceof BigNumber}`);
+        console.log(`value is string: ${typeof value === 'string'}`);
+
         let result: BigNumber = null;
         if (value != null) {
             result = this.getW3().web3.fromWei(value, 'ether');

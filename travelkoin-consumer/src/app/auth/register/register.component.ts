@@ -86,14 +86,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     createUserWithEmailAndPassword(): void {
         this.message = null;
 
-        if (environment.production) {
-            Observable.fromPromise(this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.NONE))
-                .subscribe(() => {
-                    this.login(this.afAuth.auth.createUserWithEmailAndPassword(this.username.value, this.password.value));
-                });
-        } else {
-            this.login(this.afAuth.auth.createUserWithEmailAndPassword(this.username.value, this.password.value));
-        }
+        this.login(this.afAuth.auth.createUserWithEmailAndPassword(this.username.value, this.password.value));
     }
 
     ngOnDestroy() {

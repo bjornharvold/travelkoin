@@ -66,9 +66,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.message = null;
 
         let persistence: firebase.auth.Auth.Persistence = firebase.auth.Auth.Persistence.LOCAL;
-        if (environment.production === true) {
-            persistence = firebase.auth.Auth.Persistence.NONE;
-        }
 
         Observable.fromPromise(this.afAuth.auth.setPersistence(persistence))
             .subscribe(() => {

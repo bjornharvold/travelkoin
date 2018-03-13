@@ -85,16 +85,8 @@ export class PhoneVerifierComponent implements OnInit, OnDestroy {
     linkPhoneNumber(): void {
         this.message = null;
 
-        if (environment.production) {
-            Observable.fromPromise(this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.NONE))
-                .takeWhile(() => this.alive)
-                .subscribe(() => {
-                    console.log(this.captcha.value);
-                    this.doLinkPhoneNumber(this.afAuth.auth.signInWithPhoneNumber(this.phoneNumber.value, this.captcha.value));
-                });
-        } else {
-            this.doLinkPhoneNumber(this.afAuth.auth.signInWithPhoneNumber(this.phoneNumber.value, this.captcha.value));
-        }
+        this.doLinkPhoneNumber(this.afAuth.auth.signInWithPhoneNumber(this.phoneNumber.value, this.captcha.value));
+
     }
 
     enterVerificationCode(): void {
