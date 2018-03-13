@@ -32,10 +32,12 @@ export class ProgressComponent implements OnInit, OnDestroy {
         this.tokenContractService.weiRaised()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
-                    // console.log(value.toFormat());
-                    this.valueBigNumber = this.web3Service.weiToEther(value).mul(1000);
-                    this.value = this.valueBigNumber.toNumber();
-                    this.valueString = this.valueBigNumber.toFormat();
+                    if (value != null) {
+                        // console.log(value.toFormat());
+                        this.valueBigNumber = this.web3Service.weiToEther(value).mul(1000);
+                        this.value = this.valueBigNumber.toNumber();
+                        this.valueString = this.valueBigNumber.toFormat();
+                    }
                 },
                 error => {
                     this.loading = false;
@@ -50,8 +52,10 @@ export class ProgressComponent implements OnInit, OnDestroy {
         this.tokenContractService.endTime()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
-                    // console.log(value.toFormat());
-                    this.endTime = DateService.bigNumberToMoment(value);
+                    if (value != null) {
+                        // console.log(value.toFormat());
+                        this.endTime = DateService.bigNumberToMoment(value);
+                    }
                 },
                 error => {
                     this.loading = false;
@@ -71,11 +75,13 @@ export class ProgressComponent implements OnInit, OnDestroy {
         this.tokenContractService.cap()
             .takeWhile(() => this.alive)
             .subscribe((value: BigNumber) => {
-                    // simplify by adding rate here (1 ETH = 1000 TKT)
-                    this.maxBigNumber = this.web3Service.weiToEther(value);
-                    this.max = this.maxBigNumber.toNumber();
-                    this.maxString = this.maxBigNumber.toFormat();
-                    this.loading = false;
+                    if (value != null) {
+                        // simplify by adding rate here (1 ETH = 1000 TKT)
+                        this.maxBigNumber = this.web3Service.weiToEther(value);
+                        this.max = this.maxBigNumber.toNumber();
+                        this.maxString = this.maxBigNumber.toFormat();
+                        this.loading = false;
+                    }
                 },
                 error => this.error = error,
                 () => {
