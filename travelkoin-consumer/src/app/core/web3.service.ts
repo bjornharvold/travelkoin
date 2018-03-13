@@ -14,14 +14,12 @@ export class Web3Service {
 
     weiToEther(value: BigNumber): BigNumber {
         let result: BigNumber = null;
-        // console.log(this.getWeb3().utils);
-        // return this.getWeb3().utils.fromWei(value, 'ether');
-        // console.log(value.dividedBy(1e18).toFormat(0));
-        // console.log(typeof value.dividedBy(1e18).toFormat(0));
         if (value != null) {
             result = this.getW3().web3.fromWei(value, 'ether');
-            // result = value.dividedBy(1e18).toFormat(8);
         }
+
+        console.log(`weiToEther result is BigNumber: ${result instanceof BigNumber}`);
+        console.log(`weiToEther result is string: ${typeof result === 'string'}`);
         return result;
     }
 
