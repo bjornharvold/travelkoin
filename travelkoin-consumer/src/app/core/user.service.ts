@@ -46,6 +46,10 @@ export class UserService {
     }
 
     listRegistered(): Observable<Array<User> | null> {
+        return this.list(false, false, false, false);
+    }
+
+    listWaitingForApproval(): Observable<Array<User> | null> {
         return this.list(false, true, false, false);
     }
 
