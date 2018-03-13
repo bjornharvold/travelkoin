@@ -5,7 +5,7 @@
 export const environment = {
     production: true,
     environment: 'prod',
-    build: '5.47.0',
+    build: '5.49.0',
     facebookApiToken: '153061035334448',
     googleClientId: '203622510760-aaalmijl8274ep6igrcppf82o5dk9g7b.apps.googleusercontent.com',
     linkedInClientId: '78s4ha900jfpmq',
@@ -20,8 +20,8 @@ export const environment = {
     eventEndTimeEpochInMilliseconds: 1523710800000,
     siteUrl: 'https://travelkoin.io',
     contracts: {
-        TravelkoinToken: 'fillmein',
-        TravelkoinCrowdsale: 'fillmein'
+        TravelkoinToken: '0x04b9a476fc6bae481f32784263e25575da9a5127',
+        TravelkoinCrowdsale: '0x5039de379abb1da186ce957f3967011775ec9dd3'
     },
     firebase: {
         apiKey: 'AIzaSyDw51i02dW-Q1fx-SsoBZEJyc0vv-UGDGI',

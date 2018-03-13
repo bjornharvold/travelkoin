@@ -1,0 +1,4 @@
+geth --rinkeby --rpc --rpcapi db,eth,net,web3,personal --unlock="0xbb13e514578aFD3c0031C7A8Bb54132981317675" --password pss
+
+        TravelkoinToken: '0xf25186b5081ff5ce73482ad761db0eb0d25abfbf',
+        TravelkoinCrowdsale: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f'
