@@ -17,6 +17,7 @@ export class Web3Service {
         console.log(`value is string: ${typeof value === 'string'}`);
         console.log(`value is object: ${typeof value === 'object'}`);
         console.log(`value is number: ${typeof value === 'number'}`);
+        console.log(`typeof: ${typeof value}`);
 
         let result: BigNumber = null;
         if (value != null) {
