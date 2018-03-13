@@ -26,11 +26,19 @@ export class Web3Service {
 
         let result: BigNumber = null;
         if (value != null) {
-            result = this.getW3().web3.fromWei(value, 'ether');
+            const theNumber: any = this.getW3().web3.fromWei(value, 'ether');
+
+            console.log(`weiToEther result is BigNumber: ${result instanceof BigNumber}`);
+            console.log(`weiToEther result is string: ${typeof result === 'string'}`);
+            console.log(`weiToEther result: ${result}`);
+
+            if (typeof theNumber  === 'string') {
+                result = new BigNumber(theNumber);
+            } else {
+                result = theNumber;
+            }
         }
 
-        console.log(`weiToEther result is BigNumber: ${result instanceof BigNumber}`);
-        console.log(`weiToEther result is string: ${typeof result === 'string'}`);
         return result;
     }
 
