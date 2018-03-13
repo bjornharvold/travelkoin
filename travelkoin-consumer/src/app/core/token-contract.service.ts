@@ -169,7 +169,7 @@ export class TokenContractService {
     // }
 
     buyTokens(beneficiary: string, amount: number): Observable<TransactionResult> {
-        const amountInEther = new BigNumber(amount * Math.pow(10, 18));
+        const amountInEther = new BigNumber(amount).mul(Math.pow(10, 18));
         const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 100000, 4000000000);
         tx.value = amountInEther;
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
@@ -177,7 +177,7 @@ export class TokenContractService {
 
     // TODO figure out to avoid throwing an error when estimating gas
     // buyTokens(beneficiary: string, amount: number): Observable<TransactionResult> {
-    //     const amountInEther = new BigNumber(amount * Math.pow(10, 18));
+    //     const amountInEther = new BigNumber(amount).mul(Math.pow(10, 18));
     //     return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
     //         return Observable.fromPromise(ti.buyTokens.estimateGas(beneficiary))
     //             .switchMap((gas: number) => {
