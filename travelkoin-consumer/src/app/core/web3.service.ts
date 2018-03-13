@@ -15,6 +15,8 @@ export class Web3Service {
     weiToEther(value: BigNumber): BigNumber {
         console.log(`value is BigNumber: ${value instanceof BigNumber}`);
         console.log(`value is string: ${typeof value === 'string'}`);
+        console.log(`value is object: ${typeof value === 'object'}`);
+        console.log(`value is number: ${typeof value === 'number'}`);
 
         let result: BigNumber = null;
         if (value != null) {
