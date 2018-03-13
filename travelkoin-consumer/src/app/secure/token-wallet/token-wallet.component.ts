@@ -56,8 +56,8 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balanceOf(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
-                        this.balance = balance.toNumber();
-                        this.balanceString = this.web3Service.weiToEther(balance).mul(1000).toFormat();
+                        this.balance = this.web3Service.weiToEther(balance).toNumber();
+                        this.balanceString = this.web3Service.weiToEther(balance).toFormat();
                     },
                     error => {
                         this.loading = false;

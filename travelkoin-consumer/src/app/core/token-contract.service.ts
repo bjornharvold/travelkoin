@@ -168,21 +168,21 @@ export class TokenContractService {
     //     });
     // }
 
-    buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
-        const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
-        const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 200000, 4000000000);
-        tx.value = amountInWei;
+    buyTokens(beneficiary: string, amount: number): Observable<TransactionResult> {
+        const amountInEther = new BigNumber(amount).mul(Math.pow(10, 18));
+        const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, 100000, 4000000000);
+        tx.value = amountInEther;
         return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => Observable.fromPromise(ti.buyTokens(beneficiary, tx)));
     }
 
     // TODO figure out to avoid throwing an error when estimating gas
-    // buyTokens(beneficiary: string, amountInEther: number): Observable<TransactionResult> {
-    //     const amountInWei: BigNumber = this.web3Service.etherToWei(amountInEther);
+    // buyTokens(beneficiary: string, amount: number): Observable<TransactionResult> {
+    //     const amountInEther = new BigNumber(amount).mul(Math.pow(10, 18));
     //     return this.getTravelkoinCrowdsale().switchMap((ti: TravelkoinCrowdsale) => {
     //         return Observable.fromPromise(ti.buyTokens.estimateGas(beneficiary))
     //             .switchMap((gas: number) => {
     //                 const tx: TxParams = W3.TX.txParamsDefaultSend(beneficiary, gas);
-    //                 tx.value = amountInWei;
+    //                 tx.value = amountInEther;
     //                 return Observable.fromPromise(ti.buyTokens(beneficiary, tx));
     //             });
     //
