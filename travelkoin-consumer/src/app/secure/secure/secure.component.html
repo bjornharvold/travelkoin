@@ -1,19 +1,30 @@
-<div class="hero-box hero-box-smaller bg-black font-inverse" data-top-bottom="background-position: 50% 0px;" data-bottom-top="background-position: 50% -600px;" style="background-position: 50% -181.659px;">
-    <div class="container">
-        <h1 class="hero-heading">
-            <app-secure-secure-timer></app-secure-secure-timer>
-        </h1>
-    </div>
-    <div class="hero-pattern pattern-bg-2"></div>
-</div>
-
-<div id="page-content" class="col-md-10 center-margin frontend-components mrg25T">
-    <div class="row">
-        <div class="col-md-2">
-            <app-secure-navigation></app-secure-navigation>
+<div *ngIf="isChromeDesktop">
+    <div class="hero-box hero-box-smaller bg-black font-inverse" data-top-bottom="background-position: 50% 0px;" data-bottom-top="background-position: 50% -600px;" style="background-position: 50% -181.659px;">
+        <div class="container">
+            <h1 class="hero-heading">
+                <app-secure-secure-timer></app-secure-secure-timer>
+            </h1>
         </div>
-        <div class="col-md-10">
-            <router-outlet></router-outlet>
+        <div class="hero-pattern pattern-bg-2"></div>
+    </div>
+
+    <div id="page-content" class="col-sm-10 center-margin frontend-components mrg25T">
+        <div class="row">
+            <div class="col-sm-2">
+                <app-secure-navigation></app-secure-navigation>
+            </div>
+            <div class="col-sm-10">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isChromeDesktop">
+    <div class="col-sm-12 center-margin frontend-components mrg25T">
+        <div class="row">
+            <div class="col-sm-12">
+                <app-secure-chrome-browser-required></app-secure-chrome-browser-required>
+            </div>
         </div>
     </div>
 </div>

@@ -17,6 +17,7 @@ import {NotLoggedInComponent} from './not-logged-in/not-logged-in.component';
 import {SecureTimerComponent} from './secure-timer/secure-timer.component';
 import {HelpComponent} from './help/help.component';
 import {TransactionLogComponent} from './transaction-log/transaction-log.component';
+import { ChromeBrowserRequiredComponent } from './chrome-browser-required/chrome-browser-required.component';
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import {TransactionLogComponent} from './transaction-log/transaction-log.compone
         NotLoggedInComponent,
         SecureTimerComponent,
         HelpComponent,
-        TransactionLogComponent
+        TransactionLogComponent,
+        ChromeBrowserRequiredComponent
     ]
 })
 export class SecureModule {
