@@ -13,22 +13,22 @@ export class Web3Service {
     private _provider: string;
 
     weiToEther(value: BigNumber): BigNumber {
-        console.log(`value is : |${value}|`);
-        console.log(`value is BigNumber: ${value instanceof BigNumber}`);
-        console.log(`value is string: ${typeof value === 'string'}`);
-        console.log(`value is object: ${typeof value === 'object'}`);
-        console.log(`value is number: ${typeof value === 'number'}`);
-        console.log(`typeof: ${typeof value}`);
+        // console.log(`value is : |${value}|`);
+        // console.log(`value is BigNumber: ${value instanceof BigNumber}`);
+        // console.log(`value is string: ${typeof value === 'string'}`);
+        // console.log(`value is object: ${typeof value === 'object'}`);
+        // console.log(`value is number: ${typeof value === 'number'}`);
+        // console.log(`typeof: ${typeof value}`);
 
-        if (typeof value === 'object') {
-            console.log(`type of object: ${value.constructor.name}`);
-            console.log(Object.getOwnPropertyNames(value));
-        }
+        // if (typeof value === 'object') {
+        //     console.log(`type of object: ${value.constructor.name}`);
+        //     console.log(Object.getOwnPropertyNames(value));
+        // }
 
         let result: BigNumber = null;
         if (value != null) {
             const theNumber: any = this.getW3().web3.fromWei(value, 'ether');
-            console.log(`theNumber: |${theNumber}|`);
+            // console.log(`theNumber: |${theNumber}|`);
 
             if (typeof theNumber  === 'string') {
                 result = new BigNumber(theNumber);
@@ -36,9 +36,9 @@ export class Web3Service {
                 result = theNumber;
             }
 
-            console.log(`weiToEther result is BigNumber: ${result instanceof BigNumber}`);
-            console.log(`weiToEther result is string: ${typeof result === 'string'}`);
-            console.log(`weiToEther result: |${result}|`);
+            // console.log(`weiToEther result is BigNumber: ${result instanceof BigNumber}`);
+            // console.log(`weiToEther result is string: ${typeof result === 'string'}`);
+            // console.log(`weiToEther result: |${result}|`);
         }
 
         return result;
