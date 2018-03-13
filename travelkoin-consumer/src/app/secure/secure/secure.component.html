@@ -1,4 +1,4 @@
-<div *ngIf="isChromeDesktop">
+<div *showItBrowser="['chrome']">
     <div class="hero-box hero-box-smaller bg-black font-inverse" data-top-bottom="background-position: 50% 0px;" data-bottom-top="background-position: 50% -600px;" style="background-position: 50% -181.659px;">
         <div class="container">
             <h1 class="hero-heading">
@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="!isChromeDesktop">
+<div *showItBrowser="['ie','opera', 'safari', 'firefox']">
     <div class="col-sm-12 center-margin frontend-components mrg25T">
         <div class="row">
             <div class="col-sm-12">

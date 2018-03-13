@@ -43,14 +43,14 @@ import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import {ShareButtonsModule} from '@ngx-share/buttons';
 import {IShareButtons} from '@ngx-share/core';
 import {Observable} from 'rxjs/Observable';
-import { TeamComponent } from './home/team/team.component';
-import { BackersComponent } from './home/backers/backers.component';
-import { IcoDetailsComponent } from './home/ico-details/ico-details.component';
-import { NewsComponent } from './home/news/news.component';
-import { FaqComponent } from './faq/faq.component';
-import { FaqHeaderComponent } from './faq/faq-header/faq-header.component';
-import { FaqDetailsComponent } from './faq/faq-details/faq-details.component';
-import { EventFinishedComponent } from './home/event-finished/event-finished.component';
+import {TeamComponent} from './home/team/team.component';
+import {BackersComponent} from './home/backers/backers.component';
+import {IcoDetailsComponent} from './home/ico-details/ico-details.component';
+import {NewsComponent} from './home/news/news.component';
+import {FaqComponent} from './faq/faq.component';
+import {FaqHeaderComponent} from './faq/faq-header/faq-header.component';
+import {FaqDetailsComponent} from './faq/faq-details/faq-details.component';
+import {EventFinishedComponent} from './home/event-finished/event-finished.component';
 import {EventCountdownComponent} from './home/event-countdown/event-countdown.component';
 
 /**
