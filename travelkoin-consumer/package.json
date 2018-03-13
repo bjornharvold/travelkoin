@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "prod": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment prod --aot --build-optimizer",
+    "prod": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment prod --aot --build-optimizer false",
     "uat": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment uat --aot --build-optimizer",
     "ci": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment ci --aot --build-optimizer",
     "dev": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment dev --aot --build-optimizer",
