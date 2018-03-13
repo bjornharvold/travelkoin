@@ -5,9 +5,6 @@ import {BigNumber} from 'bignumber.js';
 import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {AccountsService} from '../../core/accounts.service';
-import {W3} from 'soltsice';
-import {TransactionLogService} from '../../core/transaction-log.service';
-import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-secure-token-wallet',
@@ -17,35 +14,9 @@ import TransactionResult = W3.TX.TransactionResult;
 export class TokenWalletComponent implements OnInit, OnDestroy {
     private alive = true;
     accounts: string[];
-    // hasStarted = false;
-    // hasEnded = false;
     loading = false;
-    // withdrawing = false;
-    // contributionAmountString: string = '0';
-    // contributionAmount: number = 0;
     balanceString: string = '0';
     balance: number = 0;
-
-    /**
-     * This is the user's current investment in the crowdsale
-     */
-    // private crowdsaleBalance(): void {
-    //     if (this.accounts != null && this.accounts.length > 0) {
-    //         this.loading = true;
-    //         this.tokenContractService.balances(this.accounts[0])
-    //             .takeWhile(() => this.alive)
-    //             .subscribe((stake: BigNumber) => {
-    //                     this.contributionAmount = stake.toNumber();
-    //                     this.contributionAmountString = this.web3Service.weiToEther(stake).toFormat();
-    //                 },
-    //                 error => {
-    //                     this.loading = false;
-    //                     console.error(error);
-    //                 },
-    //                 () => this.loading = false
-    //             );
-    //     }
-    // }
 
     /**
      * This is the user's claimed tokens available after the crowdsale
@@ -56,8 +27,10 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
             this.tokenContractService.balanceOf(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: BigNumber) => {
-                        this.balance = this.web3Service.weiToEther(balance).toNumber();
-                        this.balanceString = this.web3Service.weiToEther(balance).toFormat();
+                        if (balance != null) {
+                            this.balance = this.web3Service.weiToEther(balance).toNumber();
+                            this.balanceString = this.web3Service.weiToEther(balance).toFormat();
+                        }
                     },
                     error => {
                         this.loading = false;
@@ -68,42 +41,11 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         }
     }
 
-    // withdrawTokens(): void {
-    //     this.withdrawing = true;
-    //
-    //     this.tokenContractService.withdrawTokens(this.accounts[0])
-    //         .takeWhile(() => this.alive)
-    //         .subscribe((tx: TransactionResult) => {
-    //                 this.transactionLogService.logTransaction(tx);
-    //             },
-    //             error => {
-    //                 this.withdrawing = false;
-    //                 console.error(error);
-    //             },
-    //             () => {
-    //                 this.withdrawing = false;
-    //             }
-    //         );
-    //
-    // }
-
     ngOnDestroy() {
         this.alive = false;
     }
 
     ngOnInit() {
-        //
-        // this.crowdsaleTimerService.hasStartedEvent
-        //     .takeWhile(() => this.alive)
-        //     .subscribe((started: boolean) => {
-        //         this.hasStarted = started;
-        //     });
-        //
-        // this.crowdsaleTimerService.hasEndedEvent
-        //     .takeWhile(() => this.alive)
-        //     .subscribe((ended: boolean) => {
-        //         this.hasEnded = ended;
-        //     });
 
         this.accountsService.accountsUpdatedEvent
             .takeWhile(() => this.alive)
@@ -120,20 +62,13 @@ export class TokenWalletComponent implements OnInit, OnDestroy {
         Observable.interval(2000)
             .takeWhile(() => this.alive)
             .subscribe(() => {
-                // if (this.hasStarted === true || this.hasEnded === true) {
-                //     this.crowdsaleBalance();
-                // }
-
-                // if (this.hasEnded === true) {
-                    this.tokenBalance();
-                // }
+                this.tokenBalance();
             });
     }
 
     constructor(private web3Service: Web3Service,
                 private tokenContractService: TokenContractService,
                 private accountsService: AccountsService,
-                private crowdsaleTimerService: CrowdsaleTimerService,
-                private transactionLogService: TransactionLogService) {
+                private crowdsaleTimerService: CrowdsaleTimerService) {
     }
 }

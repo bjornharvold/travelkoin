@@ -9,8 +9,8 @@ import {CrowdsaleTimerService} from '../../core/crowdsale-timer.service';
 import {Observable} from 'rxjs/Observable';
 import {TransactionLogService} from '../../core/transaction-log.service';
 import {AccountsService} from '../../core/accounts.service';
-import TransactionResult = W3.TX.TransactionResult;
 import * as _ from 'lodash';
+import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-secure-token-sale',
@@ -82,8 +82,10 @@ export class TokenSaleComponent implements OnInit, OnDestroy {
             this.web3Service.getAccountBalance(this.accounts[0])
                 .takeWhile(() => this.alive)
                 .subscribe((balance: any) => {
-                        this.currentAccountBalanceWei = balance;
-                        this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
+                        if (balance != null) {
+                            this.currentAccountBalanceWei = balance;
+                            this.currentAccountBalanceEther = this.web3Service.weiToEther(balance);
+                        }
                     },
                     error => {
                         console.error(error);
