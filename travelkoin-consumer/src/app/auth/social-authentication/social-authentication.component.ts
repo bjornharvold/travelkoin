@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase';
 import {UserSessionService} from '../../core/user-session.service';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {environment} from '../../../environments/environment';
 import {User} from '../../model/user';
 import AuthProvider = firebase.auth.AuthProvider;
 
@@ -27,8 +26,8 @@ export class SocialAuthenticationComponent implements OnInit {
                         const user: firebase.User = this.afAuth.auth.currentUser;
                         this.userSessionService.login(user)
                             .subscribe((user: User) => {
-                            this.router.navigate([REDIRECT_URL]);
-                        });
+                                this.router.navigate([REDIRECT_URL]);
+                            });
                     });
                 },
                 error => {
@@ -45,14 +44,7 @@ export class SocialAuthenticationComponent implements OnInit {
     private auth(provider: AuthProvider): void {
         this.onResponse.emit(null);
 
-        if (environment.production) {
-            Observable.fromPromise(this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.NONE))
-                .subscribe(() => {
-                    this.login(this.afAuth.auth.signInWithPopup(provider));
-                });
-        } else {
-            this.login(this.afAuth.auth.signInWithPopup(provider));
-        }
+        this.login(this.afAuth.auth.signInWithPopup(provider));
     }
 
     signInWithGoogle(): void {
