@@ -21,6 +21,7 @@ export class Web3Service {
 
         if (typeof value === 'object') {
             console.log(`type of object: ${value.constructor.name}`);
+            console.log(Object.getOwnPropertyNames(value));
         }
 
         let result: BigNumber = null;
