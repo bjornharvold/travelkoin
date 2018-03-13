@@ -24,6 +24,7 @@ import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
 import {TransactionLogComponent} from '../secure/transaction-log/transaction-log.component';
+import {ResponsiveModule} from 'ngx-responsive';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import {TransactionLogComponent} from '../secure/transaction-log/transaction-log
         CloudinaryModule,
         UploadModule,
         ClipboardModule,
-        ButtonsModule
+        ButtonsModule,
+        ResponsiveModule
     ],
     declarations: [
         TimerComponent,
@@ -63,6 +65,7 @@ import {TransactionLogComponent} from '../secure/transaction-log/transaction-log
         UploadModule,
         ClipboardModule,
         ButtonsModule,
+        ResponsiveModule,
         TimerComponent,
         SuccessBoxComponent,
         FailureBoxComponent,

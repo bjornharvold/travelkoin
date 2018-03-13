@@ -16,7 +16,7 @@ export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listRegistered()
+        this.userService.listWaitingForApproval()
             .takeWhile(() => this.alive)
             .subscribe((list: Array<User>) => {
                 this.list = list;
