@@ -52,6 +52,7 @@ import {FaqHeaderComponent} from './faq/faq-header/faq-header.component';
 import {FaqDetailsComponent} from './faq/faq-details/faq-details.component';
 import {EventFinishedComponent} from './home/event-finished/event-finished.component';
 import {EventCountdownComponent} from './home/event-countdown/event-countdown.component';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 /**
  * In case the key cannot be found in the translation file
@@ -109,6 +110,7 @@ const prop: IShareButtons = {
     imports: [
         BrowserModule,
         SharedModule,
+        DeviceDetectorModule.forRoot(),
         BrowserAnimationsModule,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
         HttpClientModule,

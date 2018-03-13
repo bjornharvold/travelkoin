@@ -23,8 +23,6 @@ import {MultimediaDivComponent} from './multimedia-div/multimedia-div.component'
 import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
-import {TransactionLogComponent} from '../secure/transaction-log/transaction-log.component';
-import {ResponsiveModule} from 'ngx-responsive';
 
 @NgModule({
     imports: [
@@ -41,8 +39,7 @@ import {ResponsiveModule} from 'ngx-responsive';
         CloudinaryModule,
         UploadModule,
         ClipboardModule,
-        ButtonsModule,
-        ResponsiveModule
+        ButtonsModule
     ],
     declarations: [
         TimerComponent,
@@ -65,7 +62,6 @@ import {ResponsiveModule} from 'ngx-responsive';
         UploadModule,
         ClipboardModule,
         ButtonsModule,
-        ResponsiveModule,
         TimerComponent,
         SuccessBoxComponent,
         FailureBoxComponent,
