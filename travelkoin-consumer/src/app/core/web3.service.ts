@@ -25,7 +25,7 @@ export class Web3Service {
         return result;
     }
 
-    etherToWei(value: number): BigNumber {
+    etherToWei(value: number | BigNumber): BigNumber {
         let result: BigNumber = null;
         if (value != null) {
             result = this.getW3().web3.toWei(value, 'ether');
