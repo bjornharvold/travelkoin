@@ -45,7 +45,7 @@ export class SmartContractComponent implements OnInit, OnDestroy {
         this.tokenContractService.totalSupply()
             .takeWhile(() => this.alive)
             .subscribe((totalSupply: BigNumber) => {
-                    FormHelper.addOrReplaceFormControl(form, 'totalSupply', new FormControl({value: totalSupply.toFormat(), disabled: true}))
+                    FormHelper.addOrReplaceFormControl(form, 'totalSupply', new FormControl({value: this.web3Service.weiToEther(totalSupply).toFormat(), disabled: true}))
                 },
                 error => this.error = error,
                 () => {

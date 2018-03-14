@@ -409,6 +409,22 @@
       "ANSWER_1": "Once the event starts, you will see a form with your current account balance (in parenthesis) and a form field you can use to enter in the amount you wish to contribute.",
       "ANSWER_2": "Please note, for the first 24 hours of our event, you will only be able to contribute 1 ETH.",
       "ANSWER_3": "Once the first 24 hour period has expired, you are free to contribute any amount you wish."
+    },
+    "8": {
+      "QUESTION": "Buying tokens",
+      "ANSWER": "Once you've entered the amount you wish to contribute, you click the contribute button. A MetaMask window will appear asking you to confirm the purchase. Cick \"SUBMIT\" to confirm."
+    },
+    "9": {
+      "QUESTION": "Awaiting confirmation",
+      "ANSWER": "At this point, the purchase has been made and you are waiting on a positive confirmation. Notice that the progress spinner in the \"Contribute\" button is moving until the transaction is complete."
+    },
+    "10": {
+      "QUESTION": "Confirmation complete",
+      "ANSWER": "When the confirmation completes, the progress bar and wallet will update with your purchase amount."
+    },
+    "11": {
+      "QUESTION": "Track your tokens with MetaMask",
+      "ANSWER": "If you want track your custom tokens, you can do so by opening MetaMask and clicking on the tab \"Add token\". Add the \"Token contract address\", which we list on our \"ICO Contract\" page (If you are using Mist, you can use our vanity address: \"token.travelkoin.eth\". MetaMask doesn't support vanity names for addresses yet.)."
     }
   },
   "HANS": {
