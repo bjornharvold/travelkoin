@@ -9,9 +9,7 @@ import {RegisteredUsersComponent} from './registered-users/registered-users.comp
 import {ApprovedUsersComponent} from './approved-users/approved-users.component';
 import {WaitingForApprovalUsersComponent} from './waiting-for-approval-users/waiting-for-approval-users.component';
 import {BlockedUsersComponent} from './blocked-users/blocked-users.component';
-import { SmartContractConfigurationComponent } from './smart-contract-configuration/smart-contract-configuration.component';
-import { SmartContractWhitelistComponent } from './smart-contract-whitelist/smart-contract-whitelist.component';
-import { WhitelistedUsersComponent } from './whitelisted-users/whitelisted-users.component';
+import {WhitelistedUsersComponent} from './whitelisted-users/whitelisted-users.component';
 
 @NgModule({
     imports: [
@@ -27,8 +25,6 @@ import { WhitelistedUsersComponent } from './whitelisted-users/whitelisted-users
         ApprovedUsersComponent,
         WaitingForApprovalUsersComponent,
         BlockedUsersComponent,
-        SmartContractConfigurationComponent,
-        SmartContractWhitelistComponent,
         WhitelistedUsersComponent
     ]
 })

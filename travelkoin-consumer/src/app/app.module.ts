@@ -28,7 +28,6 @@ import {MailchimpComponent} from './home/mailchimp/mailchimp.component';
 import {NutshellComponent} from './home/nutshell/nutshell.component';
 import {AdvisorsComponent} from './home/advisors/advisors.component';
 import {TimelineComponent} from './home/timeline/timeline.component';
-import {CountdownComponent} from './home/countdown/countdown.component';
 import {FeaturesComponent} from './home/features/features.component';
 import {TestimonialsComponent} from './home/testimonials/testimonials.component';
 import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -45,14 +44,8 @@ import {IShareButtons} from '@ngx-share/core';
 import {Observable} from 'rxjs/Observable';
 import {TeamComponent} from './home/team/team.component';
 import {BackersComponent} from './home/backers/backers.component';
-import {IcoDetailsComponent} from './home/ico-details/ico-details.component';
 import {NewsComponent} from './home/news/news.component';
-import {FaqComponent} from './faq/faq.component';
-import {FaqHeaderComponent} from './faq/faq-header/faq-header.component';
-import {FaqDetailsComponent} from './faq/faq-details/faq-details.component';
-import {EventFinishedComponent} from './home/event-finished/event-finished.component';
-import {EventCountdownComponent} from './home/event-countdown/event-countdown.component';
-import {DeviceDetectorModule} from 'ngx-device-detector';
+import {AirdropComponent} from './home/airdrop/airdrop.component';
 
 /**
  * In case the key cannot be found in the translation file
@@ -110,7 +103,6 @@ const prop: IShareButtons = {
     imports: [
         BrowserModule,
         SharedModule,
-        DeviceDetectorModule.forRoot(),
         BrowserAnimationsModule,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
         HttpClientModule,
@@ -146,18 +138,12 @@ const prop: IShareButtons = {
         TimelineComponent,
         MailchimpComponent,
         HomeComponent,
-        CountdownComponent,
-        EventCountdownComponent,
+        AirdropComponent,
         TermsComponent,
         PrivacyComponent,
         TeamComponent,
         BackersComponent,
-        IcoDetailsComponent,
-        NewsComponent,
-        FaqComponent,
-        FaqHeaderComponent,
-        FaqDetailsComponent,
-        EventFinishedComponent
+        NewsComponent
     ],
     bootstrap: [
         AppComponent

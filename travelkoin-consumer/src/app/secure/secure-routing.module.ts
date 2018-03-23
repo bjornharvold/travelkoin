@@ -6,11 +6,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {SecureComponent} from './secure/secure.component';
-import {RegisteredGuard} from '../core/registered.guard';
 import {AuthenticatedGuard} from '../core/authenticated.guard';
-import {FormsComponent} from './forms/forms.component';
-import {SmartContractComponent} from './smart-contract/smart-contract.component';
-import {HelpComponent} from './help/help.component';
 
 const routes: Routes = [
     {
@@ -25,24 +21,6 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
-                canLoad: [AuthenticatedGuard, RegisteredGuard],
-                canActivate: [AuthenticatedGuard, RegisteredGuard]
-            },
-            {
-                path: 'contract',
-                component: SmartContractComponent,
-                canLoad: [AuthenticatedGuard, RegisteredGuard],
-                canActivate: [AuthenticatedGuard, RegisteredGuard]
-            },
-            {
-                path: 'forms',
-                component: FormsComponent,
-                canLoad: [AuthenticatedGuard],
-                canActivate: [AuthenticatedGuard]
-            },
-            {
-                path: 'help',
-                component: HelpComponent,
                 canLoad: [AuthenticatedGuard],
                 canActivate: [AuthenticatedGuard]
             }

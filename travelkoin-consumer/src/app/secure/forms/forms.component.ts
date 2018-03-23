@@ -3,11 +3,10 @@ import {UserRegistrationForm} from '../../model/user-registration-form';
 import {UserSessionService} from '../../core/user-session.service';
 import {FormGroup} from '@angular/forms';
 import {User} from '../../model/user';
-import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-forms',
+    selector: 'app-secure-forms',
     templateUrl: './forms.component.html',
     styleUrls: ['./forms.component.scss']
 })
@@ -21,8 +20,6 @@ export class FormsComponent implements OnInit, OnDestroy {
     updateButtonClicked = false;
     success = false;
     failure = false;
-    types: Array<string> = ['BTC', 'ETH']; // Crypto options
-    tags: Array<string> = ['documents']; // used to add meta data on the uploaded images
 
     private populateForm(user: User): void {
         this.form = new FormGroup({});
@@ -34,11 +31,6 @@ export class FormsComponent implements OnInit, OnDestroy {
     reset(): void {
         this.success = false;
         this.failure = false;
-    }
-
-    multimediasChange(multimedia: Array<ImprovedMultimedia>) {
-        this.dto.multimedia = multimedia;
-        this.dto.populateMultimediaFormValues(this.form);
     }
 
     onSubmit(): void {

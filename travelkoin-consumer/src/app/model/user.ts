@@ -5,7 +5,6 @@ export class User {
     uid: string;
     email: string;
     ethWalletAddress: string;
-    multimedia: Array<ImprovedMultimedia>;
     approved: boolean;
     whitelisted: boolean;
     submitted: boolean;
@@ -14,13 +13,6 @@ export class User {
 
     static serializeObjectToPartialUser(dto: User): Partial<User> {
         const result: any = {};
-
-        const images: Array<any> = [];
-        if (dto.multimedia != null && dto.multimedia.length > 0) {
-            for (let mm of dto.multimedia) {
-                images.push(ImprovedMultimedia.serializeObject(mm));
-            }
-        }
 
         if (dto.ethWalletAddress != null) {
             result.ethWalletAddress = dto.ethWalletAddress;
@@ -36,10 +28,6 @@ export class User {
 
         if (dto.whitelisted != null) {
             result.whitelisted = dto.whitelisted;
-        }
-
-        if (images != null && images.length > 0) {
-            result.multimedia = images;
         }
 
         result.submitted = true; // becomes true the first time the user successfully submits the form
@@ -75,12 +63,6 @@ export class User {
             if (obj.ethWalletAddress != null) {
                 result.ethWalletAddress = obj.ethWalletAddress;
             }
-            if (obj.multimedia != null && obj.multimedia.length > 0) {
-                result.multimedia = [];
-                for (let mm of obj.multimedia) {
-                    result.multimedia.push(ImprovedMultimedia.deserializeObject(mm));
-                }
-            }
             if (obj.submitted != null) {
                 result.submitted = obj.submitted;
             } else {
@@ -107,7 +89,7 @@ export class User {
     }
 
     get needsRegistration(): boolean {
-        return this.multimedia == null || this.multimedia.length < 2;
+        return this.ethWalletAddress == null;
     }
 
     get isHans(): boolean {
@@ -115,7 +97,6 @@ export class User {
     }
 
     updateRegistrationDetails(form: UserRegistrationForm): void {
-        this.multimedia = form.multimedia;
         this.ethWalletAddress = form.ethWalletAddress;
     }
 
