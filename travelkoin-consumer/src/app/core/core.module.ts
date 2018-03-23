@@ -16,14 +16,9 @@ import {CloudinaryService} from './cloudinary.service';
 import {AuthenticatedGuard} from './authenticated.guard';
 import {RegisteredGuard} from './registered.guard';
 import {ConversionService} from './conversion.service';
-import {Web3Service} from './web3.service';
 import {HansGuard} from './hans.guard';
 import {WindowRefService} from './window-ref.service';
-import {TokenContractService} from './token-contract.service';
 import {MandrillService} from './mandrill.service';
-import {TransactionLogService} from './transaction-log.service';
-import {CrowdsaleTimerService} from './crowdsale-timer.service';
-import {AccountsService} from './accounts.service';
 
 @NgModule({
     imports: [
@@ -48,13 +43,8 @@ import {AccountsService} from './accounts.service';
         RegisteredGuard,
         HansGuard,
         ConversionService,
-        Web3Service,
         WindowRefService,
-        TokenContractService,
-        MandrillService,
-        TransactionLogService,
-        CrowdsaleTimerService,
-        AccountsService
+        MandrillService
     ]
 })
 export class CoreModule {

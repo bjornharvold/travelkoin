@@ -1,12 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../core/user.service';
-import {TokenContractService} from '../../core/token-contract.service';
 import {User} from '../../model/user';
 import {MandrillService} from '../../core/mandrill.service';
-import {W3} from 'soltsice';
-import {TransactionLogService} from '../../core/transaction-log.service';
-import {AccountsService} from '../../core/accounts.service';
-import TransactionResult = W3.TX.TransactionResult;
 
 @Component({
     selector: 'app-hans-dashboard',
@@ -15,7 +10,6 @@ import TransactionResult = W3.TX.TransactionResult;
 })
 export class DashboardComponent implements OnInit, OnDestroy {
     private alive = true;
-    private accounts: Array<string>;
     users: Array<User> = null;
     error: string = null;
     loading = false;
@@ -36,33 +30,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
             for (let user of this.users) {
                 this.mandrillService.sendEmail(user.email);
             }
-        }
-    }
-
-    private addManyToWhitelist(): void {
-        if (this.users.length > 0) {
-
-            // grab all Ethereum addresses
-            const addresses = [];
-            for (let user of this.users) {
-                addresses.push(user.ethWalletAddress);
-            }
-
-            this.tokenContractService.addManyToWhitelist(this.accounts[0], addresses)
-                .takeWhile(() => this.alive)
-                .subscribe((tx: TransactionResult) => {
-                        if (tx != null) {
-                            this.transactionLogService.logTransaction(tx);
-                            this.emailUserSuccessMessage();
-                            this.whitelistUsersInFirebase();
-                        }
-                    },
-                    error => {
-                        this.loading = false;
-                        console.error(error);
-                        this.error = 'CODE.ERROR';
-                    },
-                    () => this.loading = false)
         }
     }
 
@@ -88,7 +55,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     addUsersToWhitelist(): void {
         this.error = null;
         this.loading = true;
-        this.addManyToWhitelist();
+        this.emailUserSuccessMessage();
+        this.whitelistUsersInFirebase();
     }
 
     ngOnDestroy() {
@@ -97,18 +65,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loadApprovedUsers();
-
-        this.accountsService.accountsUpdatedEvent
-            .takeWhile(() => this.alive)
-            .subscribe((accounts: Array<string>) => {
-                this.accounts = accounts;
-            });
     }
 
     constructor(private userService: UserService,
-                private tokenContractService: TokenContractService,
-                private mandrillService: MandrillService,
-                private transactionLogService: TransactionLogService,
-                private accountsService: AccountsService) {
+                private mandrillService: MandrillService) {
     }
 }

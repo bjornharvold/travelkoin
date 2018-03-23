@@ -13,7 +13,7 @@ export class RegisteredGuard implements CanActivate, CanLoad {
 
                 if (user == null) {
                     result = false;
-                } else if (user.ethWalletAddress == null || user.multimedia == null || user.multimedia.length < 2) {
+                } else if (user.ethWalletAddress == null) {
                     result = false;
                 }
 

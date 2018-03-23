@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SmartContractComponent } from './smart-contract.component';
+import { EventFinishedComponent } from './airdrop.component';
 
-describe('SmartContractComponent', () => {
-  let component: SmartContractComponent;
-  let fixture: ComponentFixture<SmartContractComponent>;
+describe('EventFinishedComponent', () => {
+  let component: EventFinishedComponent;
+  let fixture: ComponentFixture<EventFinishedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmartContractComponent ]
+      declarations: [ EventFinishedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SmartContractComponent);
+    fixture = TestBed.createComponent(EventFinishedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
