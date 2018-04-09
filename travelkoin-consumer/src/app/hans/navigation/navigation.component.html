@@ -3,8 +3,8 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a [routerLink]="['/hans/dashboard']" class="display-block">
-                    <i class="fas fa-home"></i>
-                    <i class="fas fa-angle-right float-right"></i>
+                    <fa-icon [icon]="['far', 'home']"></fa-icon>
+                    <fa-icon [icon]="['far', 'angle-right']" class="float-right"></fa-icon>
                 </a>
             </h4>
         </div>
@@ -14,8 +14,9 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a [routerLink]="['/hans/users']" class="display-block">
-            <i class="fas fa-users fa-fw"></i> {{ 'HANS.USERS.TITLE' | translate }}
-            <i class="fas fa-angle-right float-right"></i>
+            <fa-icon [icon]="['far', 'users fa-fw']"></fa-icon>
+              <fa-icon [icon]="['far', 'users']" [fixedWidth]="true"></fa-icon> {{ 'HANS.USERS.TITLE' | translate }}
+              <fa-icon [icon]="['far', 'angle-right']" class="float-right"></fa-icon>
           </a>
         </h4>
       </div>
@@ -25,8 +26,8 @@
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a [routerLink]="['/hans/contract']" class="display-block">
-                    <i class="fab fa-ethereum fa-fw"></i> {{ 'CONTRACT.TITLE' | translate }}
-                    <i class="fas fa-angle-right float-right"></i>
+                    <fa-icon [icon]="['fab', 'ethereum']" [fixedWidth]="true"></fa-icon> {{ 'CONTRACT.TITLE' | translate }}
+                    <fa-icon [icon]="['far', 'angle-right']" class="float-right"></fa-icon>
                 </a>
             </h4>
         </div>

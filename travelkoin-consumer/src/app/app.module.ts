@@ -46,6 +46,14 @@ import {TeamComponent} from './home/team/team.component';
 import {BackersComponent} from './home/backers/backers.component';
 import {NewsComponent} from './home/news/news.component';
 import {AirdropComponent} from './home/airdrop/airdrop.component';
+import {faFacebookF} from '@fortawesome/free-brands-svg-icons/faFacebookF';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons/faTwitter';
+import {faRedditAlien} from '@fortawesome/free-brands-svg-icons/faRedditAlien';
+import {faLinkedinIn} from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
+import {faGooglePlusG} from '@fortawesome/free-brands-svg-icons/faGooglePlusG';
+import {faPinterestP} from '@fortawesome/free-brands-svg-icons/faPinterestP';
+import {faTelegramPlane} from '@fortawesome/free-brands-svg-icons/faTelegramPlane';
+import {faTumblr} from '@fortawesome/free-brands-svg-icons/faTumblr';
 
 /**
  * In case the key cannot be found in the translation file
@@ -72,33 +80,6 @@ export const cloudinaryConfig = {
     upload_preset: 'traveliko_default_preset'
 };
 
-const prop: IShareButtons = {
-    facebook: {
-        icon: 'fab fa-facebook-f'
-    },
-    twitter: {
-        icon: 'fab fa-twitter'
-    },
-    reddit: {
-        icon: 'fab fa-reddit-alien'
-    },
-    linkedin: {
-        icon: 'fab fa-linkedin-in'
-    },
-    google: {
-        icon: 'fab fa-google-plus-g'
-    },
-    pinterest: {
-        icon: 'fab fa-pinterest-p'
-    },
-    telegram: {
-        icon: 'fab fa-telegram-plane'
-    },
-    tumblr: {
-        icon: 'fab fa-tumblr'
-    }
-};
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -118,7 +99,7 @@ const prop: IShareButtons = {
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler}
         }),
         CloudinaryModule.forRoot(cloudinaryLib, cloudinaryConfig),
-        ShareButtonsModule.forRoot({prop: prop}),
+        ShareButtonsModule.forRoot(),
         CoreModule,
         AppRoutingModule
     ],

@@ -23,6 +23,51 @@ import {MultimediaDivComponent} from './multimedia-div/multimedia-div.component'
 import {UploadModule} from '@progress/kendo-angular-upload';
 import {ClipboardModule} from 'ngx-clipboard';
 import {ButtonsModule} from '@progress/kendo-angular-buttons';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faEnvelope} from '@fortawesome/pro-regular-svg-icons/faEnvelope';
+import {faUnlockAlt} from '@fortawesome/pro-regular-svg-icons/faUnlockAlt';
+import {faExternalLinkSquare} from '@fortawesome/pro-regular-svg-icons/faExternalLinkSquare';
+import {faPhoneSquare} from '@fortawesome/pro-regular-svg-icons/faPhoneSquare';
+import {faUsers} from '@fortawesome/pro-regular-svg-icons/faUsers';
+import {faSpinner} from '@fortawesome/pro-regular-svg-icons/faSpinner';
+import {faHome} from '@fortawesome/pro-regular-svg-icons/faHome';
+import {faAngleRight} from '@fortawesome/pro-regular-svg-icons/faAngleRight';
+import {faEthereum} from '@fortawesome/free-brands-svg-icons/faEthereum';
+import {faLanguage} from '@fortawesome/pro-regular-svg-icons/faLanguage';
+import {faMoneyBill} from '@fortawesome/pro-regular-svg-icons/faMoneyBill';
+import {faImage} from '@fortawesome/pro-regular-svg-icons/faImage';
+import {faExchange} from '@fortawesome/pro-regular-svg-icons/faExchange';
+import {faTrophyAlt} from '@fortawesome/pro-regular-svg-icons/faTrophyAlt';
+import {faSuperscript} from '@fortawesome/pro-regular-svg-icons/faSuperscript';
+import {faExclamation} from '@fortawesome/pro-regular-svg-icons/faExclamation';
+import {faChartLine} from '@fortawesome/pro-regular-svg-icons/faChartLine';
+import {faFile} from '@fortawesome/pro-regular-svg-icons/faFile';
+import {faTelegramPlane} from '@fortawesome/free-brands-svg-icons/faTelegramPlane';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons/faTwitter';
+
+library.add(
+    faEnvelope,
+    faUnlockAlt,
+    faFile,
+    faTelegramPlane,
+    faTwitter,
+    faExternalLinkSquare,
+    faPhoneSquare,
+    faUsers,
+    faSpinner,
+    faHome,
+    faAngleRight,
+    faEthereum,
+    faLanguage,
+    faMoneyBill,
+    faImage,
+    faExchange,
+    faTrophyAlt,
+    faSuperscript,
+    faExclamation,
+    faChartLine
+);
 
 @NgModule({
     imports: [
@@ -39,7 +84,8 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         CloudinaryModule,
         UploadModule,
         ClipboardModule,
-        ButtonsModule
+        ButtonsModule,
+        FontAwesomeModule
     ],
     declarations: [
         TimerComponent,
@@ -66,7 +112,8 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
         SuccessBoxComponent,
         FailureBoxComponent,
         MultimediaManagerComponent,
-        MultimediaDivComponent
+        MultimediaDivComponent,
+        FontAwesomeModule
     ],
     providers: []
 })

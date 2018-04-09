@@ -26,7 +26,7 @@
                                     <label for="username">{{ 'COMMON.EMAIL' | translate }}:</label>
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-addon addon-inside bg-white font-primary">
-                                            <i class="fas fa-envelope"></i>
+                                            <fa-icon [icon]="['far', 'envelope']"></fa-icon>
                                         </span>
                                         <input id="username" type="text" class="form-control" placeholder="{{ 'AUTH.REGISTER.EMAIL_PLACEHOLDER' | translate }}" formControlName="username" autocomplete="false" autocapitalize="off" spellcheck="off">
                                     </div>
@@ -35,7 +35,7 @@
                                     <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-addon addon-inside bg-white font-primary">
-                                            <i class="fas fa-unlock-alt"></i>
+                                            <fa-icon [icon]="['far', 'unlock-alt']"></fa-icon>
                                         </span>
                                         <input id="password" type="password" class="form-control" placeholder="{{ 'AUTH.LOGIN.PASSWORD_PLACEHOLDER' | translate }}" formControlName="password" autocomplete="false" autocapitalize="off" spellcheck="off">
                                     </div>
