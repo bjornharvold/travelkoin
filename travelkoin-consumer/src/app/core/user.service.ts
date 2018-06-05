@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {User} from '../model/user';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class UserService {
     private userCollection: AngularFirestoreCollection<User>;
 
@@ -24,7 +25,9 @@ export class UserService {
             .where('submitted', '==', submittedDocuments)
             .where('whitelisted', '==', whitelisted)
             .orderBy('email'))
-            .valueChanges().map((users: Array<User>) => UserService.deserializeUsers(users));
+            .valueChanges().pipe(
+                map((users: Array<User>) => UserService.deserializeUsers(users))
+            );
     }
 
     toggleBlockUser(user: User): void {
@@ -58,15 +61,16 @@ export class UserService {
     }
 
     get(id: string): Observable<User | null> {
-        return id != null ? this.userCollection.doc(id).valueChanges().map((user: User) => user != null ? User.deserializeObject(user) : null) : Observable.of(null);
+        return id != null ? this.userCollection.doc(id).valueChanges().pipe(
+            map((user: User) => user != null ? User.deserializeObject(user) : null)) : observableFrom(null);
     }
 
     update(uid: string, user: User): Observable<void> {
-        return Observable.fromPromise(this.userCollection.doc(uid).update(User.serializeObjectToPartialUser(user)));
+        return observableFrom(this.userCollection.doc(uid).update(User.serializeObjectToPartialUser(user)));
     }
 
     set(uid: string, user: User): Observable<void> {
-        return Observable.fromPromise(this.userCollection.doc(uid).set(User.serializeNewUser(user)));
+        return observableFrom(this.userCollection.doc(uid).set(User.serializeNewUser(user)));
     }
 
     constructor(private readonly afs: AngularFirestore) {

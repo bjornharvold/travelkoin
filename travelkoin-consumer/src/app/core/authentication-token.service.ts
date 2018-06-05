@@ -6,7 +6,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import {AuthenticationToken} from '../model/authentication-token';
 import {environment} from '../../environments/environment';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthenticationTokenService {
   private _authenticationToken: AuthenticationToken = null;
   @Output() authenticationTokenExpiredEvent: EventEmitter<any>;

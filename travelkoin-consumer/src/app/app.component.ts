@@ -2,6 +2,8 @@
  * Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
  */
 
+
+import {takeWhile} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Language} from './model/language';
@@ -26,8 +28,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.translate.use(Language.getDefaultLanguage());
 
         // TODO this is FUGLY should not have direct access to window
-        this.router.events
-            .takeWhile(() => this.alive)
+        this.router.events.pipe(
+            takeWhile(() => this.alive))
             .subscribe(event => {
                 if (!(event instanceof NavigationEnd)) {
                     return;

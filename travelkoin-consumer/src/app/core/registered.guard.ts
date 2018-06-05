@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {UserSessionService} from './user-session.service';
 import {User} from '../model/user';
+import {map} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class RegisteredGuard implements CanActivate, CanLoad {
     private isRegistered(url: string): Observable<boolean> {
-        return this.userSessionService.getUser()
-            .map((user: User) => {
+        return this.userSessionService.getUser().pipe(
+            map((user: User) => {
                 let result = true;
 
                 if (user == null) {
@@ -23,7 +24,7 @@ export class RegisteredGuard implements CanActivate, CanLoad {
                 }
 
                 return result;
-            });
+            }));
     }
 
     // ===== IMPLEMENTED INTERFACES =====

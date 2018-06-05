@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {MyTimer} from '../../model/my-timer';
-import {Observable} from 'rxjs/Observable';
+import {interval as observableInterval} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-timer',
@@ -40,8 +41,8 @@ export class TimerComponent implements OnInit, OnChanges, OnDestroy {
         // console.log('tick');
         // console.log(`hasFinished: ${this.timer.hasFinished}`);
         // console.log(`secondsRemaining: ${this.timer.secondsRemaining}`);
-        Observable.interval(1000)
-            .takeWhile(() => this.alive && !this.timer.hasFinished)
+        observableInterval(1000).pipe(
+            takeWhile(() => this.alive && !this.timer.hasFinished))
             .subscribe(() => {
                 this.timer.secondsRemaining--;
                 this.timer.displayTime = TimerComponent.getSecondsAsDigitalClock(this.timer.secondsRemaining);

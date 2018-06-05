@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-approved-users',
@@ -18,8 +19,8 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listApproved()
-            .takeWhile(() => this.alive)
+        this.userService.listApproved().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                 this.list = list;
             })

@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import * as firebase from 'firebase';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UserSessionService} from './user-session.service';
+import {map} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthenticatedGuard implements CanActivate, CanLoad {
     private isAuthenticated(url: string): Observable<boolean> {
-        return this.userSessionService.getAuthUser()
-            .map((user: firebase.User) => {
+        return this.userSessionService.getAuthUser().pipe(
+            map((user: firebase.User) => {
                 return user != null && user.uid != null;
-            });
+            }));
     }
 
     // ===== IMPLEMENTED INTERFACES =====

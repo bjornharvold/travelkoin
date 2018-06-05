@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
-import {MandrillService} from '../../core/mandrill.service';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-hans-dashboard',
@@ -18,24 +18,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (this.users != null && this.users.length > 0) {
             for (let user of this.users) {
                 user.whitelisted = true;
-                this.userService.update(user.uid, user)
-                    .takeWhile(() => this.alive)
+                this.userService.update(user.uid, user).pipe(
+                    takeWhile(() => this.alive))
                     .subscribe(() => console.log(`User ${user.email} has been whitelisted`), error => console.error(error), () => {});
             }
         }
     }
-
-    private emailUserSuccessMessage(): void {
-        if (this.users != null && this.users.length > 0) {
-            for (let user of this.users) {
-                this.mandrillService.sendEmail(user.email);
-            }
-        }
-    }
+    //
+    // private emailUserSuccessMessage(): void {
+    //     if (this.users != null && this.users.length > 0) {
+    //         for (let user of this.users) {
+    //             this.mandrillService.sendEmail(user.email);
+    //         }
+    //     }
+    // }
 
     private loadApprovedUsers(): void {
-        this.userService.listApproved()
-            .takeWhile(() => this.alive)
+        this.userService.listApproved().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                     if (list != null && list.length > 0) {
                         this.users = list;
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     addUsersToWhitelist(): void {
         this.error = null;
         this.loading = true;
-        this.emailUserSuccessMessage();
+        // this.emailUserSuccessMessage();
         this.whitelistUsersInFirebase();
     }
 
@@ -67,7 +67,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.loadApprovedUsers();
     }
 
-    constructor(private userService: UserService,
-                private mandrillService: MandrillService) {
+    constructor(private userService: UserService) {
     }
 }

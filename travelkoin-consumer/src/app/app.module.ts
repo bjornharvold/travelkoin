@@ -30,7 +30,7 @@ import {AdvisorsComponent} from './home/advisors/advisors.component';
 import {TimelineComponent} from './home/timeline/timeline.component';
 import {FeaturesComponent} from './home/features/features.component';
 import {TestimonialsComponent} from './home/testimonials/testimonials.component';
-import {MissingTranslationHandler, MissingTranslationHandlerParams, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {TermsComponent} from './terms/terms.component';
 import {PrivacyComponent} from './privacy/privacy.component';
@@ -40,28 +40,12 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {Cloudinary} from 'cloudinary-core';
 import {CloudinaryModule} from '@cloudinary/angular-5.x';
 import {ShareButtonsModule} from '@ngx-share/buttons';
-import {IShareButtons} from '@ngx-share/core';
-import {Observable} from 'rxjs/Observable';
 import {TeamComponent} from './home/team/team.component';
 import {BackersComponent} from './home/backers/backers.component';
 import {NewsComponent} from './home/news/news.component';
 import {AirdropComponent} from './home/airdrop/airdrop.component';
-
-/**
- * In case the key cannot be found in the translation file
- */
-export class MyMissingTranslationHandler implements MissingTranslationHandler {
-    handle(params: MissingTranslationHandlerParams) {
-        console.warn(`|${params.key}| could not be found in the default or current language pack`);
-        return `Could not translate: ${params.key}`;
-    }
-}
-
-export class WebpackTranslateLoader implements TranslateLoader {
-    getTranslation(lang: string): Observable<any> {
-        return Observable.fromPromise(System.import(`../assets/i18n/${lang}.json`));
-    }
-}
+import {WebpackTranslateLoader} from './webpack-translate-loader';
+import {MyMissingTranslationHandler} from './my-missing-translation-handler';
 
 export const cloudinaryLib = {
     Cloudinary: Cloudinary
@@ -70,33 +54,6 @@ export const cloudinaryLib = {
 export const cloudinaryConfig = {
     cloud_name: 'traveliko',
     upload_preset: 'traveliko_default_preset'
-};
-
-const prop: IShareButtons = {
-    facebook: {
-        icon: 'fab fa-facebook-f'
-    },
-    twitter: {
-        icon: 'fab fa-twitter'
-    },
-    reddit: {
-        icon: 'fab fa-reddit-alien'
-    },
-    linkedin: {
-        icon: 'fab fa-linkedin-in'
-    },
-    google: {
-        icon: 'fab fa-google-plus-g'
-    },
-    pinterest: {
-        icon: 'fab fa-pinterest-p'
-    },
-    telegram: {
-        icon: 'fab fa-telegram-plane'
-    },
-    tumblr: {
-        icon: 'fab fa-tumblr'
-    }
 };
 
 @NgModule({
@@ -118,7 +75,7 @@ const prop: IShareButtons = {
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler}
         }),
         CloudinaryModule.forRoot(cloudinaryLib, cloudinaryConfig),
-        ShareButtonsModule.forRoot({prop: prop}),
+        ShareButtonsModule.forRoot(),
         CoreModule,
         AppRoutingModule
     ],

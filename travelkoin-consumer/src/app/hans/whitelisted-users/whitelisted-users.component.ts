@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {User} from '../../model/user';
 import {UserService} from '../../core/user.service';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-whitelisted-users',
@@ -15,8 +16,8 @@ export class WhitelistedUsersComponent implements OnInit, OnDestroy {
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listWhitelisted()
-            .takeWhile(() => this.alive)
+        this.userService.listWhitelisted().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                 this.list = list;
             })

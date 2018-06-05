@@ -2,6 +2,8 @@
  * Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
  */
 
+
+import {map, mergeMap, switchMap} from 'rxjs/operators';
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {AuthenticationTokenService} from './authentication-token.service';
 import {AngularFireAuth} from 'angularfire2/auth';
@@ -9,10 +11,10 @@ import {Router} from '@angular/router';
 import {UserService} from './user.service';
 import * as firebase from 'firebase';
 import {User} from '../model/user';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
+import {of as observableOf, Observable} from 'rxjs';
 
-@Injectable()
+
+@Injectable({providedIn: 'root'})
 export class UserSessionService {
     private authUser: firebase.User = null;
     @Output() userAuthenticatedEvent: EventEmitter<firebase.User>;
@@ -34,15 +36,15 @@ export class UserSessionService {
         newUser.submitted = false;
         newUser.whitelisted = false;
 
-        return this.userService.set(newUser.uid, newUser)
-            .map(() => newUser);
+        return this.userService.set(newUser.uid, newUser).pipe(
+            map(() => newUser));
     }
 
     private figureItOut(authUser: firebase.User, dbUser: User): Observable<User | null> {
         let result: Observable<User | null>;
 
         if (dbUser != null && dbUser.uid != null) {
-            result = Observable.of(dbUser);
+            result = observableOf(dbUser);
         } else {
             result = this.createUser(authUser);
         }
@@ -57,7 +59,7 @@ export class UserSessionService {
     getAuthUser(): Observable<firebase.User | null> {
         let result: Observable<firebase.User | null>;
         if (this.authUser != null) {
-            result = Observable.of(this.authUser);
+            result = observableOf(this.authUser);
         } else {
             result = this.afAuth.authState;
         }
@@ -65,8 +67,8 @@ export class UserSessionService {
     }
 
     getUser(): Observable<User | null> {
-        return this.afAuth.authState
-            .switchMap((user: firebase.User) => user != null ? this.userService.get(user.uid) : Observable.of(null));
+        return this.afAuth.authState.pipe(
+            switchMap((user: firebase.User) => user != null ? this.userService.get(user.uid) : observableOf(null)));
     }
 
     updateUser(uid: string, user: User): Observable<void> {
@@ -89,11 +91,11 @@ export class UserSessionService {
             this.userAuthenticatedEvent.emit(this.authUser);
 
             // we also need to see if we have to create the user in Firestore
-            result = this.getUser().mergeMap((dbUser: User) => this.figureItOut(user, dbUser));
+            result = this.getUser().pipe(mergeMap((dbUser: User) => this.figureItOut(user, dbUser)));
         }
         else {
             console.error('User is not properly logged in');
-            result = Observable.of(null);
+            result = observableOf(null);
         }
 
         return result;

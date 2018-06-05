@@ -2,6 +2,8 @@
  * Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
  */
 
+
+import {takeWhile} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserSessionService} from '../core/user-session.service';
 import {NavigationEnd, Router} from '@angular/router';
@@ -54,32 +56,32 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.userSessionService.userAuthenticatedEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.userAuthenticatedEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: firebase.User) => {
                 this.credentials = user;
             });
 
-        this.userSessionService.rememberMeEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.rememberMeEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: firebase.User) => {
                 this.credentials = user;
             });
 
-        this.userSessionService.userLoggedOutEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.userLoggedOutEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                 this.credentials = null;
             });
 
-        this.userSessionService.userAuthenticationFailedEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.userAuthenticationFailedEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                 this.credentials = null;
             });
 
-        this.router.events
-            .takeWhile(() => this.alive)
+        this.router.events.pipe(
+            takeWhile(() => this.alive))
             .subscribe((val) => {
                 if (val instanceof NavigationEnd) {
                     const nav: NavigationEnd = <NavigationEnd>val;

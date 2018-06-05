@@ -1,6 +1,6 @@
 import {Component, EventEmitter, NgZone, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom, Observable} from 'rxjs';
 import * as firebase from 'firebase';
 import {UserSessionService} from '../../core/user-session.service';
 import {AngularFireAuth} from 'angularfire2/auth';
@@ -20,7 +20,7 @@ export class SocialAuthenticationComponent implements OnInit {
 
     private login(promise: Promise<any>): void {
         this.loading = true;
-        Observable.fromPromise(promise)
+        observableFrom(promise)
             .subscribe((result: any) => {
                     this.ngZone.run(() => {
                         const user: firebase.User = this.afAuth.auth.currentUser;

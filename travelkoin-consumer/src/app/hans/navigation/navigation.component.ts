@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserSessionService} from '../../core/user-session.service';
 import {User} from '../../model/user';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-navigation',
@@ -16,8 +17,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.userSessionService.getUser()
-            .takeWhile(() => this.alive)
+        this.userSessionService.getUser().pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: User) => {
                     if (user != null) {
                         this.user = user;

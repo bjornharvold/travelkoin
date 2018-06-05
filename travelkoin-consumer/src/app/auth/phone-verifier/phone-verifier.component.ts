@@ -1,6 +1,6 @@
 import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom, Observable} from 'rxjs';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UserSessionService} from '../../core/user-session.service';
 import {environment} from '../../../environments/environment';
@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {TranslateService} from '@ngx-translate/core';
 import ConfirmationResult = firebase.auth.ConfirmationResult;
+import {takeWhile} from 'rxjs/operators';
 
 declare global {
     interface Window {
@@ -38,8 +39,8 @@ export class PhoneVerifierComponent implements OnInit, OnDestroy {
 
     private doLinkPhoneNumber(promise: Promise<any>): void {
         this.loading = true;
-        Observable.fromPromise(promise)
-            .takeWhile(() => this.alive)
+        observableFrom(promise).pipe(
+            takeWhile(() => this.alive))
             .subscribe((result: ConfirmationResult) => {
                     this.ngZone.run(() => {
                         console.log(result);
@@ -63,8 +64,8 @@ export class PhoneVerifierComponent implements OnInit, OnDestroy {
 
     private confirmCode(promise: Promise<any>): void {
         this.loading = true;
-        Observable.fromPromise(promise)
-            .takeWhile(() => this.alive)
+        observableFrom(promise).pipe(
+            takeWhile(() => this.alive))
             .subscribe((result: any) => {
                     this.ngZone.run(() => {
                         const user: firebase.User = this.afAuth.auth.currentUser;

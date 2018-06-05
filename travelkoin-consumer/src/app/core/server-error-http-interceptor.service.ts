@@ -4,12 +4,12 @@
 
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {ServerHeartBeatService} from './server-heart-beat.service';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ServerErrorHttpInterceptorService implements HttpInterceptor {
 
     private isApiUrl(url): boolean {

@@ -21,7 +21,7 @@
                                 <label for="phoneNumber">{{ 'AUTH.PHONE_VERIFIER.PHONE_NUMBER' | translate }}:</label>
                                 <div class="input-group input-group-lg">
                                         <span class="input-group-addon addon-inside bg-white font-primary">
-                                            <i class="fas fa-phone-square"></i>
+                                            <fa-icon [icon]="['far', 'phone-square']"></fa-icon>
                                         </span>
                                     <input type="text" class="form-control" placeholder="{{ 'AUTH.PHONE_VERIFIER.ENTER_NUMBER' | translate }}" formControlName="phoneNumber" id="phoneNumber">
                                 </div>
@@ -53,7 +53,7 @@
                                 <label for="verificationCode">{{ 'AUTH.PHONE_VERIFIER.PHONE' | translate }}:</label>
                                 <div class="input-group input-group-lg">
                                         <span class="input-group-addon addon-inside bg-white font-primary">
-                                            <i class="fas fa-phone-square"></i>
+                                            <fa-icon [icon]="['far', 'phone-square']"></fa-icon>
                                         </span>
                                     <input type="text" class="form-control" placeholder="{{ 'AUTH.PHONE_VERIFIER.ENTER_CODE' | translate }}" formControlName="verificationCode" id="verificationCode">
                                 </div>

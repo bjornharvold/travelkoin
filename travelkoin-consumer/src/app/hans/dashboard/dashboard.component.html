@@ -1,5 +1,5 @@
 <div id="page-title">
-    <h2><i class="fas fa-home"></i> {{ 'DASHBOARD.HEADER' | translate }}</h2>
+    <h2><fa-icon [icon]="['far', 'home']"></fa-icon> {{ 'DASHBOARD.HEADER' | translate }}</h2>
 </div>
 
 <div class="row">
@@ -7,7 +7,7 @@
         <div class="content-box">
             <h3 class="content-box-header bg-white">
                 <span class="icon-separator">
-                    <i class="fas fa-spinner font-blue fa-fw" [ngClass]="{'fa-spin': loading === true}"></i>
+                    <fa-icon [icon]="['far', 'spinner']" [spin]="loading" [fixedWidth]="true" class="font-blue"></fa-icon>
                 </span>
                 {{ 'HANS.WHITELIST.ADD_APPROVED_TO_WHITELIST' | translate }}
             </h3>
