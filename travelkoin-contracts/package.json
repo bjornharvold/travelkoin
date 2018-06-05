@@ -61,6 +61,6 @@
     "dotenv": "6.0.0",
     "ethjs-abi": "0.2.1",
     "soltsice": "0.11.5",
-    "openzeppelin-solidity": "1.9.0"
+    "openopenzeppelin-solidity": "1.9.0"
   }
 }
