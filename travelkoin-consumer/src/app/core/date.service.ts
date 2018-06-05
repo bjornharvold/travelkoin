@@ -5,7 +5,6 @@
 import {Injectable} from '@angular/core';
 import * as moment from 'moment';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import { BigNumber } from "bignumber.js";
 const SERVER_FRIENDLY_DATE_FORMAT = 'YYYY-MM-DD';
 const DATE_FORMAT = 'x';
 const UTC_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
@@ -277,10 +276,6 @@ export class DateService {
         }
 
         return result;
-    }
-
-    static bigNumberToMoment(startTime: BigNumber) {
-        return moment.unix(startTime.toNumber());
     }
 
     constructor() {
