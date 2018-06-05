@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-registered-users',
@@ -12,8 +13,8 @@ export class RegisteredUsersComponent implements OnInit, OnDestroy {
     list: Array<User> = [];
 
     private listUsers(): void {
-        this.userService.listRegistered()
-            .takeWhile(() => this.alive)
+        this.userService.listRegistered().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                 this.list = list;
             })

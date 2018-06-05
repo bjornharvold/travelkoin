@@ -4,14 +4,14 @@
 
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
 import {AuthenticationTokenService} from './authentication-token.service';
 
 const AUTHENTICATION_ENDPOINT = '/api/authenticate';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthenticationHttpInterceptorService implements HttpInterceptor {
 
   private isApiUrl(url): boolean {

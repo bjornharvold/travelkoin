@@ -1,51 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PromptUpdateService} from './prompt-update.service';
-import {LogUpdateService} from './log-update.service';
-import {CheckForUpdateService} from './check-for-update.service';
-import {AuthenticationHttpInterceptorService} from './authentication-http-interceptor.service';
-import {AuthenticationTokenService} from './authentication-token.service';
-import {DateService} from './date.service';
-import {MediaTypeHttpInterceptorService} from './media-type-http-interceptor.service';
-import {ServerErrorHttpInterceptorService} from './server-error-http-interceptor.service';
-import {ServerHeartBeatService} from './server-heart-beat.service';
-import {TimezoneOffsetHttpInterceptorService} from './timezone-offset-http-interceptor.service';
-import {UserSessionService} from './user-session.service';
-import {UserService} from './user.service';
-import {CloudinaryService} from './cloudinary.service';
-import {AuthenticatedGuard} from './authenticated.guard';
-import {RegisteredGuard} from './registered.guard';
-import {ConversionService} from './conversion.service';
-import {HansGuard} from './hans.guard';
-import {WindowRefService} from './window-ref.service';
-import {MandrillService} from './mandrill.service';
 
 @NgModule({
     imports: [
         CommonModule
     ],
     declarations: [],
-    providers: [
-        CheckForUpdateService,
-        LogUpdateService,
-        PromptUpdateService,
-        AuthenticationHttpInterceptorService,
-        AuthenticationTokenService,
-        DateService,
-        MediaTypeHttpInterceptorService,
-        ServerErrorHttpInterceptorService,
-        ServerHeartBeatService,
-        TimezoneOffsetHttpInterceptorService,
-        UserSessionService,
-        UserService,
-        CloudinaryService,
-        AuthenticatedGuard,
-        RegisteredGuard,
-        HansGuard,
-        ConversionService,
-        WindowRefService,
-        MandrillService
-    ]
+    providers: []
 })
 export class CoreModule {
 }

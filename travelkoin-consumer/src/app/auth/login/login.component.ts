@@ -9,8 +9,9 @@ import {UserSessionService} from '../../core/user-session.service';
 import {environment} from '../../../environments/environment';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom} from 'rxjs';
 import {User} from '../../model/user';
+import {map, takeWhile} from 'rxjs/operators';
 
 const REDIRECT_URL: string = '/secure/dashboard';
 
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     private login(promise: Promise<any>): void {
         this.loading = true;
-        Observable.fromPromise(promise)
+        observableFrom(promise)
             .subscribe((result: any) => {
                     this.ngZone.run(() => {
                         const user: firebase.User = this.afAuth.auth.currentUser;
@@ -67,7 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         let persistence: firebase.auth.Auth.Persistence = firebase.auth.Auth.Persistence.LOCAL;
 
-        Observable.fromPromise(this.afAuth.auth.setPersistence(persistence))
+        observableFrom(this.afAuth.auth.setPersistence(persistence))
             .subscribe(() => {
                 this.login(this.afAuth.auth.signInWithEmailAndPassword(this.username.value, this.password.value));
             });
@@ -82,8 +83,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.userSessionService.getAuthUser()
-            .takeWhile(() => this.alive)
+        this.userSessionService.getAuthUser().pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: firebase.User) => {
                 if (user != null) {
                     this.authenticated = true;
@@ -95,24 +96,24 @@ export class LoginComponent implements OnInit, OnDestroy {
             password: this.password
         });
 
-        this.activatedRoute.params
-            .map(params => params['verified'])
-            .takeWhile(() => this.alive)
+        this.activatedRoute.params.pipe(
+            map(params => params['verified']),
+            takeWhile(() => this.alive))
             .subscribe(verified => {
-                if (verified != null) {
-                    this.verified = eval(verified);
+                    if (verified != null) {
+                        this.verified = eval(verified);
                     }
                 }
             );
 
-        this.userSessionService.userLoggedOutEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.userLoggedOutEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                 this.authenticated = false;
             });
 
-        this.userSessionService.userAuthenticatedEvent
-            .takeWhile(() => this.alive)
+        this.userSessionService.userAuthenticatedEvent.pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                 this.authenticated = true;
             })

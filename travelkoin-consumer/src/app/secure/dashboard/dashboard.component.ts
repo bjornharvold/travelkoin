@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 import {UserSessionService} from '../../core/user-session.service';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-secure-dashboard',
@@ -17,8 +18,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-        this.userSessionService.getUser()
-            .takeWhile(() => this.alive)
+        this.userSessionService.getUser().pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: User) => {
                     if (user != null) {
                         this.user = user;

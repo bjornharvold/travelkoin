@@ -8,10 +8,11 @@ import {Router} from '@angular/router';
 import {EmailValidators, PasswordValidators} from 'ng2-validators';
 import {UserSessionService} from '../../core/user-session.service';
 import * as firebase from 'firebase';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom, Observable} from 'rxjs';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {environment} from '../../../environments/environment';
 import ActionCodeSettings = firebase.auth.ActionCodeSettings;
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-register',
@@ -46,8 +47,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private validateEmail(): void {
         const user: firebase.User = this.afAuth.auth.currentUser;
         if (user != null) {
-            Observable.fromPromise(user.sendEmailVerification(this.actionCodeSettings))
-                .takeWhile(() => this.alive)
+            observableFrom(user.sendEmailVerification(this.actionCodeSettings)).pipe(
+                takeWhile(() => this.alive))
                 .subscribe(result => {
                         // console.log(result);
                         this.router.navigate(['/auth/login', {verified: false}]);
@@ -62,7 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     private login(promise: Promise<any>): void {
         this.loading = true;
-        Observable.fromPromise(promise)
+        observableFrom(promise)
             .subscribe((result: any) => {
                     this.ngZone.run(() => {
                         this.validateEmail();

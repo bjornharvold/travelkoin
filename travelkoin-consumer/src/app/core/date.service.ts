@@ -10,7 +10,7 @@ const SERVER_FRIENDLY_DATE_FORMAT = 'YYYY-MM-DD';
 const DATE_FORMAT = 'x';
 const UTC_DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSS';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class DateService {
 
     /**

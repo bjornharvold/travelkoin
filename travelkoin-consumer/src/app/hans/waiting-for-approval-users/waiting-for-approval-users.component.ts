@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
-import {MandrillService} from '../../core/mandrill.service';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-waiting-for-approval-users',
@@ -16,8 +16,8 @@ export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listWaitingForApproval()
-            .takeWhile(() => this.alive)
+        this.userService.listWaitingForApproval().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                 this.list = list;
             })
@@ -38,10 +38,10 @@ export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
      * @param {number} index
      */
     approveUser(index: number): void {
-        const user: User = this.list[index];
-        this.userService.approveUser(user)
-            .takeWhile(() => this.alive)
-            .subscribe(() => this.mandrillService.sendEmail(user.email));
+        // const user: User = this.list[index];
+        // this.userService.approveUser(user).pipe(
+        //     takeWhile(() => this.alive))
+        //     .subscribe(() => this.mandrillService.sendEmail(user.email));
     }
 
     ngOnDestroy() {
@@ -52,7 +52,6 @@ export class WaitingForApprovalUsersComponent implements OnInit, OnDestroy {
         this.listUsers();
     }
 
-    constructor(private userService: UserService,
-                private mandrillService: MandrillService) {
+    constructor(private userService: UserService) {
     }
 }

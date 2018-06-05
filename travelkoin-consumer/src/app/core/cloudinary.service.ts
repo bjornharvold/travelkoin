@@ -3,7 +3,7 @@
  */
 
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ImprovedMultimedia} from '../model/improved-multimedia';
 
@@ -12,7 +12,7 @@ const cloudinaryConfig = {
     upload_preset: 'traveliko_default_preset'
 };
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CloudinaryService {
 
     public static readonly UPLOAD_URL: string = 'https://api.cloudinary.com/v1_1/traveliko/upload';

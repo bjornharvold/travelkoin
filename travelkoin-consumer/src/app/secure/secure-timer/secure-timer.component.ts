@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs/Observable';
+import {interval as observableInterval} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-secure-secure-timer',
@@ -19,8 +20,8 @@ export class SecureTimerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        Observable.interval(1000)
-            .takeWhile(() => this.alive)
+        observableInterval(1000).pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                 const now = new Date().getTime();
                 if (this.eventStartTimeEpochInMilliseconds < now) {

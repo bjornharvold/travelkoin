@@ -4,7 +4,7 @@
 
 import {EventEmitter, Injectable, Output} from '@angular/core';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ServerHeartBeatService {
   private serverAvailable = true;
   @Output() serverAvailableEvent: EventEmitter<any>;

@@ -4,6 +4,7 @@ import {UserSessionService} from '../../core/user-session.service';
 import {FormGroup} from '@angular/forms';
 import {User} from '../../model/user';
 import {Router} from '@angular/router';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-secure-forms',
@@ -37,8 +38,8 @@ export class FormsComponent implements OnInit, OnDestroy {
         this.loading = true;
         this.dto.updateFromFormValues(this.form);
         this.user.updateRegistrationDetails(this.dto);
-        this.userSessionService.updateUser(this.user.uid, this.user)
-            .takeWhile(() => this.alive)
+        this.userSessionService.updateUser(this.user.uid, this.user).pipe(
+            takeWhile(() => this.alive))
             .subscribe(() => {
                     this.success = true;
                 },
@@ -68,8 +69,8 @@ export class FormsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.loading = true;
-        this.userSessionService.getUser()
-            .takeWhile(() => this.alive)
+        this.userSessionService.getUser().pipe(
+            takeWhile(() => this.alive))
             .subscribe((user: User) => {
                     if (user != null) {
                         this.loading = false;

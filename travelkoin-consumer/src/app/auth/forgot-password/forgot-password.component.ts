@@ -6,7 +6,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {EmailValidators} from 'ng2-validators';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom} from 'rxjs';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
     selector: 'app-forgot-password',
@@ -24,8 +25,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
     resetPassword(): void {
         this.showResetMessage = false;
         this.showErrorMessage = false;
-        Observable.fromPromise(this.afAuth.auth.sendPasswordResetEmail(this.email.value))
-            .takeWhile(() => this.alive)
+        observableFrom(this.afAuth.auth.sendPasswordResetEmail(this.email.value)).pipe(
+            takeWhile(() => this.alive))
             .subscribe(result => {
                     this.showResetMessage = true;
                 }, error => {

@@ -1,22 +1,23 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {from as observableFrom, Observable} from 'rxjs';
 import {ConversionRate} from '../model/conversion-rate';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
+import {map} from 'rxjs/operators';
 
 const ENDPOINT: string = 'https://min-api.cryptocompare.com';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ConversionService {
     private conversionRateCollection: AngularFirestoreCollection<ConversionRate>;
 
     get(id: string): Observable<ConversionRate | null> {
-        return this.conversionRateCollection.doc(id).valueChanges()
-            .map((cr: ConversionRate) => cr != null ? ConversionRate.deserializeObject(cr) : null);
+        return this.conversionRateCollection.doc(id).valueChanges().pipe(
+            map((cr: ConversionRate) => cr != null ? ConversionRate.deserializeObject(cr) : null));
     }
 
     set(uid: string, doc: ConversionRate): Observable<void> {
-        return Observable.fromPromise(this.conversionRateCollection.doc(uid).set(ConversionRate.serializeObject(doc)));
+        return observableFrom(this.conversionRateCollection.doc(uid).set(ConversionRate.serializeObject(doc)));
     }
 
     loadExchangeRate(crypto: string, currency: string): Observable<ConversionRate | null> {
@@ -24,8 +25,8 @@ export class ConversionService {
             .set('fsym', crypto)
             .set('tsyms', currency);
 
-        return this.httpClient.get<ConversionRate>(`${ENDPOINT}/data/price`, {params: params})
-            .map((cr: ConversionRate) => cr != null ? ConversionRate.deserializeObject(cr) : null);
+        return this.httpClient.get<ConversionRate>(`${ENDPOINT}/data/price`, {params: params}).pipe(
+            map((cr: ConversionRate) => cr != null ? ConversionRate.deserializeObject(cr) : null));
     }
 
     constructor(private readonly afs: AngularFirestore,

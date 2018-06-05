@@ -2,9 +2,11 @@
  * Copyright (c) 2017. Traveliko PTE.LTD. All rights Reserved.
  */
 
+
+import {takeWhile} from 'rxjs/operators';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import 'rxjs/add/operator/takeWhile';
+
 
 @Component({
     selector: 'app-home-marketing-header',
@@ -24,8 +26,8 @@ export class MarketingHeaderComponent implements OnInit, OnDestroy {
     constructor(private router: Router) {
 
         // TODO this is fugly but fragments are currently not working with Angular 4
-        router.events
-            .takeWhile(() => this.alive)
+        router.events.pipe(
+            takeWhile(() => this.alive))
             .subscribe(event => {
                 if (event instanceof NavigationEnd) {
                     const tree = router.parseUrl(router.url);

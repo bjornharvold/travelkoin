@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ImprovedMultimedia} from '../../model/improved-multimedia';
 import {UserService} from '../../core/user.service';
 import {User} from '../../model/user';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hans-blocked-users',
@@ -18,8 +19,8 @@ export class BlockedUsersComponent implements OnInit, OnDestroy {
     modalImage: ImprovedMultimedia = null;
 
     private listUsers(): void {
-        this.userService.listBlocked()
-            .takeWhile(() => this.alive)
+        this.userService.listBlocked().pipe(
+            takeWhile(() => this.alive))
             .subscribe((list: Array<User>) => {
                 this.list = list;
             })
