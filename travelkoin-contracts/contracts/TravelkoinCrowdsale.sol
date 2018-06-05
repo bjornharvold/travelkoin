@@ -1,8 +1,8 @@
 pragma solidity ^0.4.18;
 
-import "zeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol";
-import "zeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
-import "zeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "./TravelkoinToken.sol";
 
 

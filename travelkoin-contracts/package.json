@@ -1,6 +1,6 @@
 {
   "name": "travelkoin-contract",
-  "version": "5.66.0",
+  "version": "5.67.0",
   "description": "Travelkoin token sale",
   "scripts": {
     "generate": "rm -rf ../travelkoin-consumer/src/app/contracts ../travelkoin-consumer/src/app/types build && truffle compile && soltsice ./build/contracts ./build/types && mkdir ../travelkoin-consumer/src/app/contracts && mkdir ../travelkoin-consumer/src/app/types && cp -fv ./build/contracts/*.* ../travelkoin-consumer/src/app/contracts/ && cp -fv ./build/types/*.* ../travelkoin-consumer/src/app/types/",
@@ -61,6 +61,6 @@
     "dotenv": "6.0.0",
     "ethjs-abi": "0.2.1",
     "soltsice": "0.11.5",
-    "openzeppelin-solidity": "1.9.0"
+    "openopenzeppelin-solidity": "1.9.0"
   }
 }
